@@ -1,9 +1,10 @@
 #pragma once
-#include "stdHeaders.h"
+#include "stdHeaders.h"	   
+#include <QSqlDatabase>
 
 class SQLMgr //SQL Manadger the base class for work with Data Bases
 {
-private:
+protected:
 	// connection info
 	string _host;
 	string _DBName;
@@ -12,6 +13,7 @@ private:
 	// base info
 	vector<string> tablesNames;
 	vector<string> fieldsNames;
+	QSqlDatabase db;
 	
 
 	virtual void _connect();
