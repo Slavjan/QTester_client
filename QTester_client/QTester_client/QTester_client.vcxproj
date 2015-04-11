@@ -77,10 +77,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SQLiteMgr.cpp" />
     <ClCompile Include="SQLMgr.cpp" />
     <ClCompile Include="stdHeaders.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SQLiteMgr.h" />
     <ClInclude Include="SQLMgr.h" />
     <ClInclude Include="stdHeaders.h" />
   </ItemGroup>
