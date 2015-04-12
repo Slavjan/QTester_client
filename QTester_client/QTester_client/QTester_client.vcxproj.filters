@@ -40,6 +40,9 @@
       <Filter>class\class Source</Filter>
     </ClCompile>
     <ClCompile Include="SQLiteMgr.cpp">
+      <Filter>class\class Source</Filter>
+    </ClCompile>
+    <ClCompile Include="UAC.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -51,6 +54,9 @@
       <Filter>class\class Header</Filter>
     </ClInclude>
     <ClInclude Include="SQLiteMgr.h">
+      <Filter>class\class Header</Filter>
+    </ClInclude>
+    <ClInclude Include="UAC.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

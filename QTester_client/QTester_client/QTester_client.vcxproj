@@ -80,11 +80,13 @@
     <ClCompile Include="SQLiteMgr.cpp" />
     <ClCompile Include="SQLMgr.cpp" />
     <ClCompile Include="stdHeaders.cpp" />
+    <ClCompile Include="UAC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SQLiteMgr.h" />
     <ClInclude Include="SQLMgr.h" />
     <ClInclude Include="stdHeaders.h" />
+    <ClInclude Include="UAC.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
