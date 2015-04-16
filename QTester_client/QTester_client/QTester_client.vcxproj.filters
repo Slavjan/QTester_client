@@ -51,11 +51,11 @@
     <ClCompile Include="User.cpp">
       <Filter>class\class Source</Filter>
     </ClCompile>
-    <ClCompile Include="Teacher.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Student.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>class\class Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Teacher.cpp">
+      <Filter>class\class Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -78,7 +78,7 @@
       <Filter>class\class Header</Filter>
     </ClInclude>
     <ClInclude Include="Teacher.h">
-      <Filter>Header Files</Filter>
+      <Filter>class\class Header</Filter>
     </ClInclude>
     <ClInclude Include="Student.h">
       <Filter>Header Files</Filter>
