@@ -42,11 +42,35 @@
     <ClCompile Include="SQLiteMgr.cpp">
       <Filter>class\class Source</Filter>
     </ClCompile>
-    <ClCompile Include="UAC.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Account.cpp">
+      <Filter>class\class Source</Filter>
     </ClCompile>
     <ClCompile Include="User.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>class\class Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Student.cpp">
+      <Filter>class\class Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Teacher.cpp">
+      <Filter>class\class Source</Filter>
+    </ClCompile>
+    <ClCompile Include="UserGroup.cpp">
+      <Filter>class\class Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Administrator.cpp">
+      <Filter>class\class Source</Filter>
+    </ClCompile>
+    <ClCompile Include="UAC.cpp">
+      <Filter>class\class Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Examenator.cpp">
+      <Filter>class\class Source</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseManager.cpp">
+      <Filter>class\class Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Examiner.cpp">
+      <Filter>class\class Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -59,11 +83,35 @@
     <ClInclude Include="SQLiteMgr.h">
       <Filter>class\class Header</Filter>
     </ClInclude>
-    <ClInclude Include="UAC.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Account.h">
+      <Filter>class\class Header</Filter>
     </ClInclude>
     <ClInclude Include="User.h">
-      <Filter>Header Files</Filter>
+      <Filter>class\class Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Teacher.h">
+      <Filter>class\class Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Student.h">
+      <Filter>class\class Header</Filter>
+    </ClInclude>
+    <ClInclude Include="UserGroup.h">
+      <Filter>class\class Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Administrator.h">
+      <Filter>class\class Header</Filter>
+    </ClInclude>
+    <ClInclude Include="UAC.h">
+      <Filter>class\class Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Examenator.h">
+      <Filter>class\class Header</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseManager.h">
+      <Filter>class\class Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Examiner.h">
+      <Filter>class\class Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
