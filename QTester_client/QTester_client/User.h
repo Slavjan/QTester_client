@@ -1,15 +1,17 @@
 #pragma once
-#include "stdHeaders.h"
+#include "Account.h"
 
-class User
+class User  : Account
 {
 protected:
-	string Name;
-	string office;
-	Privileges
+	virtual void QuestBaseReq();
+//TODO: users methods thinking 
 
 public:
 	User();
 	~User();
+
+//TODO: getters setters
+
 };
 

@@ -76,19 +76,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Account.cpp" />
+    <ClCompile Include="Administrator.cpp" />
+    <ClCompile Include="BaseManager.cpp" />
+    <ClCompile Include="Examenator.cpp" />
+    <ClCompile Include="Examiner.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SQLiteMgr.cpp" />
     <ClCompile Include="SQLMgr.cpp" />
     <ClCompile Include="stdHeaders.cpp" />
+    <ClCompile Include="Student.cpp" />
+    <ClCompile Include="Teacher.cpp" />
+    <ClCompile Include="Tester.cpp" />
     <ClCompile Include="UAC.cpp" />
     <ClCompile Include="User.cpp" />
+    <ClCompile Include="UserGroup.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Account.h" />
+    <ClInclude Include="Administrator.h" />
+    <ClInclude Include="BaseManager.h" />
+    <ClInclude Include="Examenator.h" />
+    <ClInclude Include="Examiner.h" />
     <ClInclude Include="SQLiteMgr.h" />
     <ClInclude Include="SQLMgr.h" />
     <ClInclude Include="stdHeaders.h" />
+    <ClInclude Include="Student.h" />
+    <ClInclude Include="Teacher.h" />
+    <ClInclude Include="Tester.h" />
     <ClInclude Include="UAC.h" />
     <ClInclude Include="User.h" />
+    <ClInclude Include="UserGroup.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
