@@ -91,7 +91,7 @@
     <ClInclude Include="SQLiteMgr.h" />
     <ClInclude Include="SQLMgr.h" />
     <ClInclude Include="stdHeaders.h" />
-    <ClInclude Include="Stutdent.h" />
+    <ClInclude Include="Student.h" />
     <ClInclude Include="Teacher.h" />
     <ClInclude Include="UAC.h" />
     <ClInclude Include="User.h" />

@@ -80,7 +80,7 @@
     <ClInclude Include="Teacher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Stutdent.h">
+    <ClInclude Include="Student.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
