@@ -1,0 +1,208 @@
+\documentclass[twoside]{book}
+
+% Packages required by doxygen
+\usepackage{fixltx2e}
+\usepackage{calc}
+\usepackage{doxygen}
+\usepackage[export]{adjustbox} % also loads graphicx
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{makeidx}
+\usepackage{multicol}
+\usepackage{multirow}
+\PassOptionsToPackage{warn}{textcomp}
+\usepackage{textcomp}
+\usepackage[nointegrals]{wasysym}
+\usepackage[table]{xcolor}
+
+% NLS support packages
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+
+% Font selection
+\usepackage[T1]{fontenc}
+\usepackage[scaled=.90]{helvet}
+\usepackage{courier}
+\usepackage{amssymb}
+\usepackage{sectsty}
+\renewcommand{\familydefault}{\sfdefault}
+\allsectionsfont{%
+  \fontseries{bc}\selectfont%
+  \color{darkgray}%
+}
+\renewcommand{\DoxyLabelFont}{%
+  \fontseries{bc}\selectfont%
+  \color{darkgray}%
+}
+\newcommand{\+}{\discretionary{\mbox{\scriptsize$\hookleftarrow$}}{}{}}
+
+% Page & text layout
+\usepackage{geometry}
+\geometry{%
+  a4paper,%
+  top=2.5cm,%
+  bottom=2.5cm,%
+  left=2.5cm,%
+  right=2.5cm%
+}
+\tolerance=750
+\hfuzz=15pt
+\hbadness=750
+\setlength{\emergencystretch}{15pt}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{0.2cm}
+\makeatletter
+\renewcommand{\paragraph}{%
+  \@startsection{paragraph}{4}{0ex}{-1.0ex}{1.0ex}{%
+    \normalfont\normalsize\bfseries\SS@parafont%
+  }%
+}
+\renewcommand{\subparagraph}{%
+  \@startsection{subparagraph}{5}{0ex}{-1.0ex}{1.0ex}{%
+    \normalfont\normalsize\bfseries\SS@subparafont%
+  }%
+}
+\makeatother
+
+% Headers & footers
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\fancyhead[LE]{\fancyplain{}{\bfseries\thepage}}
+\fancyhead[CE]{\fancyplain{}{}}
+\fancyhead[RE]{\fancyplain{}{\bfseries\leftmark}}
+\fancyhead[LO]{\fancyplain{}{\bfseries\rightmark}}
+\fancyhead[CO]{\fancyplain{}{}}
+\fancyhead[RO]{\fancyplain{}{\bfseries\thepage}}
+\fancyfoot[LE]{\fancyplain{}{}}
+\fancyfoot[CE]{\fancyplain{}{}}
+\fancyfoot[RE]{\fancyplain{}{\bfseries\scriptsize Документация по Q\+Tester\+\_\+client. Последние изменения\+: Пт 17 Апр 2015 03\+:09\+:57. Создано системой Doxygen }}
+\fancyfoot[LO]{\fancyplain{}{\bfseries\scriptsize Документация по Q\+Tester\+\_\+client. Последние изменения\+: Пт 17 Апр 2015 03\+:09\+:57. Создано системой Doxygen }}
+\fancyfoot[CO]{\fancyplain{}{}}
+\fancyfoot[RO]{\fancyplain{}{}}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\chaptermark}[1]{%
+  \markboth{#1}{}%
+}
+\renewcommand{\sectionmark}[1]{%
+  \markright{\thesection\ #1}%
+}
+
+% Indices & bibliography
+\usepackage{natbib}
+\usepackage[titles]{tocloft}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{5}
+\makeindex
+
+% Hyperlinks (required, but should be loaded last)
+\usepackage{ifpdf}
+\ifpdf
+  \usepackage[pdftex,pagebackref=true]{hyperref}
+\else
+  \usepackage[ps2pdf,pagebackref=true]{hyperref}
+\fi
+\hypersetup{%
+  colorlinks=true,%
+  linkcolor=blue,%
+  citecolor=blue,%
+  unicode%
+}
+
+% Custom commands
+\newcommand{\clearemptydoublepage}{%
+  \newpage{\pagestyle{empty}\cleardoublepage}%
+}
+
+
+%===== C O N T E N T S =====
+
+\begin{document}
+
+% Titlepage & ToC
+\hypersetup{pageanchor=false,
+             bookmarks=true,
+             bookmarksnumbered=true,
+             pdfencoding=unicode
+            }
+\pagenumbering{roman}
+\begin{titlepage}
+\vspace*{7cm}
+\begin{center}%
+{\Large Q\+Tester\+\_\+client \\[1ex]\large 0.\+2 }\\
+\vspace*{1cm}
+{\large Создано системой Doxygen 1.8.9.1}\\
+\vspace*{0.5cm}
+{\small Пт 17 Апр 2015 03:09:57}\\
+\end{center}
+\end{titlepage}
+\clearemptydoublepage
+\tableofcontents
+\clearemptydoublepage
+\pagenumbering{arabic}
+\hypersetup{pageanchor=true}
+
+%--- Begin generated contents ---
+\chapter{Иерархический список классов}
+\input{hierarchy}
+\chapter{Алфавитный указатель классов}
+\input{annotated}
+\chapter{Список файлов}
+\input{files}
+\chapter{Классы}
+\input{db/d22/class_account}
+\input{dd/d29/class_administrator}
+\input{d8/dc6/class_base_manager}
+\input{d9/d7c/class_examenator}
+\input{d6/d26/class_examiner}
+\input{dc/da5/class_s_q_lite_mgr}
+\input{df/dd0/class_s_q_l_mgr}
+\input{db/d66/class_student}
+\input{dc/d2d/class_teacher}
+\input{d9/d27/class_tester}
+\input{db/d4d/class_test_generator}
+\input{d3/d61/class_u_a_c}
+\input{d7/d23/class_user}
+\input{d8/d7e/class_user_group}
+\chapter{Файлы}
+\input{de/d9a/_account_8cpp}
+\input{d6/d5f/_account_8h}
+\input{d7/db7/_administrator_8cpp}
+\input{de/dcc/_administrator_8h}
+\input{d9/d4e/_base_manager_8cpp}
+\input{df/d6a/_base_manager_8h}
+\input{db/d7a/_examenator_8cpp}
+\input{da/da2/_examenator_8h}
+\input{de/d6b/_examiner_8cpp}
+\input{dd/d77/_examiner_8h}
+\input{df/d0a/main_8cpp}
+\input{df/d58/_s_q_lite_mgr_8cpp}
+\input{dd/dff/_s_q_lite_mgr_8h}
+\input{d5/d93/_s_q_l_mgr_8cpp}
+\input{dc/d5e/_s_q_l_mgr_8h}
+\input{d4/d3a/std_headers_8cpp}
+\input{df/d29/std_headers_8h}
+\input{db/d78/_student_8cpp}
+\input{d1/dbc/_student_8h}
+\input{d9/d15/_teacher_8cpp}
+\input{d2/d3f/_teacher_8h}
+\input{dd/d75/_tester_8cpp}
+\input{d1/d75/_tester_8h}
+\input{d5/dec/_test_generator_8cpp}
+\input{d1/d85/_test_generator_8h}
+\input{de/d75/_u_a_c_8cpp}
+\input{d0/d00/_u_a_c_8h}
+\input{dc/d89/_user_8cpp}
+\input{d3/d75/_user_8h}
+\input{d8/df6/_user_group_8cpp}
+\input{d6/d00/_user_group_8h}
+%--- End generated contents ---
+
+% Index
+\backmatter
+\newpage
+\phantomsection
+\clearemptydoublepage
+\addcontentsline{toc}{chapter}{Алфавитный указатель}
+\printindex
+
+\end{document}
