@@ -9,11 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
-      <Extensions>qrc;*</Extensions>
-      <ParseFiles>false</ParseFiles>
-    </Filter>
     <Filter Include="Generated Files">
       <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
       <Extensions>moc;h;cpp</Extensions>
@@ -28,6 +23,11 @@
     <Filter Include="class\class Header">
       <UniqueIdentifier>{5b6999bb-a24d-4484-b2f5-35513242d4ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -41,39 +41,6 @@
     </ClCompile>
     <ClCompile Include="SQLiteMgr.cpp">
       <Filter>class\class Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Account.cpp">
-      <Filter>class\class Source</Filter>
-    </ClCompile>
-    <ClCompile Include="User.cpp">
-      <Filter>class\class Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Student.cpp">
-      <Filter>class\class Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Teacher.cpp">
-      <Filter>class\class Source</Filter>
-    </ClCompile>
-    <ClCompile Include="UserGroup.cpp">
-      <Filter>class\class Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Administrator.cpp">
-      <Filter>class\class Source</Filter>
-    </ClCompile>
-    <ClCompile Include="UAC.cpp">
-      <Filter>class\class Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Examenator.cpp">
-      <Filter>class\class Source</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseManager.cpp">
-      <Filter>class\class Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Examiner.cpp">
-      <Filter>class\class Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Tester.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="User.cpp">
       <Filter>class\class Source</Filter>
@@ -112,39 +79,6 @@
     </ClInclude>
     <ClInclude Include="SQLiteMgr.h">
       <Filter>class\class Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Account.h">
-      <Filter>class\class Header</Filter>
-    </ClInclude>
-    <ClInclude Include="User.h">
-      <Filter>class\class Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Teacher.h">
-      <Filter>class\class Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Student.h">
-      <Filter>class\class Header</Filter>
-    </ClInclude>
-    <ClInclude Include="UserGroup.h">
-      <Filter>class\class Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Administrator.h">
-      <Filter>class\class Header</Filter>
-    </ClInclude>
-    <ClInclude Include="UAC.h">
-      <Filter>class\class Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Examenator.h">
-      <Filter>class\class Header</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseManager.h">
-      <Filter>class\class Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Examiner.h">
-      <Filter>class\class Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Tester.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="User.h">
       <Filter>class\class Header</Filter>

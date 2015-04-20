@@ -5,7 +5,7 @@ SQLMgr::SQLMgr()
 {
 }
 
-SQLMgr::SQLMgr(string hostName, string DBName, string userName, string password)
+SQLMgr::SQLMgr(QString hostName, QString DBName, QString userName, QString password)
 {
 
 }

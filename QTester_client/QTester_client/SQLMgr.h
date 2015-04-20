@@ -6,39 +6,38 @@ class SQLMgr //SQL Manadger the base class for work with Data Bases
 {
 protected:
 	// connection info
-	string _host;
-	string _DBName;
-	string _userName;
-	string _pwd;
+	QString _host;
+	QString _DBName;
+	QString _userName;
+	QString _pwd;
 	// base info
-	vector<string> tablesNames;
-	vector<string> fieldsNames;
+	QVector<QString> tablesNames;
+	QVector<QString> fieldsNames;
 	QSqlDatabase db;
 	
 
 	virtual void _connect();
 	virtual void _disconnect();
 	
-	virtual bool request(string SQL);
-	bool validationTNames(string TNames);
-	bool validationFNames(string FNames);
+	virtual bool request(QString SQL);
+	bool validationTNames(QString TNames);
+	bool validationFNames(QString FNames);	 
 
-	
 public:
 	SQLMgr();
-	SQLMgr(string hostName, string DBName, string userName, string password);
+	SQLMgr(QString hostName, QString DBName, QString userName, QString password);
 	~SQLMgr();
 
 	void connect();
 	void createDB();
 //	void connect
-	void reqSelect(string fields, string tableNames);
-	void reqSelectWhere(string fields, string tableNames, string WHERE);
+	void reqSelect(QString fields, QString tableNames);
+	void reqSelectWhere(QString fields, QString tableNames, QString WHERE);
 
-	void setHost(string host = "localhost");
-	void setDBName(string);
-	void setUName(string);
-	void setPWD(string);
+	void setHost(QString host = "localhost");
+	void setDBName(QString);
+	void setUName(QString);
+	void setPWD(QString);
 
 };
 

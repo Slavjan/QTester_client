@@ -5,22 +5,20 @@
 */
 // streams
 #include <iostream>
+#include <QString>
 
 using std::cin;
 using std::cout;
-using std::string;
+//using std::string;
 
-#include <fstream>
-
-using std::ofstream;
-using std::ifstream;
+#include <QTextStream>
+#include <QDataStream>
 
 // /streams
 
 // vector
-#include <vector>
+#include <QVector>
 
-using std::vector;
 // /vector
 
 // if you need the global function defined her is there
