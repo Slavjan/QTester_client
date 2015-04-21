@@ -1,6 +1,6 @@
 #pragma once
 #include "stdHeaders.h"	   
-#include <QSqlDatabase>
+#include <QtSql>
 
 class SQLMgr //SQL Manadger the base class for work with Data Bases
 {
@@ -10,10 +10,12 @@ protected:
 	QString _DBName;
 	QString _userName;
 	QString _pwd;
+	QString _SQLDRV;
 	// base info
 	QVector<QString> tablesNames;
 	QVector<QString> fieldsNames;
 	QSqlDatabase db;
+	
 	
 
 	virtual void _connect();
@@ -26,18 +28,18 @@ protected:
 public:
 	SQLMgr();
 	SQLMgr(QString hostName, QString DBName, QString userName, QString password);
-	~SQLMgr();
-
-	void connect();
-	void createDB();
-//	void connect
-	void reqSelect(QString fields, QString tableNames);
-	void reqSelectWhere(QString fields, QString tableNames, QString WHERE);
-
+	virtual ~SQLMgr();											   
+	
 	void setHost(QString host = "localhost");
 	void setDBName(QString);
 	void setUName(QString);
 	void setPWD(QString);
+	void setSqlDRV(QString SQLDRV);
 
+	void connect();
+	void createDB();
+	//	void connect
+	void reqSelect(QString fields, QString tablesNames);
+	void reqSelectWhere(QString fields, QString tablesNames, QString WHERE);
 };
 
