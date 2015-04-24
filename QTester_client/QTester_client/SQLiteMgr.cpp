@@ -8,4 +8,5 @@ SQLiteMgr::SQLiteMgr()
 
 SQLiteMgr::~SQLiteMgr()
 {
+	_disconnect();
 }

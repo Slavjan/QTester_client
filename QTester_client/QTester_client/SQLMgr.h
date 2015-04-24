@@ -4,9 +4,10 @@
 
 class SQLMgr //SQL Manadger the base class for work with Data Bases
 {
-protected:
+protected: //fields
 	// connection info
 	QString _host;
+	QString _connectionName;
 	QString _DBName;
 	QString _userName;
 	QString _pwd;
@@ -15,31 +16,34 @@ protected:
 	QVector<QString> tablesNames;
 	QVector<QString> fieldsNames;
 	QSqlDatabase db;
-	
-	
+	QSqlQuery query;
+// /fields
 
-	virtual void _connect();
-	virtual void _disconnect();
-	
-	virtual bool request(QString SQL);
-	bool validationTNames(QString TNames);
-	bool validationFNames(QString FNames);	 
-
-public:
+public:	//methods
 	SQLMgr();
 	SQLMgr(QString hostName, QString DBName, QString userName, QString password);
 	virtual ~SQLMgr();											   
 	
-	void setHost(QString host = "localhost");
+	void setHost(QString);
+	void setConnectionName(QString);
 	void setDBName(QString);
 	void setUName(QString);
 	void setPWD(QString);
 	void setSqlDRV(QString SQLDRV);
 
-	void connect();
-	void createDB();
+	int connect();
+	int createDB();
 	//	void connect
-	void reqSelect(QString fields, QString tablesNames);
-	void reqSelectWhere(QString fields, QString tablesNames, QString WHERE);
+	int reqSelect(QString fields, QString tablesNames);
+	int reqSelectWhere(QString fields, QString tablesNames, QString WHERE);
+
+protected:
+	void _disconnect();
+
+	bool request(QString SQL);
+	bool validationTNames(QString TNames);
+	bool validationFNames(QString FNames);
+
+// /methods
 };
 

@@ -16,11 +16,17 @@ SQLMgr::SQLMgr(QString hostName = "localhost", QString DBName, QString userName,
 
 SQLMgr::~SQLMgr()
 {
+	_disconnect();
 }
-
-void SQLMgr::setHost(QString host)
+//  setters
+void SQLMgr::setHost(QString host = "localhost")
 {
 	_host = host;
+}
+
+void SQLMgr::setConnectionName(QString connectionName = "myConnetion")
+{
+	_connectionName = connectionName;
 }
 
 void SQLMgr::setDBName(QString name)
@@ -38,24 +44,36 @@ void SQLMgr::setPWD(QString pwd)
 	_pwd = pwd;
 }
 
-void SQLMgr::setSqlDRV(QString SQLDRV)	// QSQLITE or like
+void SQLMgr::setSqlDRV(QString SQLDRV)	// QSQLITE, QMYSQL  or like
 {
 	_SQLDRV = SQLDRV;
 }
+//  /setters
 
-void SQLMgr::createDB()
+int SQLMgr::connect()
+{
+	db = QSqlDatabase::addDatabase(_SQLDRV, _connectionName);
+	db.setHostName(_host);
+	db.setDatabaseName(_DBName);
+	db.setUserName(_userName);
+	db.setPassword(_pwd);
+	if (!db.open())
+		return false;
+	//TODO: error enum;
+	return true;
+}
+
+int SQLMgr::createDB()
 {
 	QString SQL = "CREATE DATABESE";
 
-	request(SQL);
+	if (!request(SQL))
+		return 1;
+//TODO: error enum;
+	return 0;
 }
 
-void SQLMgr::connect()
-{
-	_connect();
-}
-
-void SQLMgr::reqSelect(QString fields = "", QString tablesNames = "")
+int SQLMgr::reqSelect(QString fields = "", QString tablesNames = "")
 {
 	QString Select = "SELECT ",
 			from = " FROM ",
@@ -67,10 +85,13 @@ void SQLMgr::reqSelect(QString fields = "", QString tablesNames = "")
 	}
 	else SQL = Select + "*" + from + "*";
 
-	request(SQL);
+	if (!request(SQL))
+		return 1;
+//TODO: error enum;
+	return 0;
 }
 
-void SQLMgr::reqSelectWhere(QString fields = "", QString tablesNames = "", QString WHERE = "")
+int SQLMgr::reqSelectWhere(QString fields = "", QString tablesNames = "", QString WHERE = "")
 {
 	QString Select = "SELECT ",
 		from = " FROM ",
@@ -83,10 +104,27 @@ void SQLMgr::reqSelectWhere(QString fields = "", QString tablesNames = "", QStri
 	}
 	else SQL = Select + "*" + from + "*" + where + "*";
 
-	request(SQL);
+	if (!request(SQL))
+		return 1;
+//TODO: error enum;
+	return 0;
 }
 
 // /public
+
 // private
+
+void SQLMgr::_disconnect()
+{
+	db.close();
+}
+
+bool SQLMgr::request(QString SQL)
+{
+	if (!query.exec(SQL))
+		return false;
+//TODO: error enum;
+	return true;
+}
 
 // /private
