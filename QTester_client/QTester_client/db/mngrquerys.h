@@ -19,8 +19,8 @@ private:
 
     void createTable(QString &tableName, DataMap &data);
 public:
-    QSqlQuery select(QString &tableName, QStringList &fields, QString &limit = "25");
-    QSqlQuery select(QString &tableName, QStringList &fields, QString &where, QString &limit = "25");
+    static QSqlQuery select(QString &tableName, QStringList &fields, qint64 limit = 25 );
+    static QSqlQuery select(QString &tableName, QStringList &fields, QString &where, qint64 limit = 25 );
 };
 
 #endif // MNGRQUERYS_H

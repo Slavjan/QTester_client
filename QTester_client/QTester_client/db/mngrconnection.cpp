@@ -6,6 +6,7 @@ MngrConnection::MngrConnection(const QString &dbDriver = "QSQLITE",
                                const QString &dbUser   = "",
                                const QString &dbPass   = "")
 {
+    const QString dbPath( QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QDir::separator() + "QTester" + QDir::separator() );
 
     if( !QSqlDatabase::isDriverAvailable(dbDriver) ){
         qCritical() << "Cannot avalible "<< dbDriver <<" driver";
@@ -15,15 +16,13 @@ MngrConnection::MngrConnection(const QString &dbDriver = "QSQLITE",
 
     db = QSqlDatabase::addDatabase(dbDriver);
 
-    if( !QDir().mkpath( DefinesPath::dbPath() ) ){
+    if( !QDir().mkpath( dbPath ) ){
         qCritical() << "Cannot createed work directory"
-                    << "\nPath: " << DefinesPath::dbPath();
+                    << "\nPath: " << dbPath;
         QMessageBox::critical(0 , QObject::tr("Critical"),
                               QObject::tr("It was not succeeded to create a directory for a database.") );
     }else{
-        db.setDatabaseName( QStandardPaths::writableLocation(QStandardPaths::DataLocation)
-                            + QDir::separator()
-                            + "QTester.db" );
+        db.setDatabaseName( dbPath + "QTester.db" );
         db.setUserName( dbUser );
         db.setHostName( dbHost );
         db.setPassword( dbPass );

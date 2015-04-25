@@ -2,19 +2,20 @@
 
 
 
-QSqlQuery MngrQuerys::select(QString &tableName, QStringList &fields, QString &limit)
+QSqlQuery MngrQuerys::select(QString &tableName, QStringList &fields, qint64 limit)
 {
-    QSqlQuery query("SELECT " + fields.join(", ") + " FROM " + tableName + " LIMIT " + limit);
+    QString _limit = (limit <= 0)? "" : " LIMIT " + QString::number(limit);
+    QSqlQuery query("SELECT " + fields.join(", ") + " FROM " + tableName + _limit );
 
     query.exec();
 
     return query;
 }
 
-QSqlQuery MngrQuerys::select(QString &tableName, QStringList &fields, QString &where, QString &limit)
+QSqlQuery MngrQuerys::select(QString &tableName, QStringList &fields, QString &where, qint64 limit)
 {
     QString _where = (where.isEmpty() || where.isNull())? "" : " WHERE " + where;
-    QString _limit = (limit.isEmpty() || limit.isNull())? "" : " LIMIT " + limit;
+    QString _limit = (limit <= 0)? "" : " LIMIT " + QString::number(limit);
 
     QSqlQuery query("SELECT " + fields.join(", ") + " FROM " + tableName + _where + _limit);
 
