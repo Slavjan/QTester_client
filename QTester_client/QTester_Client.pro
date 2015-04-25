@@ -3,6 +3,7 @@ QT       += core gui widgets sql xml network
 TARGET = QTester_Client
 TEMPLATE = app
 
+CONFIG += console
 CONFIG += c++11
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -21,8 +22,8 @@ QMAKE_TARGET_DESCRIPTION = Tester
 QMAKE_TARGET_COPYRIGHT = Slavjan
 
 HEADERS += \
-    QTester_client/SQLiteMgr.h \
-    QTester_client/SQLMgr.h \
+#    QTester_client/SQLiteMgr.h \
+#    QTester_client/SQLMgr.h \
     QTester_client/stdHeaders.h \
     QTester_client/Tester.h \
     QTester_client/TestGenerator.h \
@@ -31,8 +32,8 @@ HEADERS += \
 
 SOURCES += \
     QTester_client/main.cpp \
-    QTester_client/SQLiteMgr.cpp \
-    QTester_client/SQLMgr.cpp \
+#    QTester_client/SQLiteMgr.cpp \
+#    QTester_client/SQLMgr.cpp \
     QTester_client/stdHeaders.cpp \
     QTester_client/Tester.cpp \
     QTester_client/TestGenerator.cpp \

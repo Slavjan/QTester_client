@@ -1,6 +1,24 @@
 #include "mngrquerys.h"
 
+#include <QDebug>
 
+bool MngrQuerys::createTable(QString &tableName, DataMap &data)
+{
+    QString sql = "CREATE TABLE IF NOT EXISTS " + tableName + " ( ";
+
+    for(int i = 0; i < data.size(); ++i){
+        sql += data.keys().at(i) + " " + data.values().at(i);
+        if( i+1 < data.size() )
+            sql += ", ";
+    }
+
+    sql += " );";
+
+    qDebug() << sql; /// < \todo delete that
+
+    QSqlQuery query(sql);
+    return query.exec();
+}
 
 QSqlQuery MngrQuerys::select(QString &tableName, QStringList &fields, qint64 limit)
 {
