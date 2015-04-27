@@ -1,8 +1,7 @@
-#include "mngrquerys.h"
-
 #include <QDebug>
+#include "QuerysMgr.h"
 
-bool MngrQuerys::createTable(QString &tableName, DataMap &data)
+bool QuerysMgr::createTable(QString &tableName, DataMap &data)
 {
     QString sql = "CREATE TABLE IF NOT EXISTS " + tableName + " ( ";
 
@@ -20,7 +19,7 @@ bool MngrQuerys::createTable(QString &tableName, DataMap &data)
     return query.exec();
 }
 
-QSqlQuery MngrQuerys::select(QString &tableName, QStringList &fields, qint64 limit)
+QSqlQuery QuerysMgr::select(QString &tableName, QStringList &fields, qint64 limit)
 {
     QString _limit = (limit <= 0)? "" : " LIMIT " + QString::number(limit);
     QSqlQuery query("SELECT " + fields.join(", ") + " FROM " + tableName + _limit );
@@ -30,7 +29,7 @@ QSqlQuery MngrQuerys::select(QString &tableName, QStringList &fields, qint64 lim
     return query;
 }
 
-QSqlQuery MngrQuerys::select(QString &tableName, QStringList &fields, QString &where, qint64 limit)
+QSqlQuery QuerysMgr::select(QString &tableName, QStringList &fields, QString &where, qint64 limit)
 {
     QString _where = (where.isEmpty() || where.isNull())? "" : " WHERE " + where;
     QString _limit = (limit <= 0)? "" : " LIMIT " + QString::number(limit);

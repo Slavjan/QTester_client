@@ -9,13 +9,13 @@
 typedef QMap<QString,QString> DataMap;
 
 /*!
- * \brief The MngrQuerys is static class for executable SQL querys
+ * \brief The QuerysMgr is static class for executable SQL querys
  */
-class MngrQuerys
+class QuerysMgr
 {
 private:
-    MngrQuerys();
-    ~MngrQuerys();
+    QuerysMgr();
+    ~QuerysMgr();
 
 public:
     static bool createTable(QString &tableName, DataMap &data);

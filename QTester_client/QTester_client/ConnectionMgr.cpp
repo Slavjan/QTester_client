@@ -1,10 +1,10 @@
-#include "mngrconnection.h"
 #include <QStandardPaths>
+#include "ConnectionMgr.h"
 
-MngrConnection::MngrConnection(const QString &dbDriver = "QSQLITE",
-                               const QString &dbHost   = "",
-                               const QString &dbUser   = "",
-                               const QString &dbPass   = "")
+ConnectionMgr::ConnectionMgr(const QString &dbDriver = "",
+                             const QString &dbHost   = "",
+							 const QString &dbUser   = "",
+							 const QString &dbPass   = "")
 {
     const QString dbPath( QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QDir::separator() + "QTester" + QDir::separator() );
 
@@ -20,7 +20,7 @@ MngrConnection::MngrConnection(const QString &dbDriver = "QSQLITE",
         qCritical() << "Cannot createed work directory"
                     << "\nPath: " << dbPath;
         QMessageBox::critical(0 , QObject::tr("Critical"),
-                              QObject::tr("It was not succeeded to create a directory for a database.") );
+                              QObject::tr("it was not succeeded to create a directory for a database.") );
     }else{
         db.setDatabaseName( dbPath + "QTester.db" );
         db.setUserName( dbUser );
@@ -29,37 +29,37 @@ MngrConnection::MngrConnection(const QString &dbDriver = "QSQLITE",
     }
 }
 
-QSqlError MngrConnection::lastError()
+QSqlError ConnectionMgr::lastError()
 {
     return db.lastError();
 }
 
-bool MngrConnection::open()
+bool ConnectionMgr::open()
 {
     return db.open();
 }
 
-void MngrConnection::close()
+void ConnectionMgr::close()
 {
     db.close();
 }
 
-bool MngrConnection::transaction()
+bool ConnectionMgr::transaction()
 {
     return db.transaction();
 }
 
-bool MngrConnection::commit()
+bool ConnectionMgr::commit()
 {
     return db.commit();
 }
 
-bool MngrConnection::rollback()
+bool ConnectionMgr::rollback()
 {
     return db.rollback();
 }
 
-bool MngrConnection::isOpen()
+bool ConnectionMgr::isOpen()
 {
     return db.isOpen();
 }

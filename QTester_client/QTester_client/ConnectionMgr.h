@@ -9,12 +9,12 @@
 #include <QUrl>
 #include <QMessageBox>
 
-class MngrConnection
+class ConnectionMgr
 {
 private:
     QSqlDatabase db;
 public:
-    MngrConnection(const QString &dbDriver,
+    ConnectionMgr(const QString &dbDriver,
                    const QString &dbHost,
                    const QString &dbUser,
                    const QString &dbPass);

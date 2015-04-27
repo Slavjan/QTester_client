@@ -1,6 +1,6 @@
 #include <QtCore/QCoreApplication>
 
-#include "db/mngrquerys.h"
+#include "mngrquerys.h"
 
 int main(int argc, char *argv[])
 {

@@ -1,28 +1,12 @@
 #pragma once
-#include "stdHeaders.h"	   
-#include <QtSql>
+#include "stdHeaders.h"	
+#include <QString>
 
 class SQLMgr //SQL Manadger the base class for work with Data Bases
 {
 protected: 
-//fields
-//	connection info
-	QString _host;
-	QString _connectionName;
-	QString _DBName;
-	QString _userName;
-	QString _pwd;
-	QString _SQLDRV;
-//	/connection info
-//	base info
-	QVector<QString> tablesNames;
-	QVector<QString> fieldsNames;
-//	/base info
-//	operattion fields	
-	QSqlDatabase db;
-	QSqlQuery query;
-//	/operattion fields
-///fields
+	
+
 public:	
 //methods
 //public

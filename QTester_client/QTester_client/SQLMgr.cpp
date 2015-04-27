@@ -5,7 +5,7 @@ SQLMgr::SQLMgr()
 {
 }
 
-SQLMgr::SQLMgr(QString hostName = "localhost", QString DBName, QString userName, QString password)
+SQLMgr::SQLMgr(QString hostName, QString DBName, QString userName, QString password)
 {		
 	setHost(hostName);
 	setDBName(DBName);
