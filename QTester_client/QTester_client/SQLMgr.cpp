@@ -1,130 +1,109 @@
+#include <QDebug>
 #include "SQLMgr.h"
 
-// public
 SQLMgr::SQLMgr()
 {
 }
 
-SQLMgr::SQLMgr(QString hostName, QString DBName, QString userName, QString password)
-{		
-	setHost(hostName);
-	setDBName(DBName);
-	setUName(userName);
-	setPWD(password);
+// public
+SQLMgr::SQLMgr(const QString &dbDriver,
+			   const QString &dbHost,
+			   const QString &dbUser,
+			   const QString &dbPass)
+{	
+	Connection = new ConnectionMgr(dbDriver, dbHost, dbUser, dbPass);
+	Connection->open();
 }
 
 
 SQLMgr::~SQLMgr()
 {
-	_disconnect();
+	Connection->close();
+	delete Connection;
 }
-//  setters
-void SQLMgr::setHost(QString host = "localhost")
+
+
+void SQLMgr::connect()
 {
-	_host = host;
+	//db = QSqlDatabase::addDatabase(_SQLDRV, _connectionName);
+	//db.setHostName(_host);
+	//db.setDatabaseName(_DBName);
+	//db.setUserName(_userName);
+	//db.setPassword(_pwd);
+	//if (!db.open())
+	//	return false;
+	////TODO: error enum;
+	//return true;
 }
 
-void SQLMgr::setConnectionName(QString connectionName = "myConnetion")
+
+
+bool SQLMgr::createTable(QString &tableName, DataMap &data)
 {
-	_connectionName = connectionName;
-}
+	QString sql = "CREATE TABLE IF NOT EXISTS " + tableName + " ( ";
 
-void SQLMgr::setDBName(QString name)
-{
-	_DBName = name;
-}
-
-void SQLMgr::setUName(QString name)
-{								  
-	_userName = name;
-}
-
-void SQLMgr::setPWD(QString pwd)
-{								
-	_pwd = pwd;
-}
-
-void SQLMgr::setSqlDRV(QString SQLDRV)	// QSQLITE, QMYSQL  or like
-{
-	_SQLDRV = SQLDRV;
-}
-//  /setters
-
-int SQLMgr::connect()
-{
-	db = QSqlDatabase::addDatabase(_SQLDRV, _connectionName);
-	db.setHostName(_host);
-	db.setDatabaseName(_DBName);
-	db.setUserName(_userName);
-	db.setPassword(_pwd);
-	if (!db.open())
-		return false;
-	//TODO: error enum;
-	return true;
-}
-
-int SQLMgr::createDB()
-{
-	QString SQL = "CREATE DATABESE";
-
-	if (!request(SQL))
-		return 1;
-//TODO: error enum;
-	return 0;
-}
-
-int SQLMgr::reqSelect(QString fields = "", QString tablesNames = "")
-{
-	QString Select = "SELECT ",
-			from = " FROM ",
-			SQL = "\0";
-
-	if (fields != "" && tablesNames != "")
-	{
-		SQL = Select + fields + from + tablesNames;
+	for (int i = 0; i < data.size(); ++i){
+		sql += data.keys().at(i) + " " + data.values().at(i);
+		if (i + 1 < data.size())
+			sql += ", ";
 	}
-	else SQL = Select + "*" + from + "*";
 
-	if (!request(SQL))
-		return 1;
-//TODO: error enum;
-	return 0;
+	sql += " );";
+
+	qDebug() << sql; /// < \todo delete that
+
+	QSqlQuery query(sql);
+	return query.exec();
 }
 
-int SQLMgr::reqSelectWhere(QString fields = "", QString tablesNames = "", QString WHERE = "")
+QSqlQuery SQLMgr::select(QString &tableName, QStringList &fields, qint64 limit)
 {
-	QString Select = "SELECT ",
-		from = " FROM ",
-		where = " WHERE ",
-		SQL = "\0";
+	QString _limit = (limit <= 0) ? "" : " LIMIT " + QString::number(limit);
+	QSqlQuery query("SELECT " + fields.join(", ") + " FROM " + tableName + _limit);
 
-	if (fields != "" && tablesNames != "" && WHERE != "")
+	query.exec();
+
+	return query;
+}
+
+QSqlQuery SQLMgr::select(QString &tableName, QStringList &fields, QString &where_field, QString &where_value, qint64 limit)
+{
+	QString _where = ((where_field.isEmpty() || where_field.isNull()) && (where_value.isEmpty() || where_value.isNull())) ? "" : " WHERE " + where_field + " = " + where_value;
+	QString _limit = (limit <= 0) ? "" : " LIMIT " + QString::number(limit);
+
+	QSqlQuery query("SELECT " + fields.join(", ") + " FROM " + tableName + _where + _limit);
+
+	query.exec();
+
+	return query;
+}
+
+QSqlQuery SQLMgr::insertSelection(QString &tableName_to, QStringList &fields_to, QString &tableName_from, QStringList &fields_from, QString &where_field, QString &where_value, qint64 limit)
+{
+	QString _limit = (limit <= 0) ? "" : " LIMIT " + QString::number(limit);
+	QSqlQuery query("INSERT INTO " + tableName_to + "(" + fields_to.join(", ") + ")" +
+		"SELECT " + fields_from.join(", ") + ")  FROM " + tableName_from +
+		" WHERE " + where_field + " = " + where_value + _limit);
+
+	query.exec();
+
+	return query;
+}
+ //TODO: необходимо уточнить действие и сиснтаксис, следующей конструкции 
+QSqlQuery SQLMgr::insertValues(QString &tableName, QStringList &fields, QStringList &values, qint64 limit)
+{
+	QSqlQuery query;
+	if (!values.isEmpty())
 	{
-		SQL = Select + fields + from + tablesNames + where + WHERE;
+		QString _limit = (limit <= 0) ? "" : " LIMIT " + QString::number(limit);
+		query = QSqlQuery("INSERT INTO " + tableName + "(" + fields.join(", ") + ")" + "VALUES(" + values.join(", ") + ") " + _limit);
+
+		query.exec();
 	}
-	else SQL = Select + "*" + from + "*" + where + "*";
 
-	if (!request(SQL))
-		return 1;
-//TODO: error enum;
-	return 0;
+	return query;
 }
 
-// /public
 
-// private
-
-void SQLMgr::_disconnect()
-{
-	db.close();
-}
-
-bool SQLMgr::request(QString SQL)
-{
-	if (!query.exec(SQL))
-		return false;
-//TODO: error enum;
-	return true;
-}
 
 // /private

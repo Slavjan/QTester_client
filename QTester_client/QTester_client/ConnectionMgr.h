@@ -1,5 +1,5 @@
-#ifndef MNGRCONNECTION_H
-#define MNGRCONNECTION_H
+#ifndef CONNECTIONMNGR_H
+#define CONNECTIONMNGR_H
 
 //#include "definespath.h"
 
@@ -15,9 +15,9 @@ private:
     QSqlDatabase db;
 public:
     ConnectionMgr(const QString &dbDriver,
-                   const QString &dbHost,
-                   const QString &dbUser,
-                   const QString &dbPass);
+                  const QString &dbHost,
+				  const QString &dbUser,
+				  const QString &dbPass);
     QSqlError lastError();
     bool open();
     void close();

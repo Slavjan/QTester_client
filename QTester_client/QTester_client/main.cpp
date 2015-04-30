@@ -1,6 +1,6 @@
 #include <QtCore/QCoreApplication>
 
-#include "mngrquerys.h"
+#include "SQLiteMgr.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     data["fQuetro"] = "vQuatro";
 
     QString name("test");
-    MngrQuerys::createTable(name, data);
+	SQLMgr::createTable(name, data);
 
 	return a.exec();
 }								
