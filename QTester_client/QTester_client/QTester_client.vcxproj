@@ -78,17 +78,13 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ConnectionMgr.cpp" />
-    <ClCompile Include="QuerysMgr.cpp" />
     <ClCompile Include="SQLiteMgr.cpp" />
     <ClCompile Include="SQLMgr.cpp" />
-    <ClCompile Include="stdHeaders.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConnectionMgr.h" />
-    <ClInclude Include="QuerysMgr.h" />
     <ClInclude Include="SQLiteMgr.h" />
     <ClInclude Include="SQLMgr.h" />
-    <ClInclude Include="stdHeaders.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

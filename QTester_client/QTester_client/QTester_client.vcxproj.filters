@@ -33,9 +33,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stdHeaders.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SQLMgr.cpp">
       <Filter>class\class Source</Filter>
     </ClCompile>
@@ -45,14 +42,8 @@
     <ClCompile Include="ConnectionMgr.cpp">
       <Filter>class\class Source</Filter>
     </ClCompile>
-    <ClCompile Include="QuerysMgr.cpp">
-      <Filter>class\class Source</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdHeaders.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SQLMgr.h">
       <Filter>class\class Header</Filter>
     </ClInclude>
@@ -60,9 +51,6 @@
       <Filter>class\class Header</Filter>
     </ClInclude>
     <ClInclude Include="ConnectionMgr.h">
-      <Filter>class\class Header</Filter>
-    </ClInclude>
-    <ClInclude Include="QuerysMgr.h">
       <Filter>class\class Header</Filter>
     </ClInclude>
   </ItemGroup>
