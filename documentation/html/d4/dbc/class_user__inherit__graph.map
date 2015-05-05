@@ -1,5 +1,0 @@
-<map id="User" name="User">
-<area shape="rect" id="node3" href="$db/d66/class_student.html" title="{Student\n||+ Student()\l+ ~Student()\l}" alt="" coords="5,300,100,392"/>
-<area shape="rect" id="node4" href="$dc/d2d/class_teacher.html" title="{Teacher\n||+ Teacher()\l+ ~Teacher()\l}" alt="" coords="125,300,221,392"/>
-<area shape="rect" id="node2" href="$db/d22/class_account.html" title="{Account\n|# Name\l|+ Account()\l+ ~Account()\l}" alt="" coords="63,5,162,97"/>
-</map>
