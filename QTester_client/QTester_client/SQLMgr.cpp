@@ -23,12 +23,7 @@ SQLMgr::~SQLMgr()
 	Connection->close();
 	delete Connection;
 }
-
-void SQLMgr::Hi(QString str)
-{
-	std::cout << str.data() << endl;
-}
-
+	 
 bool SQLMgr::createTable(QString &tableName, DataMap &data)
 {
 	QString sql = "CREATE TABLE IF NOT EXISTS " + tableName + " ( ";
@@ -118,7 +113,7 @@ QSqlQuery SQLMgr::insert(QString &tableName_to,
 
 	return query;
 }
- //TODO: íåîáõîäèìî óòî÷íèòü äåéñòâèå è ñèñíòàêñèñ, ñëåäóþùåé êîíñòðóêöèè 
+ //TODO: Ð½ÐµÐ¾Ð±Ñ…Ð¾Ð´Ð¸Ð¼Ð¾ ÑƒÑ‚Ð¾Ñ‡Ð½Ð¸Ñ‚ÑŒ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¸ ÑÐ¸ÑÐ½Ñ‚Ð°ÐºÑÐ¸Ñ, ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÐµÐ¹ ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ†Ð¸Ð¸ 
 QSqlQuery SQLMgr::insert(QString &tableName, QStringList &fields, QStringList &values, qint64 limit)
 {
 	QSqlQuery query;

@@ -1,16 +1,24 @@
 #ifndef SQLMGR_H
 #define SQLMGR_H
-#include "iSQL.h"
+
+#include <QString>
+#include "ConnectionMgr.h"
+#include "SQLMgr.h"
+
+#include <QMap>
+#include <QString>
+#include <QStringList>
+#include <QSqlQuery>
 
 typedef QMap<QString, QString> DataMap;
 
 
-class SQLMgr : public iSQL //SQL Manadger the base class for work with Data Bases
+class SQLMgr //SQL Manadger the base class for work with Data Bases
 {
 protected: 	
 	ConnectionMgr*	Connection;
 	
-	
+	virtual bool sescionConfigurate(QStringList &parameters, QStringList &values, qint64 limit) = 0;
 
 public:			
 	SQLMgr();// ms vs complains in derived classes, that there is no default constructor
@@ -19,10 +27,8 @@ public:
 		   const QString &dbUser,
 		   const QString &dbPass);
 
-	~SQLMgr();	
-
-	virtual void Hi(QString);
-
+	~SQLMgr();
+					   
 	virtual bool createTable(QString &tableName, DataMap &data);
 	virtual bool createTable(QString &tableName, DataMap &data,
 					 QStringList &primary_keys_field, 
@@ -49,5 +55,7 @@ public:
 							QStringList &fields,
 							QStringList &values,
 							qint64 limit = 25);
+
+	
 };
 #endif

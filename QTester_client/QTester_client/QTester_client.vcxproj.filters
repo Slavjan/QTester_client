@@ -53,8 +53,5 @@
     <ClInclude Include="ConnectionMgr.h">
       <Filter>class\class Header</Filter>
     </ClInclude>
-    <ClInclude Include="iSQL.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

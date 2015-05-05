@@ -83,7 +83,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConnectionMgr.h" />
-    <ClInclude Include="iSQL.h" />
     <ClInclude Include="SQLiteMgr.h" />
     <ClInclude Include="SQLMgr.h" />
   </ItemGroup>
