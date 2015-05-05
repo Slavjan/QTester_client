@@ -1,5 +1,6 @@
 #include <QDebug>
 #include "SQLMgr.h"
+#include <iostream>
 
 
 SQLMgr::SQLMgr()
@@ -21,6 +22,11 @@ SQLMgr::~SQLMgr()
 {
 	Connection->close();
 	delete Connection;
+}
+
+void SQLMgr::Hi(QString str)
+{
+	std::cout << str.data() << endl;
 }
 
 bool SQLMgr::createTable(QString &tableName, DataMap &data)
@@ -62,7 +68,7 @@ bool SQLMgr::createTable(QString &tableName, DataMap &data,
 	sql += " ),\n ";
 	for (size_t i = 0; i < foreign_keys_field.count(); i++)
 	{
-		sql += 
+		sql += "CONTRANT FK_";
 	}
 
 	sql += " )\n)\nGO";

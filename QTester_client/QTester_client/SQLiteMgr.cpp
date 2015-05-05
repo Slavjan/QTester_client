@@ -1,18 +1,42 @@
 #include "SQLiteMgr.h"
 
 
-SQLiteMgr::SQLiteMgr(const QString &dbHost,
-					 const QString &dbUser,
-					 const QString &dbPass)
-{
-	SQLMgr::Connection = new ConnectionMgr("QSQLITE", dbHost, dbUser, dbPass);
-	SQLMgr::Connection->open();
+SQLiteMgr::SQLiteMgr() : SQLMgr()
+{				 	
 }
 
 
 SQLiteMgr::~SQLiteMgr()
 {
 	SQLMgr::~SQLMgr();
+}
+
+void SQLiteMgr::init(const QString& dbHost, const QString& dbUser, const QString& dbPass)
+{
+	Connection = new ConnectionMgr("QSQLITE", dbHost, dbUser, dbPass);
+	Connection->open();
+}
+
+bool SQLiteMgr::createTable(QString& tableName, DataMap& data)
+{
+	return true;
+}
+
+QSqlQuery SQLiteMgr::select(QString& tableName, QStringList& fields, qint64 limit)
+{
+	return QSqlQuery();
+}
+
+//bool SQLiteMgr::createTable(QString& tableName, DataMap& data) : createTable(&tableName, &data);
+
+
+QSqlQuery SQLiteMgr::insert(QString& tableName_to, QStringList& fields_to, QString& tableName_from, QStringList& fields_from, QString& where_field, QString& where_value, qint64 limit)
+{
+	return QSqlQuery();
+}
+
+void SQLiteMgr::Hi(QString)
+{
 }
 
 bool SQLiteMgr::sescionConfigurate(QStringList& parameters, QStringList& values, qint64 limit)

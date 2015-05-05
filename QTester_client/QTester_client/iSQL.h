@@ -21,5 +21,7 @@ public:
 
 	virtual QSqlQuery select() = 0;
 	virtual QSqlQuery insert() = 0;
+
+	virtual void Hi() = 0;
 };
 #endif

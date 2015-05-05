@@ -10,9 +10,10 @@ class SQLMgr : public iSQL //SQL Manadger the base class for work with Data Base
 protected: 	
 	ConnectionMgr*	Connection;
 	
-	SQLMgr();// ms vs complains in derived classes, that there is no default constructor
+	
 
 public:			
+	SQLMgr();// ms vs complains in derived classes, that there is no default constructor
 	SQLMgr(const QString &dbDriver,
 		   const QString &dbHost,
 		   const QString &dbUser,
@@ -20,29 +21,31 @@ public:
 
 	~SQLMgr();	
 
-	static bool createTable(QString &tableName, DataMap &data);
-	static bool createTable(QString &tableName, DataMap &data,
+	virtual void Hi(QString);
+
+	virtual bool createTable(QString &tableName, DataMap &data);
+	virtual bool createTable(QString &tableName, DataMap &data,
 					 QStringList &primary_keys_field, 
 					 QStringList &foreign_keys_field, 
 					 QStringList &preferences_tables,
 					 QStringList &preferences_fields);
 
-	static QSqlQuery select(QString &tableName,
+	virtual QSqlQuery select(QString &tableName,
 							QStringList &fields,
 							qint64 limit = 25);
-	static QSqlQuery select(QString &tableName,
+	virtual QSqlQuery select(QString &tableName,
 							QStringList &fields,
 							QString &where_field,
 							QString &where_value,
 							qint64 limit = 25);
-	static QSqlQuery insert(QString& tableName_to,
+	virtual QSqlQuery insert(QString& tableName_to,
 							QStringList& fields_to,
 							QString& tableName_from,
 							QStringList& fields_from,
 							QString& where_field,
 							QString& where_value,
 							qint64 limit);
-	static QSqlQuery insert(QString &tableName,
+	virtual QSqlQuery insert(QString &tableName,
 							QStringList &fields,
 							QStringList &values,
 							qint64 limit = 25);
