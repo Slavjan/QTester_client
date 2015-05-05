@@ -1,6 +1,7 @@
 #include <QDebug>
 #include "SQLMgr.h"
 
+
 SQLMgr::SQLMgr()
 {
 }
@@ -22,22 +23,6 @@ SQLMgr::~SQLMgr()
 	delete Connection;
 }
 
-
-void SQLMgr::connect()
-{
-	//db = QSqlDatabase::addDatabase(_SQLDRV, _connectionName);
-	//db.setHostName(_host);
-	//db.setDatabaseName(_DBName);
-	//db.setUserName(_userName);
-	//db.setPassword(_pwd);
-	//if (!db.open())
-	//	return false;
-	////TODO: error enum;
-	//return true;
-}
-
-
-
 bool SQLMgr::createTable(QString &tableName, DataMap &data)
 {
 	QString sql = "CREATE TABLE IF NOT EXISTS " + tableName + " ( ";
@@ -52,6 +37,38 @@ bool SQLMgr::createTable(QString &tableName, DataMap &data)
 
 	qDebug() << sql; /// < \todo delete that
 
+	QSqlQuery query(sql);
+	return query.exec();
+}
+
+bool SQLMgr::createTable(QString &tableName, DataMap &data, 
+						 QStringList &primary_keys_field, 
+						 QStringList &foreign_keys_field, 
+						 QStringList &preferences_tables, 
+						 QStringList &preferences_fields)
+{
+	QString sql = "CREATE TABLE IF NOT EXISTS " + tableName + " ( ";
+
+	for (int i = 0; i < data.size(); ++i){
+		sql += data.keys().at(i) + " " + data.values().at(i);
+		if (i + 1 < data.size())
+			sql += ", ";
+	}
+	sql += ",\n CONSTRAINT PK_" + tableName + "PRIMARY KEY (";
+	for (size_t i = 0; i < primary_keys_field.count(); i++)
+	{
+		sql += primary_keys_field.join(", ");
+	}
+	sql += " ),\n ";
+	for (size_t i = 0; i < foreign_keys_field.count(); i++)
+	{
+		sql += 
+	}
+
+	sql += " )\n)\nGO";
+#ifdef _DEBUG
+	qDebug() << sql; // TODO: delete that
+#endif
 	QSqlQuery query(sql);
 	return query.exec();
 }
@@ -78,7 +95,13 @@ QSqlQuery SQLMgr::select(QString &tableName, QStringList &fields, QString &where
 	return query;
 }
 
-QSqlQuery SQLMgr::insertSelection(QString &tableName_to, QStringList &fields_to, QString &tableName_from, QStringList &fields_from, QString &where_field, QString &where_value, qint64 limit)
+QSqlQuery SQLMgr::insert(QString &tableName_to, 
+						 QStringList &fields_to, 
+						 QString &tableName_from, 
+						 QStringList &fields_from, 
+						 QString &where_field, 
+						 QString &where_value, 
+						 qint64 limit)
 {
 	QString _limit = (limit <= 0) ? "" : " LIMIT " + QString::number(limit);
 	QSqlQuery query("INSERT INTO " + tableName_to + "(" + fields_to.join(", ") + ")" +
@@ -90,7 +113,7 @@ QSqlQuery SQLMgr::insertSelection(QString &tableName_to, QStringList &fields_to,
 	return query;
 }
  //TODO: необходимо уточнить действие и сиснтаксис, следующей конструкции 
-QSqlQuery SQLMgr::insertValues(QString &tableName, QStringList &fields, QStringList &values, qint64 limit)
+QSqlQuery SQLMgr::insert(QString &tableName, QStringList &fields, QStringList &values, qint64 limit)
 {
 	QSqlQuery query;
 	if (!values.isEmpty())
@@ -103,7 +126,3 @@ QSqlQuery SQLMgr::insertValues(QString &tableName, QStringList &fields, QStringL
 
 	return query;
 }
-
-
-
-// /private

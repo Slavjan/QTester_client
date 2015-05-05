@@ -5,7 +5,8 @@ SQLiteMgr::SQLiteMgr(const QString &dbHost,
 					 const QString &dbUser,
 					 const QString &dbPass)
 {
-	SQLMgr::SQLMgr("QSQLITE", dbHost, dbUser, dbPass);
+	SQLMgr::Connection = new ConnectionMgr("QSQLITE", dbHost, dbUser, dbPass);
+	SQLMgr::Connection->open();
 }
 
 
@@ -21,7 +22,7 @@ bool SQLiteMgr::sescionConfigurate(QStringList& parameters, QStringList& values,
 	{
 		QString _limit = (limit <= 0) ? "" : " LIMIT " + QString::number(limit);
 		QString query_string = "\0";
-		for (size_t i = 0; i < parameters.count; i++)
+		for (size_t i = 0; i <= parameters.count(); i++)
 		{
 			query_string += "PRAGMA" + parameters.at(i) + " = " + values.at(i) + " \n";
 		}
