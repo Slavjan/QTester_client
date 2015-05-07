@@ -10,6 +10,10 @@
 #include <QStringList>
 #include <QSqlQuery>
 
+#ifdef _DEBUG
+#include <QDebug>
+#endif
+
 typedef QMap<QString, QString> DataMap;
 
 
@@ -22,12 +26,15 @@ protected:
 
 public:			
 	SQLMgr();// ms vs complains in derived classes, that there is no default constructor
+	
 	SQLMgr(const QString &dbDriver,
 		   const QString &dbHost,
 		   const QString &dbUser,
 		   const QString &dbPass);
 
 	~SQLMgr();
+
+	virtual bool connectionOpen();
 					   
 	virtual bool createTable(QString &tableName, DataMap &data);
 	virtual bool createTable(QString &tableName, DataMap &data,

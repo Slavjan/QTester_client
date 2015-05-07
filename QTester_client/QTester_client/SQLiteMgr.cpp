@@ -5,6 +5,9 @@ SQLiteMgr::SQLiteMgr() : SQLMgr()
 {				 	
 }
 
+SQLiteMgr::SQLiteMgr(const QString& dbHost, const QString& dbUser, const QString& dbPass) : SQLMgr("QSQLITE", dbHost, dbUser, dbPass)
+{
+}
 
 SQLiteMgr::~SQLiteMgr()
 {

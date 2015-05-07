@@ -4,13 +4,16 @@ class SQLiteMgr : public SQLMgr
 {
 
 public:
-	SQLiteMgr(); 
+	SQLiteMgr();
+	SQLiteMgr(const QString &dbHost,
+			  const QString &dbUser,
+			  const QString &dbPass);
 	~SQLiteMgr();
 
 	void init(const QString &dbHost,
 		      const QString &dbUser,
 			  const QString &dbPass);	
 
-	virtual bool sescionConfigurate(QStringList &parameters, QStringList &values, qint64 limit);
+	virtual bool sescionConfigurate(QStringList &parameters, QStringList &values, qint64 limit) override;
 };
 
