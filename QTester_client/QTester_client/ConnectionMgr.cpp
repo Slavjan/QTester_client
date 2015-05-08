@@ -3,10 +3,11 @@
 
 ConnectionMgr::ConnectionMgr(const QString &dbDriver = "",
                              const QString &dbHost   = "",
+							 QString		dbPath	 = "",
 							 const QString &dbUser   = "",
 							 const QString &dbPass   = "")
 {
-    const QString dbPath( QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QDir::separator() + "QTester" + QDir::separator() );
+    if(dbPath.isEmpty()) dbPath += QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QDir::separator() + "QTester" + QDir::separator();
 
     if( !QSqlDatabase::isDriverAvailable(dbDriver) ){
         qCritical() << "Cannot avalible "<< dbDriver <<" driver";
@@ -27,6 +28,8 @@ ConnectionMgr::ConnectionMgr(const QString &dbDriver = "",
         db.setHostName( dbHost );
         db.setPassword( dbPass );
     }
+
+	qDebug() << dbPath << "\n";
 }
 
 QSqlError ConnectionMgr::lastError()

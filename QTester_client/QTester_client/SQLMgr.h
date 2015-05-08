@@ -22,13 +22,14 @@ class SQLMgr //SQL Manadger the base class for work with Data Bases
 protected: 	
 	ConnectionMgr*	Connection;
 	
-	virtual bool sescionConfigurate(QStringList &parameters, QStringList &values, qint64 limit) = 0;
+	virtual bool sessionConfigurate(QStringList &parameters, QStringList &values, qint64 limit) = 0;
 
 public:			
 	SQLMgr();// ms vs complains in derived classes, that there is no default constructor
 	
 	SQLMgr(const QString &dbDriver,
 		   const QString &dbHost,
+		   QString		  dbPath,
 		   const QString &dbUser,
 		   const QString &dbPass);
 

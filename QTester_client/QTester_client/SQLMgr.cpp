@@ -12,10 +12,11 @@ SQLMgr::SQLMgr()
 // public
 SQLMgr::SQLMgr(const QString &dbDriver,
 			   const QString &dbHost,
+			   QString		  dbPath,
 			   const QString &dbUser,
 			   const QString &dbPass)
 {	
-	Connection = new ConnectionMgr(dbDriver, dbHost, dbUser, dbPass);
+	Connection = new ConnectionMgr(dbDriver, dbHost, dbPath, dbUser, dbPass);
 	connectionOpen();
 }
 

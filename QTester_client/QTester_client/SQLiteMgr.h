@@ -6,6 +6,7 @@ class SQLiteMgr : public SQLMgr
 public:
 	SQLiteMgr();
 	SQLiteMgr(const QString &dbHost,
+			  QString		 dbPath,
 			  const QString &dbUser,
 			  const QString &dbPass);
 	~SQLiteMgr();
@@ -14,6 +15,6 @@ public:
 		      const QString &dbUser,
 			  const QString &dbPass);	
 
-	virtual bool sescionConfigurate(QStringList &parameters, QStringList &values, qint64 limit) override;
+	virtual bool sessionConfigurate(QStringList &parameters, QStringList &values, qint64 limit) override;
 };
 

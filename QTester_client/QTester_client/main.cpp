@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     data["fQuatro"] = "nvarchar[20]";
 
     QString name("tt");
-	SQLiteMgr *db = new SQLiteMgr("/DB/testbase.db", "", "");
+	SQLiteMgr *db = new SQLiteMgr("", "/DB/testbase.db", "", "");
 	
 	QSqlQuery q;
 

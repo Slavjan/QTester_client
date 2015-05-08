@@ -5,7 +5,7 @@ SQLiteMgr::SQLiteMgr() : SQLMgr()
 {				 	
 }
 
-SQLiteMgr::SQLiteMgr(const QString& dbHost, const QString& dbUser, const QString& dbPass) : SQLMgr("QSQLITE", dbHost, dbUser, dbPass)
+SQLiteMgr::SQLiteMgr(const QString& dbHost, QString	dbPath, const QString& dbUser, const QString& dbPass) : SQLMgr("QSQLITE", dbHost, dbPath, dbUser, dbPass)
 {
 }
 
@@ -14,13 +14,7 @@ SQLiteMgr::~SQLiteMgr()
 	SQLMgr::~SQLMgr();
 }
 
-void SQLiteMgr::init(const QString& dbHost, const QString& dbUser, const QString& dbPass)
-{
-	Connection = new ConnectionMgr("QSQLITE", dbHost, dbUser, dbPass);
-	Connection->open();
-}
-
-bool SQLiteMgr::sescionConfigurate(QStringList& parameters, QStringList& values, qint64 limit)
+bool SQLiteMgr::sessionConfigurate(QStringList& parameters, QStringList& values, qint64 limit)
 {
 	QSqlQuery query;
 	if ((!parameters.isEmpty() && !values.isEmpty()) && parameters.count() == values.count())
