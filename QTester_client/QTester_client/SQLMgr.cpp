@@ -104,7 +104,7 @@ QSqlQuery SQLMgr::select(QString &tableName, QStringList &fields, qint64 limit)
 
 QSqlQuery SQLMgr::select(QString &tableName, QStringList &fields, QString &where_field, QString &where_value, qint64 limit)
 {
-	QString _where = ((where_field.isEmpty() || where_field.isNull()) && (where_value.isEmpty() || where_value.isNull())) ? "" : " WHERE " + where_field + " = " + where_value;
+	QString _where = ((where_field.isEmpty() || where_field.isNull()) && (where_value.isEmpty() || where_value.isNull())) ? "" : " WHERE " + where_field + " = " + where_value; //TODO: переработать это ЧУДО
 	QString _limit = (limit <= 0) ? "" : " LIMIT " + QString::number(limit);
 	QString sql("SELECT " + fields.join(", ") + " FROM " + tableName + _where + _limit); 
 	QSqlQuery query(sql);

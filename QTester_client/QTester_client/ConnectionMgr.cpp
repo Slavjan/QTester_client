@@ -1,11 +1,11 @@
 #include <QStandardPaths>
 #include "ConnectionMgr.h"
 
-ConnectionMgr::ConnectionMgr(const QString &dbDriver = "",
-                             const QString &dbHost   = "",
-							 QString		dbPath	 = "",
-							 const QString &dbUser   = "",
-							 const QString &dbPass   = "")
+ConnectionMgr::ConnectionMgr(const QString& dbDriver = "",
+                             const QString& dbHost = "",
+                             QString dbPath = "",
+                             const QString& dbUser = "",
+                             const QString& dbPass = "")
 {
     if(dbPath.isEmpty()) dbPath += QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QDir::separator() + "QTester" + QDir::separator();
 
@@ -62,7 +62,7 @@ bool ConnectionMgr::rollback()
     return db.rollback();
 }
 
-bool ConnectionMgr::isOpen()
+bool ConnectionMgr::é()
 {
     return db.isOpen();
 }
