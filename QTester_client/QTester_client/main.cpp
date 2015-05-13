@@ -5,33 +5,35 @@
 
 int main(int argc, char *argv[])
 {
-	QCoreApplication a(argc, argv);
+    QCoreApplication a(argc, argv);
 
     QMap<QString,QString> data;		
-    data["fUne"]  = "inteder";
-    data["fDue"]  = "integer";
-    data["fTree"] = "float";
-    data["fQuatro"] = "nvarchar[20]";
+    data["fUne"]  = "INTEGER";
+    data["fDue"]  = "INTEGER";
+    data["fTree"] = "INTEGER";
+    data["fQuatro"] = "VARCHAR(20)";
 
     QString name("tt");	// им€ таблицы, здрасте  эп
 	SQLiteMgr *db = new SQLiteMgr("", "", "", "");	
 									/*path  - если пуст база открываетс€ в домашней папке*/
 	QSqlQuery q;
 
-	db->
+//	db->
 
 	db->createTable(name, data); // тут таблицу создаем
 	
-	for (auto i = 0; i < 8; i++)	// добавл€ю данные
+    for (auto i = 0; i < 4; i++)	// добавл€ю данные
 	{
 		auto it = i * 2;
 		auto it1 = i * 50;
-		q = db->insert(name, QStringList({ "fUne", "fDue", "fTree", "fQuatro" }), 
-			QStringList({QString::number(i), QString::number(it), QString::number(it1), QString::number(i)+" text" }));
+        QStringList f({ "fUne", "fDue", "fTree", "fQuatro" });
+        QStringList v({QString::number(i), QString::number(it), QString::number(it1), QString::number(i)+" text" });
+        q = db->insert(name,f, v );
 	}
-	q = db->select(name,QStringList({"*"})); // пытаюсь запросить данные
+    QStringList x({"*"});
+    q = db->select(name,x); // пытаюсь запросить данные
 									   
-	QSqlRecord rec = q.record(); // объекты дл€ работы с данными
+    QSqlRecord  rec = q.record(); // объекты дл€ работы с данными
 	int			nFUne = 0;	 // соответствующие переменные
 	QString		strFDue;
 	QString		strFTree;
@@ -39,11 +41,11 @@ int main(int argc, char *argv[])
 
 	
 
-	if (q.isActive())
-		qDebug() << "ACTIVE " << rec << "\n";  // убеждаюсь что запрос прошел 
+//	if (q.isActive())
+//		qDebug() << "ACTIVE " << rec << "\n";  // убеждаюсь что запрос прошел
 
-	qDebug() << "fUne" << "| " << "fDue" << "|"
-		<< "fTree" << "|" << "fQuatro" << "| \n"; // заголовок таблицы
+    qDebug() << "fUne" << "| " << "fDue" << "|"
+        << "fTree" << "|" << "fQuatro" << "| \n"; // заголовок таблицы
 
 
 	q.first();		// на вс€кий случай к первой записи
@@ -54,9 +56,9 @@ int main(int argc, char *argv[])
 		strFTree =	 q.value(2).toString();
 		strFQuatro = q.value(3).toString();
 
-		qDebug() << nFUne << "| " << strFDue << "|"
-			<< strFTree << "|" << strFQuatro << "|  next\n"; // непосредственно вывод данных
+        qDebug() << nFUne << "| " << strFDue << "|"
+            << strFTree << "|" << strFQuatro << "|  next\n"; // непосредственно вывод данных
 	}
   
-	return  /*0;*/ a.exec(); // на этом  эп с вами прощаетс€
+    return  /*0;*/ a.exec(); // на этом  эп с вами прощаетс€
 }								

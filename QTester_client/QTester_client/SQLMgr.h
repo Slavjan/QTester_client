@@ -35,7 +35,7 @@ public:
 
 	~SQLMgr();
 
-	static transaction();
+//	static  transaction();
 
 	virtual bool connectionOpen();
 					   

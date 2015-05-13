@@ -144,18 +144,23 @@ QSqlQuery SQLMgr::insert(QString &tableName_to,
  //TODO: необходимо уточнить действие и сиснтаксис, следующей конструкции 
 QSqlQuery SQLMgr::insert(QString &tableName, QStringList &fields, QStringList &values, qint64 limit)
 {
-	QSqlQuery query;
+    QSqlQuery query;
 	if (!values.isEmpty())
 	{
-		QString _limit = (limit <= 0) ? "" : " LIMIT " + QString::number(limit);
-		QString sql("INSERT INTO " + tableName + " (" + fields.join(", ") + ")" + "VALUES(" + values.join(", ") + ") " + _limit);
-		query = QSqlQuery(sql);
+        QString _limit = (limit <= 0) ? "" : " LIMIT " + QString::number(limit);
+        for(size_t i = 0; i < values.size(); ++i){
+            values[i].prepend('\'');
+            values[i].append('\'');
+        }
+        QString sql("INSERT INTO " + tableName + " (" + fields.join(", ") + ")" + "VALUES(" + values.join(", ") + ");");
+        QSqlQuery query;
 
-#ifdef _DEBUG
-		qDebug() << sql << "\n"; // TODO: delete that
-#endif
+        qDebug() << sql; /// \todo TODO: debug outpud
 
-		query.exec();
+        if( ! query.exec(sql) ){;
+            qDebug() << query.lastError();
+        }
+
 	}
 
 	return query;

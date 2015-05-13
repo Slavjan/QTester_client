@@ -11,7 +11,6 @@ SQLiteMgr::SQLiteMgr(const QString& dbHost, QString	dbPath, const QString& dbUse
 
 SQLiteMgr::~SQLiteMgr()
 {
-	SQLMgr::~SQLMgr();
 }
 
 bool SQLiteMgr::sessionConfigurate(QStringList& parameters, QStringList& values, qint64 limit)
