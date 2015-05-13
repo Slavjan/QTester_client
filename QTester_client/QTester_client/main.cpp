@@ -18,6 +18,8 @@ int main(int argc, char *argv[])
 									/*path  - если пуст база открывается в домашней папке*/
 	QSqlQuery q;
 
+	db->
+
 	db->createTable(name, data); // тут таблицу создаем
 	
 	for (auto i = 0; i < 8; i++)	// добавляю данные

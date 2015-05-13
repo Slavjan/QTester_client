@@ -35,6 +35,8 @@ public:
 
 	~SQLMgr();
 
+	static transaction();
+
 	virtual bool connectionOpen();
 					   
 	virtual bool createTable(QString &tableName, DataMap &data);
