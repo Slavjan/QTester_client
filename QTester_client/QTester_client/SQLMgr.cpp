@@ -32,13 +32,13 @@ bool SQLMgr::connectionOpen()
 {
 	if(Connection->open())
 	{
-		qDebug() << "connecton Open \n";
+		qDebug() << "connecton Open ";
 		return true;
 	}
 	return false;
 }
 
-bool SQLMgr::createTable(QString &tableName, DataMap &data)
+bool SQLMgr::createTable(const QString &tableName, const DataMap &data)
 {
 	QString sql = "CREATE TABLE IF NOT EXISTS " + tableName + " ( ";
 
@@ -50,17 +50,18 @@ bool SQLMgr::createTable(QString &tableName, DataMap &data)
 
 	sql += " );";
 
-	qDebug() << sql << "\n"; /// < \todo delete that
+	qDebug() << "[SQLMgr::createTable] " << sql; /// < \todo delete that
 
 	QSqlQuery query(sql);
 	return query.exec();
 }
 
-bool SQLMgr::createTable(QString &tableName, DataMap &data, 
-						 QStringList &primary_keys_field, 
-						 QStringList &foreign_keys_field, 
-						 QStringList &preferences_tables, 
-						 QStringList &preferences_fields)
+bool SQLMgr::createTable(const QString     &tableName,
+                         const DataMap     &data,
+                         const QStringList &primary_keys_field,
+                         const QStringList &foreign_keys_field,
+                         const QStringList &preferences_tables,
+                         const QStringList &preferences_fields)
 {
 	QString sql = "CREATE TABLE IF NOT EXISTS " + tableName + " ( ";
 
@@ -70,31 +71,32 @@ bool SQLMgr::createTable(QString &tableName, DataMap &data,
 			sql += ", ";
 	}
 	sql += ",\n CONSTRAINT PK_" + tableName + "PRIMARY KEY (";
-	for (size_t i = 0; i < primary_keys_field.count(); i++)
+    for (int i = 0; i < primary_keys_field.count(); i++)
 	{
 		sql += primary_keys_field.join(", ");
 	}
 	sql += " ),\n ";
-	for (size_t i = 0; i < foreign_keys_field.count(); i++)
+    for (int i = 0; i < foreign_keys_field.count(); i++)
 	{
 		sql += "CONTRANT FK_";
 	}
 
 	sql += " )\n)\nGO";
 #ifdef _DEBUG
-	qDebug() << sql << "\n"; // TODO: delete that
+	qDebug() << "[SQLMgr::createTable] " << sql; // TODO: delete that
 #endif
 	QSqlQuery query(sql);
 	return query.exec();
 }
 
-QSqlQuery SQLMgr::select(QString &tableName, QStringList &fields, qint64 limit)
+QSqlQuery SQLMgr::select(const QString &tableName, const QStringList &fields, qint64 limit)
 {
-	QString _limit = (limit <= 0) ? "" : " LIMIT " + QString::number(limit);
-	QString sql("SELECT " + fields.join(", ") + " FROM " + tableName + _limit);
+    QString _limit = (limit <= 0) ? "" : " LIMIT " + QString::number(limit);
+    QString sql("SELECT " + fields.join(", ") + " FROM " + tableName + _limit);
 	QSqlQuery query(sql);
+
 #ifdef _DEBUG
-	qDebug() << sql << "\n"; // TODO: delete that
+    qDebug() << "[SQLMgr::select] " << sql; // TODO: delete that
 #endif	
 	
 	query.exec();
@@ -102,63 +104,89 @@ QSqlQuery SQLMgr::select(QString &tableName, QStringList &fields, qint64 limit)
 	return query;
 }
 
-QSqlQuery SQLMgr::select(QString &tableName, QStringList &fields, QString &where_field, QString &where_value, qint64 limit)
+/*!
+ * \brief SQLMgr::select
+ * \param tableName - table name
+ * \param fields - list of fields
+ * \param where - WHERE SQL construction with out 'WHERE'
+ * \param limit
+ * \return - QSqlQuery
+ */
+QSqlQuery SQLMgr::select(const QString     &tableName,
+                         const QStringList &fields,
+                         const QString     &where,
+                               qint64       limit)
 {
-	QString _where = ((where_field.isEmpty() || where_field.isNull()) && (where_value.isEmpty() || where_value.isNull())) ? "" : " WHERE " + where_field + " = " + where_value; //TODO: переработать это ЧУДО
-	QString _limit = (limit <= 0) ? "" : " LIMIT " + QString::number(limit);
-	QString sql("SELECT " + fields.join(", ") + " FROM " + tableName + _where + _limit); 
+    QString _where;
+    if( ! where.isEmpty() ){
+        _where = " WHERE " + where + " ";
+    }
+
+    QString _limit = (limit > 0) ? " LIMIT " + QString::number(limit) : "";
+
+    QStringList _fields;
+    for(int i = 0; i < fields.count(); ++i){
+        _fields[i] = "`" + fields[i] + "`";
+    }
+    QString sql("SELECT " + fields.join(", ") + " FROM " + tableName + _where + _limit + ";");
 	QSqlQuery query(sql);
 
 #ifdef _DEBUG
-	qDebug() << sql << "\n"; // TODO: delete that
+    qDebug() << "[SQLMgr::select] " << sql; // TODO: delete that
 #endif
 
-	query.exec();
+    if( ! query.exec() ){
+        qWarning() << "[SQLMgr::select] " << query.lastError(); // TODO: delete that
+    }
 
 	return query;
 }
 
-QSqlQuery SQLMgr::insert(QString &tableName_to, 
-						 QStringList &fields_to, 
-						 QString &tableName_from, 
-						 QStringList &fields_from, 
-						 QString &where_field, 
-						 QString &where_value, 
-						 qint64 limit)
+//TODO: необходимо уточнить действие и сиснтаксис, следующей конструкции 
+QSqlQuery SQLMgr::insert(const QString     &tableName_to,
+                         const QStringList &fields_to,
+                         const QString     &tableName_from,
+                         const QStringList &fields_from,
+                         const QString     &where)
 {
-	QString _limit = (limit <= 0) ? "" : " LIMIT " + QString::number(limit);
-	QString	sql("INSERT INTO " + tableName_to + "(" + fields_to.join(", ") + ")" +
-				"SELECT " + fields_from.join(", ") + ")  FROM " + tableName_from +
-				" WHERE " + where_field + " = " + where_value + _limit);
+    // This code is autogenerated
+    QString _fields_to = " (" + fields_to.join(", ") + ") " ;
+    QString _select    = "SELECT (" + fields_from.join(", ") + ") ";
+    QString _from      = "FROM " + tableName_from + " ";
+    QString _where     = "WHERE " + where + ";";
+
+    QString	sql( "INSERT INTO " + tableName_to + _fields_to + _select + _where );
 	
 	QSqlQuery query(sql);
 
 #ifdef _DEBUG
-	qDebug() << sql << "\n"; // TODO: delete that
+	qDebug() << "[SQLMgr::insert] " << sql; // TODO: delete that
 #endif
-	
-	query.exec();
+    if( ! query.exec() ){
+        qWarning() << "[SQLMgr::insert] " << query.lastError();
+    }
 
 	return query;
 }
- //TODO: необходимо уточнить действие и сиснтаксис, следующей конструкции 
-QSqlQuery SQLMgr::insert(QString &tableName, QStringList &fields, QStringList &values, qint64 limit)
+
+QSqlQuery SQLMgr::insert(const QString &tableName, const DataMap &data)
 {
     QSqlQuery query;
-	if (!values.isEmpty())
+    DataMap _data;
+    if( ! data.isEmpty() )
 	{
-        QString _limit = (limit <= 0) ? "" : " LIMIT " + QString::number(limit);
-        for(size_t i = 0; i < values.size(); ++i){
-            values[i].prepend('\'');
-            values[i].append('\'');
+        for(int i = 0; i < data.count(); ++i){
+            _data[data.keys().at(i)] = "'" + data.values().at(i) + "'";
         }
-        QString sql("INSERT INTO " + tableName + " (" + fields.join(", ") + ")" + "VALUES(" + values.join(", ") + ");");
+        QString keys   = QStringList(_data.keys()).join(", ");
+        QString values = QStringList(_data.values()).join(", ");
+        QString sql("INSERT INTO " + tableName + " (" + keys + ") VALUES (" + values + ");");
         QSqlQuery query;
 
-        qDebug() << sql; /// \todo TODO: debug outpud
+        qDebug() << "[SQLMgr::insert] " << sql; /// \todo TODO: debug outpud
 
         if( ! query.exec(sql) ){;
-            qDebug() << query.lastError();
+            qWarning() << "[SQLMgr::insert] "<< query.lastError();
         }
 
 	}

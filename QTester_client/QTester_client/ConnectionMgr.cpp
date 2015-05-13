@@ -3,7 +3,7 @@
 
 ConnectionMgr::ConnectionMgr(const QString& dbDriver = "",
                              const QString& dbHost = "",
-                             QString dbPath = "",
+								   QString	dbPath = "",
                              const QString& dbUser = "",
                              const QString& dbPass = "")
 {
@@ -29,7 +29,7 @@ ConnectionMgr::ConnectionMgr(const QString& dbDriver = "",
         db.setPassword( dbPass );
     }
 
-	qDebug() << dbPath << "\n";
+	qDebug() << dbPath;
 }
 
 QSqlError ConnectionMgr::lastError()

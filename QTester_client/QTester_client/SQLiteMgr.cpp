@@ -13,18 +13,16 @@ SQLiteMgr::~SQLiteMgr()
 {
 }
 
-bool SQLiteMgr::sessionConfigurate(QStringList& parameters, QStringList& values, qint64 limit)
+bool SQLiteMgr::sessionConfigurate(const DataMap &data)
 {
 	QSqlQuery query;
-	if ((!parameters.isEmpty() && !values.isEmpty()) && parameters.count() == values.count())
+    if( ! data.isEmpty() )
 	{
-		QString _limit = (limit <= 0) ? "" : " LIMIT " + QString::number(limit);
 		QString query_string;
-		for (size_t i = 0; i <= parameters.count(); i++)
-		{
-			query_string += "PRAGMA" + parameters.at(i) + " = " + values.at(i) + " \n";
+        for (size_t i = 0; i < data.count(); i++) /// \warning TODO: БЫЛО <= ПРОВЕРИТЬ
+        {
+            query_string += "PRAGMA" + data.keys().at(i) + " = " + data.values().at(i) + " \n";
 		}
-		query_string += _limit;
 
 		return query.exec(query_string);			
 	}
