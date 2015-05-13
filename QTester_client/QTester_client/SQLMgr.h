@@ -22,50 +22,46 @@ class SQLMgr //SQL Manadger the base class for work with Data Bases
 protected: 	
 	ConnectionMgr*	Connection;
 	
-	virtual bool sessionConfigurate(QStringList &parameters, QStringList &values, qint64 limit) = 0;
+    virtual bool sessionConfigurate(const DataMap &data) = 0;
 
 public:			
 	SQLMgr();// ms vs complains in derived classes, that there is no default constructor
 	
 	SQLMgr(const QString &dbDriver,
 		   const QString &dbHost,
-		   QString		  dbPath,
+                 QString  dbPath,
 		   const QString &dbUser,
 		   const QString &dbPass);
 
 	~SQLMgr();
 
-//	static  transaction();
+    static bool transaction();
 
 	virtual bool connectionOpen();
 					   
-	virtual bool createTable(QString &tableName, DataMap &data);
-	virtual bool createTable(QString &tableName, DataMap &data,
-					 QStringList &primary_keys_field, 
-					 QStringList &foreign_keys_field, 
-					 QStringList &preferences_tables,
-					 QStringList &preferences_fields);
+    virtual bool createTable(const QString     &tableName,
+                             const DataMap     &data);
+    virtual bool createTable(const QString     &tableName,
+                             const DataMap     &data,
+                             const QStringList &primary_keys_field,
+                             const QStringList &foreign_keys_field,
+                             const QStringList &preferences_tables,
+                             const QStringList &preferences_fields);
 
-	virtual QSqlQuery select(QString &tableName,
-							QStringList &fields,
-							qint64 limit = 25);
-	virtual QSqlQuery select(QString &tableName,
-							QStringList &fields,
-							QString &where_field,
-							QString &where_value,
-							qint64 limit = 25);
-	virtual QSqlQuery insert(QString& tableName_to,
-							QStringList& fields_to,
-							QString& tableName_from,
-							QStringList& fields_from,
-							QString& where_field,
-							QString& where_value,
-							qint64 limit);
-	virtual QSqlQuery insert(QString &tableName,
-							QStringList &fields,
-							QStringList &values,
-							qint64 limit = 25);
+    virtual QSqlQuery select(const QString     &tableName,
+                             const QStringList &fields,
+                                   qint64       limit = 25);
+    virtual QSqlQuery select(const QString     &tableName,
+                             const QStringList &fields,
+                             const QString     &where,
+                                   qint64       limit = 25);
+    virtual QSqlQuery insert(const QString     &tableName_to,
+                             const QStringList &fields_to,
+                             const QString     &tableName_from,
+                             const QStringList &fields_from,
+                             const QString     &where);
 
-	
+    virtual QSqlQuery insert(const QString     &tableName,
+                             const DataMap     &data);
 };
 #endif
