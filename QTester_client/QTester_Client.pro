@@ -22,23 +22,19 @@ QMAKE_TARGET_DESCRIPTION = Tester
 QMAKE_TARGET_COPYRIGHT = Slavjan
 
 HEADERS += \
-#    QTester_client/SQLiteMgr.h \
-#    QTester_client/SQLMgr.h \
-    QTester_client/stdHeaders.h \
     QTester_client/Tester.h \
     QTester_client/TestGenerator.h \
-    QTester_client/db/mngrconnection.h \
-    QTester_client/db/mngrquerys.h
+    QTester_client/SQLiteMgr.h \
+    QTester_client/ConnectionMgr.h \
+    QTester_client/SQLMgr.h
 
 SOURCES += \
     QTester_client/main.cpp \
-#    QTester_client/SQLiteMgr.cpp \
-#    QTester_client/SQLMgr.cpp \
-    QTester_client/stdHeaders.cpp \
     QTester_client/Tester.cpp \
     QTester_client/TestGenerator.cpp \
-    QTester_client/db/mngrconnection.cpp \
-    QTester_client/db/mngrquerys.cpp
+    QTester_client/SQLiteMgr.cpp \
+    QTester_client/ConnectionMgr.cpp \
+    QTester_client/SQLMgr.cpp
 
 #FORMS += \
 
@@ -55,3 +51,7 @@ SOURCES += \
 
 #DISTFILES += \
 #    db
+
+DISTFILES += \
+    QTester_client/QTester_client.vcxproj.filters \
+    QTester_client/QTester_client.vcxproj
