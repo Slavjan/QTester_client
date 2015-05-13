@@ -20,7 +20,7 @@ bool SQLiteMgr::sessionConfigurate(QStringList& parameters, QStringList& values,
 	if ((!parameters.isEmpty() && !values.isEmpty()) && parameters.count() == values.count())
 	{
 		QString _limit = (limit <= 0) ? "" : " LIMIT " + QString::number(limit);
-		QString query_string = "\0";
+		QString query_string;
 		for (size_t i = 0; i <= parameters.count(); i++)
 		{
 			query_string += "PRAGMA" + parameters.at(i) + " = " + values.at(i) + " \n";

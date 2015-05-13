@@ -62,7 +62,7 @@ bool ConnectionMgr::rollback()
     return db.rollback();
 }
 
-bool ConnectionMgr::é()
+bool ConnectionMgr::isOpen()
 {
     return db.isOpen();
 }
