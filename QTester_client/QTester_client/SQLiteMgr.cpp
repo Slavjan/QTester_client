@@ -13,6 +13,16 @@ SQLiteMgr::~SQLiteMgr()
 {
 }
 
+qint64 SQLiteMgr::size(const QString &tableName)
+{
+	QSqlQuery q = select(tableName, { "*" });
+	qint64 size = 0;
+	while (q.next())
+		size++;
+
+	return size;
+}
+
 bool SQLiteMgr::sessionConfigurate(const DataMap &data)
 {
 	QSqlQuery query;

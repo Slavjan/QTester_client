@@ -63,5 +63,7 @@ public:
 
     virtual QSqlQuery insert(const QString     &tableName,
                              const DataMap     &data);
+	virtual qint64	  size(const QString &tableName) = 0;
+
 };
 #endif
