@@ -42,6 +42,12 @@
     <ClCompile Include="ConnectionMgr.cpp">
       <Filter>class\class Source</Filter>
     </ClCompile>
+    <ClCompile Include="Tester.cpp">
+      <Filter>class\class Source</Filter>
+    </ClCompile>
+    <ClCompile Include="TestGenerator.cpp">
+      <Filter>class\class Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SQLMgr.h">
@@ -51,6 +57,12 @@
       <Filter>class\class Header</Filter>
     </ClInclude>
     <ClInclude Include="ConnectionMgr.h">
+      <Filter>class\class Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Tester.h">
+      <Filter>class\class Header</Filter>
+    </ClInclude>
+    <ClInclude Include="TestGenerator.h">
       <Filter>class\class Header</Filter>
     </ClInclude>
   </ItemGroup>

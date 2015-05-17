@@ -32,7 +32,7 @@ bool SQLMgr::connectionOpen()
 {
 	if(Connection->open())
 	{
-		qDebug() << "connecton Open ";
+		qDebug() << "Debug> connecton Open ";
 		return true;
 	}
 	return false;
@@ -50,7 +50,7 @@ bool SQLMgr::createTable(const QString &tableName, const DataMap &data)
 
 	sql += " );";
 
-	qDebug() << "[SQLMgr::createTable] " << sql; /// < \todo delete that
+	qDebug() << "Debug> [SQLMgr::createTable] " << sql; /// < \todo delete that
 
 	QSqlQuery query(sql);
 	return query.exec();
@@ -83,7 +83,7 @@ bool SQLMgr::createTable(const QString     &tableName,
 
 	sql += " )\n)\nGO";
 #ifdef _DEBUG
-	qDebug() << "[SQLMgr::createTable] " << sql; // TODO: delete that
+	qDebug() << "Debug> [SQLMgr::createTable] " << sql; // TODO: delete that
 #endif
 	QSqlQuery query(sql);
 	return query.exec();
@@ -96,7 +96,7 @@ QSqlQuery SQLMgr::select(const QString &tableName, const QStringList &fields, qi
 	QSqlQuery query(sql);
 
 #ifdef _DEBUG
-    qDebug() << "[SQLMgr::select] " << sql; // TODO: delete that
+    qDebug() << "Debug> [SQLMgr::select] " << sql; // TODO: delete that
 #endif	
 	
 	query.exec();
@@ -125,18 +125,18 @@ QSqlQuery SQLMgr::select(const QString     &tableName,
     QString _limit = (limit > 0) ? " LIMIT " + QString::number(limit) : "";
 
     QStringList _fields;
-    for(int i = 0; i < fields.count(); ++i){
-        _fields[i] = "`" + fields[i] + "`";
-    }
+    /*for(int i = 0; i < fields.count(); ++i){
+        _fields.push_back("[" + fields[i] + "]");
+    }*/
     QString sql("SELECT " + fields.join(", ") + " FROM " + tableName + _where + _limit + ";");
 	QSqlQuery query(sql);
 
 #ifdef _DEBUG
-    qDebug() << "[SQLMgr::select] " << sql; // TODO: delete that
+    qDebug() << "Debug> [SQLMgr::select] " << sql; // TODO: delete that
 #endif
 
     if( ! query.exec() ){
-        qWarning() << "[SQLMgr::select] " << query.lastError(); // TODO: delete that
+        qWarning() << "Warning> [SQLMgr::select] " << query.lastError(); // TODO: delete that
     }
 
 	return query;
@@ -160,10 +160,10 @@ QSqlQuery SQLMgr::insert(const QString     &tableName_to,
 	QSqlQuery query(sql);
 
 #ifdef _DEBUG
-	qDebug() << "[SQLMgr::insert] " << sql; // TODO: delete that
+	qDebug() << "Debug> [SQLMgr::insert] " << sql; // TODO: delete that
 #endif
     if( ! query.exec() ){
-        qWarning() << "[SQLMgr::insert] " << query.lastError();
+        qWarning() << "Warning> [SQLMgr::insert] " << query.lastError();
     }
 
 	return query;
@@ -183,10 +183,10 @@ QSqlQuery SQLMgr::insert(const QString &tableName, const DataMap &data)
         QString sql("INSERT INTO " + tableName + " (" + keys + ") VALUES (" + values + ");");
         QSqlQuery query;
 
-        qDebug() << "[SQLMgr::insert] " << sql; /// \todo TODO: debug outpud
+        qDebug() << "Debug>  [SQLMgr::insert] " << sql; /// \todo TODO: debug outpud
 
         if( ! query.exec(sql) ){;
-            qWarning() << "[SQLMgr::insert] "<< query.lastError();
+            qWarning() << "Warning> [SQLMgr::insert] "<< query.lastError();
         }
 
 	}
