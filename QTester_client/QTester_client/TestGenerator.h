@@ -22,14 +22,10 @@ typedef QMap<QString, Answer> Question;
 class TestGenerator
 {
 private:
-	SQLMgr *Qbase;
+	SQLMgr *_base;
 	Question test;
 public:
-	TestGenerator(const int &sqlServType,
-				  const QString &dbHost,
-				  const QString &dbPath,
-				  const QString &dbUser,
-				  const QString &dbPass);
+	TestGenerator(const SQLMgr *base);
 	~TestGenerator();
 
 	bool generateTest(const int questionCount);

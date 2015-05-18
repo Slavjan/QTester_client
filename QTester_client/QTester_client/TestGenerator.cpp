@@ -1,79 +1,37 @@
 #include "TestGenerator.h"
 
 
-TestGenerator::TestGenerator(const int &sqlServType, 
-							 const QString &dbHost,
-							 const QString &dbPath,
-							 const QString &dbUser,
-							 const QString &dbPass)
+TestGenerator::TestGenerator(const SQLMgr *base)
 {
-	switch(sqlServType)
-	{
-	case MSSQL:
-	case MYSQL:
-	case SQLITE:
-		Qbase = new SQLiteMgr(dbHost, dbPath, dbUser, dbPass);
-		break;
-	default: break;
-	}	  
+	*_base = *base;
 }
 
 
 TestGenerator::~TestGenerator()
 {
-	delete[] Qbase;
+	delete[] _base;
 }
 
 bool TestGenerator::generateTest(const int questionCount)
 {
-	QString tNameQst("Questions"),	// ùàñ òóò áóäåò õîëèâàð: ÐÀÇÁÈÂÀÉ ÍÀ ÌÅÒÎÄÛ ))
-			s_qID("qID"),
-			
-			tNameAns("Anwers"),			
-			s_ansID("ansID"),
-			fValue("Value"),
-			fCorrectly("Correctly"),
-			
-			_where("qID = '%1' AND Correctly = 'false'"),
-			_where1("qID = %1 AND Correctly = 'true'");
+	QString tName("Questions"),
+			where("ORDER BY RANDOM()");
 
-	QStringList qfields({s_qID, fValue});
-	QStringList	afields({s_ansID, fValue, fCorrectly});
+	QStringList qfields("fields"), 
+				value;
 
-	QSqlQuery qry0, qry1;
-	QSqlRecord rec0, rec1;
-	qint64 tSize = Qbase->size(tNameQst),
-		   n_qID,
-		   n_ansID;
-
-	if (tSize >= questionCount)	 // ÐÀÇÁÈÂÀÉ ÍÀ ÌÅÒÎÄÛ
+	QSqlQuery qry;
+	QSqlRecord rec;
+	bool next = true;
+	
+	qry = _base->select(tName, qfields, where);
+	rec = qry.record();
+	while (next)
 	{
-		for (auto i = 0; i < questionCount; i++)
-		{									   // ÐÀÇÁÈÂÀÉ ÍÀ ÌÅÒÎÄÛ
-			n_qID = qrand() * tSize;
-			qry0 = Qbase->select(tNameQst, 
-								 qfields, 
-								 _where.arg(QString::number(n_qID)));
-			rec0 = qry0.record();
-			QString qValue = qry0.value(rec0.indexOf(fValue)).toString();
-			Answer n;
-			qry1 = Qbase->select(tNameAns,
-								 afields,
-								 _where.arg(QString::number(n_qID)));
-			rec1 = qry1.record();
-			for (auto j = 0; j < 5; j++)
-			{	//ÐÀÇÄÅËßÉ ÍÀ ÌÅÒÎÄÛ 
-				QString aValue(rec1.indexOf(fValue)), 
-						aCorrectly(fCorrectly);
-				n[aValue] = aCorrectly.toInt();
-				qry1.next();
-			}
-
-
-			test[qValue] = n;
-		}
-		return true;
+		value.push_back(qry.value(rec.indexOf(qfields.at(0))).toString());
+		next = qry.next();
 	}
+	
 	return false;
 }
 
