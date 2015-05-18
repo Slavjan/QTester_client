@@ -38,7 +38,7 @@ bool SQLMgr::connectionOpen()
 	return false;
 }
 
-bool SQLMgr::createTable(const QString &tableName, const DataMap &data)
+const bool SQLMgr::createTable(const QString &tableName, const DataMap &data)
 {
 	QString sql = "CREATE TABLE IF NOT EXISTS " + tableName + " ( ";
 
@@ -56,7 +56,7 @@ bool SQLMgr::createTable(const QString &tableName, const DataMap &data)
 	return query.exec();
 }
 
-bool SQLMgr::createTable(const QString     &tableName,
+const bool SQLMgr::createTable(const QString     &tableName,
                          const DataMap     &data,
                          const QStringList &primary_keys_field,
                          const QStringList &foreign_keys_field,
@@ -89,7 +89,7 @@ bool SQLMgr::createTable(const QString     &tableName,
 	return query.exec();
 }
 
-QSqlQuery SQLMgr::select(const QString &tableName, const QStringList &fields, qint64 limit)
+const QSqlQuery SQLMgr::select(const QString &tableName, const QStringList &fields, qint64 limit)
 {
     QString _limit = (limit <= 0) ? "" : " LIMIT " + QString::number(limit);
     QString sql("SELECT " + fields.join(", ") + " FROM " + tableName + _limit);
@@ -112,10 +112,10 @@ QSqlQuery SQLMgr::select(const QString &tableName, const QStringList &fields, qi
  * \param limit
  * \return - QSqlQuery
  */
-QSqlQuery SQLMgr::select(const QString     &tableName,
-                         const QStringList &fields,
-                         const QString     &where,
-                               qint64       limit)
+const QSqlQuery SQLMgr::select(const QString     &tableName,
+                               const QStringList &fields,
+                               const QString     &where,
+                                     qint64       limit)
 {
     QString _where;
     if( ! where.isEmpty() ){
@@ -143,7 +143,7 @@ QSqlQuery SQLMgr::select(const QString     &tableName,
 }
 
 //TODO: необходимо уточнить действие и сиснтаксис, следующей конструкции 
-QSqlQuery SQLMgr::insert(const QString     &tableName_to,
+const QSqlQuery SQLMgr::insert(const QString     &tableName_to,
                          const QStringList &fields_to,
                          const QString     &tableName_from,
                          const QStringList &fields_from,
@@ -169,7 +169,7 @@ QSqlQuery SQLMgr::insert(const QString     &tableName_to,
 	return query;
 }
 
-QSqlQuery SQLMgr::insert(const QString &tableName, const DataMap &data)
+const QSqlQuery SQLMgr::insert(const QString &tableName, const DataMap &data)
 {
     QSqlQuery query;
     DataMap _data;

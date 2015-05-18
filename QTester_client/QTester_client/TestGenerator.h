@@ -11,10 +11,6 @@
 #ifdef _DEBUG
 #include <QDebug>
 #endif
-		//		  S	Q L	I T	E
-#define SQLITE	0x53514c495445
-#define MYSQL	0x4d5953514c
-#define MSSQL	0x4d5353514c
 
 typedef QMap<QString, bool> Answer;
 typedef QMap<QString, Answer> Question;
@@ -22,13 +18,11 @@ typedef QMap<QString, Answer> Question;
 class TestGenerator
 {
 private:
-	SQLMgr *_base;
-	Question test;
 public:
-	TestGenerator(const SQLMgr *base);
+	TestGenerator();
 	~TestGenerator();
 
-	bool generateTest(const int questionCount);
-	Question getTest();
+	static Question generateTest(const SQLMgr &base, const int questionCount);
+	 
 };
 #endif

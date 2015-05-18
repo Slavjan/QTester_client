@@ -1,41 +1,39 @@
 #include "TestGenerator.h"
 
 
-TestGenerator::TestGenerator(const SQLMgr *base)
+TestGenerator::TestGenerator()
 {
-	*_base = *base;
 }
 
 
 TestGenerator::~TestGenerator()
 {
-	delete[] _base;
 }
 
-bool TestGenerator::generateTest(const int questionCount)
+Question TestGenerator::generateTest(const SQLMgr &base, const int questionCount)
 {
 	QString tName("Questions"),
 			where("ORDER BY RANDOM()");
 
-	QStringList qfields("fields"), 
-				value;
+	QStringList qFields("fields"), 
+				qValue,
+				
+				aFields,
+				aValies;
 
 	QSqlQuery qry;
 	QSqlRecord rec;
 	bool next = true;
-	
-	qry = _base->select(tName, qfields, where);
+				//request for questions
+	qry = base.select(tName, qFields, where, 2);
 	rec = qry.record();
 	while (next)
 	{
-		value.push_back(qry.value(rec.indexOf(qfields.at(0))).toString());
+		qValue.push_back(qry.value(rec.indexOf(qFields.at(0))).toString());	//recording to var 
 		next = qry.next();
 	}
-	
-	return false;
-}
 
-Question TestGenerator::getTest()
-{
+
+	Question test; //\todo TODO: the gag
 	return test;
 }
