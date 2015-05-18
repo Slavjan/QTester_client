@@ -12,10 +12,10 @@ TestGenerator::~TestGenerator()
 
 Question TestGenerator::generateTest(const SQLMgr &base, const int questionCount)
 {
-	QString tName("Questions"),
-			where("ORDER BY RANDOM()");
+    QString tName("tt"),
+            where("0=0 ORDER BY RANDOM()");
 
-	QStringList qFields("fields"), 
+    QStringList qFields("fUne"),
 				qValue,
 				
 				aFields,
@@ -23,15 +23,20 @@ Question TestGenerator::generateTest(const SQLMgr &base, const int questionCount
 
 	QSqlQuery qry;
 	QSqlRecord rec;
-	bool next = true;
-				//request for questions
-	qry = base.select(tName, qFields, where, 2);
-	rec = qry.record();
-	while (next)
-	{
-		qValue.push_back(qry.value(rec.indexOf(qFields.at(0))).toString());	//recording to var 
-		next = qry.next();
-	}
+//	bool next = true;
+//				//request for questions
+//    qry = base.select(tName, qFields, where, 2);
+//	rec = qry.record();
+//	while (next)
+//	{
+//        qValue.push_back(qry.value(rec.indexOf(qFields.first())).toString());	//recording to var
+//		next = qry.next();
+//	}
+
+    qry = base.select(tName, qFields, where, 4);
+    while( qry.next() ){
+        qDebug() << qry.record();
+    }
 
 
 	Question test; //\todo TODO: the gag

@@ -39,31 +39,31 @@ public:
 
 	virtual bool connectionOpen();
 					   
-    virtual const bool createTable(const QString     &tableName,
-						           const DataMap     &data);
-    virtual const bool createTable(const QString     &tableName,
-								   const DataMap     &data,
-								   const QStringList &primary_keys_field,
-								   const QStringList &foreign_keys_field,
-								   const QStringList &preferences_tables,
-								   const QStringList &preferences_fields);
+    virtual bool createTable(const QString     &tableName,
+                             const DataMap     &data) const;
+    virtual bool createTable(const QString     &tableName,
+                             const DataMap     &data,
+                             const QStringList &primary_keys_field,
+                             const QStringList &foreign_keys_field,
+                             const QStringList &preferences_tables,
+                             const QStringList &preferences_fields) const;
 
-    virtual const QSqlQuery select(const QString     &tableName,
-								   const QStringList &fields,
-                                   qint64       limit = 25);
-    virtual const QSqlQuery select(const QString     &tableName,
-								   const QStringList &fields,
-								   const QString     &where,
-                                   qint64       limit = 25);
-    virtual const QSqlQuery insert(const QString     &tableName_to,
-								   const QStringList &fields_to,
-								   const QString     &tableName_from,
-								   const QStringList &fields_from,
-								   const QString     &where);
+    virtual QSqlQuery select(const QString     &tableName,
+                             const QStringList &fields,
+                                   qint64       limit = 25) const;
+    virtual QSqlQuery select(const QString     &tableName,
+                             const QStringList &fields,
+                             const QString     &where,
+                                   qint64       limit = 25) const;
+    virtual QSqlQuery insert(const QString     &tableName_to,
+                             const QStringList &fields_to,
+                             const QString     &tableName_from,
+                             const QStringList &fields_from,
+                             const QString     &where) const;
 
-    virtual const QSqlQuery insert(const QString     &tableName,
-						           const DataMap     &data);
-	virtual qint64 size(const QString &tableName) = 0;
+    virtual QSqlQuery insert(const QString     &tableName,
+                             const DataMap     &data) const;
+    virtual qint64 size(     const QString     &tableName) = 0;
 
 };
 #endif
