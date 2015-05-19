@@ -3,6 +3,8 @@
 #include <QString>
 #include <QVector>
 #include "Question.h"
+#include "sqlwhere.h"
+#include "SQLMgr.h"
 
 class Theme
 {
@@ -12,11 +14,11 @@ private:
 	QVector<Question> _questions;  
 
 public:
-	Theme(){};
+    Theme(){};
 	Theme(const QString &title);
 
 	QString getTitle() const;
-	int		getDifficulty() const;
+    int		getDifficulty() const;
 	QVector<Question> getQuestions() const;
 
 	void setTitle(const QString &title);
@@ -25,6 +27,6 @@ public:
 	void pushQuestion(const QString &text, const QString &type);
 	void pushQuestion(const QString &text, const QString &type, const QVector<Answer> &answers);
 	
-	//QVector<Question> Ќбрать_себе_проблем();
+    bool selectFromDatabase(const SQLMgr &sqlManager, const SqlWhere &where, const qint64 count);
 };
 

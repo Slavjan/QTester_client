@@ -1,4 +1,4 @@
-#include "Theme.h"
+#include "theme.h"
 
 
 Theme::Theme(const QString &title)
@@ -41,5 +41,22 @@ void Theme::pushQuestion(const QString &text, const QString &type)
 
 void Theme::pushQuestion(const QString &text, const QString &type, const QVector<Answer> &answers)
 {
-	pushQuestion(Question(text, type, answers));
+    pushQuestion(Question(text, type, answers));
+}
+
+bool Theme::selectFromDatabase(const SQLMgr &sqlManager, const SqlWhere &where, const qint64 count)
+{
+    const QString tableName_questions("Questions");
+    const QStringList selectedFields({"question_id"});
+
+    if( where.isValid() ){
+        QSqlQuery query = sqlManager.select(tableName_questions, selectedFields, where.toString(), count);
+
+        while( query.next() ){
+            /// \todo TODO type code here
+        }
+
+        return true;
+    }
+    return false;
 }

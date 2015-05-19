@@ -19,10 +19,10 @@ int main(int argc, char *argv[])
 //    data["fQuatro"] = "VARCHAR(20)";
 
     QString tableName("tt");	// имя таблицы, здрасте Кэп
-	SQLMgr &db = SQLiteMgr("", "", "", "");	
+    SQLMgr *db = new SQLiteMgr("", "", "", "");
 									/*path  - если пуст база открывается в домашней папке*/
 	QSqlQuery q;
-	TestGenerator::collectTestVariant(db, 1, 1);
+    TestGenerator::collectTestVariant(*db, 1, 1);
 
 //    db->createTable(tableName, data); // тут таблицу создаем
 	
