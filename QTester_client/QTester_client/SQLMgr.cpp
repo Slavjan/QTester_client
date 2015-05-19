@@ -132,15 +132,13 @@ QSqlQuery SQLMgr::select(const QString     &tableName,
         _fields.push_back("[" + fields[i] + "]");
     }*/
     QString sql("SELECT " + fields.join(", ") + " FROM " + tableName + _where + _limit + ";");
-	QSqlQuery query(sql);
-#ifdef QT_DEBUG
-    #define _DEBUG
-#endif
+	QSqlQuery query;
+
 #ifdef _DEBUG
     qDebug() << "Debug> [SQLMgr::select] " << sql; // TODO: delete that
 #endif
 
-    if( ! query.exec() ){
+    if( ! query.exec(sql) ){
         qWarning() << "Warning> [SQLMgr::select] " << query.lastError(); // TODO: delete that
     }
 
