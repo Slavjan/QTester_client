@@ -9,7 +9,8 @@
 
 int main(int argc, char *argv[])
 {
-    //QCoreApplication a(argc, argv);
+    QCoreApplication a(argc, argv);
+	//a.setApplicationName("QTester_Client");
 
 //    QMap<QString,QString> data;
 //    data["fUne"]  = "INTEGER";
@@ -18,10 +19,10 @@ int main(int argc, char *argv[])
 //    data["fQuatro"] = "VARCHAR(20)";
 
     QString tableName("tt");	// имя таблицы, здрасте Кэп
-	SQLMgr *db = new SQLiteMgr("", "", "", "");	
+	SQLMgr &db = SQLiteMgr("", "", "", "");	
 									/*path  - если пуст база открывается в домашней папке*/
 	QSqlQuery q;
-    TestGenerator::generateTest(*db, 2);
+	TestGenerator::collectTestVariant(db, 1, 1);
 
 //    db->createTable(tableName, data); // тут таблицу создаем
 	
@@ -66,5 +67,5 @@ int main(int argc, char *argv[])
  //           << strFTree << "|" << strFQuatro << "|  next"; // непосредственно вывод данных
 	//}
   
-    return  0;
+    return  a.exec();
 }								

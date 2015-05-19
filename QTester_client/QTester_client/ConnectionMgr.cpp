@@ -7,7 +7,8 @@ ConnectionMgr::ConnectionMgr(const QString& dbDriver = "",
                              const QString& dbUser = "",
                              const QString& dbPass = "")
 {
-    if(dbPath.isEmpty()) dbPath += QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QDir::separator() + "QTester" + QDir::separator();
+    if(dbPath.isEmpty()) 
+		dbPath += QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QDir::separator();
 
     if( !QSqlDatabase::isDriverAvailable(dbDriver) ){
         qCritical() << "Cannot avalible "<< dbDriver <<" driver";

@@ -12,8 +12,8 @@
 #include <QDebug>
 #endif
 
-typedef QMap<QString, bool> Answer;
-typedef QMap<QString, Answer> Question;
+typedef QMap<QString, bool> Answers;
+typedef QMap<QString, Answers> Questions;
 
 class TestGenerator
 {
@@ -22,7 +22,7 @@ public:
 	TestGenerator();
 	~TestGenerator();
 
-	static Question generateTest(const SQLMgr &base, const int questionCount);
+	static Questions collectTestVariant(const SQLMgr &base, int themId/*TODO: make structure*/, const int questionCount);
 	 
 };
 #endif
