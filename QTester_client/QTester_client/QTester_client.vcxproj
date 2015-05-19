@@ -77,6 +77,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Answer.cpp" />
+    <ClCompile Include="Lesson.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ConnectionMgr.cpp" />
     <ClCompile Include="Question.cpp" />
@@ -84,15 +85,18 @@
     <ClCompile Include="SQLMgr.cpp" />
     <ClCompile Include="Tester.cpp" />
     <ClCompile Include="TestGenerator.cpp" />
+    <ClCompile Include="Theme.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Answer.h" />
     <ClInclude Include="ConnectionMgr.h" />
+    <ClInclude Include="Lesson.h" />
     <ClInclude Include="Question.h" />
     <ClInclude Include="SQLiteMgr.h" />
     <ClInclude Include="SQLMgr.h" />
     <ClInclude Include="Tester.h" />
     <ClInclude Include="TestGenerator.h" />
+    <ClInclude Include="Theme.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

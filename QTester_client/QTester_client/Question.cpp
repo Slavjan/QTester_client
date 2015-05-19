@@ -16,11 +16,11 @@ Question::Question(const QString &text, const QString &type)
 
 void Question::pushAnswer(const Answer &answer)
 {
-
+	_answers.push_back(answer);
 }
 void Question::pushAnswer(const QString &text, const bool valid)
 {
-
+	pushAnswer(Answer(text, valid));
 }
 
 QString Question::getText() const
@@ -87,3 +87,8 @@ void Question::setMarkAsDontKnow(const bool markAsDontKnow)
 {
 	_markAsDontKnow = markAsDontKnow;
 }
+
+void Question::stripSpaces()
+{
+	_text = _text.trimmed();	   
+}					 

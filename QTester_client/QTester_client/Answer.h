@@ -7,6 +7,7 @@ class Answer
 	QString _value;
 	bool    _valid = false;
 public:
+	Answer(){};
 	Answer(const QString &value, const bool valid);
 
 	QString getValue()const;

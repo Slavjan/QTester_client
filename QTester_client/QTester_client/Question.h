@@ -17,7 +17,10 @@ class Question
 	bool    _markAsDontKnow = false;
 	QVector<Answer> _answers;
 
+	void stripSpaces();
+
 public:
+	Question(){};
 	Question(const QString &text, const QString &type, const QVector<Answer> &answers);
 	Question(const QString &text, const QString &type);
 
@@ -39,5 +42,7 @@ public:
 	void    setStripSpaces(const bool stripSpace);
 	void    setMarkAsError(const bool markAsError);
 	void    setMarkAsDontKnow(const bool markAsDontKnow);
+
+	
 };
 
