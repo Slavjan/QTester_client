@@ -5,7 +5,7 @@
 
 class SqlWhere
 {
-    QString _where;
+    QString _where = "WHERE ";
 
     bool isValid(const QString &sql) const;
 

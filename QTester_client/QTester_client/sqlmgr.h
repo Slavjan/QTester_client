@@ -3,6 +3,7 @@
 
 #include <QString>
 #include "connectionmgr.h"
+#include "sqlwhere.h"
 
 #include <QMap>
 #include <QString>
@@ -52,7 +53,7 @@ public:
                                    qint64       limit = 25) const;
     virtual QSqlQuery select(const QString     &tableName,
                              const QStringList &fields,
-                             const QString     &where,
+                             const SqlWhere     &where,
                                    qint64       limit = 25) const;
     virtual QSqlQuery insert(const QString     &tableName_to,
                              const QStringList &fields_to,

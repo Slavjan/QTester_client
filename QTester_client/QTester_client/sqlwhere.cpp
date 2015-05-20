@@ -2,8 +2,12 @@
 
 SqlWhere::SqlWhere(const QString &where)
 {
-    if( isValid(where) ){
-        _where = where;
+	if( isValid(where) ){
+		if (where.contains("WHERE", Qt::CaseInsensitive)){
+			QString w(where);
+			_where += w.remove("WHERE", Qt::CaseInsensitive);
+		}
+		else _where += where;
     }
 }
 

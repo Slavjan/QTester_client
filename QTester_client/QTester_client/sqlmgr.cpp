@@ -115,12 +115,12 @@ QSqlQuery SQLMgr::select(const QString &tableName, const QStringList &fields, qi
  */
 QSqlQuery SQLMgr::select(const QString     &tableName,
                          const QStringList &fields,
-                         const QString     &where,
+						 const SqlWhere     &where,
                                qint64       limit) const
 {
     QString _where;
-    if( ! where.isEmpty() ){
-        _where = " WHERE " + where + " ";
+    if( ! where.toString().isEmpty() ){
+        _where = where.toString() ;
     }
 
     QString _limit = (limit > 0) ? " LIMIT " + QString::number(limit) : "";
