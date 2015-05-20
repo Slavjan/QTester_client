@@ -1,5 +1,5 @@
 #include <QDebug>
-#include "SQLMgr.h"
+#include "sqlmgr.h"
 #include <iostream>
 
 

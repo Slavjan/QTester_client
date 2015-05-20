@@ -1,4 +1,4 @@
-#include "SQLiteMgr.h"
+#include "sqlitemgr.h"
 
 
 SQLiteMgr::SQLiteMgr() : SQLMgr()

@@ -2,7 +2,7 @@
 
 #include <QString>
 #include <QVector>
-#include "Question.h"
+#include "question.h"
 #include "sqlwhere.h"
 #include "SQLMgr.h"
 

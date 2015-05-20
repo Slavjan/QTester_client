@@ -3,8 +3,8 @@
 
 #include <QString>
 #include "ConnectionMgr.h"
-#include "SQLMgr.h"
-#include "TestGenerator.h"
+#include "sqlmgr.h"
+#include "testgenerator.h"
 
 #include <QMap>
 #include <QString>
