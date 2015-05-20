@@ -22,36 +22,26 @@ QMAKE_TARGET_DESCRIPTION = Tester
 QMAKE_TARGET_COPYRIGHT = Slavjan
 
 HEADERS += \
-    QTester_client/Tester.h \
-    QTester_client/TestGenerator.h \
-    QTester_client/SQLiteMgr.h \
-    QTester_client/ConnectionMgr.h \
-    QTester_client/SQLMgr.h
+    QTester_client/theme.h \
+    QTester_client/sqlwhere.h \
+    QTester_client/answer.h \
+    QTester_client/connectionmgr.h \
+    QTester_client/lesson.h \
+    QTester_client/question.h \
+    QTester_client/tester.h \
+    QTester_client/testgenerator.h \
+    QTester_client/sqlitemgr.h \
+    QTester_client/sqlmgr.h
 
 SOURCES += \
+    QTester_client/theme.cpp \
+    QTester_client/sqlwhere.cpp \
     QTester_client/main.cpp \
-    QTester_client/Tester.cpp \
-    QTester_client/TestGenerator.cpp \
-    QTester_client/SQLiteMgr.cpp \
-    QTester_client/ConnectionMgr.cpp \
-    QTester_client/SQLMgr.cpp
-
-#FORMS += \
-
-
-#OTHER_FILES += \
-#    ToDo.md \
-#    ChangeLog.md
-
-#RESOURCES += \
-#    resource.qrc
-
-#TRANSLATIONS += \
-
-
-#DISTFILES += \
-#    db
-
-DISTFILES += \
-    QTester_client/QTester_client.vcxproj.filters \
-    QTester_client/QTester_client.vcxproj
+    QTester_client/answer.cpp \
+    QTester_client/connectionmgr.cpp \
+    QTester_client/lesson.cpp \
+    QTester_client/question.cpp \
+    QTester_client/tester.cpp \
+    QTester_client/testgenerator.cpp \
+    QTester_client/sqlitemgr.cpp \
+    QTester_client/sqlmgr.cpp
