@@ -3,7 +3,7 @@
 #include <QString>
 #include <QVector>
 #include <QLocale>
-#include "Theme.h"
+#include "theme.h"
 
 class Lesson
 {
