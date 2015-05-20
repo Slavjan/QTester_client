@@ -7,14 +7,26 @@
 message("You are running qmake on a generated .pro file. This may not work!")
 
 
-HEADERS += ./ConnectionMgr.h \
-    ./SQLiteMgr.h \
-    ./SQLMgr.h \
-    ./Tester.h \
-    ./TestGenerator.h
+HEADERS += ./answer.h \
+    ./connectionmgr.h \
+    ./lesson.h \
+    ./question.h \
+    ./sqlitemgr.h \
+    ./sqlmgr.h \
+    ./sqlwhere.h \
+    ./tester.h \
+    ./testgenerator.h \
+    ./theme.h \
+    ./sqlorderby.h
 SOURCES += ./main.cpp \
-    ./ConnectionMgr.cpp \
-    ./SQLiteMgr.cpp \
-    ./SQLMgr.cpp \
-    ./Tester.cpp \
-    ./TestGenerator.cpp
+    ./answer.cpp \
+    ./connectionmgr.cpp \
+    ./lesson.cpp \
+    ./question.cpp \
+    ./sqlitemgr.cpp \
+    ./sqlmgr.cpp \
+    ./sqlwhere.cpp \
+    ./tester.cpp \
+    ./testgenerator.cpp \
+    ./theme.cpp \
+    ./sqlorderby.cpp

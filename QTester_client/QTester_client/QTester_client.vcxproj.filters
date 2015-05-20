@@ -63,6 +63,9 @@
     <ClCompile Include="theme.cpp">
       <Filter>class\class Source</Filter>
     </ClCompile>
+    <ClCompile Include="orderby.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
@@ -97,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="theme.h">
       <Filter>class\class Header</Filter>
+    </ClInclude>
+    <ClInclude Include="orderby.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

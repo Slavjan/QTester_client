@@ -5,7 +5,7 @@
 TEMPLATE = app
 TARGET = QTester_client
 DESTDIR = ../Win32/Debug
-QT += core sql network xml xmlpatterns widgets gui
+QT += core sql network
 CONFIG += debug console
 DEFINES += WIN64 QT_DLL QT_NETWORK_LIB QT_SQL_LIB QT_XML_LIB QT_XMLPATTERNS_LIB QT_WIDGETS_LIB
 INCLUDEPATH += . \
