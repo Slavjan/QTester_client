@@ -1,5 +1,4 @@
-#include "TestGenerator.h"
-
+#include "testgenerator.h" 
 
 TestGenerator::TestGenerator()
 {

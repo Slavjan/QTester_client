@@ -2,9 +2,9 @@
 #define TESTER_H
 
 #include <QString>
-#include "ConnectionMgr.h"
-#include "SQLMgr.h"
-#include "TestGenerator.h"
+#include "connectionmgr.h"
+#include "sqlmgr.h"
+#include "testgenerator.h"
 
 #include <QMap>
 #include <QString>

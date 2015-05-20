@@ -50,6 +50,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtSql;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtXmlPatterns;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -58,6 +59,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Networkd.lib;Qt5Sqld.lib;Qt5Xmld.lib;Qt5XmlPatternsd.lib;Qt5Widgetsd.lib;Qt5Guid.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -76,27 +80,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Answer.cpp" />
-    <ClCompile Include="Lesson.cpp" />
+    <ClCompile Include="answer.cpp" />
+    <ClCompile Include="connectionmgr.cpp" />
+    <ClCompile Include="lesson.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ConnectionMgr.cpp" />
-    <ClCompile Include="Question.cpp" />
-    <ClCompile Include="SQLiteMgr.cpp" />
-    <ClCompile Include="SQLMgr.cpp" />
-    <ClCompile Include="Tester.cpp" />
-    <ClCompile Include="TestGenerator.cpp" />
-    <ClCompile Include="Theme.cpp" />
+    <ClCompile Include="question.cpp" />
+    <ClCompile Include="sqlitemgr.cpp" />
+    <ClCompile Include="sqlmgr.cpp" />
+    <ClCompile Include="sqlwhere.cpp" />
+    <ClCompile Include="tester.cpp" />
+    <ClCompile Include="testgenerator.cpp" />
+    <ClCompile Include="theme.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Answer.h" />
-    <ClInclude Include="ConnectionMgr.h" />
-    <ClInclude Include="Lesson.h" />
-    <ClInclude Include="Question.h" />
-    <ClInclude Include="SQLiteMgr.h" />
-    <ClInclude Include="SQLMgr.h" />
-    <ClInclude Include="Tester.h" />
-    <ClInclude Include="TestGenerator.h" />
-    <ClInclude Include="Theme.h" />
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="answer.h" />
+    <ClInclude Include="connectionmgr.h" />
+    <ClInclude Include="lesson.h" />
+    <ClInclude Include="question.h" />
+    <ClInclude Include="sqlitemgr.h" />
+    <ClInclude Include="sqlmgr.h" />
+    <ClInclude Include="sqlwhere.h" />
+    <ClInclude Include="tester.h" />
+    <ClInclude Include="testgenerator.h" />
+    <ClInclude Include="theme.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

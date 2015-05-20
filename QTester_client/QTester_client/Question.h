@@ -4,7 +4,7 @@
 #include <QTime>
 #include <QVector>
 
-#include "Answer.h"
+#include "answer.h"
 
 class Question
 {

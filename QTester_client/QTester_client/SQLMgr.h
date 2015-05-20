@@ -2,8 +2,7 @@
 #define SQLMGR_H
 
 #include <QString>
-#include "ConnectionMgr.h"
-#include "SQLMgr.h"
+#include "connectionmgr.h"
 
 #include <QMap>
 #include <QString>

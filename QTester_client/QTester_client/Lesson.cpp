@@ -1,5 +1,4 @@
-#include "Lesson.h"
-
+#include "lesson.h"	  
 
 Lesson::Lesson(const QString &title)
 {

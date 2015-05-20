@@ -1,6 +1,5 @@
-#include "Tester.h"
-
-
+#include "tester.h"
+			   
 Tester::Tester()
 {
 }

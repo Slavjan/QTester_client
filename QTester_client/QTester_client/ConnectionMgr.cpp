@@ -1,5 +1,5 @@
 #include <QStandardPaths>
-#include "ConnectionMgr.h"
+#include "connectionmgr.h"
 
 ConnectionMgr::ConnectionMgr(const QString& dbDriver = "",
                              const QString& dbHost = "",

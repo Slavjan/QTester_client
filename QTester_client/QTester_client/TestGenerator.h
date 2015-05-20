@@ -1,7 +1,7 @@
 #ifndef TESTGENERATOR_H
 #define TESTGENERATOR_H
 
-#include "SQLiteMgr.h"
+#include "sqlitemgr.h"
 
 #include <QTime>
 #include <QMap>

@@ -1,17 +1,17 @@
 #include "sqlwhere.h"
 
-bool SqlWhere::isValid(const QString &sql) const
-{
-    /// \todo Complete later
-    /// \warning incomplete !!!
-    return sql.isEmpty() == false;
-}
-
 SqlWhere::SqlWhere(const QString &where)
 {
     if( isValid(where) ){
         _where = where;
     }
+}
+
+bool SqlWhere::isValid(const QString &sql) const
+{
+    /// \todo Complete later
+    /// \warning incomplete !!!
+	return true;//sql.isEmpty() == false;
 }
 
 bool SqlWhere::AND(const QString &where)

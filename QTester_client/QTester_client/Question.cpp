@@ -1,4 +1,4 @@
-#include "Question.h"
+#include "question.h"
 
 
 Question::Question(const QString &text, const QString &type, const QVector<Answer> &answers)

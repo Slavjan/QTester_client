@@ -1,5 +1,5 @@
 #pragma once
-#include "SQLMgr.h"
+#include "sqlmgr.h"
 class SQLiteMgr : public SQLMgr
 {
 

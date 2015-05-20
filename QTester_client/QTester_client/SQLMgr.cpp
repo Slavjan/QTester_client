@@ -1,7 +1,5 @@
 #include <QDebug>
-#include "SQLMgr.h"
-#include <iostream>
-
+#include "sqlmgr.h"	 
 
 SQLMgr::SQLMgr()
 {

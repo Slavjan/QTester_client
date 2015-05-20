@@ -33,61 +33,70 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SQLMgr.cpp">
+    <ClCompile Include="answer.cpp">
       <Filter>class\class Source</Filter>
     </ClCompile>
-    <ClCompile Include="SQLiteMgr.cpp">
+    <ClCompile Include="connectionmgr.cpp">
       <Filter>class\class Source</Filter>
     </ClCompile>
-    <ClCompile Include="ConnectionMgr.cpp">
+    <ClCompile Include="lesson.cpp">
       <Filter>class\class Source</Filter>
     </ClCompile>
-    <ClCompile Include="Tester.cpp">
+    <ClCompile Include="question.cpp">
       <Filter>class\class Source</Filter>
     </ClCompile>
-    <ClCompile Include="TestGenerator.cpp">
+    <ClCompile Include="sqlitemgr.cpp">
       <Filter>class\class Source</Filter>
     </ClCompile>
-    <ClCompile Include="Answer.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="sqlmgr.cpp">
+      <Filter>class\class Source</Filter>
     </ClCompile>
-    <ClCompile Include="Question.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="sqlwhere.cpp">
+      <Filter>class\class Source</Filter>
     </ClCompile>
-    <ClCompile Include="Theme.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="tester.cpp">
+      <Filter>class\class Source</Filter>
     </ClCompile>
-    <ClCompile Include="Lesson.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="testgenerator.cpp">
+      <Filter>class\class Source</Filter>
+    </ClCompile>
+    <ClCompile Include="theme.cpp">
+      <Filter>class\class Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SQLMgr.h">
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="answer.h">
       <Filter>class\class Header</Filter>
     </ClInclude>
-    <ClInclude Include="SQLiteMgr.h">
+    <ClInclude Include="connectionmgr.h">
       <Filter>class\class Header</Filter>
     </ClInclude>
-    <ClInclude Include="ConnectionMgr.h">
+    <ClInclude Include="lesson.h">
       <Filter>class\class Header</Filter>
     </ClInclude>
-    <ClInclude Include="Tester.h">
+    <ClInclude Include="question.h">
       <Filter>class\class Header</Filter>
     </ClInclude>
-    <ClInclude Include="TestGenerator.h">
+    <ClInclude Include="sqlitemgr.h">
       <Filter>class\class Header</Filter>
     </ClInclude>
-    <ClInclude Include="Answer.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="sqlmgr.h">
+      <Filter>class\class Header</Filter>
     </ClInclude>
-    <ClInclude Include="Question.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="sqlwhere.h">
+      <Filter>class\class Header</Filter>
     </ClInclude>
-    <ClInclude Include="Theme.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="tester.h">
+      <Filter>class\class Header</Filter>
     </ClInclude>
-    <ClInclude Include="Lesson.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="testgenerator.h">
+      <Filter>class\class Header</Filter>
+    </ClInclude>
+    <ClInclude Include="theme.h">
+      <Filter>class\class Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
