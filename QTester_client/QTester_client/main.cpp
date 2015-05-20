@@ -1,7 +1,7 @@
 #include <QtCore/QCoreApplication>
 
-#include "SQLiteMgr.h"
-#include "TestGenerator.h"
+#include "sqlitemgr.h"
+#include "testgenerator.h"
 
 #ifdef QT_DEBUG
     #define _DEBUG
