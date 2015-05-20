@@ -1,4 +1,4 @@
-#include "orderby.h"
+#include "sqlorderby.h"
 
 
 SqlOrderBy::SqlOrderBy(const QString &order)
@@ -19,27 +19,29 @@ bool SqlOrderBy::isValid(const QString &sql) const
 	return true;//sql.isEmpty() == false;
 }
 
-bool SqlOrderBy::ASC(const QString &order)
+SqlOrderBy SqlOrderBy::ASC(const QString &order)
 {
 	if (isValid(order)){
-		_order += order + " ASC ";
-		return true;
+		_order += order;
+	    _order += " ASC ";
+		return *this;
 	}
-	return false;
+	return SqlOrderBy("");
 }
 
-bool SqlOrderBy::DESC(const QString &order)
+SqlOrderBy SqlOrderBy::DESC(const QString &order)
 {
 	if (isValid(order)){
-		_order += order + " DESC ";
-		return true;
+		_order += order;
+		_order += " DESC ";
+		return *this;
 	}
-	return false;
+	return SqlOrderBy("");
 }
 
-bool SqlOrderBy::RANDOM()
+SqlOrderBy SqlOrderBy::RANDOM()
 {
-	_order += " RANDOM() ";			
+	return SqlOrderBy("ORDER BY RANDOM()");
 }
 
 bool SqlOrderBy::isValid() const

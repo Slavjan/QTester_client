@@ -23,6 +23,11 @@ void Question::pushAnswer(const QString &text, const bool valid)
 	pushAnswer(Answer(text, valid));
 }
 
+QString Question::getId() const
+{
+	return _id;
+}
+
 QString Question::getText() const
 {
 	return _text;
@@ -51,6 +56,11 @@ bool Question::isMarkAsError() const
 bool Question::isMarkAsDontKnow() const  
 {
 	return _markAsDontKnow;
+}
+
+void Question::setId(const QString &id)
+{
+	_id = id;
 }
 
 void Question::setText(const QString &text)

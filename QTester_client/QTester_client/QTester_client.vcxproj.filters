@@ -63,8 +63,8 @@
     <ClCompile Include="theme.cpp">
       <Filter>class\class Source</Filter>
     </ClCompile>
-    <ClCompile Include="orderby.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="sqlorderby.cpp">
+      <Filter>class\class Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -101,8 +101,8 @@
     <ClInclude Include="theme.h">
       <Filter>class\class Header</Filter>
     </ClInclude>
-    <ClInclude Include="orderby.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="sqlorderby.h">
+      <Filter>class\class Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

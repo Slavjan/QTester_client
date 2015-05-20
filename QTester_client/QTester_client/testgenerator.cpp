@@ -11,40 +11,41 @@ TestGenerator::~TestGenerator()
 
 Questions TestGenerator::collectTestVariant(const SQLMgr &base, int themeId/*TODO: make structure*/, const int questionCount)
 {
-	QString tName("Questions"),
-	qwhere("theme_id=%1 ORDER BY RANDOM()"),
-	awhere("question_id=%1 ORDER BY RANDOM()");
+	QString tName("Questions");
+	SqlWhere questionWhere("theme_id=" + QString::number(themeId));
+	
 
-	QStringList qstFields({ "text", "question_id" }),
-		        qstValue,
+	QStringList questionFields({ "text", "question_id" }),
+		        questionValue,
 		        
 		        ansFields({ "text", "valid" }),
 		        ansValues;
 
-	QVector<int> qIDs, ansValid;
+	QVector<int> questionIds, ansValid;
 
 	QSqlQuery qry;
 	QSqlRecord rec;
 	
 	//request for questions
-	qry = base.select(tName, qstFields, qwhere.arg(themeId), questionCount);
+	qry = base.select(tName, questionFields, questionWhere, SqlOrderBy::RANDOM(), questionCount);
+		//base.select(tName, qstFields, qwhere.arg(themeId), questionCount);
 	rec = qry.record();
 
 	
 	qry.first();
-	qstValue.push_back(qry.value(rec.indexOf(qstFields.first())).toString());	//recording to var
-	qIDs.push_back(qry.value(rec.indexOf(qstFields.at(1))).toInt());
+	questionValue.push_back(qry.value(rec.indexOf(questionFields.first())).toString());	//recording to var
+	questionIds.push_back(qry.value(rec.indexOf(questionFields.at(1))).toInt());
 	while (qry.next())
 	{
-		qstValue.push_back(qry.value(rec.indexOf(qstFields.first())).toString());	//recording to var
-		qIDs.push_back(qry.value(rec.indexOf(qstFields.at(1))).toInt()); 
-	
+		questionValue.push_back(qry.value(rec.indexOf(questionFields.first())).toString());	//recording to var
+		questionIds.push_back(qry.value(rec.indexOf(questionFields.at(1))).toInt());  	
 	}
 	//request for answers
 	tName = "Answers";		 							  
-	for (auto i = 0; i < qIDs.size(); i++)				  
+	for (auto i = 0; i < questionIds.size(); i++)				  
 	{
-		qry = base.select(tName, ansFields, awhere.arg(qIDs.at(i)));
+		SqlWhere answerWhere("question_id=" + QString::number(questionIds.at(i)));
+		qry = base.select(tName, ansFields, answerWhere, SqlOrderBy::RANDOM(), questionCount);
 		rec = qry.record();
 
 		qry.first();
@@ -58,18 +59,18 @@ Questions TestGenerator::collectTestVariant(const SQLMgr &base, int themeId/*TOD
 	}
 
 	Questions test;
-	for (auto i = 0; i < qIDs.size(); i++)
+	for (auto i = 0; i < questionIds.size(); i++)
 	{	
 		Answers ans;
 		for (auto j = 0; j < ansValues.size(); j++)
 		{
 			ans[ansValues.at(j)] = ansValid.at(j);
 		}
-		test[qstValue.at(i)] = ans;	  	
+		test[questionValue.at(i)] = ans;
 	} 	
 	
 	qDebug() << "[TestGenerator::collectTestVariant]";
-	for (auto i = 0; i < qIDs.size(); i++)
+	for (auto i = 0; i < questionIds.size(); i++)
 	{											   		
 		qDebug()  << "question " << test.keys().at(i);
 		qDebug() << "answer " << test.values();									   

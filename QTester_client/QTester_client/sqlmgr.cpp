@@ -143,6 +143,73 @@ QSqlQuery SQLMgr::select(const QString     &tableName,
 	return query;
 }
 
+QSqlQuery SQLMgr::select(const QString     &tableName,
+	                     const QStringList &fields, 
+	                     const SqlOrderBy  &order, 
+	                           qint64       limit) const
+{
+	QString _order;
+	if (!order.toString().isEmpty()){
+		_order = order.toString();
+	}
+
+
+	QString _limit = (limit > 0) ? " LIMIT " + QString::number(limit) : "";
+
+	QStringList _fields;
+	/*for(int i = 0; i < fields.count(); ++i){
+	_fields.push_back("[" + fields[i] + "]");
+	}*/
+	QString sql("SELECT " + fields.join(", ") + " FROM " + tableName + _order + _limit + ";");
+	QSqlQuery query;
+
+#ifdef _DEBUG
+	qDebug() << "Debug> [SQLMgr::select] " << sql; // TODO: delete that
+#endif
+
+	if (!query.exec(sql)){
+		qWarning() << "Warning> [SQLMgr::select] " << query.lastError(); // TODO: delete that
+	}
+
+	return query;
+}
+
+QSqlQuery SQLMgr::select(const QString     &tableName,
+	                     const QStringList &fields, 
+	                     const SqlWhere    &where, 
+	                     const SqlOrderBy  &order, 
+	                           qint64       limit) const
+{
+	QString _order;
+	if (!order.toString().isEmpty()){
+		_order = order.toString();
+	}
+
+	QString _where;
+	if (!where.toString().isEmpty()){
+		_where = where.toString();
+	}
+
+	QString _limit = (limit > 0) ? " LIMIT " + QString::number(limit) : "";
+
+	QStringList _fields;
+	/*for(int i = 0; i < fields.count(); ++i){
+	_fields.push_back("[" + fields[i] + "]");
+	}*/
+	QString sql("SELECT " + fields.join(", ") + " FROM " + tableName + _where + _order + _limit + ";");
+	QSqlQuery query;
+
+#ifdef _DEBUG
+	qDebug() << "Debug> [SQLMgr::select] " << sql; // TODO: delete that
+#endif
+
+	if (!query.exec(sql)){
+		qWarning() << "Warning> [SQLMgr::select] " << query.lastError(); // TODO: delete that
+	}
+
+	return query;
+}
+
 //TODO: необходимо уточнить действие и сиснтаксис, следующей конструкции 
 QSqlQuery SQLMgr::insert(const QString     &tableName_to,
                          const QStringList &fields_to,

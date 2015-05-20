@@ -47,16 +47,21 @@ void Theme::pushQuestion(const QString &text, const QString &type, const QVector
 bool Theme::selectFromDatabase(const SQLMgr &sqlManager, const SqlWhere &where, const qint64 count)
 {
     const QString tableName_questions("Questions");
-    const QStringList selectedFields({"question_id"});
+    const QStringList selectedFields({"question_id", "text", "question_type", "" });
 
     if( where.isValid() ){
-        QSqlQuery query = sqlManager.select(tableName_questions, selectedFields, where.toString(), count);
+        QSqlQuery query = sqlManager.select(tableName_questions, selectedFields, where, count);
 
         while( query.next() ){
             /// \todo TODO type code here
+			Question issue()
+			//issue.setId();
+			//pushQuestion();
         }
 
         return true;
     }
     return false;
 }
+
+

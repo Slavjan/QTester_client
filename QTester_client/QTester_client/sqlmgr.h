@@ -4,6 +4,7 @@
 #include <QString>
 #include "connectionmgr.h"
 #include "sqlwhere.h"
+#include "sqlorderby.h"
 
 #include <QMap>
 #include <QString>
@@ -53,16 +54,26 @@ public:
                                    qint64       limit = 25) const;
     virtual QSqlQuery select(const QString     &tableName,
                              const QStringList &fields,
-                             const SqlWhere     &where,
+                             const SqlWhere    &where,
                                    qint64       limit = 25) const;
+	virtual QSqlQuery select(const QString     &tableName,
+		                     const QStringList &fields,
+		                     const SqlOrderBy  &order,
+		                           qint64       limit = 25) const;
+	virtual QSqlQuery select(const QString     &tableName,
+		                     const QStringList &fields,
+		                     const SqlWhere    &where,
+							 const SqlOrderBy  &order,
+		                           qint64       limit = 25) const; 
+
     virtual QSqlQuery insert(const QString     &tableName_to,
                              const QStringList &fields_to,
                              const QString     &tableName_from,
                              const QStringList &fields_from,
-                             const QString     &where) const;
-
+                             const QString     &where) const; 
     virtual QSqlQuery insert(const QString     &tableName,
                              const DataMap     &data) const;
+
     virtual qint64 size(     const QString     &tableName) = 0;
 
 };
