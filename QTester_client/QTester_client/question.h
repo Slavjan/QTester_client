@@ -47,3 +47,19 @@ public:
 	void    setMarkAsDontKnow(const bool markAsDontKnow);
 };
 
+namespace Table
+{
+	namespace Question
+	{
+		namespace Field
+		{
+			const QString QUESTION_ID = "question_id";
+			const QString RECOMENDED_TIME = "recomended_time";
+			const QString TEXT = "text";
+			const QString QUESTION_TYPE = "QUESTION_TYPE";
+			const QString THEME_ID = "theme_id";
+			const QString CASE_SENS = "caseSens";
+			const QString STRIP_SPACE = "stripSpace";
+		}
+	}	 
+}

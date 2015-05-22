@@ -1,4 +1,5 @@
 #include <QtCore/QCoreApplication>
+#include <iostream>
 
 #include "sqlitemgr.h"
 #include "testgenerator.h"

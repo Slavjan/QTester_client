@@ -17,3 +17,16 @@ public:
 	void setValid(const bool valid);
 };
 
+namespace Table
+{
+	namespace Answer
+	{
+		namespace Field
+		{
+			const QString ANSWER_ID = "answer_id";
+			const QString TEXT = "text";
+			const QString QUESTION_ID = "question_id";
+			const QString VALID = "valid";
+		}
+	}  
+}

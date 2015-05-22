@@ -44,24 +44,54 @@ void Theme::pushQuestion(const QString &text, const QString &type, const QVector
     pushQuestion(Question(text, type, answers));
 }
 
-bool Theme::selectFromDatabase(const SQLMgr &sqlManager, const SqlWhere &where, const qint64 count)
+bool Theme::selectFromDatabase(const SQLMgr &sqlManager, const SqlWhere &where, const qint64 questionsCount, const int answersCount)
 {
     const QString tableName_questions("Questions");
-    const QStringList selectedFields({"question_id", "text", "question_type", "" });
+    const QStringList selectedFields({"question_id", "text", "question_type",
+		                              "recomended_time", "caseSens", "stripSpace" });
 
     if( where.isValid() ){
-        QSqlQuery query = sqlManager.select(tableName_questions, selectedFields, where, count);
+        QSqlQuery query = sqlManager.select(tableName_questions, selectedFields, where, questionsCount);
 
-        while( query.next() ){
-            /// \todo TODO type code here
-			Question issue()
-			//issue.setId();
-			//pushQuestion();
+		while (query.next()){
+			/// \todo TODO type code here
+			Question issue = selectQuestion(query);
+
+            using namespace Table::Answer::Field;
+			QStringList answerFields({ TEXT, VALID });
+			SqlWhere ansWhere(QUESTION_ID + " = '" + Table::Question::Field::QUESTION_ID + "'");
+			QSqlQuery answerQuery = sqlManager.select(tableName_questions, answerFields, ansWhere, SqlOrderBy::RANDOM(), answersCount );
+
+            while
+
+			pushQuestion(issue);
         }
 
         return true;
     }
     return false;
+}
+
+Question Theme::selectQuestion(const QSqlQuery &query) const
+{ // reject into new method.  Question makeQuestion(const QSqlQueru &query)
+    using namespace Table::Question::Field;
+    Question issue;
+
+    QString id = query.value(query.record().indexOf(QUESTION_ID)).toString(),
+        text = query.value(query.record().indexOf(TEXT)).toString(),
+        type = query.value(query.record().indexOf(QUESTION_TYPE)).toString();
+    bool caseSens = query.value(query.record().indexOf(CASE_SENS)).toBool(),
+        stripSpace = query.value(query.record().indexOf(STRIP_SPACE)).toBool();
+
+    QTime time = query.value(query.record().indexOf(RECOMENDED_TIME)).toTime();
+
+
+    issue.setId(id);
+    issue.setText(text);
+    issue.setType(type);
+    issue.setTime(time);
+    issue.setCaseSensitivity(caseSens);
+    issue.setStripSpaces(stripSpace);
 }
 
 
