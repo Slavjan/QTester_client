@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.2)
 project(QTester_client)
 
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+find_package(Qt5Core)
+find_package(Qt5Sql)
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
@@ -28,4 +34,7 @@ set(SOURCE_FILES
     QTester_client/theme.cpp
     QTester_client/theme.h)
 
-add_executable(QTester_client ${SOURCE_FILES})
+#/add_executable(QTester_client ${SOURCE_FILES})
+
+add_executable(QtFramework WIN32 SOURCE_FILES)
+target_link_libraries(QtFramework WIN32 Qt5::Core Qt5::Sql)
