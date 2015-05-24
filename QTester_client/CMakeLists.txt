@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.2)
-project(QTester_client)
+
+set(PROJECTNAME QTester_client)
+
+project(${PROJECTNAME})
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -8,6 +11,10 @@ find_package(Qt5Core)
 find_package(Qt5Sql)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
+include_directories(${Qt5Core_INCLUDE_DIRS})
+link_libraries(${LINKLIBRARY})
+add_definitions(${Qt5Core_DEFINITIONS})
 
 set(SOURCE_FILES
     QTester_client/answer.cpp
@@ -36,5 +43,8 @@ set(SOURCE_FILES
 
 #/add_executable(QTester_client ${SOURCE_FILES})
 
-add_executable(QtFramework WIN32 SOURCE_FILES)
-target_link_libraries(QtFramework WIN32 Qt5::Core Qt5::Sql)
+
+add_executable(${PROJECTNAME} WIN32 ${SOURCE_FILES})
+#target_link_libraries(QtFramework WIN32 Qt5::Core Qt5::Sql)
+
+qt5_use_modules(${PROJECTNAME} Core Sql)
