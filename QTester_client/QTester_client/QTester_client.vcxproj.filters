@@ -66,6 +66,9 @@
     <ClCompile Include="sqlorderby.cpp">
       <Filter>class\class Source</Filter>
     </ClCompile>
+    <ClCompile Include="teststandard.cpp">
+      <Filter>class\class Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
@@ -103,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="sqlorderby.h">
       <Filter>class\class Header</Filter>
+    </ClInclude>
+    <ClInclude Include="teststandard.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

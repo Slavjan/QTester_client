@@ -91,6 +91,7 @@
     <ClCompile Include="sqlwhere.cpp" />
     <ClCompile Include="tester.cpp" />
     <ClCompile Include="testgenerator.cpp" />
+    <ClCompile Include="teststandard.cpp" />
     <ClCompile Include="theme.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +108,7 @@
     <ClInclude Include="sqlwhere.h" />
     <ClInclude Include="tester.h" />
     <ClInclude Include="testgenerator.h" />
+    <ClInclude Include="teststandard.h" />
     <ClInclude Include="theme.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
