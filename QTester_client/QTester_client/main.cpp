@@ -2,7 +2,7 @@
 #include <iostream>
 
 #include "sqlitemgr.h"
-#include "testgenerator.h"
+#include "theme.h"
 
 #ifdef QT_DEBUG
     #define _DEBUG
@@ -19,11 +19,28 @@ int main(int argc, char *argv[])
 //    data["fTree"] = "INTEGER";
 //    data["fQuatro"] = "VARCHAR(20)";
 
-    QString tableName("tt");	// имя таблицы, здрасте Кэп
+  //  QString tableName("tt");	// имя таблицы, здрасте Кэп
     SQLMgr *db = new SQLiteMgr("", "", "", "");
 									/*path  - если пуст база открывается в домашней папке*/
 	QSqlQuery q;
-    TestGenerator::collectTestVariant(*db, 1, 1);
+   // TestGenerator::collectTestVariant(*db, 1, 1);
+
+	Theme *topic = new Theme("web");
+
+	topic->setId("1");
+	topic->selectFromDatabase(*db, 5, 5);
+
+	QVector<Question> question = topic->getQuestions();
+
+	for (auto i = 0; i < question.size(); i++)
+	{
+		qDebug() << "\n\\question " << i  << " > " << question.at(i).getText();
+
+		for (auto j = 0; j < question.at(i).getAnswers().size(); j++)
+		{
+			qDebug() << "\\answer " << j << " > " << question.at(i).getAnswers().at(j).getValue();
+		}
+	}
 
 //    db->createTable(tableName, data); // тут таблицу создаем
 	
