@@ -21,6 +21,8 @@ namespace Table
 {
 	namespace Answer
 	{
+		const QString TABLE_NAME = "Answers";
+
 		namespace Field
 		{
 			const QString ANSWER_ID = "answer_id";

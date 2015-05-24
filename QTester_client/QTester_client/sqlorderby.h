@@ -6,7 +6,7 @@
 
 class SqlOrderBy
 {
-	QString _order = "ORDER BY ";
+	QString _order = " ORDER BY ";
 
 	bool isValid(const QString &sql) const;
 

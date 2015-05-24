@@ -1,4 +1,6 @@
 #pragma once
+#ifndef LESSON_H
+#define LESSON_H
 
 #include <QString>
 #include <QVector>
@@ -19,7 +21,24 @@ public:
     QLocale::Language getLang() const;
     QVector<Theme> getThemes() const;
 
-    void setLang(const QLocale::Language &lang);
+	void setTitle(const QString &title);
+	void setLang(const QLocale::Language &lang);
     void pushTheme(const Theme &theme);
 };
 
+namespace Table
+{
+	namespace Lesson
+	{
+		const QString TABLE_NAME = "Lessons";
+
+		namespace Fields
+		{
+			const QString LESSON_ID = "lesson_id";
+			const QString NAME = "name";
+			const QString TITLE = "title";
+			const QString PROFESTION_ID = "profestion_id";
+		}
+	}
+}
+#endif

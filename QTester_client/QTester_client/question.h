@@ -1,4 +1,6 @@
 #pragma once
+#ifndef QUESTION_H
+#define QUESTION_H
 
 #include <QString>
 #include <QTime>
@@ -28,10 +30,12 @@ public:
 	void pushAnswer(const Answer &answer);
 	void pushAnswer(const QString &text, const bool valid);
 
+
 	QString getId() const;
 	QString getText() const;
 	QString getType() const;
 	QTime	getTime() const;
+	QVector<Answer> getAnswers() const;
 	bool    isCaseSensitivity() const;
 	bool    isStripSpaces() const;
 	bool    isMarkAsError() const;
@@ -41,6 +45,7 @@ public:
 	void    setText(const QString &text);
 	void    setType(const QString &type);
 	void    setTime(const QTime &time);
+	void 	setAnswers(const QVector<Answer> &answers);
 	void    setCaseSensitivity(const bool caseSensitivity);
 	void    setStripSpaces(const bool stripSpace);
 	void    setMarkAsError(const bool markAsError);
@@ -51,6 +56,8 @@ namespace Table
 {
 	namespace Question
 	{
+		const QString TABLE_NAME = "Questions";
+
 		namespace Field
 		{
 			const QString QUESTION_ID = "question_id";
@@ -63,3 +70,5 @@ namespace Table
 		}
 	}	 
 }
+#endif
+

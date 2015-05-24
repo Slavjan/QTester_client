@@ -14,6 +14,11 @@ Question::Question(const QString &text, const QString &type)
 	_type = type;
 }
 
+void Question::setAnswers( const QVector<Answer> &answers )
+{
+	_answers = answers;
+}
+
 void Question::pushAnswer(const Answer &answer)
 {
 	_answers.push_back(answer);
@@ -39,6 +44,10 @@ QString Question::getType() const
 QTime Question::getTime()const
 {
 	return _time;
+}
+QVector<Answer> Question::getAnswers() const
+{
+	return _answers;
 }
 bool Question::isCaseSensitivity() const
 {

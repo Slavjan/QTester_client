@@ -3,73 +3,102 @@
 
 Theme::Theme(const QString &title)
 {
-	_title = title;
+    _title = title;
 }
 
+QString Theme::getId() const
+{
+	return _id;
+}			  
 QString Theme::getTitle() const
 {
-	return _title;
+    return _title;
 }
 int	Theme::getDifficulty() const
 {
-	return _difficulty;
+    return _difficulty;
 }
 QVector<Question> Theme::getQuestions() const
 {
-	return _questions;
+    return _questions;
 }
 
+void Theme::setId(const QString &id)
+{
+	_id = id;
+}	
 void Theme::setTitle(const QString &title)
 {
-	_title = title;
-}
-
+    _title = title;
+}		 
 void Theme::setDifficulty(const int &difficulty)
 {
-	_difficulty = difficulty;
-}
+    _difficulty = difficulty;
+}		 
 
 void Theme::pushQuestion(const Question &question)
 {
-	_questions.push_back(question);
-}
-
+    _questions.push_back(question);
+}	
 void Theme::pushQuestion(const QString &text, const QString &type)
 {
-	pushQuestion(Question(text, type));
-}
-
+    pushQuestion(Question(text, type));
+}  
 void Theme::pushQuestion(const QString &text, const QString &type, const QVector<Answer> &answers)
 {
     pushQuestion(Question(text, type, answers));
 }
 
-bool Theme::selectFromDatabase(const SQLMgr &sqlManager, const SqlWhere &where, const qint64 questionsCount, const int answersCount)
+bool Theme::selectFromDatabase(const SQLMgr &sqlManager, const qint64 questionsCount, const int answersCount)
 {
     const QString tableName_questions("Questions");
     const QStringList selectedFields({"question_id", "text", "question_type",
-		                              "recomended_time", "caseSens", "stripSpace" });
+                                      "recomended_time", "caseSens", "stripSpace" });
 
-    if( where.isValid() ){
-        QSqlQuery query = sqlManager.select(tableName_questions, selectedFields, where, questionsCount);
+	SqlWhere _where("theme_id = '" + _id + "'");
 
-		while (query.next()){
-			/// \todo TODO type code here
-			Question issue = selectQuestion(query);
+    if( _where.isValid() )
+	{
+        QSqlQuery query = sqlManager.select(tableName_questions, selectedFields, _where, questionsCount);
 
-            using namespace Table::Answer::Field;
-			QStringList answerFields({ TEXT, VALID });
-			SqlWhere ansWhere(QUESTION_ID + " = '" + Table::Question::Field::QUESTION_ID + "'");
-			QSqlQuery answerQuery = sqlManager.select(tableName_questions, answerFields, ansWhere, SqlOrderBy::RANDOM(), answersCount );
 
-            while
+        while ( query.next() )
+        {
+            /// \todo TODO: type code here
+            Question issue  = selectQuestion(query);	   
+            QVector<Answer> replys = selectAnswers(sqlManager, answersCount, issue.getId() );
 
-			pushQuestion(issue);
+			issue.setAnswers(replys);
+            pushQuestion(issue);
         }
 
         return true;
     }
     return false;
+}
+	
+QVector<Answer> Theme::selectAnswers(const SQLMgr &sqlManager, const int answersCount, const QString &questionId) const
+{
+    using namespace Table::Answer::Field;        // зачем? ес
+    QVector<Answer> replys;
+    QStringList answerFields({ TEXT, VALID });
+    QString tableName_answers = Table::Answer::TABLE_NAME;
+    SqlWhere ansWhere(QUESTION_ID + " = '" + questionId + "'");
+    QSqlQuery answerQuery = sqlManager.select(tableName_answers,
+                                              answerFields,
+                                              ansWhere,
+                                              SqlOrderBy::RANDOM(),
+                                              answersCount);
+
+    while( answerQuery.next() )
+    {
+        QString text = answerQuery.value(answerQuery.record().indexOf(TEXT)).toString();
+        bool valid = answerQuery.value(answerQuery.record().indexOf(VALID)).toBool();
+
+        replys.push_back(Answer(text, valid));
+    }
+
+    return replys;
 }
 
 Question Theme::selectQuestion(const QSqlQuery &query) const
@@ -85,13 +114,13 @@ Question Theme::selectQuestion(const QSqlQuery &query) const
 
     QTime time = query.value(query.record().indexOf(RECOMENDED_TIME)).toTime();
 
-
     issue.setId(id);
     issue.setText(text);
     issue.setType(type);
     issue.setTime(time);
     issue.setCaseSensitivity(caseSens);
     issue.setStripSpaces(stripSpace);
+    return issue;
 }
 
 

@@ -29,8 +29,7 @@ Questions TestGenerator::collectTestVariant(const SQLMgr &base, int themeId/*TOD
 	//request for questions
 	qry = base.select(tName, questionFields, questionWhere, SqlOrderBy::RANDOM(), questionCount);
 		//base.select(tName, qstFields, qwhere.arg(themeId), questionCount);
-	rec = qry.record();
-
+	rec = qry.record();		
 	
 	qry.first();
 	questionValue.push_back(qry.value(rec.indexOf(questionFields.first())).toString());	//recording to var
