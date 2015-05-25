@@ -13,8 +13,14 @@ private:
 	QString _id;
 	QString _title;
 	int 	_difficulty = 0;
+    QString     _lessonId;
 	QVector <Question> _questions;
 
+    Question selectQuestion( const QSqlQuery &query ) const;
+
+    QVector<Answer> selectAnswers( const SQLMgr  &sqlManager,
+                                   const int      answersCount,
+                                   const QString &questionId ) const;
 public:
 	Theme() { };
 	Theme(const QString &title);
@@ -22,11 +28,13 @@ public:
 	QString getId()	const;
 	QString getTitle() const;
 	int getDifficulty() const;
+    QString getLessonId() const;
 	QVector <Question> getQuestions() const;
 
 	void setId(const QString &id);
 	void setTitle(const QString &title);
 	void setDifficulty(const int &difficulty);
+    void setLessonId( const QString &lessonId );
 	void pushQuestion(const Question &question);
 	void pushQuestion(const QString &text,
 					  const QString &type);
@@ -38,11 +46,7 @@ public:
 							 const qint64 questionsCount,
 							 const int answersCount );
 
-	Question selectQuestion(const QSqlQuery &query) const;
-
-	QVector<Answer> selectAnswers(const SQLMgr  &sqlManager,
-						          const int      answersCount,
-						          const QString &questionId) const;	
+		
 };
 
 namespace Table
@@ -53,9 +57,10 @@ namespace Table
 
 		namespace Fields
 		{
-			const QString THEM_ID = "them_id";
+			const QString THEME_ID = "them_id";
 			const QString NAME = "name";
 			const QString TITLE = "title";
+            const QString DIFFICULTY = "difficulty";
 			const QString LESSON_ID = "lesson_id";
 		}
 	}

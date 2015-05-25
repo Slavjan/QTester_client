@@ -18,6 +18,10 @@ int	Theme::getDifficulty() const
 {
     return _difficulty;
 }
+QString Theme::getLessonId() const
+{
+    return _lessonId;
+}
 QVector<Question> Theme::getQuestions() const
 {
     return _questions;
@@ -35,6 +39,10 @@ void Theme::setDifficulty(const int &difficulty)
 {
     _difficulty = difficulty;
 }		 
+void Theme::setLessonId( const QString &lessonId )
+{
+    _lessonId = lessonId;
+}
 
 void Theme::pushQuestion(const Question &question)
 {

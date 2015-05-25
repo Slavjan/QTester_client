@@ -10,9 +10,16 @@
 class Lesson
 {
 private:
+    QString _id;
     QString _title;
     QLocale::Language _lang;
     QVector<Theme> _themes;
+
+    Theme selectTheme( const int themeId, 
+                       const SQLMgr &sqlManager, 
+                       const qint64 questionsCount,
+                       const int answersCount )const;
+
 public:
     Lesson(){};
     Lesson(const QString &title);
@@ -24,6 +31,14 @@ public:
 	void setTitle(const QString &title);
 	void setLang(const QLocale::Language &lang);
     void pushTheme(const Theme &theme);
+
+	void selectThemesFromDataBase(const SQLMgr &sqlManager, 
+		                         const QVector<int> &themIds, 
+								 const int themesCount, 
+                                 const qint64 questionsCount,
+                                 const int answersCount);
+
+    
 };
 
 namespace Table
