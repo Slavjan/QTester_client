@@ -67,7 +67,7 @@ bool Theme::selectFromDatabase(const SQLMgr &sqlManager, const qint64 questionsC
 
     if( _where.isValid() )
 	{
-        QSqlQuery query = sqlManager.select(tableName_questions, selectedFields, _where, questionsCount);
+        QSqlQuery query = sqlManager.select(tableName_questions, selectedFields, _where, SqlOrderBy::RANDOM(), questionsCount);
 
 
         while ( query.next() )

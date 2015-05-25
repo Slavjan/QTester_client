@@ -5,8 +5,7 @@
 #include <QString>
 #include <QVector>
 #include "question.h"
-#include "sqlwhere.h"
-#include "sqlmgr.h"
+#include "sqlitemgr.h"
 
 class Theme {
 private:
