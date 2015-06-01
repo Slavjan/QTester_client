@@ -69,8 +69,8 @@
     <ClCompile Include="teststandard.cpp">
       <Filter>class\class Source</Filter>
     </ClCompile>
-    <ClCompile Include="professtion.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="profession.cpp">
+      <Filter>class\class Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -110,11 +110,11 @@
     <ClInclude Include="sqlorderby.h">
       <Filter>class\class Header</Filter>
     </ClInclude>
-    <ClInclude Include="teststandard.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="profession.h">
+      <Filter>class\class Header</Filter>
     </ClInclude>
-    <ClInclude Include="professtion.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="teststandard.h">
+      <Filter>class\class Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

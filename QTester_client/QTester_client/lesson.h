@@ -14,8 +14,10 @@ private:
     QString _name;
     QString _title;
     QLocale::Language _lang;
-    int cours;
+    int course;
     QVector<Theme> _themes;
+    QVector<QString> _themesIds;
+
 
     Theme selectTheme( const QString &themeId, 
                        const SQLMgr &sqlManager, 
@@ -24,7 +26,7 @@ private:
 
 public:
     Lesson(){};
-    Lesson(const QString &title);
+    Lesson(const QString &name);
 
     QString getId()const;
     QString getName()const;
@@ -57,8 +59,8 @@ namespace Table
 			const QString LESSON_ID = "lesson_id";
 			const QString NAME = "name";
 			const QString TITLE = "title";
-            const QString LANGUAGE = "language";
-            const QString COURS = "cours";
+            const QString LANGUAGE = "localization";
+            const QString COURSE = "course";
 			const QString PROFESTION_ID = "profestion_id";
 		}
 	}

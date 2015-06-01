@@ -7,7 +7,7 @@
 #include "lesson.h"
 #include "sqlitemgr.h"
 
-QMap<QVector<QString>, QVector<QString>> lessons_themes_ids;
+//QMap<QVector<QString>, QVector<QString>> lessons_themes_ids;
 
 class Professtion
 {
@@ -24,7 +24,7 @@ class Professtion
     
 public:
     Professtion();
-    ~Professtion();
+    Professtion( const QString &name );
 
     void setId( const QString &id );
     void setName( const QString &name );

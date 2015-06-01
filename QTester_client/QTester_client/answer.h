@@ -19,7 +19,7 @@ public:
 
 namespace Table
 {
-	namespace Answer
+	namespace Answers
 	{
 		const QString TABLE_NAME = "Answers";
 

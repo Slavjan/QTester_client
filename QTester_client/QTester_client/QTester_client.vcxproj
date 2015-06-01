@@ -84,7 +84,7 @@
     <ClCompile Include="connectionmgr.cpp" />
     <ClCompile Include="lesson.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="professtion.cpp" />
+    <ClCompile Include="profession.cpp" />
     <ClCompile Include="sqlorderby.cpp" />
     <ClCompile Include="question.cpp" />
     <ClCompile Include="sqlitemgr.cpp" />
@@ -102,7 +102,7 @@
     <ClInclude Include="answer.h" />
     <ClInclude Include="connectionmgr.h" />
     <ClInclude Include="lesson.h" />
-    <ClInclude Include="professtion.h" />
+    <ClInclude Include="profession.h" />
     <ClInclude Include="sqlorderby.h" />
     <ClInclude Include="question.h" />
     <ClInclude Include="sqlitemgr.h" />

@@ -1,15 +1,19 @@
 #include "theme.h"
 
 
-Theme::Theme(const QString &title)
+Theme::Theme(const QString &name)
 {
-    _title = title;
+    _name = name;
 }
 
 QString Theme::getId() const
 {
 	return _id;
 }			  
+QString Theme::getName()const
+{
+    return _name;
+}
 QString Theme::getTitle() const
 {
     return _title;
@@ -31,6 +35,10 @@ void Theme::setId(const QString &id)
 {
 	_id = id;
 }	
+void Theme::setName( const QString &name )
+{
+    _name = name;
+}
 void Theme::setTitle(const QString &title)
 {
     _title = title;
@@ -87,10 +95,10 @@ bool Theme::selectFromDatabase(const SQLMgr &sqlManager, const qint64 questionsC
 	
 QVector<Answer> Theme::selectAnswers(const SQLMgr &sqlManager, const int answersCount, const QString &questionId) const
 {
-    using namespace Table::Answer::Field;        // зачем? ес
+    using namespace Table::Answers::Field;        // зачем? ес  //нужно
     QVector<Answer> replys;
     QStringList answerFields({ TEXT, VALID });
-    QString tableName_answers = Table::Answer::TABLE_NAME;
+    QString tableName_answers = Table::Answers::TABLE_NAME;
     SqlWhere ansWhere(QUESTION_ID + " = '" + questionId + "'");
     QSqlQuery answerQuery = sqlManager.select(tableName_answers,
                                               answerFields,

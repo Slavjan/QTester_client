@@ -1,15 +1,14 @@
-#include "professtion.h"
+#include "profession.h"
 
 
 Professtion::Professtion()
 {
 }
-
-
-Professtion::~Professtion()
+Professtion::Professtion( const QString &name )
 {
+    _name = name;
 }
-
+  
 void Professtion::setId( const QString &id )
 {
     _id = id;
@@ -71,20 +70,19 @@ Lesson Professtion::selectLesson( const QString &lessonId,
 {
     using namespace Table::Lesson;
 
-    QStringList _fields( {Fields::NAME, Fields::TITLE, Fields::LANGUAGE, Fields::COURS } );
-
-    
+    QStringList _fields( {Fields::NAME, Fields::TITLE, Fields::LANGUAGE, Fields::COURSE } );     
     SqlWhere _where( Fields::LESSON_ID + " = '" + lessonId + "'" );
     QSqlQuery query = sqlManager.select( TABLE_NAME, _fields, _where );
+    query.first();
 
-    Lesson less( query.value( query.record().indexOf( Fields::TITLE ) ).toString() );
+    Lesson less( query.value( query.record().indexOf( Fields::NAME ) ).toString() );
+    less.setTitle( query.value( query.record().indexOf( Fields::TITLE ) ).toString() );
+
     QLocale::Language language = static_cast<QLocale::Language>(query.value( query.record().indexOf( Fields::LANGUAGE ) ).toInt());
     if( language == 0 )
     {
         language = QLocale::system().language();
-    }                                        
-
-    less.setTitle();
+    }    
     less.setLang( language );
 
     less.selectThemesFromDataBase( sqlManager, themeIds, questionsCount, answersCount );

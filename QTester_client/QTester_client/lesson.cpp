@@ -1,8 +1,8 @@
 #include "lesson.h"	  
 
-Lesson::Lesson(const QString &title)
+Lesson::Lesson(const QString &name)
 {
-	_title = title;
+	_name = name;
 }
 
 QString Lesson::getId()const
@@ -75,7 +75,9 @@ Theme Lesson::selectTheme( const QString &themeId,
 
     query.first();
 
-    Theme topic( query.value( query.record().indexOf( Table::Theme::Fields::TITLE ) ).toString() );
+    Theme topic( query.value( query.record().indexOf( Table::Theme::Fields::NAME ) ).toString() );
+        
+    topic.setTitle( query.value( query.record().indexOf( Table::Theme::Fields::TITLE ) ).toString() );
     topic.setDifficulty( query.value( query.record().indexOf( Fields::DIFFICULTY ) ).toInt() );
     topic.setId( themeId );
     topic.setLessonId( _id );
