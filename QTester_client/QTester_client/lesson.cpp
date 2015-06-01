@@ -5,6 +5,14 @@ Lesson::Lesson(const QString &title)
 	_title = title;
 }
 
+QString Lesson::getId()const
+{
+    return _id;
+}
+QString Lesson::getName()const
+{
+    return _name;
+}
 QString Lesson::getTitle() const
 {
 	return _title;
@@ -18,6 +26,14 @@ QVector<Theme> Lesson::getThemes() const
 	return _themes;
 }
 
+void Lesson::setId( QString &id )
+{
+    _id = id;
+}
+void Lesson::setName( QString &name )
+{
+    _name = name;
+}
 void Lesson::setTitle(const QString &title)
 {
 	_title = title;
@@ -32,19 +48,18 @@ void Lesson::pushTheme(const Theme &theme)
 }
 
 void Lesson::selectThemesFromDataBase( const SQLMgr &sqlManager, 
-                                      const QVector<int> &themIds, 
-                                      const int themesCount,  
+                                      const QVector<QString> &themeIds,
                                       const qint64 questionsCount,
                                       const int answersCount )
 {
-    for( auto i = 0; i < themesCount; i++ )
+    for( auto i = 0; i < themeIds.size(); i++ )
     {
-        Theme topic = selectTheme( themIds.at( i ), sqlManager, questionsCount, answersCount );
+        Theme topic = selectTheme( themeIds.at( i ), sqlManager, questionsCount, answersCount );
         pushTheme( topic );
     }         
 }
 
-Theme Lesson::selectTheme( const int themeId, 
+Theme Lesson::selectTheme( const QString &themeId,
                            const SQLMgr &sqlManager, 
                            const qint64 questionsCount,
                            const int answersCount )const
@@ -62,7 +77,7 @@ Theme Lesson::selectTheme( const int themeId,
 
     Theme topic( query.value( query.record().indexOf( Table::Theme::Fields::TITLE ) ).toString() );
     topic.setDifficulty( query.value( query.record().indexOf( Fields::DIFFICULTY ) ).toInt() );
-    topic.setId( QString::number( themeId ) );
+    topic.setId( themeId );
     topic.setLessonId( _id );
 
     topic.selectFromDatabase( sqlManager, questionsCount, answersCount );
