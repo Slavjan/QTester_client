@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
 									/*path  - если пуст база открывается в домашней папке*/
 	QSqlQuery q;
    // TestGenerator::collectTestVariant(*db, 1, 1);
+    setlocale( LC_ALL, "Russian" );
 
 	Theme *topic = new Theme("web");
 
