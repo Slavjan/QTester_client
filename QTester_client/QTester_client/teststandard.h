@@ -9,20 +9,35 @@
 
 
 
+
 class TestStandard
 {
 private:
-	QString _id;
-	QString _name;
-	QVector<Lesson> _lesson; // \todo TODO: придумать что с этим делать	  
-	// может быть Map<предмет(название или id), колво вопросов по нему>
-	int questionsCount;
-	QMap<int, int> rang;
+    QString _id;
+    QString _name;
+    QString _title;
+    int _questionsCount;
+    int _range5;
+    int _range4;
+    int _range3;
 
 public:
-	TestStandard();
+    TestStandard();
 
-	static QString getId();
-	static QString getName();
+    QString getId()const;
+    QString getName()const;
+    QString getTitle()const;
+    int getQuestionsCount()const;
+    int getRang5()const;
+    int getRang4()const;
+    int getRang3()const;
+
+    void setId( const QString &id );
+    void setName( const QString &name );
+    void setTitle( const QString &title );
+    void setQuestionsCount( const int questions );
+    void setRang5( const int range );
+    void setRang4( const int range );
+    void setRang3( const int range );
 };
 #endif

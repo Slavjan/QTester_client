@@ -99,5 +99,5 @@ int main( int argc, char *argv[] )
         //           << strFTree << "|" << strFQuatro << "|  next"; // непосредственно вывод данных
         //}
 
-        return  a.exec();
+    return  a.exec();
 }
