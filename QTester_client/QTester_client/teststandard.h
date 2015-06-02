@@ -5,24 +5,25 @@
 #include <QString>
 #include <QVector>
 #include <QLocale>
-#include "lesson.h"
-
-
-
+#include "profession.h"  
 
 class TestStandard
 {
-private:
+private:          //TODO: ƒŒœ»—¿“‹  À¿——
     QString _id;
     QString _name;
     QString _title;
+    QString _profession;
     int _questionsCount;
     int _range5;
     int _range4;
     int _range3;
 
+    void selectStandardFromBase(const SQLMgr &sqlManager);
+
 public:
     TestStandard();
+    TestStandard( const SQLMgr &sqlManager, const QString &name );
 
     QString getId()const;
     QString getName()const;
@@ -40,4 +41,23 @@ public:
     void setRang4( const int range );
     void setRang3( const int range );
 };
+
+namespace Table
+{
+    namespace TestStandard
+    {
+        const QString TABLE_NAME = "TestStandards";
+
+        namespace Fields
+        {
+            const QString STANDARD_ID = "standard_id";
+            const QString NAME = "name";
+            const QString TITLE = "title";
+            const QString QUESTIONS_COUNT = "questions_count";
+            const QString RANGE5 = "rande5";
+            const QString RANGE4 = "rande4";
+            const QString RANGE3 = "rande3";
+        }                 
+    }                     
+}                         
 #endif

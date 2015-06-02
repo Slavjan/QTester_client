@@ -4,12 +4,8 @@ TestGenerator::TestGenerator()
 {
 }
 
-
-TestGenerator::~TestGenerator()
-{
-}
-
-Questions TestGenerator::collectTestVariant(const SQLMgr &base, int themeId/*TODO: make structure*/, const int questionCount)
+Questions TestGenerator::collectTestVariant( const SQLMgr &base,
+                                             const ParamsForCollection &params )
 {
 	QString tName("Questions");
 	SqlWhere questionWhere("theme_id=" + QString::number(themeId));

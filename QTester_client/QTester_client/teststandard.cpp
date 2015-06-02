@@ -3,10 +3,12 @@
 
 TestStandard::TestStandard()
 {
-    questionsCount = 0;
+    _questionsCount = 0;
+}            
+TestStandard::TestStandard( const QString &name )
+{
+
 }
-
-
 
 QString TestStandard::getId()const
 {
@@ -25,19 +27,19 @@ QString TestStandard::getTitle()const
 }
 int TestStandard::getQuestionsCount()const
 {
-    return questionsCount;
+    return _questionsCount;
 }
 int TestStandard::getRang5()const
 {
-    return _rang5;
+    return _range5;
 }
 int TestStandard::getRang4()const
 {
-    return _rang4;
+    return _range4;
 }
 int TestStandard::getRang3()const
 {
-    return _rang3;
+    return _range3;
 }
 
 void TestStandard::setId( const QString &id )
@@ -67,4 +69,18 @@ void TestStandard::setRang4( const int range )
 void TestStandard::setRang3( const int range )
 {
     _range3 = range;
+}
+
+void TestStandard::selectStandardFromBase( const SQLMgr &sqlManager )
+{ //TODO: ƒŒœ»—¿“‹  À¿——
+    using namespace Table::TestStandard;
+    QStringList _fields( { Fields::TITLE, 
+                           Fields::QUESTIONS_COUNT, 
+                           Fields::RANGE5, 
+                           Fields::RANGE4, 
+                           Fields::RANGE3 } );
+    SqlWhere _where( Fields::NAME + " = '" + _name + "'" );    
+
+    QSqlQuery query( sqlManager.select( TABLE_NAME, _fields, _where, 1 ) );
+
 }
