@@ -16,22 +16,18 @@ typedef QMap<QString, Answers> Questions;
 
 struct ParamsForCollection
 {
-    QVector<QString> LessIds;
-    QVector<QString> ThemsIds;
+    QString professionId;
+    QString lessIds;
+    QStringList themsIds;            // less.getThemes().at(i)  less.getLess
     int questionsCount;
     int answersCount;
-};
-
+};                         
 
 class TestGenerator
 {
 private:
 public:
-	TestGenerator();
-
-    static Questions collectTestVariant( const SQLMgr &base,
-                                         const Professtion &prof,
-                                         const ParamsForCollection &params );
-	 
+    static Profession collectTestVariant( const SQLMgr &db,
+                                          const ParamsForCollection &params );
 };
 #endif

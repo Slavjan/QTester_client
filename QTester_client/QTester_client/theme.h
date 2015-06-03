@@ -7,6 +7,8 @@
 #include "question.h"
 #include "sqlitemgr.h"
 
+typedef QMap<QString/*id*/, QString/*title*/> IdTitleMap;
+
 class Theme
 {
 private:
@@ -23,7 +25,9 @@ private:
                                    const int      answersCount,
                                    const QString &questionId ) const;
 public:
-    Theme(){};
+    Theme()
+    {
+    };
     Theme( const QString &Name );
 
     QString getId()const;
@@ -48,8 +52,8 @@ public:
     bool selectFromDatabase( const SQLMgr &sqlManager,
                              const qint64 questionsCount,
                              const int answersCount );
-
-
+    static IdTitleMap getThemeList( const SQLMgr &sqlManager );
+    void print()const;
 };
 
 namespace Table

@@ -139,4 +139,31 @@ Question Theme::selectQuestion(const QSqlQuery &query) const
     return issue;
 }
 
+IdTitleMap Theme::getThemeList( const SQLMgr &sqlManager )
+{
+    using namespace Table::Theme;
+    QStringList _fields( { Fields::THEME_ID, Fields::TITLE } );
+    IdTitleMap themeList;
 
+    QSqlQuery query = sqlManager.select( TABLE_NAME, _fields );
+
+    while( query.next() )                                            
+    {
+        QString id = query.value( query.record().indexOf( Fields::THEME_ID ) ).toString(),
+            title = query.value( query.record().indexOf( Fields::TITLE ) ).toString();
+
+        themeList[id] = title;
+    }
+
+    return themeList;
+}
+
+void Theme::print()const
+{
+    qDebug() << "  Theme(Title: " << _title << ")"; 
+
+    for( auto i = 0; i < _questions.count(); i++ )
+    {
+        _questions[i].print();
+    }
+}

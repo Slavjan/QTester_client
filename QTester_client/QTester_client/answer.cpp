@@ -1,5 +1,5 @@
 #include "answer.h"
-
+#include <QDebug>
 
 Answer::Answer(const QString &value, const bool valid)
 {
@@ -28,4 +28,9 @@ void Answer::setValue(const QString &value)
 void Answer::setValid(const bool valid)
 {
 	_valid = valid;
+}
+
+void Answer::print()const
+{
+    qDebug() << "       Answer(Text: " << _value << ", Valid: "<< _valid <<")";
 }

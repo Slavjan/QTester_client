@@ -7,39 +7,37 @@
 #include <QLocale>
 #include "profession.h"  
 
+typedef QMap<QString, QVector<QString>> S_VS;// TODO: назвать по нормальному
+
 class TestStandard
 {
-private:          //TODO: �������� �����
+private:          //TODO: ДОПИСАТЬ КЛАСС
     QString _id;
     QString _name;
     QString _title;
-    QString _profession;
+    QString _professionId;
+    S_VS _lessons_themes_ids;                
     int _questionsCount;
-    int _range5;
-    int _range4;
-    int _range3;
 
     void selectStandardFromBase(const SQLMgr &sqlManager);
 
 public:
     TestStandard();
-    TestStandard( const SQLMgr &sqlManager, const QString &name );
+    TestStandard( const QString &id, const QString &name );
 
     QString getId()const;
     QString getName()const;
     QString getTitle()const;
     int getQuestionsCount()const;
-    int getRang5()const;
-    int getRang4()const;
-    int getRang3()const;
+    S_VS getLessons_Themes_ids()const;
+    QStringList StandardNames;
 
     void setId( const QString &id );
     void setName( const QString &name );
     void setTitle( const QString &title );
     void setQuestionsCount( const int questions );
-    void setRang5( const int range );
-    void setRang4( const int range );
-    void setRang3( const int range );
+    void pushLessons_Themes_ids( const S_VS &lessons_themes_ids );
+    void pushName( const QString &name );
 };
 
 namespace Table
@@ -54,9 +52,7 @@ namespace Table
             const QString NAME = "name";
             const QString TITLE = "title";
             const QString QUESTIONS_COUNT = "questions_count";
-            const QString RANGE5 = "rande5";
-            const QString RANGE4 = "rande4";
-            const QString RANGE3 = "rande3";
+            const QString RANGES = "randes";
         }                 
     }                     
 }                         

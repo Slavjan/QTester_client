@@ -4,23 +4,21 @@
 TestStandard::TestStandard()
 {
     _questionsCount = 0;
-}            
-TestStandard::TestStandard( const QString &name )
+}  
+TestStandard::TestStandard( const QString &id, const QString &name )
 {
-
+    _id = id;
+    _name = name;
 }
 
 QString TestStandard::getId()const
 {
-    return QString();
+    return _id;
 }
-
-
 QString TestStandard::getName()const
 {
-    return QString();
-}
-
+    return _name;
+}                                       
 QString TestStandard::getTitle()const
 {
     return _title;
@@ -29,17 +27,9 @@ int TestStandard::getQuestionsCount()const
 {
     return _questionsCount;
 }
-int TestStandard::getRang5()const
+S_VS TestStandard::getLessons_Themes_ids()const
 {
-    return _range5;
-}
-int TestStandard::getRang4()const
-{
-    return _range4;
-}
-int TestStandard::getRang3()const
-{
-    return _range3;
+    return _lessons_themes_ids;
 }
 
 void TestStandard::setId( const QString &id )
@@ -58,29 +48,22 @@ void TestStandard::setQuestionsCount( const int questionsCount )
 {
     _questionsCount = questionsCount;
 }
-void TestStandard::setRang5( const int range )
+void TestStandard::pushName( const QString &name )
 {
-    _range5 = range;
-}
-void TestStandard::setRang4( const int range )
-{
-    _range4 = range;
-}
-void TestStandard::setRang3( const int range )
-{
-    _range3 = range;
+    StandardNames.push_back( name );
 }
 
 void TestStandard::selectStandardFromBase( const SQLMgr &sqlManager )
-{ //TODO: ƒŒœ»—¿“‹  À¿——
+{ //TODO: –î–û–ü–ò–°–ê–¢–¨ –ö–õ–ê–°–°
     using namespace Table::TestStandard;
     QStringList _fields( { Fields::TITLE, 
-                           Fields::QUESTIONS_COUNT, 
-                           Fields::RANGE5, 
-                           Fields::RANGE4, 
-                           Fields::RANGE3 } );
-    SqlWhere _where( Fields::NAME + " = '" + _name + "'" );    
+                           Fields::QUESTIONS_COUNT} );
+    SqlWhere _where( Fields::STANDARD_ID + " = '" + _id + "'" );    
 
     QSqlQuery query( sqlManager.select( TABLE_NAME, _fields, _where, 1 ) );
+
+    _title = query.value( query.record().indexOf( Fields::TITLE ) ).toString();
+    _questionsCount = query.value( query.record().indexOf( Fields::QUESTIONS_COUNT ) ).toInt();
+    
 
 }

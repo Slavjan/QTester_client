@@ -1,60 +1,61 @@
 #include "profession.h"
 
 
-Professtion::Professtion()
+Profession::Profession()
 {
 }
-Professtion::Professtion( const QString &name )
+Profession::Profession( const QString &name )
 {
     _name = name;
 }
   
-void Professtion::setId( const QString &id )
+void Profession::setId( const QString &id )
 {
     _id = id;
 }
-void Professtion::setName( const QString &name )
+void Profession::setName( const QString &name )
 {
     _name = name;
 }
-void Professtion::setTitle( const QString &title )
+void Profession::setTitle( const QString &title )
 {
     _title = title;
 }
-void Professtion::pushLesson( const Lesson &lesson )
+void Profession::pushLesson( const Lesson &lesson )
 {
     _lessons.push_back( lesson );
 }
 
-QString Professtion::getId()const
+QString Profession::getId()const
 {
     return _id;
 }
-QString Professtion::getName()const
+QString Profession::getName()const
 {
     return _name;
 }
-QString Professtion::getTitle()const
+QString Profession::getTitle()const
 {
     return _title;
 }
-QVector<Lesson> Professtion::getLessons()const
+QVector<Lesson> Profession::getLessons()const
 {
     return _lessons;
 }
 // TODO: REPLACE
 //QMap<QVector<QString>, QVector<QString>> lessons_themes_ids;
-void Professtion::selectLessonsFromDatabase( const SQLMgr &sqlManager,
-                                             const QMap<QString, QVector<QString>> &lessons_themes_ids,
-                                             const int questionsCount,
-                                             const int answersCount )
+void Profession::selectLessonsFromDatabase( const SQLMgr &sqlManager,
+                                            const idThemeIdsMap &lessons_themes_ids,
+                                            const int questionsCount,
+                                            const int answersCount )
 {
     Lesson less;
     for( auto i = 0; i < lessons_themes_ids.keys().count(); i++ )
     {
-        less = selectLesson( lessons_themes_ids.keys().at( i ),
+        QString key = lessons_themes_ids.keys().at( i );
+        less = selectLesson( key,
                              sqlManager, 
-                             lessons_themes_ids.values().at( i ), 
+                             lessons_themes_ids[key],
                              questionsCount, 
                              answersCount );
         pushLesson( less );
@@ -62,9 +63,9 @@ void Professtion::selectLessonsFromDatabase( const SQLMgr &sqlManager,
 
 }
 
-Lesson Professtion::selectLesson( const QString &lessonId,
+Lesson Profession::selectLesson( const QString &lessonId,
                                   const SQLMgr &sqlManager,
-                                  const QVector<QString> &themeIds,
+                                  const QStringList &themeIds,
                                   const qint64 questionsCount,
                                   const int answersCount )const
 {
@@ -88,4 +89,33 @@ Lesson Professtion::selectLesson( const QString &lessonId,
     less.selectThemesFromDataBase( sqlManager, themeIds, questionsCount, answersCount );
 
     return less;
+}
+
+IdTitleMap Profession::getProfList( const SQLMgr &sqlManager )
+{
+    using namespace Table::Professtion;
+    QStringList _fields( { Fields::PROFESSTION_ID, Fields::TITLE } );
+    IdTitleMap profList;
+
+    QSqlQuery query = sqlManager.select( TABLE_NAME, _fields );
+
+    while( query.next() )
+    {
+        QString id = query.value( query.record().indexOf( Fields::PROFESSTION_ID ) ).toString(),
+                title = query.value( query.record().indexOf( Fields::TITLE ) ).toString();
+
+        profList[id] = title;
+    }
+
+    return profList;
+}
+
+void Profession::print()const
+{
+    qDebug() << _title;
+
+    for( auto i = 0; i < _lessons.count(); i++ )
+    {
+        _lessons.at( i ).print();
+    }
 }

@@ -32,7 +32,7 @@ public:
     QString getName()const;
     QString getTitle() const;
     QLocale::Language getLang() const;
-    QVector<Theme> getThemes() const;
+    QVector<Theme> getThemes() const;                
 
     void setId( QString &id );
     void setName( QString &name );
@@ -41,11 +41,11 @@ public:
     void pushTheme(const Theme &theme);
 
 	void selectThemesFromDataBase(const SQLMgr &sqlManager, 
-		                          const QVector<QString> &themeIds,
+		                          const QStringList &themeIds,
                                   const qint64 questionsCount,
                                   const int answersCount);
-
-    
+    static IdTitleMap getLessList( const SQLMgr &sqlManager );
+    void print()const; 
 };
 
 namespace Table

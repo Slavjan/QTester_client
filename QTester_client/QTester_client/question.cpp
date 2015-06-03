@@ -111,3 +111,13 @@ void Question::stripSpaces()
 {
 	_text = _text.trimmed();	   
 }					 
+
+void Question::print()const
+{
+    qDebug() << "    Question(Text: " << _text << ")";
+
+    for( auto i = 0; i < _answers.count(); i++ )
+    {
+        _answers.at( i ).print();
+    }
+}

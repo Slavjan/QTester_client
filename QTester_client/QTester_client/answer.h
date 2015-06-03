@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QString>
+#include <QDebug>
 
 class Answer
 {
@@ -15,6 +16,8 @@ public:
 
 	void setValue(const QString &value);
 	void setValid(const bool valid);
+
+    void print()const;
 };
 
 namespace Table

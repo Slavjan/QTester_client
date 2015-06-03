@@ -23,7 +23,7 @@ public:
 	Tester();
 	~Tester();
 
-	bool generateTest(const int questiuonCount); // TODO: them, subject, in place the questionCount - a Test Standard in mean ENT, NOK
+	bool generateTest(const int questiuonCount); // TODO: theme, subject, in place the questionCount - a Test Standard in mean ENT, NOK
 	void RunTest();
 };
 #endif

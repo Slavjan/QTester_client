@@ -7,9 +7,9 @@
 #include "lesson.h"
 #include "sqlitemgr.h"
 
-//QMap<QVector<QString>, QVector<QString>> lessons_themes_ids;
+typedef QMap<QString, QStringList> idThemeIdsMap;
 
-class Professtion
+class Profession
 {
     QString _id;
     QString _name;
@@ -18,18 +18,18 @@ class Professtion
 
     Lesson selectLesson( const QString &lessonId,
                          const SQLMgr &sqlManager,
-                         const QVector<QString> &themeIds,
+                         const QStringList &themeIds,
                          const qint64 questionsCount,
                          const int answersCount )const;
-    
+
 public:
-    Professtion();
-    Professtion( const QString &name );
+    Profession();
+    Profession( const QString &name );
 
     void setId( const QString &id );
     void setName( const QString &name );
     void setTitle( const QString &title );
-    void pushLesson(const Lesson &lesson);
+    void pushLesson( const Lesson &lesson );
 
     QString getId()const;
     QString getName()const;
@@ -37,9 +37,11 @@ public:
     QVector<Lesson>  getLessons()const;
 
     void selectLessonsFromDatabase( const SQLMgr &sqlManager,
-                                    const QMap<QString, QVector<QString>> &lessons_themes_ids,
+                                    const idThemeIdsMap &lessons_themes_ids,
                                     const int questionsCount,
                                     const int answersCount );
+    static IdTitleMap getProfList( const SQLMgr &sqlManager );
+    void print()const;
 };
 
 
@@ -53,7 +55,7 @@ namespace Table
         {
             const QString PROFESSTION_ID = "professtion_id";
             const QString NAME = "name";
-            const QString TATLE = "titel";
+            const QString TITLE = "titel";
         }
     }
 }

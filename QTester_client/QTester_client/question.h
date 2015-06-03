@@ -50,6 +50,8 @@ public:
 	void    setStripSpaces(const bool stripSpace);
 	void    setMarkAsError(const bool markAsError);
 	void    setMarkAsDontKnow(const bool markAsDontKnow);
+
+    void print()const;
 };
 
 namespace Table

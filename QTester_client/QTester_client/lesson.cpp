@@ -48,7 +48,7 @@ void Lesson::pushTheme(const Theme &theme)
 }
 
 void Lesson::selectThemesFromDataBase( const SQLMgr &sqlManager, 
-                                      const QVector<QString> &themeIds,
+                                      const QStringList &themeIds,
                                       const qint64 questionsCount,
                                       const int answersCount )
 {
@@ -85,4 +85,33 @@ Theme Lesson::selectTheme( const QString &themeId,
     topic.selectFromDatabase( sqlManager, questionsCount, answersCount );
 
     return topic;
+}
+
+IdTitleMap Lesson::getLessList( const SQLMgr &sqlManager )
+{
+    using namespace Table::Lesson;
+    QStringList _fields( { Fields::LESSON_ID, Fields::TITLE } );
+    IdTitleMap lessList;
+
+    QSqlQuery query = sqlManager.select( TABLE_NAME, _fields );
+
+    while( query.next() )
+    {
+        QString id = query.value( query.record().indexOf( Fields::LESSON_ID ) ).toString(),
+            title = query.value( query.record().indexOf( Fields::TITLE ) ).toString();
+
+        lessList[id] = title;
+    }
+
+    return lessList;
+}
+
+void Lesson::print()const      
+{
+    qDebug() << "Lesson(Title: " << _title << ")";
+
+    for( auto i = 0; i < _themes.count(); i++ )
+    {
+        _themes.at( i ).print();
+    }
 }
