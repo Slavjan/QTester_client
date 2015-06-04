@@ -5,15 +5,18 @@
 
 class Answer
 {
+    QString _id;    
 	QString _value;
 	bool    _valid = false;
 public:
 	Answer(){};
 	Answer(const QString &value, const bool valid);
 
-	QString getValue()const;
+    QString getId()const;
+    QString getValue()const;
 	bool isValid()const;
-
+    
+    void setId(const QString &id);
 	void setValue(const QString &value);
 	void setValid(const bool valid);
 

@@ -10,6 +10,11 @@ Answer::Answer(const QString &value, const bool valid)
 	}
 }
 
+QString Answer::getId()const
+{
+    return _id;
+}
+
 QString Answer::getValue() const
 {
 	return _value;
@@ -18,6 +23,11 @@ QString Answer::getValue() const
 bool Answer::isValid() const
 {
 	return _valid;
+}
+
+void Answer::setId( const QString &id )
+{
+    _id = id;
 }
 
 void Answer::setValue(const QString &value)

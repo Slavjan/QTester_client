@@ -4,6 +4,7 @@
 #include "sqlitemgr.h"
 #include "profession.h"
 #include "testgenerator.h"
+#include "jsonformat.h"
 
 #ifdef QT_DEBUG
 #define _DEBUG
@@ -31,7 +32,21 @@ int main( int argc, char *argv[] )
     params.questionsCount = 5;
     params.answersCount = 5;
 
-    TestGenerator::collectTestVariant( *db, params ).print();
+    auto prof = TestGenerator::collectTestVariant( *db, params );
+    QJsonDocument doc;
+    doc.setObject( JsonFormat::professionToJsonObj( prof ) );
+    qDebug() << doc.toJson( QJsonDocument::Indented );
 
     return  a.exec();
 }
+
+
+/*
+ TODO:
+* ConnectionManager
+* UserControl
+* AccessManager
+* iApiManager
+* Api1_0
+
+*/
