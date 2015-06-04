@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QTester>
+<QTester version="0.1">
+	<lesson language="ru_RU" name="it" title="Информационные технологии" course="4">
+		<theme name="introduction" title="Введение" difficulty="0">
+			<question recomendedTimeInMinutes="1.5">
+				<text>Разработчик языка C++</text>
+				<answers type="radio">
+					<answer valid="false">Стив Джобс</answer>
+					<answer valid="false">Кен Томпсон</answer>
+					<answer valid="true">Бьёрн Строуструп</answer>
+					<answer valid="false">Денис Ритчи</answer>
+				</answers>
+			</question>
+			<question>
+				<text>Разработчики языка Си и ОС UNIX</text>
+				<answers type="check">
+					<answer valid="false">Стив Джобс</answer>
+					<answer valid="true">Кен Томпсон</answer>
+					<answer valid="false">Бьёрн Строуструп</answer>
+					<answer valid="true">Денис Ритчи</answer>
+				</answers>
+			</question>
+			<question>
+				<text>Разработчик ядра Linux</text>
+				<answers type="radio">
+					<answer valid="false">Стив Джобс</answer>
+					<answer valid="false">Кен Томпсон</answer>
+					<answer valid="true">Линус Торвальдс</answer>
+					<answer valid="false">Денис Ритчи</answer>
+				</answers>
+			</question>
+			<question>
+				<text>Свойство ООП подразумевающее сокрытие свойств и методов внутри класса</text>
+				<answers type="text" caseSensitivity="false">
+					<answer valid="true">Инкапсуляция</answer>
+				</answers>
+			</question>
+			<question>
+				<text>Увеличте значение переменной на единицу &lt;pre&gt;int i = 10;&lt;/pre&gt;</text>
+				<answers type="regexp" stripSpaces="true">
+					<answer valid="true">[++i|i++|i+=1|i=i+1|i=1+i];</answer>
+				</answers>
+			</question>
+			<question>
+				<text>Введите двухзначное число записанное в шестнадцатиричной системе счисления, понятное компилятору языка C++</text>
+				<answers type="regexp">
+					<answer valid="true">0x[A-Fa-f][A-Fa-f]</answer>
+				</answers>
+			</question>
+		</theme>
+	</lesson>
+</QTester>

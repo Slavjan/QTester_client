@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Content/Testing/Configure.qml</file>
+        <file>Content/Testing/Process.qml</file>
+        <file>Content/Welcome.qml</file>
+        <file>main.qml</file>
+        <file>images/qt-logo.png</file>
+        <file>Content/Testing/AnswerForms/RadioForm.qml</file>
+        <file>Content/Testing/AnswerForms/CheckForm.qml</file>
+        <file>Content/Testing/AnswerForms/RegexpForm.qml</file>
+        <file>Content/Testing/AnswerForms/TextForm.qml</file>
+        <file>Content/User.js</file>
+        <file>Content/Login.qml</file>
+    </qresource>
+</RCC>

@@ -4,10 +4,9 @@
 //#include "definespath.h"
 
 #include <QtSql>
-#include <QApplication>
+#include <QCoreApplication>
 #include <QDir>
 #include <QUrl>
-#include <QMessageBox>
 
 class ConnectionMgr
 {

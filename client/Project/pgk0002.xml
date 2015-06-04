@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QTester>
+<QTester version="0.1">
+	<lesson language="ru" name="introduction_network_technology" title="ВВедение в сетевые технологии">
+		<theme name="introduction" title="Введение" difficulty="0">
+			<question recomendedTimeInMinutes="1.5">
+				<text>Для обеспечения функционирования локальной сети клиент-серверной архитектуры, используется...</text>
+				<answers type="radio">
+					<answer valid="false">Клиент</answer>
+					<answer valid="true">Сервер</answer>
+					<answer valid="false">Головной компьютер</answer>
+					<answer valid="false">Программное обеспечение</answer>
+					<answer valid="false">Сервис</answer>
+				</answers>
+			</question>
+			<question>
+				<text>Совокупность компьютеров соединенных линиями связи - это...</text>
+				<answers type="radio">
+					<answer valid="false">Конференция</answer>
+					<answer valid="false">Ферма серверов</answer>
+					<answer valid="true">Вычислительная сеть</answer>
+					<answer valid="false">Коммутация</answer>
+					<answer valid="false">Компьютерная цепь</answer>
+				</answers>
+			</question>
+			<question>
+				<text>Объединение компьютеров, сосредоточенных на небольших территориях в радиусе не более 10 км называют:</text>
+				<answers type="radio">
+					<answer valid="false">Региональным</answer>
+					<answer valid="true">Локальным</answer>
+					<answer valid="false">Глобальным</answer>
+					<answer valid="false">Автономным</answer>
+					<answer valid="false">Городским</answer>
+				</answers>
+			</question>
+			<question>
+				<text>Процесс соединения абонентов в сети через транзитные узлы:</text>
+				<answers type="radio">
+					<answer valid="false">Концентрация</answer>
+					<answer valid="false">Маршрутизация</answer>
+					<answer valid="true">Коммутация</answer>
+					<answer valid="false">Изоляция</answer>
+					<answer valid="false">Интерпретация</answer>
+				</answers>
+			</question>
+			<question>
+				<text>Выберите неверный компонент сети:</text>
+				<answers type="radio">
+					<answer valid="false">Концкнтратор</answer>
+					<answer valid="false">Мост</answer>
+					<answer valid="false">Шлюз</answer>
+					<answer valid="false">Маршрутизатор</answer>
+					<answer valid="true">Локальный принтер</answer>
+				</answers>
+			</question>
+		</theme>
+	</lesson>
+</QTester>

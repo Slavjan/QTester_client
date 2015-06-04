@@ -1,0 +1,1049 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QTester>
+<QTester version="0.1">
+	<lesson language="ru" name="introduction_network_technology" title="ВВедение в сетевые технологии">
+		<theme name="introduction" title="Введение" difficulty="0">
+			<question recomendedTimeInMinutes="1.5">
+				<text>Сеть с использованием нескольких концентраторов, соединенных между собой связью типа звезда</text>
+				<answers type="radio">
+					<answer valid="false">Ячейка</answer>
+					<answer valid="false">Звезда</answer>
+					<answer valid="true">Расширенная звезда</answer>
+					<answer valid="false">Кольцо</answer>
+					<answer valid="false">Общая шина</answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text>Процесс соединения абонентов в сети через транзитные узлы</text>
+				<answers type="radio">
+					<answer valid="false">Концентрация</answer>
+					<answer valid="false">Изоляция</answer>
+					<answer valid="false">Маршрутизация</answer>
+					<answer valid="true">Коммутация</answer>
+					<answer valid="false">Интерпретация</answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text>Выберите неверный компонент сети:</text>
+				<answers type="radio">
+					<answer valid="false">Концентратор</answer>
+					<answer valid="false">Мост</answer>
+					<answer valid="true">Локальный принтер</answer>
+					<answer valid="false">Маршрутизатор</answer>
+					<answer valid="false">Шлюз</answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text>Устройство, которое делит разделяемую среду передачи данных на части, передавая информацию от одного сегмента в другой:</text>
+				<answers type="radio">
+					<answer valid="false">Концентратор</answer>
+					<answer valid="true">Мост</answer>
+					<answer valid="false">Повторитель</answer>
+					<answer valid="false">Коммутатор</answer>
+					<answer valid="false">Шлюз</answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text>Кабель, в котором проводник располагается внутри экранирующей оплетки называется</text>
+				<answers type="radio">
+					<answer valid="false">Технологический</answer>
+					<answer valid="false">Витая пара</answer>
+					<answer valid="false">Двужильный</answer>
+					<answer valid="false">Сетевой</answer>
+					<answer valid="true">Коаксиальный</answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text>В оптоволоконном кабеле при передаче двоичных данных используется</text>
+				<answers type="radio">
+					<answer valid="false">Инфракрасные импульсы</answer>
+					<answer valid="false">Звуковые импульсы</answer>
+					<answer valid="false">Электрический сигнал</answer>
+					<answer valid="false">Электромагнитные импульсы</answer>
+					<answer valid="true">Световые импульсы</answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text>Структура веб-сайта имеет начало - первую страницу, корень дерева, но конец просмотра сайта связан лишь с исчерпанием всего содержимого сайта</text>
+				<answers type="radio">
+					<answer valid="false">Беспорядочной</answer>
+					<answer valid="false">Линейной</answer>
+					<answer valid="false">Структурной</answer>
+					<answer valid="false">Решетчатой</answer>
+					<answer valid="true">Древовидной</answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text>Объект, предназначенный для операций с числами на языке Action Script</text>
+				<answers type="radio">
+					<answer valid="false">Mouse</answer>
+					<answer valid="false">Sound</answer>
+					<answer valid="false">Object</answer>
+					<answer valid="false">Selection</answer>
+					<answer valid="true">Number</answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text>Какая схема лежит в основе DES и ГОСТ 28147-89</text>
+				<answers type="radio">
+					<answer valid="false">Виженера</answer>
+					<answer valid="false">Кантора</answer>
+					<answer valid="true">Фейстеля</answer>
+					<answer valid="false">Цезаря</answer>
+					<answer valid="false">Пратта</answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text>По принципу Керкгоффса криптографическая стойкость шифра целиком определяется ...</text>
+				<answers type="radio">
+					<answer valid="false">Его сложностью</answer>
+					<answer valid="false">Длиной ключа</answer>
+					<answer valid="false">Секретностью алгоритма</answer>
+					<answer valid="true">Секретностью ключа</answer>
+					<answer valid="false">Сложностью алгоритма</answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text>Атрибут тега FORM, указывающий на имя обработчика данных</text>
+				<answers type="radio">
+					<answer valid="true">ACTION</answer>
+					<answer valid="false">DURL QSRC</answer>
+					<answer valid="false">FRAMESET</answer>
+					<answer valid="false">HREF</answer>
+					<answer valid="false">???</answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text>К серверным языкам программирования Web-приложеннй относятся</text>
+				<answers type="radio">
+					<answer valid="true">Perl, Php</answer>
+					<answer valid="false">Php, VBScript</answer>
+					<answer valid="false">Java, Ada</answer>
+					<answer valid="false">Visual Basic, Javascript</answer>
+					<answer valid="false">Javascript. Fortran</answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text>К клиентским языкам программирования Web-приложений относятся</text>
+				<answers type="radio">
+					<answer valid="true">Javascript, VBscript</answer>
+					<answer valid="false">Fortran, Javascript</answer>
+					<answer valid="false">VBScript, Java</answer>
+					<answer valid="false">Perl, Php</answer>
+					<answer valid="false">JSP. ASP</answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text>???. Структура веб-сайта, где возможен быстрый переход с одной страницы на другую без необходимости посещения промежуточных страниц</text>
+				<answers type="radio">
+					<answer valid="false">гибридная</answer>
+					<answer valid="false">линейной</answer>
+					<answer valid="false">структурной</answer>
+					<answer valid="false">древовидной</answer>
+					<answer valid="true">решетчатая</answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text>Определенная часть пространства имен, за которое отвечает сервер DNS, называется</text>
+				<answers type="radio">
+					<answer valid="false">пакет</answer>
+					<answer valid="false">фрагмент</answer>
+					<answer valid="false">кадр</answer>
+					<answer valid="false">узел</answer>
+					<answer valid="true">зона</answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text>Сервер DNS, управляющий зоной полномочий</text>
+				<answers type="radio">
+					<answer valid="false">кэширующий</answer>
+					<answer valid="false">хеширующий</answer>
+					<answer valid="false">резервный</answer>
+					<answer valid="false">вторичный</answer>
+					<answer valid="true">основной</answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text>Сервер DNS, перенаправляющий запросы клиентов</text>
+				<answers type="radio">
+					<answer valid="false">главный</answer>
+					<answer valid="false">резервный</answer>
+					<answer valid="false">вторичный</answer>
+					<answer valid="false">основной</answer>
+					<answer valid="true">кэширующий</answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text>Общение в режиме реального времени называются</text>
+				<answers type="radio">
+					<answer valid="false">ленты новостей</answer>
+					<answer valid="false">USENET</answer>
+					<answer valid="true">Chat</answer>
+					<answer valid="false">телеконференции</answer>
+					<answer valid="false">WWW</answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text>Функция, проверяющая, соответствует ли ЭЦП данному документу и открытому ключу пользователя</text>
+				<answers type="radio">
+					<answer valid="false">функцию вычисления подписи</answer>
+					<answer valid="true">функция проверки подписи</answer>
+					<answer valid="false">генерация ключа</answer>
+					<answer valid="false">алгоритм генерации ключевых пар пользователя</answer>
+					<answer valid="false">функция создания подписи</answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5"><!-- 20 -->
+				<text>При симметричном шифровании для шифрования и расшифровки используются:</text>
+				<answers type="radio">
+					<answer valid="false">Два ключа разной длины</answer>
+					<answer valid="false">Два закрытых ключа</answer>
+					<answer valid="false">Два разных по значению ключа</answer>
+					<answer valid="false">Два открытых ключа</answer>
+					<answer valid="true">Один и тот же ключ</answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			<question recomendedTimeInMinutes="1.5">
+				<text></text>
+				<answers type="radio">
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+					<answer valid="false"></answer>
+				</answers>
+			</question>
+			
+		</theme>
+	</lesson>
+</QTester>

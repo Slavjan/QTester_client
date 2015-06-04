@@ -19,10 +19,108 @@
       <Extensions>moc;h;cpp</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="classes">
+      <UniqueIdentifier>{25cdfb33-24e7-41e9-91dc-f56b564edeca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\Headers">
+      <UniqueIdentifier>{06d5f9c3-e8d3-4fa6-ae49-8ab09599880f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\Sources">
+      <UniqueIdentifier>{ab29da25-b4c9-4b6c-b467-05a1a7a9e450}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="theme.cpp">
+      <Filter>classes\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="teststandard.cpp">
+      <Filter>classes\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="testgenerator.cpp">
+      <Filter>classes\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="tester.cpp">
+      <Filter>classes\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlwhere.cpp">
+      <Filter>classes\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlorderby.cpp">
+      <Filter>classes\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlmgr.cpp">
+      <Filter>classes\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlitemgr.cpp">
+      <Filter>classes\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="question.cpp">
+      <Filter>classes\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="profession.cpp">
+      <Filter>classes\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="jsonformat.cpp">
+      <Filter>classes\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="lesson.cpp">
+      <Filter>classes\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="connectionmgr.cpp">
+      <Filter>classes\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="answer.cpp">
+      <Filter>classes\Sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="theme.h">
+      <Filter>classes\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="teststandard.h">
+      <Filter>classes\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="testgenerator.h">
+      <Filter>classes\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="tester.h">
+      <Filter>classes\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlwhere.h">
+      <Filter>classes\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlorderby.h">
+      <Filter>classes\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlmgr.h">
+      <Filter>classes\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="question.h">
+      <Filter>classes\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlitemgr.h">
+      <Filter>classes\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="profession.h">
+      <Filter>classes\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="lesson.h">
+      <Filter>classes\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="jsonformat.h">
+      <Filter>classes\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="json.hpp">
+      <Filter>classes\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="connectionmgr.h">
+      <Filter>classes\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="answer.h">
+      <Filter>classes\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
