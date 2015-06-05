@@ -17,14 +17,14 @@ int main( int argc, char *argv[] )
     SQLMgr *db = new SQLiteMgr( "", "", "", "" );
     setlocale( LC_ALL, "Russian" );
 
-    IdTitleMap lessons = Lesson::getLessList( *db ),
-        themes = Theme::getThemeList( *db );
+    /*IdTitleMap lessons = Lesson::getLessonsList( *db ),
+               themes = Theme::getThemeList( *db );*/
 
     idThemeIdsMap lessons_themes_ids;
 
-    lessons_themes_ids[lessons.key( "Сетевые технологии" )] = QStringList( { themes.key( "Топология и конфигурация сетей" ), themes.key( "JavaScript" ) } );
+  /*  lessons_themes_ids[lessons.key( "Сетевые технологии" )] = QStringList( { themes.key( "Топология и конфигурация сетей" ), themes.key( "JavaScript" ) } );
     lessons_themes_ids[lessons.key( "ОС и ПО ВК" )] = QStringList( { themes.key( "UNIX-системы" ), themes.key( "Norton Comander" ) } );
-
+*/
     ParamsForCollection params;
     params.professionId = "1";
     params.lessIds = lessons_themes_ids.keys().first();

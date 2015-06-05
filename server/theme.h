@@ -52,7 +52,7 @@ public:
     bool selectFromDatabase( const SQLMgr &sqlManager,
                              const qint64 questionsCount,
                              const int answersCount );
-    static IdTitleMap getThemeList( const SQLMgr &sqlManager );
+    static IdTitleMap getThemeList( const SQLMgr &sqlManager, const QString &lessonId );
     void print()const;
 };
 

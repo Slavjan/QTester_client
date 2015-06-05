@@ -44,7 +44,7 @@ public:
 		                          const QStringList &themeIds,
                                   const qint64 questionsCount,
                                   const int answersCount);
-    static IdTitleMap getLessList( const SQLMgr &sqlManager );
+    static IdTitleMap getLessonsList( const SQLMgr &sqlManager, const QString &profId );
     void print()const; 
 };
 

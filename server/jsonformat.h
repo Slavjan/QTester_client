@@ -15,7 +15,7 @@ private:
     static QJsonArray  mapListTojArray( const IdTitleMap &map );
     static QJsonObject mapListItemtojObject( const QVariant &key, const QVariant &value );
 
-    static QJsonObject idTitleMapToJsonObj( const IdTitleMap &list, const QString &listName );
+    
 public:
     static QJsonObject professionToJsonObj( const Profession &prof );
     static QJsonObject lessonToJsonObj( const Lesson &lesson );
@@ -27,5 +27,5 @@ public:
     static QJsonObject lessonsListToJsonObj( const IdTitleMap &list );
     static QJsonObject themesListToJsonObj( const IdTitleMap &list );
 
-
+    static QJsonObject idTitleMapToJsonObj( const IdTitleMap &list, const QString &listName );
 };
