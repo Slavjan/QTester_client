@@ -76,6 +76,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\client\requestsmanager.cpp" />
     <ClCompile Include="answer.cpp" />
     <ClCompile Include="connectionmgr.cpp" />
     <ClCompile Include="jsonformat.cpp" />
@@ -91,15 +92,17 @@
     <ClCompile Include="testgenerator.cpp" />
     <ClCompile Include="teststandard.cpp" />
     <ClCompile Include="theme.cpp" />
+    <ClCompile Include="user.cpp" />
+    <ClCompile Include="usercontrol.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="answer.h" />
     <ClInclude Include="connectionmgr.h" />
-    <ClInclude Include="json.hpp" />
     <ClInclude Include="jsonformat.h" />
     <ClInclude Include="lesson.h" />
     <ClInclude Include="profession.h" />
     <ClInclude Include="question.h" />
+    <ClInclude Include="requestsmanager.h" />
     <ClInclude Include="sqlitemgr.h" />
     <ClInclude Include="sqlmgr.h" />
     <ClInclude Include="sqlorderby.h" />
@@ -108,6 +111,8 @@
     <ClInclude Include="testgenerator.h" />
     <ClInclude Include="teststandard.h" />
     <ClInclude Include="theme.h" />
+    <ClInclude Include="user.h" />
+    <ClInclude Include="usercontrol.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

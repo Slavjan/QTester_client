@@ -12,9 +12,10 @@
 class JsonFormat
 {
 private:
-    
-     
+    static QJsonArray  mapListTojArray( const IdTitleMap &map );
+    static QJsonObject mapListItemtojObject( const QVariant &key, const QVariant &value );
 
+    static QJsonObject idTitleMapToJsonObj( const IdTitleMap &list, const QString &listName );
 public:
     static QJsonObject professionToJsonObj( const Profession &prof );
     static QJsonObject lessonToJsonObj( const Lesson &lesson );
@@ -22,5 +23,9 @@ public:
     static QJsonObject questionToJsonObj( const Question &question );
     static QJsonObject answerToJsonObj( const Answer &answer );
 
-     
+    static QJsonObject profListToJsonObj( const IdTitleMap &list );
+    static QJsonObject lessonsListToJsonObj( const IdTitleMap &list );
+    static QJsonObject themesListToJsonObj( const IdTitleMap &list );
+
+
 };

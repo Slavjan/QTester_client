@@ -11,6 +11,7 @@ typedef QMap<QString, QStringList> idThemeIdsMap;
 
 class Profession
 {
+private:
     QString _id;
     QString _name;
     QString _title;

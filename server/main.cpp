@@ -43,10 +43,10 @@ int main( int argc, char *argv[] )
 
 /*
  TODO:
-* ConnectionManager
+* SocketConnectionManager
 * UserControl
 * AccessManager
 * iApiManager
-* Api1_0
+* Api_1_0
 
 */

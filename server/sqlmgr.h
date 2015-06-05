@@ -5,17 +5,20 @@
 #include "connectionmgr.h"
 #include "sqlwhere.h"
 #include "sqlorderby.h"
+#include "user.h"
 
 #include <QMap>
 #include <QString>
 #include <QStringList>
 #include <QSqlQuery>
+#include <QCryptographicHash>
 
 #ifdef _DEBUG
 #include <QDebug>
 #endif
 
 typedef QMap<QString, QString> DataMap;
+
 
 
 class SQLMgr //SQL Manadger the base class for work with Data Bases
@@ -75,6 +78,8 @@ public:
                              const DataMap     &data) const;
 
     virtual qint64 size(     const QString     &tableName) = 0;
+
+    virtual bool auth(const QString &login, const QString &password)const;
 
 };
 #endif

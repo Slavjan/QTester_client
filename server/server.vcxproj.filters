@@ -75,6 +75,15 @@
     <ClCompile Include="answer.cpp">
       <Filter>classes\Sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\client\requestsmanager.cpp">
+      <Filter>classes\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="user.cpp">
+      <Filter>classes\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="usercontrol.cpp">
+      <Filter>classes\Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="theme.h">
@@ -113,13 +122,19 @@
     <ClInclude Include="jsonformat.h">
       <Filter>classes\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="json.hpp">
-      <Filter>classes\Headers</Filter>
-    </ClInclude>
     <ClInclude Include="connectionmgr.h">
       <Filter>classes\Headers</Filter>
     </ClInclude>
     <ClInclude Include="answer.h">
+      <Filter>classes\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="requestsmanager.h">
+      <Filter>classes\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="user.h">
+      <Filter>classes\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="usercontrol.h">
       <Filter>classes\Headers</Filter>
     </ClInclude>
   </ItemGroup>

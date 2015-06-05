@@ -80,3 +80,51 @@ QJsonObject JsonFormat::answerToJsonObj( const Answer &answer )
 
     return jAnswer;
 }
+
+QJsonObject JsonFormat::profListToJsonObj( const IdTitleMap &list )
+{
+    return idTitleMapToJsonObj( list, "professionsList" );
+}
+
+QJsonObject JsonFormat::lessonsListToJsonObj( const IdTitleMap &list )
+{
+    return idTitleMapToJsonObj( list, "lessonsList" );
+}
+
+QJsonObject JsonFormat::themesListToJsonObj( const IdTitleMap &list )
+{
+    return idTitleMapToJsonObj( list, "themesList" );
+}
+
+QJsonObject JsonFormat::idTitleMapToJsonObj( const IdTitleMap &list, const QString &listName )
+{
+    QJsonArray jArray = mapListTojArray( list );
+    QJsonObject jList{
+        { listName, jArray }
+    };
+
+    return jList;
+}
+
+QJsonArray JsonFormat::mapListTojArray( const IdTitleMap &map )
+{
+    QJsonArray jArray;
+    QMapIterator<QString, QString> i( map );
+
+    while( i.hasNext() )
+    {
+        i.next();
+        jArray.append( mapListItemtojObject( i.key(), i.value() ) );
+    }
+
+    return jArray;
+}
+QJsonObject JsonFormat::mapListItemtojObject( const QVariant &key, const QVariant &value )
+{
+    QJsonObject obj{
+        { "id", key.toInt() },
+        { "title", value.toString() }
+    };
+
+    return obj;
+}
