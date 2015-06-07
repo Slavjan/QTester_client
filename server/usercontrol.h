@@ -20,7 +20,7 @@ public:
 
     User getUser(const QString &token) const;
     TokenUserMap getUsers()const;
-    void pushUser( const User &user );
+    QString pushUser( const User &user );
     bool remove( const QString &token );
 };
 

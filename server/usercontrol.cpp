@@ -28,11 +28,13 @@ TokenUserMap UserControl::getUsers()const
 {
     return _users;
 }
-void UserControl::pushUser( const User &user )
+QString UserControl::pushUser( const User &user )
 {
     QString newToken = QCryptographicHash::hash( QString::number( tokenCount ).toUtf8(), QCryptographicHash::Md5 );
     tokenCount++;
     _users[newToken] = user;
+
+    return newToken;
 }
 
 bool UserControl::remove( const QString &token )

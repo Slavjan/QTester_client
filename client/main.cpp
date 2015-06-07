@@ -1,8 +1,13 @@
 #include <QApplication>
-#include <QQmlApplicationEngine>
-
+//#include <QQmlApplicationEngine>
+#include <qcoreapplication.h>
+#include "tcpclient.h"
+#include "networkquerymanager.h"
 #include <QDir>
-#include <QQmlContext>
+
+#include <QHBoxLayout>
+#include <QPushButton>
+//#include <QQmlContext>
 
 QString getUserName()
 {
@@ -23,18 +28,30 @@ QString getUserName()
 
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
-    app.setOrganizationName("LibertaSoft");
-    app.setOrganizationDomain("LibertaSoft@QTester");
-    app.setApplicationName("QTester");
-    app.setApplicationDisplayName("QTester");
-    app.setApplicationVersion("0.0.0 Pre-Aplha");
+    QApplication app( argc, argv );
 
-    QQmlApplicationEngine engine;
-    engine.rootContext()->setContextProperty("username", getUserName() );
+    QPushButton *myBtn = new QPushButton( "&PushMe" );
+
+    myBtn->show();
+    
+    NetworkQueryManager *mngr = new NetworkQueryManager( "127.0.0.1", 3434 );// давай копирнем просто из гит хаба твои классы окон
+
+    QObject::connect( myBtn, SIGNAL( clicked() ),
+                      mngr, SLOT( authorusation() ) );            
+
+
+   // app.setApplicationName("client");
+  //  app.setApplicationDisplayName("QTester");
+ //   app.setApplicationVersion("0.0.0 Pre-Aplha");
+
+    
+    //mngr->authorisation( "d3i0", "12345" );
+
+ //   QQmlApplicationEngine engine;
+ //   engine.rootContext()->setContextProperty("username", getUserName() );
 //    engine.rootContext()->setContextProperty("Database", db );
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-
+//    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    
 
     return app.exec();
 }

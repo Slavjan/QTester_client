@@ -10,6 +10,7 @@ class User
 private:
     QString _name;
     QString _apiVersion = "1.0";
+
 public:
     User()
     {
@@ -18,12 +19,9 @@ public:
 
     QString getName();
     QString getApiVersion();
-    QString getToken();
-    bool compareToken( const QString &token );
 
     void setName( const QString &name );
     void setApiVersion( const QString &version );
-    void setToken( const QString &token );
 };
 
 namespace Table

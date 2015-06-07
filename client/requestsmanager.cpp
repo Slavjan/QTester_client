@@ -1,19 +1,25 @@
 #include "requestsmanager.h"
 
 
-void RequestsManager::request( const SQLMgr &db, const QUrl &url )
+QString RequestsManager::request( const SQLMgr &db, const QUrl &url )
 {
     QString request = url.path();
     QUrlQuery query(url);
 
+    QJsonObject obj;
+
     if( request == "/auth" )
     {
-        autorisation( db, query );
+       obj = autorisation( db, query );
     }
-    else report( db, request, query );
+    else obj = report( db, request, query );
+
+    QJsonDocument doc;
+    doc.setObject( obj );
+    return doc.toJson();
 }
 
-void RequestsManager::autorisation(const SQLMgr &db, const QUrlQuery &urlQuery )
+QJsonObject RequestsManager::autorisation(const SQLMgr &db, const QUrlQuery &urlQuery )
 {
     UserControl userControl = UserControl::instance();
     QString login     = urlQuery.queryItemValue( "login" ),
@@ -21,15 +27,27 @@ void RequestsManager::autorisation(const SQLMgr &db, const QUrlQuery &urlQuery )
 
     if( db.auth( login, password ) )
     {
-        userControl.pushUser( User() );
+        /*db.select( "USERS", { "name", } );*/
+
+        User user( login );
+        QString token = userControl.pushUser( user );
+        
+        QJsonObject response{
+            { "token", token }
+        };
+        QJsonObject obj{
+            { "code", 200 },
+            { "response", response }
+        };
+        return obj;
     }
 }
 
-void RequestsManager::report( const SQLMgr &db, const QString &request, const QUrlQuery &query )
+QJsonObject RequestsManager::report( const SQLMgr &db, const QString &request, const QUrlQuery &query )
 {
     IdTitleMap  List;
     QJsonObject obj;
-    if( request.startsWith("/get") )
+    if( request.startsWith("/get") )          // /getProfessionsLIst
     {
         QString listName = request.right( 4 );
         
@@ -46,4 +64,5 @@ void RequestsManager::report( const SQLMgr &db, const QString &request, const QU
         obj = JsonFormat::lessonsListToJsonObj( List );
     }
     //TODO TcpSocket::report( obj );
+    return obj;
 }

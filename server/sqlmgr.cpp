@@ -282,7 +282,20 @@ bool SQLMgr::auth( const QString &login, const QString &password ) const
     SqlWhere _where( Fields::LOGIN + "= '" + login + "'" );
     _where.AND( Fields::PASSWORD + "= '" + hashPass + "'" );
 
-    QSqlQuery query = select( TABLE_NAME, QStringList( "*" ), _where );
+    QSqlQuery query = select( TABLE_NAME, QStringList( "COUNT(*) AS rCount" ), _where );
 
-    return query.exec();
+    if( !query.exec() )
+    {
+        //  dbug
+        return false;
+    }
+
+    bool ok = false;
+    query.first();
+    if( ( query.value("rCount").toInt(&ok) >= 1 ) && ok )
+    {
+        return true;
+    }
+
+    return false;
 }

@@ -13,11 +13,11 @@
 class RequestsManager
 {       
 private:
-    static void autorisation( const SQLMgr &db, const QUrlQuery &urlQuery );
-    static void report( const SQLMgr &db, const QString &request, const QUrlQuery &query = QUrlQuery()/*TODO DEFAULT*/ );
+    static QJsonObject autorisation( const SQLMgr &db, const QUrlQuery &urlQuery );
+    static QJsonObject report( const SQLMgr &db, const QString &request, const QUrlQuery &query = QUrlQuery()/*TODO DEFAULT*/ );
 
 public:                                  
-    static void request( const SQLMgr &db, const QUrl &url );
+    static QString request( const SQLMgr &db, const QUrl &url );
 
 };
 #endif
