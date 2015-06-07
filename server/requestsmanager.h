@@ -14,7 +14,7 @@ class RequestsManager
 {       
 private:
     static void autorisation( const SQLMgr &db, const QUrlQuery &urlQuery );
-    static void report( const SQLMgr &db, const QString &request, const QUrlQuery &watIsNeed = QUrlQuery()/*TODO DEFAULT*/ );
+    static void report( const SQLMgr &db, const QString &request, const QUrlQuery &query = QUrlQuery()/*TODO DEFAULT*/ );
 
 public:                                  
     static void request( const SQLMgr &db, const QUrl &url );
