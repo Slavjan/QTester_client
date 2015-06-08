@@ -20,20 +20,20 @@ NetworkManager::NetworkManager( SQLMgr &sqlMgr)
 NetworkManager::~NetworkManager()
 {
 }
-
-void NetworkManager::authorisation( const QString &login, const QString &password )
-{
-    bool ok;
-    ok = _sqlMgr->auth( login, password );
-
-    if( ok )
-    {
-        UserControl::instance().pushUser( User( login ) );
-        //чувак всё ок
-        //_server->sendToClient( socket, "[code:200, response: {\"Welcome\":true}]" );
-    }
-}
-
+//
+//void NetworkManager::authorisation( const QString &login, const QString &password )
+//{
+//    bool ok;
+//    ok = _sqlMgr->auth( login, password );
+//
+//    if( ok )
+//    {
+//        UserControl::instance().pushUser( User( login ) );
+//        //чувак всё ок
+//        //_server->sendToClient( socket, "[code:200, response: {\"Welcome\":true}]" );
+//    }
+//}
+//
 void NetworkManager::inputQuery(QString request, QTcpSocket* client )
 {
     qDebug() << "NetworkManager::inputQuery :";
