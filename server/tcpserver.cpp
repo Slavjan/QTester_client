@@ -5,9 +5,11 @@
  */
 void TcpServer::connectSignals()
 {
-    connect(&_server, SIGNAL(newConnection()),
+    connect( &_server, SIGNAL( newConnection() ),
              this,    SLOT(slotNewConnection())
             );
+
+    qDebug() << "[TcpServer::connectSignals]";
 }
 
 /*! \~russian
@@ -71,6 +73,8 @@ void TcpServer::slotNewConnection()
             this,   SLOT(slotReadClient())
            );
 
+    qDebug() << "[TcpServer::slotNewConnection]";
+
     emit newConnection(client);
 }
 
@@ -106,6 +110,8 @@ void TcpServer::slotReadClient()
 
         _nextBlockSize = 0;
 
+        qDebug() << "[TcpServer::slotReadClient]";
+
         emit dataRecieved( str );
         emit dataRecieved( str, client );
     }
@@ -128,3 +134,5 @@ bool TcpServer::listen(const int port)
     }
     return true;
 }
+
+

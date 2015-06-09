@@ -41,6 +41,10 @@ QJsonObject RequestsManager::autorisation(const SQLMgr &db, const QUrlQuery &url
         };
         return obj;
     }
+    QJsonObject failed{
+        {"autirisation", "failed"}
+    };
+    return failed;
 }
 
 QJsonObject RequestsManager::report( const SQLMgr &db, const QString &request, const QUrlQuery &query )

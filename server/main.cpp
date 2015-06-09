@@ -5,23 +5,7 @@
 #include "testgenerator.h"
 #include "jsonformat.h"
 #include "networkmanager.h"
-
-#ifdef QT_DEBUG
-#define _DEBUG
-#endif
-
-void connectTest()
-{
-    qDebug() << "[MainWindow::connectTest] > New connection";
-}
-
-void setDataFromClient( QString message )
-{
-    qDebug() << "[MainWindow::setDataFromClient] > " << message;
-}
-
-
-
+             
 int main( int argc, char *argv[] )
 {
     QCoreApplication a( argc, argv );

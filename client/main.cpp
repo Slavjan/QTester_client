@@ -5,8 +5,10 @@
 #include "networkquerymanager.h"
 #include <QDir>
 
+#include <QMainwindow>
 #include <QHBoxLayout>
 #include <QPushButton>
+#include <QLabel>
 //#include <QQmlContext>
 
 QString getUserName()
@@ -30,14 +32,27 @@ int main(int argc, char *argv[])
 {
     QApplication app( argc, argv );
 
-    QPushButton *myBtn = new QPushButton( "&PushMe" );
+    QMainWindow w;
+    QPushButton *myBtnConnect = new QPushButton( "&Connect" );
+    QPushButton *myBtnAuth = new QPushButton( "&Autorisation" );
+    QLabel statusMessage;
 
-    myBtn->show();
     
-    NetworkQueryManager *mngr = new NetworkQueryManager( "127.0.0.1", 3434 );// давай копирнем просто из гит хаба твои классы окон
 
-    QObject::connect( myBtn, SIGNAL( clicked() ),
-                      mngr, SLOT( authorusation() ) );            
+    myBtnConnect->show();
+    myBtnAuth->show();
+
+    NetworkQueryManager *mngr = new NetworkQueryManager( "127.0.0.1", 3434 );
+    TcpClient *client = mngr->getClient();
+    QObject::connect( myBtnConnect, SIGNAL( clicked() ), mngr, SLOT( connectionOpen() ) );
+    
+    QObject::connect( myBtnConnect, SIGNAL( clicked() ),
+                      mngr, SLOT( authorusation() ) ); 
+
+    QObject::connect( client , SIGNAL( dataRecieved( QString ) ), 
+                      myBtnAuth, SLOT( setText() ) );
+
+
 
 
    // app.setApplicationName("client");

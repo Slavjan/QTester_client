@@ -57,11 +57,14 @@
     <ClCompile Include="tcpclient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="networkquerymanager.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_networkquerymanager.cpp">
       <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="networkquerymanager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_networkquerymanager.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -72,7 +75,7 @@
       <Filter>Headers</Filter>
     </CustomBuild>
     <CustomBuild Include="networkquerymanager.h">
-      <Filter>Generated Files</Filter>
+      <Filter>Headers</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

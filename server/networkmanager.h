@@ -13,10 +13,9 @@ private:
     TcpServer *_server;
     SQLMgr *_sqlMgr;
 
-
     void connectSlots();
 public slots:
-    void authorisation( const QString &login, const QString &password );
+    
     void inputQuery( QString, QTcpSocket* );
 public:
     NetworkManager( SQLMgr &sqlMgr );
