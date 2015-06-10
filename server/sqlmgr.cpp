@@ -1,12 +1,30 @@
 #include <QDebug>
 #include "sqlmgr.h"	 
 
-SQLMgr::SQLMgr()
-{
-}
+//SQLMgr *SQLMgr::_instance = nullptr;
+//
+//SQLMgr& SQLMgr::instance()
+//{
+//    if( !_instance )
+//    {
+//        _instance = new SQLMgr();
+//    }
+//    return *_instance;
+//}
+//SQLMgr& SQLMgr::instance( const QString &dbDriver,
+//                                  const QString &dbHost,
+//                                  QString  dbPath,
+//                                  const QString &dbUser,
+//                                  const QString &dbPass )
+//{
+//    if( !_instance )
+//    {
+//        _instance = new SQLMgr(dbDriver, dbHost, dbPath, dbUser, dbPass);
+//    }
+//    return *_instance;
+//}
 
-
-
+                 
 // public
 SQLMgr::SQLMgr( const QString &dbDriver,
                 const QString &dbHost,

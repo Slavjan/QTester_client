@@ -44,32 +44,6 @@ int main( int argc, char *argv[] )
 }
 
 
-
-///////////////////////
-/*
-MainWindow::MainWindow( QWidget *parent )
-{
-
-    _server = new TcpServer( 3434, this );
-    connect( _server, SIGNAL( newConnection( QTcpSocket* ) ),
-             this, SLOT( connectTest() )
-             );
-    connect( _server, SIGNAL( dataRecieved( QString ) ),
-             this, SLOT( setDataFromClient( QString ) )
-             );
-}
-
-connectTest()
-{
-    qDebug  << "[MainWindow::connectTest] > New connection" ;
-}
-
-void MainWindow::setDataFromClient( QString message )
-{
-    qDebug << "[MainWindow::setDataFromClient] > " << message;
-}
-*/
-
 /////////////////////////
 /*
  TODO:

@@ -1,17 +1,16 @@
 #include <QApplication>
-//#include <QQmlApplicationEngine>
 #include <qcoreapplication.h>
-#include "tcpclient.h"
-#include "networkquerymanager.h"
 #include <QDir>
+#include <QQmlApplicationEngine>
 
 #include <QMainwindow>
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QLabel>
-//#include <QQmlContext>
+#include <QQmlContext>
+#include "networkquerymanager.h"
 
-QString getUserName()
+QString getUserLogin()
 {
     //* Variant #1 : simple
     return QDir().home().dirName();
@@ -20,7 +19,7 @@ QString getUserName()
     QString name;
     name = qgetenv(“USER”); // get the user name in Linux
     if( name.isEmpty() ){
-        name = qgetenv(“USERNAME”); // get the name in Windows
+    name = qgetenv(“USERNAME”); // get the name in Windows
     }
     // */
     //* Variant #3
@@ -28,45 +27,46 @@ QString getUserName()
     // */
 }
 
-int main(int argc, char *argv[])
+int main( int argc, char *argv[] )
 {
     QApplication app( argc, argv );
 
-    QMainWindow w;
-    QPushButton *myBtnConnect = new QPushButton( "&Connect" );
-    QPushButton *myBtnAuth = new QPushButton( "&Autorisation" );
-    QLabel statusMessage;
+    /*   QMainWindow w;               */
+//    QWidget *wgt = new QWidget;
+//    QVBoxLayout *lay = new QVBoxLayout( wgt );
+//    QPushButton *myBtnConnect = new QPushButton( "&Connect", wgt );
+//    QPushButton *myBtnAuth = new QPushButton( "&Autorisation", wgt );
+//    QLabel *lbl = new QLabel( wgt );
+//    wgt->setLayout( lay );
+//    lay->addWidget( lbl );
+//    lay->addWidget( myBtnConnect );
+//    lay->addWidget( myBtnAuth );
 
-    
-
-    myBtnConnect->show();
-    myBtnAuth->show();
+//    wgt->show();
 
     NetworkQueryManager *mngr = new NetworkQueryManager( "127.0.0.1", 3434 );
-    TcpClient *client = mngr->getClient();
-    QObject::connect( myBtnConnect, SIGNAL( clicked() ), mngr, SLOT( connectionOpen() ) );
-    
-    QObject::connect( myBtnConnect, SIGNAL( clicked() ),
-                      mngr, SLOT( authorusation() ) ); 
+//    TcpClient *client = mngr->getClient();
+//    QObject::connect( myBtnConnect, SIGNAL( clicked() ),
+//                      mngr, SLOT( connectionOpen() ) );
 
-    QObject::connect( client , SIGNAL( dataRecieved( QString ) ), 
-                      myBtnAuth, SLOT( setText() ) );
+//    QObject::connect( myBtnAuth, SIGNAL( clicked() ),
+//                      mngr, SLOT( authorisation(  ) ) );
+
+//    QObject::connect( client, SIGNAL( dataRecieved( QString ) ),
+//                      mngr, SLOT( statusMessage( QString ) ) );
 
 
+    // app.setApplicationName("client");
+    //  app.setApplicationDisplayName("QTester");
+    //   app.setApplicationVersion("0.0.0 Pre-Aplha");
 
 
-   // app.setApplicationName("client");
-  //  app.setApplicationDisplayName("QTester");
- //   app.setApplicationVersion("0.0.0 Pre-Aplha");
-
-    
     //mngr->authorisation( "d3i0", "12345" );
 
- //   QQmlApplicationEngine engine;
- //   engine.rootContext()->setContextProperty("username", getUserName() );
-//    engine.rootContext()->setContextProperty("Database", db );
-//    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-    
+    QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("username", getUserLogin() );
+    engine.rootContext()->setContextProperty( "NetManager", mngr );
+    engine.load( QUrl( QStringLiteral( "qrc:/main.qml" ) ) );
 
     return app.exec();
 }

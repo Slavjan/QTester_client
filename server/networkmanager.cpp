@@ -6,9 +6,12 @@ void NetworkManager::connectSlots()
     connect( _server, SIGNAL( dataRecieved(QString, QTcpSocket*) ),
              this, SLOT( inputQuery( QString, QTcpSocket* ) )
              );
+    connect( _server, SIGNAL( newConnection( QTcpSocket* ) ), 
+             this, SLOT( newClient( QTcpSocket* ) ) );
 }
 
 NetworkManager::NetworkManager( SQLMgr &sqlMgr)
+    : QObject(0)
 {
     _sqlMgr = &sqlMgr;  
     
@@ -16,10 +19,16 @@ NetworkManager::NetworkManager( SQLMgr &sqlMgr)
     connectSlots();
 }
 
+void NetworkManager::newClient( QTcpSocket* )
+{
+    qDebug() << "[NetworkManager::newClient]";
+}
 
 NetworkManager::~NetworkManager()
 {
+    delete _server;
 }
+
 void NetworkManager::inputQuery(QString request, QTcpSocket* client )
 {
     qDebug() << "NetworkManager::inputQuery :";

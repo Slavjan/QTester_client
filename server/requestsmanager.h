@@ -11,12 +11,12 @@
 #include <QUrlQuery>
 
 class RequestsManager
-{       
+{
 private:
     static QJsonObject autorisation( const SQLMgr &db, const QUrlQuery &urlQuery );
     static QJsonObject report( const SQLMgr &db, const QString &request, const QUrlQuery &query = QUrlQuery()/*TODO DEFAULT*/ );
 
-public:                                  
+public:
     static QString request( const SQLMgr &db, const QUrl &url );
 
 };

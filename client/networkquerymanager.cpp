@@ -15,7 +15,7 @@ NetworkQueryManager::~NetworkQueryManager()
 void NetworkQueryManager::connectionOpen()
 {
     _client->connectToServer( "127.0.0.1", 3434 );
-    qDebug() << "[NetworkQueryManager::connectionOpen]";
+    qDebug() << "[NetworkQueryManager:: Try connectionOpen]";
 }
 
 //void NetworkQueryManager::dataRecieved( QString str)
@@ -25,7 +25,7 @@ void NetworkQueryManager::connectionOpen()
 //    statusMessage( "[NetworkQueryManager::dataRecieved]" + str );
 //}
 
-void NetworkQueryManager::authorisation( const QString &login, const QString &password )
+void NetworkQueryManager::authorisation(const QString &login, const QString &password)
 {
     QUrl url("/auth");
     QUrlQuery urlQuery(url);
@@ -38,7 +38,7 @@ void NetworkQueryManager::authorisation( const QString &login, const QString &pa
 
 void NetworkQueryManager::statusMessage( const QString &msg )
 {          
-   qDebug() << msg;   
+   qDebug() << "client [NetworkQueryManager::statusMessage] "<< msg;   
 }
 
 

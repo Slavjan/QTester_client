@@ -127,6 +127,7 @@ ApplicationWindow {
     }
     */
     Component.onCompleted: {
+        NetManager.authorisation(username, "")//
         if( config.alwaysPromptAuthentication ){
             stack.push( Qt.resolvedUrl('Content/Login.qml') );
         }

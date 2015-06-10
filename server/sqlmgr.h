@@ -21,23 +21,31 @@ typedef QMap<QString, QString> DataMap;
 
 
 
-class SQLMgr //SQL Manadger the base class for work with Data Bases
+class SQLMgr //SQL \bref Manadger the base class for work with Data Bases
 {
-protected: 	
-	ConnectionMgr*	Connection;
-	
+protected: 
+    static SQLMgr *_instance;	
+	ConnectionMgr *Connection;
+    
+
     virtual bool sessionConfigurate(const DataMap &data) = 0;
 
+    
 public:			
-	SQLMgr();// ms vs complains in derived classes, that there is no default constructor
-	
-	SQLMgr(const QString &dbDriver,
-		   const QString &dbHost,
-                 QString  dbPath,
-		   const QString &dbUser,
-		   const QString &dbPass);
+    /*static SQLMgr& instance();
+    static SQLMgr& instance( const QString &dbDriver,
+                             const QString &dbHost,
+                             QString  dbPath,
+                             const QString &dbUser,
+                             const QString &dbPass );*/
+    SQLMgr(){}// ms vs complains in derived classes, that there is no default constructor
 
-	~SQLMgr();
+    SQLMgr( const QString &dbDriver,
+            const QString &dbHost,
+            QString  dbPath,
+            const QString &dbUser,
+            const QString &dbPass );
+    ~SQLMgr();
 
     static bool transaction();
 
