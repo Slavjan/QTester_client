@@ -17,7 +17,7 @@ public slots:
     void sendPullRequestProfList();
     void sendPullRequestLessonsList( const QString &profId );
     void sendPullRequestThemesList( const QString &lessonId );
-    void sendPullRequestQuestions( const QString id, QString title, QJsonObject questions );
+    void sendPullRequestQuestions( const QString &themeId, qint64 questionsCount, qint64 answersCount );
 signals:
     void dataRecieved( QString );
 
@@ -27,4 +27,13 @@ public:
 
     TcpClient* getClient();
 };
-
+                
+namespace reqLists
+{
+    const QString auth = "/auth";
+    const QString get = "/get";      
+    const QString profList = "profLsit";
+    const QString lessonsList = "lessonsLsit";
+    const QString themesList = "themesLsit";
+    const QString questions = "questions";
+}

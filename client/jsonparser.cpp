@@ -66,9 +66,9 @@ void JsonParser::responseSlot(QString string)
     case Codes::Themes:
         takeThemesLists( response );
       break;
-   /* case Codes::Questions:
-      takeThemesLists(respons);
-      break;*/
+    case Codes::Questions:
+      takeQuestions(response);
+      break;
     default:
       break;
     }

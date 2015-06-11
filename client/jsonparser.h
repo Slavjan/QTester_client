@@ -22,7 +22,7 @@ public:
   void takeProfessionsList(const QJsonObject &response);
   void takeLessonsList(const QJsonObject &response);
   void takeThemesLists(const QJsonObject &response);
-  void parsQuestions(const QJsonObject &questions);
+  void takeQuestions(const QJsonObject &questions);
 signals:
   void authSignalPars(QString token, QString fullName);
   void authSignalPars(QString fullName);

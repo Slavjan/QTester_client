@@ -67,17 +67,17 @@ QJsonObject RequestsManager::report( const SQLMgr &db, const QString &request, c
        QString listName = request.right( 4 );
 
 
-       if(listName.startsWith( reqLists::lessonsList, Qt::CaseInsensitive ))  // if  /...LessonsList   
+       if(listName.startsWith( reqLists::lessonsList, Qt::CaseInsensitive ))  // if  /...LessonsList ? id=%lId  
        {
          List = Lesson::getLessonsList( db, query.queryItemValue( "id" ) );
          obj = JsonFormat::lessonsListToJsonObj( List );
        }   
-       else if( listName.startsWith( reqLists::profList, Qt::CaseInsensitive ) )  // if  /...ProfList 
+       else if( listName.startsWith( reqLists::profList, Qt::CaseInsensitive ) )  // if  /...ProfList  ? id=%lId
        {
          List = Profession::getProfList( db );
          obj = JsonFormat::profListToJsonObj( List );
        }
-       else if(listName.startsWith( reqLists::themesList, Qt::CaseInsensitive ))  // if  /...ThemesList
+       else if(listName.startsWith( reqLists::themesList, Qt::CaseInsensitive ))  // if  /...ThemesList ? id=%tId
        {
          List = Theme::getThemeList( db, query.queryItemValue( "id" ) );  
          obj = JsonFormat::themesListToJsonObj( List );          
