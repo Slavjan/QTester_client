@@ -20,7 +20,6 @@ signals:
 public slots:
   void setFullName( QString fullName );
   void setLogin( QString login );
-
   void setProfList();
   void setLessonsList( const QString &profId );
   void setThemesList( const QString &lessonId );

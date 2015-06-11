@@ -66,12 +66,13 @@ QJsonObject RequestsManager::report( const SQLMgr &db, const QString &request, c
     {
        QString listName = request.right( 4 );
 
-       if(listName.startsWith( reqLists::lessonsList, Qt::CaseInsensitive ))  // if  /...LessonsList
+
+       if(listName.startsWith( reqLists::lessonsList, Qt::CaseInsensitive ))  // if  /...LessonsList   
        {
          List = Lesson::getLessonsList( db, query.queryItemValue( "id" ) );
          obj = JsonFormat::lessonsListToJsonObj( List );
-       }
-       else if( listName.startsWith( reqLists::profList, Qt::CaseInsensitive ) )  // if  /...ProfList
+       }   
+       else if( listName.startsWith( reqLists::profList, Qt::CaseInsensitive ) )  // if  /...ProfList 
        {
          List = Profession::getProfList( db );
          obj = JsonFormat::profListToJsonObj( List );
@@ -83,13 +84,13 @@ QJsonObject RequestsManager::report( const SQLMgr &db, const QString &request, c
        }
        else if( listName.startsWith( reqLists::questions, Qt::CaseInsensitive ) ) // if   /... Questions
        {  // GET /getQuestions?themeId= %id &questionsCount= %qCount &answersCount= %aCount
-           Lesson lesson;               
+           Lesson lesson;
            lesson.selectThemesFromDataBase( db,
                                             QStringList( query.queryItemValue( "themeId" ) ),// %id
                                             query.queryItemValue( "questionsCount" ).toInt(),// %qCount
                                             5 ); //%aCount
            Theme theme = lesson.getThemes().first();
-           obj = JsonFormat::themeToJsonObj(theme);
+           obj = JsonFormat::themeToJsonObj( theme );
        }
        else IdTitleMap();
     }

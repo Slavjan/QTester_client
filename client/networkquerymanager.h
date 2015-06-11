@@ -16,7 +16,7 @@ public slots:
     
     void sendPullRequestProfList();
     void sendPullRequestLessonsList( const QString &profId );
-    void sendPullRequestThemesList( const QString &themeId );
+    void sendPullRequestThemesList( const QString &lessonId );
     void sendPullRequestQuestions( const QString id, QString title, QJsonObject questions );
 signals:
     void dataRecieved( QString );

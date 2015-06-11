@@ -20,4 +20,6 @@ public:
     static QString request( const SQLMgr &db, const QUrl &url );
 
 };
+
+
 #endif
