@@ -14,7 +14,7 @@ public slots:
     void authorisation(const QString &login, const QString &password);
     void statusMessage(const QString &msg);
 signals:
-  //  void dataRecieved( QString );
+    void dataRecieved( QString );
 
 public:
     NetworkQueryManager(const QString &host, const int port);

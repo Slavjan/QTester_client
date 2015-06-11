@@ -76,7 +76,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\client\requestsmanager.cpp" />
     <ClCompile Include="answer.cpp" />
     <ClCompile Include="connectionmgr.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_networkmanager.cpp">
@@ -97,6 +96,7 @@
     <ClCompile Include="networkmanager.cpp" />
     <ClCompile Include="profession.cpp" />
     <ClCompile Include="question.cpp" />
+    <ClCompile Include="requestsmanager.cpp" />
     <ClCompile Include="sqlitemgr.cpp" />
     <ClCompile Include="sqlmgr.cpp" />
     <ClCompile Include="sqlorderby.cpp" />

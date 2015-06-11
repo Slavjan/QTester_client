@@ -32,7 +32,7 @@ namespace Table
 
         namespace Fields
         {
-            const QString USER_ID = "USER_ID";
+            const QString USER_ID = "user_id";
             const QString FIRSTNAME = "firstName";
             const QString SECONDNAME = "secondName";
             const QString LOGIN = "login";

@@ -295,10 +295,12 @@ bool SQLMgr::auth( const QString &login, const QString &password ) const
 {
     using namespace Table::Users;
 
-    QString hashPass = QCryptographicHash::hash( password.toUtf8(), QCryptographicHash::Md5 );
+//    QByteArray hashPass = QCryptographicHash::hash( "123", QCryptographicHash::Md5 );
+
+//    qDebug() << "[SQLMgr::auth]password>" << hashPass;
 
     SqlWhere _where( Fields::LOGIN + "= '" + login + "'" );
-    _where.AND( Fields::PASSWORD + "= '" + hashPass + "'" );
+    _where.AND( Fields::PASSWORD + "= '" + password + "'" );
 
     QSqlQuery query = select( TABLE_NAME, QStringList( "COUNT(*) AS rCount" ), _where );
 
@@ -309,7 +311,9 @@ bool SQLMgr::auth( const QString &login, const QString &password ) const
     }
 
     bool ok = false;
+    qDebug() << query.value("rCount");
     query.first();
+    qDebug() << query.value("rCount");
     if( ( query.value("rCount").toInt(&ok) >= 1 ) && ok )
     {
         return true;

@@ -31,11 +31,11 @@ ApplicationWindow {
         property string themeTitle
 
         property string userLogin: username;
-        property string userFullName: User.getFullUserName(username)
+        property string userFullName: fullName;
     }
 
     Item{
-        id: permission
+        id: permission;
 
         property bool markingQuestions : true;
         property bool saveResults      : true;
@@ -127,7 +127,7 @@ ApplicationWindow {
     }
     */
     Component.onCompleted: {
-        NetManager.authorisation(username, "")//
+        NetManager.authorisation(username, "111");
         if( config.alwaysPromptAuthentication ){
             stack.push( Qt.resolvedUrl('Content/Login.qml') );
         }

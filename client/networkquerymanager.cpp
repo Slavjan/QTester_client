@@ -33,7 +33,8 @@ void NetworkQueryManager::authorisation(const QString &login, const QString &pas
     urlQuery.addQueryItem( "login", login );
     urlQuery.addQueryItem( "password", password );
 
-    _client->sendToServer( urlQuery.toString() );
+    url.setQuery(urlQuery);
+    _client->sendToServer( url.toString() );
 }
 
 void NetworkQueryManager::statusMessage( const QString &msg )

@@ -9,6 +9,8 @@
 #include <QLabel>
 #include <QQmlContext>
 #include "networkquerymanager.h"
+#include "jsonparser.h"
+#include "uisetter.h"
 
 QString getUserLogin()
 {
@@ -30,7 +32,7 @@ QString getUserLogin()
 int main( int argc, char *argv[] )
 {
     QApplication app( argc, argv );
-
+    setlocale( LC_ALL, "Russian" );
     /*   QMainWindow w;               */
 //    QWidget *wgt = new QWidget;
 //    QVBoxLayout *lay = new QVBoxLayout( wgt );
@@ -45,15 +47,17 @@ int main( int argc, char *argv[] )
 //    wgt->show();
 
     NetworkQueryManager *mngr = new NetworkQueryManager( "127.0.0.1", 3434 );
-//    TcpClient *client = mngr->getClient();
+    TcpClient *client = mngr->getClient();
+
+    JsonParser jParser;
 //    QObject::connect( myBtnConnect, SIGNAL( clicked() ),
 //                      mngr, SLOT( connectionOpen() ) );
 
 //    QObject::connect( myBtnAuth, SIGNAL( clicked() ),
 //                      mngr, SLOT( authorisation(  ) ) );
 
-//    QObject::connect( client, SIGNAL( dataRecieved( QString ) ),
-//                      mngr, SLOT( statusMessage( QString ) ) );
+    QObject::connect( client, &TcpClient::dataRecieved,
+                      &jParser, &JsonParser::responseSlot );
 
 
     // app.setApplicationName("client");
@@ -64,7 +68,12 @@ int main( int argc, char *argv[] )
     //mngr->authorisation( "d3i0", "12345" );
 
     QQmlApplicationEngine engine;
-    engine.rootContext()->setContextProperty("username", getUserLogin() );
+    UiSetter ui( engine.rootContext() );
+    ui.setLogin( getUserLogin() );
+
+    QObject::connect( &jParser, SIGNAL(authSignalPars(QString)),
+                      &ui, SLOT(setFullName(QString)) );
+//    engine.rootContext()->setContextProperty("fullName", getUserLogin() );
     engine.rootContext()->setContextProperty( "NetManager", mngr );
     engine.load( QUrl( QStringLiteral( "qrc:/main.qml" ) ) );
 

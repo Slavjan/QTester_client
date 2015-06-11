@@ -5,6 +5,8 @@
 #include "testgenerator.h"
 #include "jsonformat.h"
 #include "networkmanager.h"
+
+#include <QCryptographicHash>
              
 int main( int argc, char *argv[] )
 {
@@ -13,11 +15,20 @@ int main( int argc, char *argv[] )
     SQLMgr *db = new SQLiteMgr( "", "", "", "" );
     setlocale( LC_ALL, "Russian" );
 
-    qDebug() << "//Server/ ";
+    qDebug() << "//Server/ лчслдвыадвылоадлвыоавылоа  бла-бла-бла! ";
+
+   /* DataMap map;
+    map["password"] = "111";
+    map["firstName"] = "Бла";
+    map["secondName"] = "bla";
+    map["login"] = "Khaidayev";
+    db->insert("Users", map );*/
 
     NetworkManager netMan( *db );
 
-    
+//    QByteArray hashPass = QCryptographicHash::hash( QByteArray("123"), QCryptographicHash::Md5 );
+
+//    qDebug() << "[SQLMgr::auth]password>" << hashPass ;
     /*IdTitleMap lessons = Lesson::getLessonsList( *db ),
                themes = Theme::getThemeList( *db );*/
                                                                 

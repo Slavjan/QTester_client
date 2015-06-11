@@ -30,7 +30,8 @@ TokenUserMap UserControl::getUsers()const
 }
 QString UserControl::pushUser( const User &user )
 {
-    QString newToken = QCryptographicHash::hash( QString::number( tokenCount ).toUtf8(), QCryptographicHash::Md5 );
+//    QString newToken = QCryptographicHash::hash( QString::number( tokenCount ).toUtf8(), QCryptographicHash::Md5 );
+    QString newToken = QString::number(tokenCount);
     tokenCount++;
     _users[newToken] = user;
 

@@ -1,49 +1,83 @@
 #include "requestsmanager.h"
 
-
-void RequestsManager::request( const SQLMgr &db, const QUrl &url )
+QString RequestsManager::request( const SQLMgr &db, const QUrl &url )
 {
     QString request = url.path();
-    QUrlQuery query(url);
+    QUrlQuery query( url );
 
+    QJsonObject obj;
+
+    qDebug() << "[RequestsManager::request]>" << request << "/url > " << url;
     if( request == "/auth" )
     {
-        autorisation( db, query );
+        obj = autorisation( db, query );
     }
-    else report( db, request, query );
+    else obj = report( db, request, query );
+
+    QJsonDocument doc;
+    doc.setObject( obj );
+    return doc.toJson();
 }
 
-void RequestsManager::autorisation(const SQLMgr &db, const QUrlQuery &urlQuery )
+QJsonObject RequestsManager::autorisation( const SQLMgr &db, const QUrlQuery &urlQuery )
 {
     UserControl userControl = UserControl::instance();
-    QString login     = urlQuery.queryItemValue( "login" ),
-            password  = urlQuery.queryItemValue( "password" );
+    QString login = urlQuery.queryItemValue( "login" ),
+        password = urlQuery.queryItemValue( "password" );
 
+    qDebug() << "login :" << login << "\npassword :" << password;
     if( db.auth( login, password ) )
     {
-        userControl.pushUser( User() );
+        qDebug() << "/auth success";
+        /*db.select( "USERS", { "name", } );*/
+
+        User user( login );
+        SqlWhere _where(Table::Users::Fields::LOGIN + " = '" + login + "'");
+                 _where.AND(Table::Users::Fields::PASSWORD + " = '" + password + "'");
+                 QStringList _fields( "firstName ||' '|| secondName AS fullName" );
+        QString tn = Table::Users::TABLE_NAME;        
+        QSqlQuery query = db.select(tn, _fields, _where);
+        query.first();
+        QString fullUserName = query.value( "fullName" ).toString();
+        QString token = userControl.pushUser( user );
+
+        QJsonObject response{
+            { "token", token },
+            { "fullUserName", fullUserName }
+        };
+        QJsonObject obj{
+            { "code", 200 },
+            { "response", response }
+        }; qDebug() << "/auth obj :"<< obj;
+        return obj;
     }
+    QJsonObject failed{
+        { "autirisation", "failed" }
+    };
+    qDebug() << "/auth :" << failed;
+    return failed;
 }
 
-void RequestsManager::report( const SQLMgr &db, const QString &request, const QUrlQuery &query )
+QJsonObject RequestsManager::report( const SQLMgr &db, const QString &request, const QUrlQuery &query )
 {
     IdTitleMap  List;
     QJsonObject obj;
-    if( request.startsWith("/get") )
+    if( request.startsWith( "/get" ) )          // /getProfessionsLIst
     {
         QString listName = request.right( 4 );
 
-        List = listName.startsWith( "lesson", Qt::CaseInsensitive ) ?   // наверное это ужасно читается, но раотает
-               Lesson::getLessonsList( db, query.queryItemValue( "id" ) ) :
+        List = listName.startsWith( "lesson", Qt::CaseInsensitive ) ?   // íàâåðíîå ýòî óæàñíî ÷èòàåòñÿ, íî ðàîòàåò
+            Lesson::getLessonsList( db, query.queryItemValue( "id" ) ) :
 
-               listName.startsWith( "prof", Qt::CaseInsensitive ) ?
-               Profession::getProfList( db ) :
+            listName.startsWith( "prof", Qt::CaseInsensitive ) ?
+            Profession::getProfList( db ) :
 
-               listName.startsWith( "theme", Qt::CaseInsensitive ) ?
-               Theme::getThemeList( db, query.queryItemValue( "id" ) ):
-               IdTitleMap();
+            listName.startsWith( "theme", Qt::CaseInsensitive ) ?
+            Theme::getThemeList( db, query.queryItemValue( "id" ) ) :
+            IdTitleMap();
 
         obj = JsonFormat::lessonsListToJsonObj( List );
     }
     //TODO TcpSocket::report( obj );
+    return obj;
 }

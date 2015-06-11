@@ -13,7 +13,7 @@ QJsonObject JsonFormat::professionToJsonObj( const Profession &prof )
     QJsonObject jProfession{
         { "id", prof.getId() },
         { "title", prof.getTitle() },
-        { "themes", jLessons }
+        { "lessons", jLessons }
     };
 
     return jProfession;
