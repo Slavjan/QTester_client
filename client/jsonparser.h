@@ -26,9 +26,11 @@ public:
 signals:
   void authSignalPars(QString token, QString fullName);
   void authSignalPars(QString fullName);
-  void takeProfs(QString id, QString title);
-  void takeLessons(QString id, QString title);
-  void takeThemes(QString id, QString title, QJsonObject questions);
+
+  void takeProfs(QJsonObject &profsList);
+  void takeLessons(QJsonObject &Lessons);
+  void takeThemes (QJsonObject &Themes );
+  void takeQuestions(QJsonObject &Questions);
 public slots:
   void responseSlot(QString);
   //void respArraySlot(QJsonArray);

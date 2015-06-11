@@ -7,27 +7,17 @@ Item {
     width: 900
     height: 600
 
+
     ListModel{
         id: themeModel;
-
-        ListElement { text: "Введение" }
-        ListElement { text: "Применение Объектно Ориентированных Подходов при разработке программ" }
-        ListElement { text: "Экспертный уровень" }
     }
     ListModel{
         id: lessonsModel;
-
-        ListElement { text: "Введение в сетевые технологии" }
-        ListElement { text: "ОАиП" }
-        ListElement { text: "Основы SQL" }
     }
     ListModel{
         id: professionModel;
-
-        ListElement { text: "Программное обеспечение и вычислительная техника" }
-        ListElement { text: "Бугалтерский учёт" }
-        ListElement { text: "Вагонное хозяйство" }
     }
+
     function isStartTest(){
         return (_countQuestion.value > 0) && (_countQuestion.value <= _countQuestionAll.value);
     }
@@ -62,6 +52,7 @@ Item {
                         model: professionModel
 
                         onCurrentIndexChanged: {
+                            NetManager.sendPullRequestLessonsList(_profession.currentIndex());
                             _lesson.enabled = true;
                         }
                     }
@@ -82,6 +73,7 @@ Item {
                     model: lessonsModel
 
                     onCurrentIndexChanged: {
+                        NetManager.sendPullRequestLessonsList(_lesson.currentIndex())
                         _theme.enabled = true;
                     }
                     Component.onCompleted: {
@@ -95,6 +87,10 @@ Item {
                     Layout.fillWidth: true;
                     model: themeModel
 
+                    onCurrentIndexChanged: {
+                        NetManager.sendPullRequestLessonsList(_theme.currentIndex())
+                        _theme.enabled = true;
+                    }
                     Component.onCompleted: {
                         enabled = false
                     }
@@ -168,7 +164,7 @@ Item {
 
                 Label { text: "" }
                 Text{
-                    text: qsTr("Warning: ") + qsTr("You stuped monkey")
+                    text: qsTr("Warning: ") + qsTr("You stuped, monkey")
                     color: "red"
                 }
             }

@@ -16,29 +16,18 @@ void JsonParser::authorisation(const QJsonObject &response)
 }
 
 void JsonParser::takeProfessionsList(const QJsonObject &response)
-{
-    QJsonArray Array = response[""].toArray();
-    QString title = response["title"].toString(),
-            id = response["id"].toInt();
-
-  //QJsonObject jOThemes = jALessons[""]
-  emit takeProfs(id, title);
+{    
+  emit takeProfs(respons);
 }
 
 void JsonParser::takeLessonsList(const QJsonObject &response)
 {
-  QString title = response["title"].toString(),
-          id = response["id"].toString();
-  emit takeLessons(id, title);
+  emit takeLessons(respons);
 }
 
 void JsonParser::takeThemesLists(const QJsonObject &response)
 {
-  QString title = response["title"].toString(),
-          id = response["id"].toString();
-  QJsonObject questions = response[reqLists::questions].toObject();
-
-  emit takeThemes(id, title, questions);
+  emit takeThemes(response);
 }
 
 void JsonParser::parsQuestions(const QJsonObject &questions)

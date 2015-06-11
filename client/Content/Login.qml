@@ -37,8 +37,8 @@ Item{
                             status.color = "green"
                             status.text = qsTr("Login success")
 
-//                            otherdata.userLogin = login.text
-//                            otherdata.userFullName = User.getFullUserName(login.text)
+                            otherdata.userLogin = login.text
+                            otherdata.userFullName = User.getFullUserName(login.text)
                             stack.pop( stack.get(0) )
                         }else{
                             status.color = "red"

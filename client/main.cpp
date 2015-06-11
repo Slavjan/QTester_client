@@ -75,8 +75,12 @@ int main( int argc, char *argv[] )
                       &ui, SLOT(setFullName(QString)) );
     QObject::connect( &jParser, SIGNAL( takeProf( QString ) ),
                       &ui, SLOT() );
+    QObject::connect( &jParser, SIGNAL(takeProfs(QJsonObject&))),
+                      &ui, SLOT(set));
 //    engine.rootContext()->setContextProperty("fullName", getUserLogin() );
     engine.rootContext()->setContextProperty( "NetManager", mngr );
+    engine.contextForObject(Welcom)->setContextProperty("NetManager", mngr);
+    engine.contextForObject(Configure)->setContextProperty("NetManager", mngr);
     engine.load( QUrl( QStringLiteral( "qrc:/main.qml" ) ) );
 
     return app.exec();

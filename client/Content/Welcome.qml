@@ -101,6 +101,7 @@ Item {
                 onClicked:{
 //                enabled = false
                     stack.push( Qt.resolvedUrl('Testing/Configure.qml') );
+                    NetManager.sendPullRequestProfList();
 //                enabled = true
                 }
             }
