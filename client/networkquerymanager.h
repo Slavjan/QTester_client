@@ -13,6 +13,11 @@ public slots:
     void connectionOpen();
     void authorisation(const QString &login, const QString &password);
     void statusMessage(const QString &msg);
+    
+    void sendPullRequestProfList();
+    void sendPullRequestLessonsList( const QString &profId );
+    void sendPullRequestThemesList( const QString &themeId );
+    void sendPullRequestQuestions( const QString id, QString title, QJsonObject questions );
 signals:
     void dataRecieved( QString );
 

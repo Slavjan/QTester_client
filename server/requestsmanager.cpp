@@ -62,21 +62,36 @@ QJsonObject RequestsManager::report( const SQLMgr &db, const QString &request, c
 {
     IdTitleMap  List;
     QJsonObject obj;
-    if( request.startsWith( "/get" ) )          // /getProfessionsLIst
+    if( request.startsWith( "/get" ) )          // /get...
     {
-        QString listName = request.right( 4 );
+       QString listName = request.right( 4 );
 
-        List = listName.startsWith( "lesson", Qt::CaseInsensitive ) ?   // íàâåðíîå ýòî óæàñíî ÷èòàåòñÿ, íî ðàîòàåò
-            Lesson::getLessonsList( db, query.queryItemValue( "id" ) ) :
-
-            listName.startsWith( "prof", Qt::CaseInsensitive ) ?
-            Profession::getProfList( db ) :
-
-            listName.startsWith( "theme", Qt::CaseInsensitive ) ?
-            Theme::getThemeList( db, query.queryItemValue( "id" ) ) :
-            IdTitleMap();
-
-        obj = JsonFormat::lessonsListToJsonObj( List );
+       if(listName.startsWith( reqLists::lessonsList, Qt::CaseInsensitive ))  // if  /...LessonsList
+       {
+         List = Lesson::getLessonsList( db, query.queryItemValue( "id" ) );
+         obj = JsonFormat::lessonsListToJsonObj( List );
+       }
+       else if( listName.startsWith( reqLists::profList, Qt::CaseInsensitive ) )  // if  /...ProfList
+       {
+         List = Profession::getProfList( db );
+         obj = JsonFormat::profListToJsonObj( List );
+       }
+       else if(listName.startsWith( reqLists::themesList, Qt::CaseInsensitive ))  // if  /...ThemesList
+       {
+         List = Theme::getThemeList( db, query.queryItemValue( "id" ) );  
+         obj = JsonFormat::themesListToJsonObj( List );          
+       }
+       else if( listName.startsWith( reqLists::questions, Qt::CaseInsensitive ) ) // if   /... Questions
+       {  // GET /getQuestions?themeId= %id &questionsCount= %qCount &answersCount= %aCount
+           Lesson lesson;               
+           lesson.selectThemesFromDataBase( db,
+                                            QStringList( query.queryItemValue( "themeId" ) ),// %id
+                                            query.queryItemValue( "questionsCount" ).toInt(),// %qCount
+                                            5 ); //%aCount
+           Theme theme = lesson.getThemes().first();
+           obj = JsonFormat::themeToJsonObj(theme);
+       }
+       else IdTitleMap();
     }
     //TODO TcpSocket::report( obj );
     return obj;

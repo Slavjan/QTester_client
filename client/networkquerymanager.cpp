@@ -39,7 +39,19 @@ void NetworkQueryManager::authorisation(const QString &login, const QString &pas
 
 void NetworkQueryManager::statusMessage( const QString &msg )
 {          
-   qDebug() << "client [NetworkQueryManager::statusMessage] "<< msg;   
+  qDebug() << "client [NetworkQueryManager::statusMessage] "<< msg;
+}
+
+void NetworkQueryManager::sendPullRequestProfList()
+{
+  QUrl url("/auth");
+  QUrlQuery urlQuery(url);
+
+  urlQuery.addQueryItem( "login", login );
+  urlQuery.addQueryItem( "password", password );
+
+  url.setQuery(urlQuery);
+  _client->sendToServer( url.toString() );
 }
 
 

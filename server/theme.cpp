@@ -97,7 +97,7 @@ QVector<Answer> Theme::selectAnswers(const SQLMgr &sqlManager, const int answers
 {
     using namespace Table::Answers::Field;        // зачем? ес  //нужно
     QVector<Answer> replys;
-    QStringList answerFields({ TEXT, VALID });
+    QStringList answerFields({ TEXT, VALID,  });
     QString tableName_answers = Table::Answers::TABLE_NAME;
     SqlWhere ansWhere(QUESTION_ID + " = '" + questionId + "'");
     QSqlQuery answerQuery = sqlManager.select(tableName_answers,
@@ -151,7 +151,7 @@ IdTitleMap Theme::getThemeList( const SQLMgr &sqlManager, const QString &lessonI
     while( query.next() )                                            
     {
         QString id = query.value( query.record().indexOf( Fields::THEME_ID ) ).toString(),
-            title = query.value( query.record().indexOf( Fields::TITLE ) ).toString();
+                title = query.value( query.record().indexOf( Fields::TITLE ) ).toString();
 
         themeList[id] = title;
     }

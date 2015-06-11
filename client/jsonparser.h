@@ -8,6 +8,10 @@
 #include <QJsonDocument>
 #include <QJsonValue>
 
+namespace Codes{
+    enum requests{auth = 200, Prof, Lessons, Themes, Questions };
+}
+
 class JsonParser : public QObject
 {
   Q_OBJECT
@@ -15,15 +19,27 @@ public:
   explicit JsonParser(QObject *parent = 0);
 
   void authorisation(const QJsonObject &response);
-  void getProfessionsList(const QJsonObject &response);
-  void getLessonsList(const QJsonObject &response);
-  void getQuestions(const QJsonObject &response);
+  void takeProfessionsList(const QJsonObject &response);
+  void takeLessonsList(const QJsonObject &response);
+  void takeThemesLists(const QJsonObject &response);
+  void parsQuestions(const QJsonObject &questions);
 signals:
   void authSignalPars(QString token, QString fullName);
   void authSignalPars(QString fullName);
-  void getProfs(QJsonArray prof);
+  void takeProfs(QString id, QString title);
+  void takeLessons(QString id, QString title);
+  void takeThemes(QString id, QString title, QJsonObject questions);
 public slots:
   void responseSlot(QString);
+  //void respArraySlot(QJsonArray);
 };
 
+
+namespace reqLists
+{
+    const QString profList = "profLsit";
+    const QString lessonsList = "lessonsLsit";
+    const QString themesList = "themesLsit";
+    const QString questions = "questions";
+}
 #endif // JSONPARSER_H

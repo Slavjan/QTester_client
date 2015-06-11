@@ -9,6 +9,10 @@
 
 #include "profession.h"
 
+namespace Codes{
+    enum requests{auth = 200, Prof, Lessons, Themes, Questions };
+}
+
 class JsonFormat
 {
 private:
@@ -27,5 +31,13 @@ public:
     static QJsonObject lessonsListToJsonObj( const IdTitleMap &list );
     static QJsonObject themesListToJsonObj( const IdTitleMap &list );
 
-    static QJsonObject idTitleMapToJsonObj( const IdTitleMap &list, const QString &listName );
+    static QJsonObject idTitleMapToJsonObj(const IdTitleMap &list, int code, const QString &listName );
 };
+
+namespace reqLists
+{
+    const QString profList = "profLsit";
+    const QString lessonsList = "lessonsLsit";
+    const QString themesList = "themesLsit";
+    const QString questions = "questions";
+}

@@ -30,7 +30,6 @@ public:
 	void pushAnswer(const Answer &answer);
 	void pushAnswer(const QString &text, const bool valid);
 
-
 	QString getId() const;
 	QString getText() const;
 	QString getType() const;

@@ -9,7 +9,6 @@ Answer::Answer(const QString &value, const bool valid)
 		_valid = valid;
 	}
 }
-
 QString Answer::getId()const
 {
     return _id;
@@ -23,6 +22,11 @@ QString Answer::getValue() const
 bool Answer::isValid() const
 {
 	return _valid;
+}
+
+QString Answer::getType()const
+{
+    return _type;
 }
 
 void Answer::setId( const QString &id )
@@ -39,6 +43,7 @@ void Answer::setValid(const bool valid)
 {
 	_valid = valid;
 }
+
 
 void Answer::print()const
 {

@@ -66,6 +66,24 @@
     <ClCompile Include="GeneratedFiles\Release\moc_networkquerymanager.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_jsonparser.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_jsonparser.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_uisetter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_uisetter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="jsonparser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="uisetter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="qml.qrc">
@@ -75,6 +93,12 @@
       <Filter>Headers</Filter>
     </CustomBuild>
     <CustomBuild Include="networkquerymanager.h">
+      <Filter>Headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="jsonparser.h">
+      <Filter>Headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="uisetter.h">
       <Filter>Headers</Filter>
     </CustomBuild>
   </ItemGroup>
