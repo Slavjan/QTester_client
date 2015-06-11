@@ -16,6 +16,8 @@ signals:
 public slots:
   void setFullName( QString fullName );
   void setLogin( QString login );
+
+  void setProfessionsList();
 };
 
 #endif // UISETTER_H

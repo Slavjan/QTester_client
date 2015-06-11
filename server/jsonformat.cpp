@@ -1,7 +1,6 @@
 #include "jsonformat.h"
 
 
-
 QJsonObject JsonFormat::professionToJsonObj( const Profession &prof )
 {
     QJsonArray jLessons;
@@ -75,6 +74,7 @@ QJsonObject JsonFormat::answerToJsonObj( const Answer &answer )
     QJsonObject jAnswer{
         { "id", answer.getId() },
         { "text", answer.getValue() },
+        { "type", answer.getType()},
         { "valid", answer.isValid() }
     };
 
@@ -83,23 +83,24 @@ QJsonObject JsonFormat::answerToJsonObj( const Answer &answer )
 
 QJsonObject JsonFormat::profListToJsonObj( const IdTitleMap &list )
 {
-    return idTitleMapToJsonObj( list, "professionsList" );
+    return idTitleMapToJsonObj( list, Codes::Prof, "professionsList" );
 }
 
 QJsonObject JsonFormat::lessonsListToJsonObj( const IdTitleMap &list )
 {
-    return idTitleMapToJsonObj( list, "lessonsList" );
+    return idTitleMapToJsonObj( list, Codes::Lessons, "lessonsList" );
 }
 
 QJsonObject JsonFormat::themesListToJsonObj( const IdTitleMap &list )
 {
-    return idTitleMapToJsonObj( list, "themesList" );
+    return idTitleMapToJsonObj( list, Codes::Themes, "themesList" );
 }
 
-QJsonObject JsonFormat::idTitleMapToJsonObj( const IdTitleMap &list, const QString &listName )
+QJsonObject JsonFormat::idTitleMapToJsonObj( const IdTitleMap &list, int code, const QString &listName )
 {
     QJsonArray jArray = mapListTojArray( list );
     QJsonObject jList{
+        {"code", code},
         { listName, jArray }
     };
 

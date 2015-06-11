@@ -64,19 +64,24 @@ QJsonObject RequestsManager::report( const SQLMgr &db, const QString &request, c
     QJsonObject obj;
     if( request.startsWith( "/get" ) )          // /getProfessionsLIst
     {
-        QString listName = request.right( 4 );
+       QString listName = request.right( 4 );
 
-        List = listName.startsWith( "lesson", Qt::CaseInsensitive ) ?   // íàâåðíîå ýòî óæàñíî ÷èòàåòñÿ, íî ðàîòàåò
-            Lesson::getLessonsList( db, query.queryItemValue( "id" ) ) :
-
-            listName.startsWith( "prof", Qt::CaseInsensitive ) ?
-            Profession::getProfList( db ) :
-
-            listName.startsWith( "theme", Qt::CaseInsensitive ) ?
-            Theme::getThemeList( db, query.queryItemValue( "id" ) ) :
-            IdTitleMap();
-
-        obj = JsonFormat::lessonsListToJsonObj( List );
+       if(listName.startsWith( "lesson", Qt::CaseInsensitive ))
+       {
+         List = Lesson::getLessonsList( db, query.queryItemValue( "id" ) );
+         obj = JsonFormat::lessonsListToJsonObj( List );
+       }
+       else if(listName.startsWith( "prof", Qt::CaseInsensitive ))
+       {
+         List = Profession::getProfList( db );
+         obj = JsonFormat::profListToJsonObj( List );
+       }
+       else if(listName.startsWith( "theme", Qt::CaseInsensitive ))
+       {
+         List = Theme::getThemeList( db, query.queryItemValue( "id" ) );
+         obj = JsonFormat::themesListToJsonObj( List );
+       }
+       else IdTitleMap();
     }
     //TODO TcpSocket::report( obj );
     return obj;

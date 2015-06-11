@@ -15,25 +15,34 @@ void JsonParser::authorisation(const QJsonObject &response)
   emit authSignalPars(fullName);
 }
 
-void JsonParser::getProfessionsList(const QJsonObject &response)
+void JsonParser::takeProfessionsList(const QJsonObject &response)
 {
-  QString pTitle = respons["title"].toString(),
-          lTitle = Lessons["title"];
-  QJsonArray jALessons = response["lessons"].toString(),
-             jAThemes, jAQuestions, jAAnswers;
+  QString title = response["title"].toString(),
+          id = response["id"].toInt();
 
   //QJsonObject jOThemes = jALessons[""]
-  emit getProfs(jALessons);
+  emit takeProfs(id, title);
 }
 
-void JsonParser::getLessonsList(const QJsonObject &response)
+void JsonParser::takeLessonsList(const QJsonObject &response)
 {
-
+  QString title = response["title"].toString(),
+          id = response["id"].toString();
+  emit takeLessons(id, title);
 }
 
-void JsonParser::getQuestions(const QJsonObject &response)
+void JsonParser::takeThemesLists(const QJsonObject &response)
 {
+  QString title = response["title"].toString(),
+          id = response["id"].toString();
+  QJsonObject questions = response["questions"].toObject();
 
+  emit takeThemes(id, title, questions);
+}
+
+void JsonParser::parsQuestions(const QJsonObject &questions)
+{
+    QJsonObject q = questions;
 }
 
 void JsonParser::responseSlot(QString string)
@@ -44,20 +53,29 @@ void JsonParser::responseSlot(QString string)
   QJsonObject response = obj["response"].toObject();
 
   switch (code) {
-    case 200:
+    case Codes::auth:
       authorisation(response);
       break;
-    case 201:
-      getProfessionsList(response);
+    case Codes::Prof:
+      takeProfessionsList(response);
       break;
-    case 202:
-      getLessonsList(response);
+    case Codes::Lessons:
+      takeLessonsList(response);
       break;
-    case 203:
-      getQuestions(response);
+    case Codes::Themes:
+        takeThemesLists( response );
       break;
+   /* case Codes::Questions:
+      takeThemesLists(respons);
+      break;*/
     default:
       break;
     }
 }
-
+//
+//void respArraySlot( QJsonArray response )
+//{
+//    
+//}
+//
+//

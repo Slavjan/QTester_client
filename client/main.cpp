@@ -73,6 +73,8 @@ int main( int argc, char *argv[] )
 
     QObject::connect( &jParser, SIGNAL(authSignalPars(QString)),
                       &ui, SLOT(setFullName(QString)) );
+    QObject::connect(&jParser, SIGNAL(takeProf(QString)),
+                      &ui, SLOT())
 //    engine.rootContext()->setContextProperty("fullName", getUserLogin() );
     engine.rootContext()->setContextProperty( "NetManager", mngr );
     engine.load( QUrl( QStringLiteral( "qrc:/main.qml" ) ) );
