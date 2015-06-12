@@ -24,10 +24,6 @@ bool Answer::isValid() const
 	return _valid;
 }
 
-QString Answer::getType()const
-{
-    return _type;
-}
 
 void Answer::setId( const QString &id )
 {

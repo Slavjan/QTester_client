@@ -68,19 +68,27 @@ int main( int argc, char *argv[] )
     //mngr->authorisation( "d3i0", "12345" );
 
     QQmlApplicationEngine engine;
-    UiSetter ui( engine.rootContext() );
+    UiSetter ui( &engine );
     ui.setLogin( getUserLogin() );
-
+                               //setting the name in the WELCOM
     QObject::connect( &jParser, SIGNAL(authSignalPars(QString)),
                       &ui, SLOT(setFullName(QString)) );
-    QObject::connect( &jParser, SIGNAL( takeProf( QString ) ),
-                      &ui, SLOT() );
-    QObject::connect( &jParser, SIGNAL(takeProfs(QJsonObject&))),
-                      &ui, SLOT(set));
+
+                              // settings in the Configure
+    QObject::connect( &jParser, SIGNAL(takeProfs(QJsonObject)),
+                      &ui, SLOT(setProfList(QJsonObject)));
+    QObject::connect( &jParser, SIGNAL(takeLessons(QJsonObject)),
+                      &ui, SLOT(setLessonsList(QJsonObject)));
+    QObject::connect( &jParser, SIGNAL(takeThemes(QJsonObject)),
+                      &ui, SLOT(setThemesList(QJsonObject)));
+    QObject::connect( &jParser, SIGNAL(takeQuestions(QJsonObject)),
+                      &ui, SLOT(setQuestions(QJsonObject)));
+    
 //    engine.rootContext()->setContextProperty("fullName", getUserLogin() );
+
     engine.rootContext()->setContextProperty( "NetManager", mngr );
-    engine.contextForObject(Welcom)->setContextProperty("NetManager", mngr);
-    engine.contextForObject(Configure)->setContextProperty("NetManager", mngr);
+   // engine.contextForObject(Welcome)->setContextProperty("NetManager", mngr);
+   // engine.contextForObject(Configure)->setContextProperty("NetManager", mngr);
     engine.load( QUrl( QStringLiteral( "qrc:/main.qml" ) ) );
 
     return app.exec();

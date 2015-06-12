@@ -10,6 +10,7 @@ Item {
 
     ListModel{
         id: themeModel;
+
     }
     ListModel{
         id: lessonsModel;
@@ -53,7 +54,9 @@ Item {
 
                         onCurrentIndexChanged: {
                             NetManager.sendPullRequestLessonsList(_profession.currentIndex());
+                            lessonsModel.append(profLsit);
                             _lesson.enabled = true;
+
                         }
                     }
                     ComboBox{
@@ -73,7 +76,8 @@ Item {
                     model: lessonsModel
 
                     onCurrentIndexChanged: {
-                        NetManager.sendPullRequestLessonsList(_lesson.currentIndex())
+                        NetManager.sendPullRequestLessonsList(_lesson.currentIndex());
+                        themeModel.append(lessonsLsit);
                         _theme.enabled = true;
                     }
                     Component.onCompleted: {
@@ -88,7 +92,7 @@ Item {
                     model: themeModel
 
                     onCurrentIndexChanged: {
-                        NetManager.sendPullRequestLessonsList(_theme.currentIndex())
+                        NetManager.sendPullRequestLessonsList(_theme.currentIndex());
                         _theme.enabled = true;
                     }
                     Component.onCompleted: {

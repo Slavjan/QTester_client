@@ -23,9 +23,9 @@ public slots:
   void setLogin( QString login );
 
   void setProfList( const QJsonObject &profs );
-  void setLessonsList( const QJsonObject &profs);
-  void setThemesList( const QJsonObject &profs);
-  void setQuestions( const QJsonObject &profs);
+  void setLessonsList( const QJsonObject &lessons);
+  void setThemesList( const QJsonObject &themes);
+  void setQuestions( const QJsonObject &questions);
 };
 
 #endif // UISETTER_H

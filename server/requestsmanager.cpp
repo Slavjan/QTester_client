@@ -64,9 +64,10 @@ QJsonObject RequestsManager::report( const SQLMgr &db, const QString &request, c
     QJsonObject obj;
     if( request.startsWith( "/get" ) )          // /get...
     {
-       QString listName = request.right( 4 );
+       QString listName = request;
+       listName.remove( 0, 4 );
 
-
+       qDebug() << "[RequestsManager::report]> listName" << listName;
        if(listName.startsWith( reqLists::lessonsList, Qt::CaseInsensitive ))  // if  /...LessonsList ? id=%lId  
        {
          List = Lesson::getLessonsList( db, query.queryItemValue( "id" ) );
@@ -92,8 +93,9 @@ QJsonObject RequestsManager::report( const SQLMgr &db, const QString &request, c
            Theme theme = lesson.getThemes().first();
            obj = JsonFormat::themeToJsonObj( theme );
        }
-       else IdTitleMap();
     }
     //TODO TcpSocket::report( obj );
+    qDebug() << "[RequestsManager::report] > obj >" << obj;
+
     return obj;
 }

@@ -15,24 +15,25 @@ void JsonParser::authorisation(const QJsonObject &response)
   emit authSignalPars(fullName);
 }
 
-void JsonParser::takeProfessionsList(const QJsonObject &response)
+void JsonParser::takeProfessionsList(QJsonObject response)
 {    
-  emit takeProfs(respons);
+  emit takeProfs(response);
 }
 
-void JsonParser::takeLessonsList(const QJsonObject &response)
+void JsonParser::takeLessonsList(QJsonObject response)
 {
-  emit takeLessons(respons);
+  emit takeLessons(response);
 }
 
-void JsonParser::takeThemesLists(const QJsonObject &response)
+void JsonParser::takeThemesLists(QJsonObject response)
 {
   emit takeThemes(response);
 }
 
-void JsonParser::parsQuestions(const QJsonObject &questions)
+void JsonParser::takeQuestionsList(QJsonObject questions)
 {
     QJsonObject q = questions;
+    emit takeQuestions(questions);
 }
 
 void JsonParser::responseSlot(QString string)
@@ -56,7 +57,7 @@ void JsonParser::responseSlot(QString string)
         takeThemesLists( response );
       break;
     case Codes::Questions:
-      takeQuestions(response);
+      takeQuestionsList(response);
       break;
     default:
       break;

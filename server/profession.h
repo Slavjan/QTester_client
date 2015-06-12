@@ -50,13 +50,13 @@ namespace Table
 {
     namespace Professtion
     {
-        const QString TABLE_NAME = "Professtions";
+        const QString TABLE_NAME = "Professions";
 
         namespace Fields
         {
-            const QString PROFESSTION_ID = "professtion_id";
+            const QString PROFESSTION_ID = "profession_id";
             const QString NAME = "name";
-            const QString TITLE = "titel";
+            const QString TITLE = "title";
         }
     }
 }

@@ -28,11 +28,6 @@ void Question::pushAnswer(const QString &text, const bool valid)
 	pushAnswer(Answer(text, valid));
 }
 
-void Question::pushAnswer( const QString &text, const bool valid, const QString type )
-{
-    pushAnswer( Answer( text, valid, type ) );
-}
-
 QString Question::getId() const
 {
 	return _id;

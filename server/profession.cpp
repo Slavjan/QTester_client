@@ -94,19 +94,20 @@ Lesson Profession::selectLesson( const QString &lessonId,
 IdTitleMap Profession::getProfList( const SQLMgr &sqlManager )
 {
     using namespace Table::Professtion;
-    QStringList _fields( { Fields::PROFESSTION_ID, Fields::TITLE } );
+    QStringList _fields( { Fields::PROFESSTION_ID, Fields::TITLE, "COUNT(*) AS rCount" } );
     IdTitleMap profList;
 
     QSqlQuery query = sqlManager.select( TABLE_NAME, _fields );
-
+    qDebug() << "[Profession::getProfList]> query.size" << query.value("rCount").toInt();
     while( query.next() )
     {
         QString id = query.value( query.record().indexOf( Fields::PROFESSTION_ID ) ).toString(),
                 title = query.value( query.record().indexOf( Fields::TITLE ) ).toString();
 
+        qDebug() << "[Profession::getProfList]> id > " << id << " | title > " << title;
         profList[id] = title;
     }
-
+    
     return profList;
 }
 

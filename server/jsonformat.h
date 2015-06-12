@@ -36,8 +36,10 @@ public:
 
 namespace reqLists
 {
-    const QString profList = "profLsit";
-    const QString lessonsList = "lessonsLsit";
-    const QString themesList = "themesLsit";
+    const QString auth = "/auth";
+    const QString get = "/get";
+    const QString profList = "profList";
+    const QString lessonsList = "lessonsList";
+    const QString themesList = "themesList";
     const QString questions = "questions";
 }

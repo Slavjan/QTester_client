@@ -131,5 +131,6 @@ ApplicationWindow {
         if( config.alwaysPromptAuthentication ){
             stack.push( Qt.resolvedUrl('Content/Login.qml') );
         }
+       // else stack.push(Qt.resolvedUrl('Content/'))
     }
 }
