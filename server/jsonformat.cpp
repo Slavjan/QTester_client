@@ -84,6 +84,7 @@ QJsonObject JsonFormat::answerToJsonObj( const Answer &answer )
 
 QJsonObject JsonFormat::profListToJsonObj( const IdTitleMap &list )
 {
+    qDebug() << "[JsonFormat::profListToJsonObj] "<< list;
     return idTitleMapToJsonObj( list, Codes::Prof, reqLists::profList );
 }
 
@@ -114,13 +115,15 @@ QJsonObject JsonFormat::idTitleMapToJsonObj( const IdTitleMap &list, int code, c
 QJsonArray JsonFormat::mapListTojArray( const IdTitleMap &map )
 {
     QJsonArray jArray;
-    QMapIterator<QString, QString> i( map );
+  //  QMapIterator<QString, QString> i( map );
     int j = 0;
-    while( i.hasNext() )
+   /* while( i.hasNext() )
+    {*/
+    for( auto it = map.begin(); it == map.begin(); it++ )
     {
-        qDebug() << "[JsonFormat::mapListTojArray] #" << j << " key:" << i.key() << " value:" << i.value();
-        jArray.append( mapListItemtojObject( i.key(), i.value() ) );
-        i.next();
+        qDebug() << "[JsonFormat::mapListTojArray] #" << j << " key:" << it.key() << " value:" << it.value();
+        jArray.append( mapListItemtojObject( it.key(), it.value() ) );
+//        i.next();
         j++;
     }
 

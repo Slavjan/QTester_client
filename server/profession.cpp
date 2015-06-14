@@ -97,17 +97,19 @@ IdTitleMap Profession::getProfList( const SQLMgr &sqlManager )
     QStringList _fields( { Fields::PROFESSTION_ID, Fields::TITLE, "COUNT(*) AS rCount" } );
     IdTitleMap profList;
 
-    QSqlQuery query = sqlManager.select( TABLE_NAME, _fields );
-    qDebug() << "[Profession::getProfList]> query.size" << query.value("rCount").toInt();
+    QSqlQuery query = sqlManager.select( TABLE_NAME, _fields, 25);
+   // qDebug() << "[Profession::getProfList]> query.size" << query.value("rCount").toInt();
     while( query.next() )
     {
         QString id = query.value( query.record().indexOf( Fields::PROFESSTION_ID ) ).toString(),
                 title = query.value( query.record().indexOf( Fields::TITLE ) ).toString();
 
-        qDebug() << " " << id << " | title > " << title;
-        profList[id] = title;
+     //   qDebug() << " " << id << " | title > " << title;
+        qDebug() << " 0 profList writed";
+        profList.insert(id, title);
+        qDebug() << "profList writed";
     }
-    qDebug() << "[Profession::getProfList]> IdTitleMap >" << profList;
+  //  qDebug() << "[Profession::getProfList]> IdTitleMap >" << profList;
     return profList;
 }
 
