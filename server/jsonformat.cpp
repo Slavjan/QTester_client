@@ -115,21 +115,25 @@ QJsonArray JsonFormat::mapListTojArray( const IdTitleMap &map )
 {
     QJsonArray jArray;
     QMapIterator<QString, QString> i( map );
-
+    int j = 0;
     while( i.hasNext() )
     {
-        i.next();
+        qDebug() << "[JsonFormat::mapListTojArray] #" << j << " key:" << i.key() << " value:" << i.value();
         jArray.append( mapListItemtojObject( i.key(), i.value() ) );
+        i.next();
+        j++;
     }
 
     return jArray;
 }
 QJsonObject JsonFormat::mapListItemtojObject( const QVariant &key, const QVariant &value )
 {
-    QJsonObject obj{
-        { "id", key.toInt() },
-        { "title", value.toString() }
-    };
+  qDebug() << "[JsonFormat::mapListItemtojObject] > key: " << key << " value: " << value;
+  QJsonObject obj
+  {
+    { "id", key.toInt() },
+    { "title", value.toString() }
+  };
 
     return obj;
 }
