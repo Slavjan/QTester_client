@@ -68,7 +68,7 @@ int main( int argc, char *argv[] )
     //mngr->authorisation( "d3i0", "12345" );
 
     QQmlApplicationEngine engine;
-    UiSetter ui( &engine );
+    UiSetter ui( engine.rootContext() );
     ui.setLogin( getUserLogin() );
                                //setting the name in the WELCOM
     QObject::connect( &jParser, SIGNAL(authSignalPars(QString)),
@@ -83,8 +83,8 @@ int main( int argc, char *argv[] )
                       &ui, SLOT(setThemesList(QJsonObject)));
     QObject::connect( &jParser, SIGNAL(takeQuestions(QJsonObject)),
                       &ui, SLOT(setQuestions(QJsonObject)));
-    
-//    engine.rootContext()->setContextProperty("fullName", getUserLogin() );
+
+    engine.rootContext()->setContextProperty("fullName", getUserLogin() );
 
     engine.rootContext()->setContextProperty( "NetManager", mngr );
    // engine.contextForObject(Welcome)->setContextProperty("NetManager", mngr);

@@ -9,14 +9,15 @@ ApplicationWindow {
     id: root
     title: qsTr("QTester")
 
-    width: 900
-    height: 600
-    minimumWidth: 760
-    minimumHeight: 520
+    width: 900;
+    height: 600;
+    minimumWidth: 300;
+    minimumHeight: 300;
+ //   Window.flags:
 
     visible: true
     Item{
-        id: config
+        id: config;
 
         property int  margin: 10
         property int  padding: 6
@@ -128,6 +129,8 @@ ApplicationWindow {
     */
     Component.onCompleted: {
         NetManager.authorisation(username, "111");
+        //profList;
+//        console.log(profList);
         if( config.alwaysPromptAuthentication ){
             stack.push( Qt.resolvedUrl('Content/Login.qml') );
         }

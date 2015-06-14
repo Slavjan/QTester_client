@@ -10,44 +10,47 @@ namespace reqLists
     const QString themesList = "themesList";
     const QString questions = "questions";
 }
-UiSetter::UiSetter(QQmlApplicationEngine *engine, QObject *parent) : QObject(parent)
+UiSetter::UiSetter(QQmlContext *root, QObject *parent) : QObject(parent)
 {
-  _engine = engine;
+  _root = root;
 }
 
 void UiSetter::setFullName(QString fullName)
 {
-  _engine->rootContext()->setContextProperty("fullName", fullName);
+  _root->setContextProperty("fullName", fullName);
 }
 
 void UiSetter::setLogin(QString login)
 {
-   _engine->rootContext()->setContextProperty("username", login);
+   _root->setContextProperty("username", login);
 }
 
  //slots
 
 void UiSetter::setProfList(const QJsonObject &profs)
 {
- // _engine->contextForObject(Configure)->setContextObject( profs);
-  QObject *obj = _engine->rootObjects()[0];
-  _engine->contextForObject(obj)->setContextProperty(reqLists::profList, profs);
-  qDebug() << obj->objectName();
+  qDebug() << "client/[UiSetter::setProfList] profs> " << profs;
+    QJsonArray response = profs["profList"].toArray();
+  //qDebug() << "client/[UiSetter::setProfList] list> " << list;
+//  QJsonArray arr;
+//  for (int i = 0; i < respons.size(); ++i) {
+//      arr.append(respons.at(i).toObject()["title"]);
+//    }
+
+  _root->setContextProperty("profList", response);//skype go
   //->setContextObject( lessons );
 }
 void UiSetter::setLessonsList( const QJsonObject &lessons )
 {
-    QObject *obj = _engine->rootObjects()[1];
-    _engine->contextForObject( obj )->setContextProperty( reqLists::profList, lessons );
-    qDebug() << obj->objectName();
+  _root->setContextProperty( "lessonsList", lessons );
+
     //  _engine->rootObjects()["Configure"]->setProperty(reqLists::profList, profs);
 }
 
 void UiSetter::setThemesList( const QJsonObject &themes )
 {
-    QObject *obj = _engine->rootObjects()[2];
-    _engine->contextForObject( obj )->setContextProperty( reqLists::profList, themes );
-    qDebug() << obj->objectName();
+  _root->setContextProperty( "themesList", themes );
+
   //_engine->contextForObject(Configure)->setContextObject( lessons );
   /*_engine->rootObjects()["Configure"]
       ->setProperty(reqLists::profList, profs);*/
@@ -55,8 +58,7 @@ void UiSetter::setThemesList( const QJsonObject &themes )
 
 void UiSetter::setQuestions( const QJsonObject &questions)//making
 {
-    QObject *obj = _engine->rootObjects()[3];
-    _engine->contextForObject( obj )->setContextProperty( reqLists::profList, questions );
-    qDebug() << obj->objectName();
+  _root->setContextProperty( "questions", questions );
+
  // _engine->contextForObject(Configure)->setContextObject( questions );
 }

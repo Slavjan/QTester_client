@@ -104,10 +104,10 @@ IdTitleMap Profession::getProfList( const SQLMgr &sqlManager )
         QString id = query.value( query.record().indexOf( Fields::PROFESSTION_ID ) ).toString(),
                 title = query.value( query.record().indexOf( Fields::TITLE ) ).toString();
 
-        qDebug() << "[Profession::getProfList]> id > " << id << " | title > " << title;
+        qDebug() << " " << id << " | title > " << title;
         profList[id] = title;
     }
-    
+    qDebug() << "[Profession::getProfList]> IdTitleMap >" << profList;
     return profList;
 }
 

@@ -7,7 +7,6 @@ Item {
     width: 900
     height: 600
 
-
     ListModel{
         id: themeModel;
 
@@ -18,6 +17,7 @@ Item {
     ListModel{
         id: professionModel;
     }
+
 
     function isStartTest(){
         return (_countQuestion.value > 0) && (_countQuestion.value <= _countQuestionAll.value);
@@ -50,14 +50,18 @@ Item {
                     ComboBox{
                         id: _profession
                         Layout.fillWidth: true;
-                        model: professionModel
+                        model: professionTitleModel;
+//                        model : profList
+
 
                         onCurrentIndexChanged: {
-                            NetManager.sendPullRequestLessonsList(_profession.currentIndex());
-                            lessonsModel.append(profLsit);
+//                            NetManager.sendPullRequestLessonsList(_profession.currentIndex);
+                            lessonsModel.append(profList);
                             _lesson.enabled = true;
+                            console.log(profList);
 
                         }
+//                        onDataChanged: {professionModel.append( profList );}
                     }
                     ComboBox{
                         id: _course
@@ -73,11 +77,11 @@ Item {
                 ComboBox{
                     id: _lesson
                     Layout.fillWidth: true;
-                    model: lessonsModel
+                    model: lessonsModel.append(lessonsList)
 
                     onCurrentIndexChanged: {
-                        NetManager.sendPullRequestLessonsList(_lesson.currentIndex());
-                        themeModel.append(lessonsLsit);
+//                        NetManager.sendPullRequestLessonsList(_lesson.currentIndex);
+                        themeModel.append(themesList);
                         _theme.enabled = true;
                     }
                     Component.onCompleted: {
@@ -89,10 +93,10 @@ Item {
                 ComboBox{
                     id: _theme
                     Layout.fillWidth: true;
-                    model: themeModel
+                    model: themeModel;
 
                     onCurrentIndexChanged: {
-                        NetManager.sendPullRequestLessonsList(_theme.currentIndex());
+//                        NetManager.sendPullRequestLessonsList(_theme.currentIndex);
                         _theme.enabled = true;
                     }
                     Component.onCompleted: {

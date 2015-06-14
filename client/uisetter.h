@@ -4,13 +4,14 @@
 #include <QObject>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include "jsonparser.h"
 
 class UiSetter : public QObject
 {
   Q_OBJECT
-  QQmlApplicationEngine *_engine;
+  QQmlContext *_root;
 public:
-  explicit UiSetter(QQmlApplicationEngine *engine, QObject *parent = 0);
+  explicit UiSetter(QQmlContext *root, QObject *parent = 0);
 
 signals:
   void pullProfList();

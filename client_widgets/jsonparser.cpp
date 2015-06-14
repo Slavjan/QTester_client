@@ -1,5 +1,15 @@
 #include "jsonparser.h"
 
+namespace reqLists
+{
+    const QString auth = "/auth";
+    const QString get = "/get";
+    const QString profList = "profList";
+    const QString lessonsList = "lessonsList";
+    const QString themesList = "themesList";
+    const QString questions = "questions";
+}
+
 JsonParser::JsonParser(QObject *parent)
   : QObject(parent)
 {
@@ -17,23 +27,31 @@ void JsonParser::authorisation(const QJsonObject &response)
 
 void JsonParser::takeProfessionsList(QJsonObject response)
 {    
-  emit takeProfs(response);
+  IdTitleMap result;
+  QJsonArray profArray = response[reqLists::profList].toArray();
+
+  foreach (QJsonValue val, profArray) {
+      QJsonObject obj = val.toObject();
+      result[ obj["id"].toString() ] = obj["title"].toString();
+  }
+
+  emit takeProfs(result);
 }
 
 void JsonParser::takeLessonsList(QJsonObject response)
 {
-  emit takeLessons(response);
+ // emit takeLessons(response);
 }
 
 void JsonParser::takeThemesLists(QJsonObject response)
 {
-  emit takeThemes(response);
+//  emit takeThemes(response);
 }
 
 void JsonParser::takeQuestionsList(QJsonObject questions)
 {
     QJsonObject q = questions;
-    emit takeQuestions(questions);
+ //   emit takeQuestions(questions);
 }
 
 void JsonParser::responseSlot(QString string)
