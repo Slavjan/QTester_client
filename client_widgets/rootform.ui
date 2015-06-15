@@ -16,6 +16,9 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
      <widget class="QWidget" name="page">
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
@@ -30,7 +33,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="resource.qrc">:/resources/logo.png</pixmap>
+          <pixmap>:/resources/logo.png</pixmap>
          </property>
          <property name="scaledContents">
           <bool>false</bool>
@@ -169,8 +172,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="resource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

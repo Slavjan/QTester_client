@@ -54,7 +54,7 @@ namespace Table
 
         namespace Fields
         {
-            const QString PROFESSTION_ID = "profession_id";
+            const QString PROFESSION_ID = "profession_id";
             const QString NAME = "name";
             const QString TITLE = "title";
         }

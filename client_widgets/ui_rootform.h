@@ -173,6 +173,9 @@ public:
 
         retranslateUi(RootForm);
 
+        stackedWidget->setCurrentIndex(0);
+
+
         QMetaObject::connectSlotsByName(RootForm);
     } // setupUi
 

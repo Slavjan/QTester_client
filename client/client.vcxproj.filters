@@ -1,16 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Form Files">
-      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
-      <Extensions>ui</Extensions>
-      <ParseFiles>false</ParseFiles>
-    </Filter>
-    <Filter Include="Form Files">
-      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
-      <Extensions>ui</Extensions>
-      <ParseFiles>false</ParseFiles>
-    </Filter>
     <Filter Include="Generated Files">
       <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;moc;h;def;odl;idl;res;</Extensions>
@@ -46,24 +36,18 @@
       <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Generated Files\Debug">
-      <UniqueIdentifier>{59d5d817-f2b1-4351-822d-64c16fb49e5c}</UniqueIdentifier>
+      <UniqueIdentifier>{ba9bc788-facb-46a6-80a6-ce6847478da2}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Release">
-      <UniqueIdentifier>{526a047e-93bc-4a0e-8c1c-280f498898e2}</UniqueIdentifier>
+      <UniqueIdentifier>{f240f410-4e4b-4050-957d-ee0cf8720ef1}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="autorisationdialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="jsonparser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="jsonreader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -72,118 +56,93 @@
     <ClCompile Include="networkquerymanager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rootform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="rootwindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tcpclient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Debug\moc_autorisationdialog.cpp">
+    <ClCompile Include="uisetter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_jsonparser.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="Release\moc_autorisationdialog.cpp">
+    <ClCompile Include="GeneratedFiles\Release\moc_jsonparser.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Debug\moc_jsonparser.cpp">
+    <ClCompile Include="GeneratedFiles\Debug\moc_networkquerymanager.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="Release\moc_jsonparser.cpp">
+    <ClCompile Include="GeneratedFiles\Release\moc_networkquerymanager.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Debug\moc_networkquerymanager.cpp">
+    <ClCompile Include="GeneratedFiles\Debug\moc_tcpclient.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="Release\moc_networkquerymanager.cpp">
+    <ClCompile Include="GeneratedFiles\Release\moc_tcpclient.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Debug\moc_rootform.cpp">
+    <ClCompile Include="GeneratedFiles\Debug\moc_uisetter.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="Release\moc_rootform.cpp">
+    <ClCompile Include="GeneratedFiles\Release\moc_uisetter.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Debug\moc_rootwindow.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="Release\moc_rootwindow.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Debug\moc_tcpclient.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="Release\moc_tcpclient.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\qrc_resource.cpp">
+    <ClCompile Include="GeneratedFiles\qrc_qml.cpp">
       <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="button.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Debug\moc_button.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="Release\moc_button.cpp">
-      <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="autorisationdialog.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="jsonparser.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <ClInclude Include="jsonreader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <CustomBuild Include="networkquerymanager.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="rootform.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="rootwindow.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="tcpclient.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="button.h">
-      <Filter>Generated Files</Filter>
+    <CustomBuild Include="uisetter.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="autorisationdialog.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="rootform.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="rootwindow.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="resources\logo.png">
+    <None Include="Content\Testing\AnswerForms\CheckForm.qml">
       <Filter>Resource Files</Filter>
     </None>
-    <CustomBuild Include="resource.qrc">
+    <None Include="Content\Testing\Configure.qml">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Content\Login.qml">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Content\Testing\Process.qml">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Content\Testing\AnswerForms\RadioForm.qml">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Content\Testing\AnswerForms\RegexpForm.qml">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Content\Testing\AnswerForms\TextForm.qml">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Content\User.js">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Content\Welcome.qml">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="main.qml">
+      <Filter>Resource Files</Filter>
+    </None>
+    <CustomBuild Include="qml.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
+    <None Include="images\qt-logo.png">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GeneratedFiles\ui_autorisationdialog.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_rootform.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_rootwindow.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
+    <ResourceCompile Include="client.rc" />
   </ItemGroup>
 </Project>

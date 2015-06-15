@@ -59,9 +59,9 @@ namespace Table
 			const QString LESSON_ID = "lesson_id";
 			const QString NAME = "name";
 			const QString TITLE = "title";
-            const QString LANGUAGE = "localization";
-            const QString COURSE = "course";
-			const QString PROFESTION_ID = "profestion_id";
+			const QString LANGUAGE = "localization";
+			const QString COURSE = "course";
+			const QString PROFESTION_ID = "profession_id";
 		}
 	}
 }

@@ -58,6 +58,19 @@ QJsonObject RequestsManager::autorisation( const SQLMgr &db, const QUrlQuery &ur
     return failed;
 }
 
+QJsonObject RequestsManager::qCountToJsonObj(qint64 maxQCount)
+{
+  QJsonObject response{
+    {reqLists::maxQCount, QString::number(maxQCount)}
+  };
+  QJsonObject QCount{
+    {"code", QString::number(Codes::QuestionsCount) },
+    {"response", response}
+  };
+
+  return QCount;
+}
+
 QJsonObject RequestsManager::report( const SQLMgr &db, const QString &request, const QUrlQuery &query )
 {
     IdTitleMap  List;
@@ -70,6 +83,7 @@ QJsonObject RequestsManager::report( const SQLMgr &db, const QString &request, c
        qDebug() << "[RequestsManager::report]> listName" << listName;
        if(listName.startsWith( reqLists::lessonsList, Qt::CaseInsensitive ))  // if  /...LessonsList ? id=%lId  
        {
+
          List = Lesson::getLessonsList( db, query.queryItemValue( "id" ) );
          obj = JsonFormat::lessonsListToJsonObj( List );
        }   
@@ -85,13 +99,26 @@ QJsonObject RequestsManager::report( const SQLMgr &db, const QString &request, c
        }
        else if( listName.startsWith( reqLists::questions, Qt::CaseInsensitive ) ) // if   /... Questions
        {  // GET /getQuestions?themeId= %id &questionsCount= %qCount &answersCount= %aCount
-           Lesson lesson;
-           lesson.selectThemesFromDataBase( db,
-                                            QStringList( query.queryItemValue( "themeId" ) ),// %id
-                                            query.queryItemValue( "questionsCount" ).toInt(),// %qCount
-                                            5 ); //%aCount
-           Theme theme = lesson.getThemes().first();
-           obj = JsonFormat::themeToJsonObj( theme );
+
+           if(query.hasQueryItem(reqLists::maxQCount))
+           {
+//               QString themeId = query.queryItemValue()
+//               QSqlQuery sqLquery = db.select(Table::Question::TABLE_NAME, ("COUNT(*) AS rCount"),
+//                                              SqlWhere(Table::Question::Field::THEME_ID + " = '" +  + "'"));
+//              qint64 maxQCount = sq
+//              QJsonObject QCount = qCountToJsonObj(maxQCount);
+//              obj = QCount;
+           }
+           else
+           {
+             Lesson lesson;
+             lesson.selectThemesFromDataBase( db,
+                                              QStringList( query.queryItemValue( "themeId" ) ),// %id
+                                              query.queryItemValue( "questionsCount" ).toInt(),// %qCount
+                                              5 ); //%aCount
+             Theme theme = lesson.getThemes().first();
+             obj = JsonFormat::themeToJsonObj( theme );
+           }
        }
     }
     //TODO TcpSocket::report( obj );

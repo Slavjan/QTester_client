@@ -13,22 +13,27 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     jsonreader.cpp \
     tcpclient.cpp \
     networkquerymanager.cpp \
     jsonparser.cpp \
-    rootform.cpp
+    rootform.cpp \
+    rootwindow.cpp \
+    autorisationdialog.cpp \
+    button.cpp
 
-HEADERS  += mainwindow.h \
-    jsonreader.h \
+HEADERS  += jsonreader.h \
     tcpclient.h \
     networkquerymanager.h \
     jsonparser.h \
-    rootform.h
+    rootform.h \
+    rootwindow.h \
+    autorisationdialog.h \
+    button.h
 
-FORMS    += mainwindow.ui \
-    rootform.ui
+FORMS    += rootform.ui \
+    rootwindow.ui \
+    autorisationdialog.ui
 
 RESOURCES += \
     resource.qrc

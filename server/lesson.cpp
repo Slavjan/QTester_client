@@ -92,7 +92,7 @@ IdTitleMap Lesson::getLessonsList( const SQLMgr &sqlManager, const QString &prof
     using namespace Table::Lesson;
     
     QStringList _fields( { Fields::LESSON_ID, Fields::TITLE } );
-    SqlWhere _where( Fields::PROFESTION_ID + "= '" + profId + "" );
+    SqlWhere _where( Fields::PROFESTION_ID + "= '" + profId + "'" );
     IdTitleMap lessList;
 
     QSqlQuery query = sqlManager.select( TABLE_NAME, _fields, _where );

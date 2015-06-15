@@ -5,13 +5,13 @@
 #include "rootform.h"
 #include <QDir>
 
-MainWindow::MainWindow(QWidget *parent) :
+QMainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
   ui(new Ui::MainWindow)
 {
   ui->setupUi(this);
   ui->stackedWidget->setCurrentIndex( PageIndex::Login );
-
+  _parser = JsonParser::instance(parent);
   // Определить логин
   QString UserLogin = getUserLogin();
   _netMan = new NetworkQueryManager("127.0.0.1", 3434);
@@ -73,5 +73,6 @@ void MainWindow::setProfs(IdTitleMap profList)
   qDebug() << "setProfs";
   RootForm *form = new RootForm(this);
   form->setProfList( profList );
+//  form->setJParser(_parser);
   form->exec();
 }

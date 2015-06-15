@@ -19,6 +19,7 @@ private:
 public:
     static QString request( const SQLMgr &db, const QUrl &url );
 
+    QJsonObject qCountToJsonObj(qint64 maxQCount);
 };
 
 

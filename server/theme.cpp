@@ -143,7 +143,7 @@ IdTitleMap Theme::getThemeList( const SQLMgr &sqlManager, const QString &lessonI
 {
     using namespace Table::Theme;
     QStringList _fields( { Fields::THEME_ID, Fields::TITLE } );
-    SqlWhere _where( Fields::LESSON_ID + "= '" + lessonId + "" );
+    SqlWhere _where( Fields::LESSON_ID + "= '" + lessonId + "'" );
     IdTitleMap themeList;
 
     QSqlQuery query = sqlManager.select( TABLE_NAME, _fields, _where );

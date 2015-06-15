@@ -10,7 +10,7 @@
 #include "profession.h"
 
 namespace Codes{
-    enum requests{auth = 200, Prof, Lessons, Themes, Questions };
+    enum requests{auth = 200, Prof, Lessons, Themes, Questions, QuestionsCount };
 }
 
 class JsonFormat
@@ -42,4 +42,5 @@ namespace reqLists
     const QString lessonsList = "lessonsList";
     const QString themesList = "themesList";
     const QString questions = "questions";
+    const QString maxQCount = "maxQCount";
 }

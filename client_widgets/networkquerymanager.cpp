@@ -74,7 +74,7 @@ void NetworkQueryManager::sendPullRequestQuestions( const QString &themeId,
                                                     qint64 questionsCount, 
                                                     qint64 answersCount ) 
 {
-    QUrl url( reqLists::get + reqLists::themesList );
+    QUrl url( reqLists::get + reqLists::questions );
     QUrlQuery urlQuery( url );
 
     urlQuery.addQueryItem( "id", themeId );

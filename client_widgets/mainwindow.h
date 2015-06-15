@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
+#include <QDialog>
 #include "jsonparser.h"
 #include "networkquerymanager.h"
 
@@ -12,22 +12,20 @@ namespace PageIndex{
   enum PageIndex{Start = 0, Login = 1};
 }
 
-class MainWindow : public QMainWindow
+class AurizationWindow : public QDialog
 {
   Q_OBJECT
 
 private:
   Ui::MainWindow *ui;
-  NetworkQueryManager *_netMan;
-  JsonParser _parser;
 
-  static QString getUserLogin();
+  static QString getUserLogin();//пусть остается
 public:
 
-  explicit MainWindow(QWidget *parent = 0);
-  ~MainWindow();
+  explicit AurizationWindow(QWidget *parent = 0);
+  ~AurizationWindow();
 
-private slots:
+private slots:// чё тут будет не могу додуматься
   void authorisation(const QString &token, const QString &fullName);
 
   void on_PButton_Start_BeginTest_clicked();
