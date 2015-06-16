@@ -77,7 +77,6 @@ public:
     QGroupBox *groupBox_3;
     QVBoxLayout *verticalLayout_8;
     QLabel *Label_Tester_Question;
-    QGroupBox *GroupBox_Tester_Answers;
     QVBoxLayout *VLay_Tester_Answers;
     QVBoxLayout *verticalLayout_3;
     QPushButton *pushButton;
@@ -297,6 +296,7 @@ public:
         Label_Tester_Question = new QLabel(groupBox_3);
         Label_Tester_Question->setObjectName(QStringLiteral("Label_Tester_Question"));
         Label_Tester_Question->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
+        Label_Tester_Question->setWordWrap(true);
 
         verticalLayout_8->addWidget(Label_Tester_Question);
 
@@ -306,18 +306,10 @@ public:
 
         verticalLayout_4->addWidget(GroupBox_Tester_Examinee);
 
-        GroupBox_Tester_Answers = new QGroupBox(groupBox_2);
-        GroupBox_Tester_Answers->setObjectName(QStringLiteral("GroupBox_Tester_Answers"));
-        QSizePolicy sizePolicy3(QSizePolicy::Preferred, QSizePolicy::Maximum);
-        sizePolicy3.setHorizontalStretch(0);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(GroupBox_Tester_Answers->sizePolicy().hasHeightForWidth());
-        GroupBox_Tester_Answers->setSizePolicy(sizePolicy3);
-        GroupBox_Tester_Answers->setMinimumSize(QSize(0, 0));
-        VLay_Tester_Answers = new QVBoxLayout(GroupBox_Tester_Answers);
+        VLay_Tester_Answers = new QVBoxLayout();
         VLay_Tester_Answers->setObjectName(QStringLiteral("VLay_Tester_Answers"));
 
-        verticalLayout_4->addWidget(GroupBox_Tester_Answers);
+        verticalLayout_4->addLayout(VLay_Tester_Answers);
 
 
         horizontalLayout_3->addWidget(groupBox_2);
@@ -334,18 +326,18 @@ public:
 
         scrollArea = new QScrollArea(page_2);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
-        QSizePolicy sizePolicy4(QSizePolicy::Minimum, QSizePolicy::Expanding);
-        sizePolicy4.setHorizontalStretch(0);
-        sizePolicy4.setVerticalStretch(0);
-        sizePolicy4.setHeightForWidth(scrollArea->sizePolicy().hasHeightForWidth());
-        scrollArea->setSizePolicy(sizePolicy4);
+        QSizePolicy sizePolicy3(QSizePolicy::Minimum, QSizePolicy::Expanding);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(scrollArea->sizePolicy().hasHeightForWidth());
+        scrollArea->setSizePolicy(sizePolicy3);
         scrollArea->setMinimumSize(QSize(150, 0));
         scrollArea->setMaximumSize(QSize(300, 16777215));
         scrollArea->setWidgetResizable(true);
         scrollArea->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         GLay_Tester_Questions = new QWidget();
         GLay_Tester_Questions->setObjectName(QStringLiteral("GLay_Tester_Questions"));
-        GLay_Tester_Questions->setGeometry(QRect(0, 0, 148, 298));
+        GLay_Tester_Questions->setGeometry(QRect(0, 0, 148, 300));
         gridLayout_2 = new QGridLayout(GLay_Tester_Questions);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         scrollArea->setWidget(GLay_Tester_Questions);
@@ -365,7 +357,7 @@ public:
         QObject::connect(HorizontalSlider_Config_QuestionsCount, SIGNAL(valueChanged(int)), SBox_Config_needQCount, SLOT(setValue(int)));
         QObject::connect(SBox_Config_needQCount, SIGNAL(valueChanged(int)), HorizontalSlider_Config_QuestionsCount, SLOT(setValue(int)));
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(RootWindow);
@@ -393,7 +385,6 @@ public:
         Label_Tester_Theme->setText(QApplication::translate("RootWindow", "_theme", 0));
         groupBox_3->setTitle(QApplication::translate("RootWindow", "Question", 0));
         Label_Tester_Question->setText(QApplication::translate("RootWindow", "Question Text", 0));
-        GroupBox_Tester_Answers->setTitle(QApplication::translate("RootWindow", "Answers", 0));
         pushButton->setText(QApplication::translate("RootWindow", "PushButton", 0));
     } // retranslateUi
 

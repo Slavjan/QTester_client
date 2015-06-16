@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     rootform.cpp \
     rootwindow.cpp \
     autorisationdialog.cpp \
-    button.cpp
+    button.cpp \
+    radio.cpp
 
 HEADERS  += jsonreader.h \
     tcpclient.h \
@@ -29,7 +30,8 @@ HEADERS  += jsonreader.h \
     rootform.h \
     rootwindow.h \
     autorisationdialog.h \
-    button.h
+    button.h \
+    radio.h
 
 FORMS    += rootform.ui \
     rootwindow.ui \

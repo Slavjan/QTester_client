@@ -6,6 +6,7 @@
 #include <QCheckBox>
 #include <QRadioButton>
 #include <QLineEdit>
+#include <QButtonGroup>
 
 namespace QuestionTypes {
     const QString RADIO = "RADIO";
@@ -27,19 +28,20 @@ void RootWindow::connectSignals()
 void RootWindow::setProfs(IdTitleMap profList)
 {
     ui->ComboBox_Config_Profession->clear();
-    ui->ComboBox_Config_Profession->blockSignals( true );
     for (auto it = profList.begin(); it != profList.end(); ++it)
     {
         ui->ComboBox_Config_Profession->addItem(it.value(), it.key());
     }
-    ui->ComboBox_Config_Profession->blockSignals( false );
 }
 
 RootWindow::RootWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::RootWindow)
+    ui(new Ui::RootWindow),
+    _answerGroup(nullptr),
+    _answersLay(nullptr)
 {
     ui->setupUi(this);
+    ui->stackedWidget->setCurrentIndex( PageIndex::RootWindow::Config );
     _jParser = JsonParser::instance(this);
     _netMan = new NetworkQueryManager("127.0.0.1", 3434);
 
@@ -70,7 +72,6 @@ void RootWindow::on_ComboBox_Config_Profession_currentIndexChanged(int index)
 void RootWindow::setLessonsList(IdTitleMap lessonsList)
 {
     ui->ComboBox_Config_Lessons->clear();
-    ui->ComboBox_Config_Lessons->blockSignals( true );
     for (auto it = lessonsList.begin(); it != lessonsList.end(); ++it)
     {
         ui->ComboBox_Config_Lessons->addItem(it.value(), it.key());
@@ -78,7 +79,6 @@ void RootWindow::setLessonsList(IdTitleMap lessonsList)
             << ui->ComboBox_Config_Lessons->currentData().toString();
         
     }
-    ui->ComboBox_Config_Lessons->blockSignals( false );
 }
 
 void RootWindow::setThemesList( IdTitleMap themeList )
@@ -107,15 +107,17 @@ void RootWindow::setQuestions(QVector<strQuestions> questions)
         questionText = questions.first().text,
         questionType = questions.first().type;
 
+    QButtonGroup *butGroup = new QButtonGroup(this);
 
     for (int j = 0; j < questions.count(); ++j)
     {
         int questionId = questions.at(j).id;
-        Button *btn = new Button( QString::number( j+1 ), questionId );
+        Button *btn = new Button( QString::number( j+1 ), j );
         ui->GLay_Tester_Questions->layout()->addWidget(btn);
 //        btn->show();
+        butGroup->addButton(btn, 1);
         connect( btn, SIGNAL( selected(int)),
-                 this, SLOT(quesionSelected(int)) );
+                 this, SLOT(questionSelected(int)) );
     }
 
     /// \todo generate answers for firs question
@@ -123,41 +125,96 @@ void RootWindow::setQuestions(QVector<strQuestions> questions)
     ui->Label_Tester_Lesson->setText( lesson );
     ui->Label_Tester_Theme->setText( theme );
     ui->Label_Tester_Question->setText( questionText );
-    if (questionType == QuestionTypes::RADIO)
+
+    createAnswers(questionType, _questions.first().answers);
+
+}
+
+void RootWindow::questionSelected(int number)
+{
+    strQuestions &strQs = _questions[number];
+    ui->Label_Tester_Question->setText(strQs.text);
+
+    createAnswers(strQs.type, strQs.answers);
+}
+
+void RootWindow::createAnswers(const QString &type, QVector<strAnswers> &answers)
+{
+    if( _answerGroup ){
+        delete _answerGroup;
+    }
+    _answerGroup = new QGroupBox("Answers");
+    _answersLay  = new QVBoxLayout(_answerGroup);
+    ui->VLay_Tester_Answers->addWidget(_answerGroup);
+    _answerGroup->setLayout( _answersLay );
+
+    if( type == QuestionTypes::RADIO ){
+        createRadioAnswers(answers);
+        return;
+    }
+    if( type == QuestionTypes::CHECK ){
+        createCheckAnswers(answers);
+        return;
+    }
+    if( type == QuestionTypes::TEXT ){
+        createTextAnswers(answers);
+        return;
+    }
+}
+
+void RootWindow::createRadioAnswers(QVector<strAnswers> &answers){
+    for (int i = 0; i < answers.count(); ++i)
     {
         QRadioButton *radio;
-        for (int i = 0; i < 5; ++i)
-        {
+        if( ! answers[i].wgt ){
+            qDebug() << "new Radio";
             radio = new QRadioButton;
-            radio->setText(questions.first().answers.at(i).text);
-            ui->VLay_Tester_Answers->addWidget( radio );
+            answers[i].wgt = radio;
+            radio->setText( answers[i].text );
+            _answersLay->addWidget( answers[i].wgt );
+        }else{
+            qDebug() << "old Radio";
+//            radio = qobject_cast<QRadioButton*>(answers[i].wgt);
+            _answersLay->addWidget( answers[i].wgt );
         }
 
+
     }
-    else if(questionType == QuestionTypes::CHECK )
+}
+
+void RootWindow::createCheckAnswers(QVector<strAnswers> &answers){
+    for (int i = 0; i < answers.count(); ++i)
     {
         QCheckBox *check;
-        for (int i = 0; i < 5; ++i)
-        {
+        if (! answers[i].wgt ) {
+            qDebug() << "new Check";
             check = new QCheckBox;
-            check->setText(questions.first().answers.at(i).text);
-            ui->VLay_Tester_Answers->addWidget( check );
+            answers[i].wgt = check;
+            check->setText(answers[i].text);
+            _answersLay->addWidget( check );
+        }else{
+            qDebug() << "old Check";
+//            check = qobject_cast<QCheckBox*>(answers[i].wgt);
+            _answersLay->addWidget( answers[i].wgt );
         }
-    }
-    else if (questionType == QuestionTypes::TEXT)
-    {
-        QLineEdit *edit = new QLineEdit;
-        ui->VLay_Tester_Answers->addWidget( edit );
-    }
 
+    }
 }
 
-void RootWindow::questionSelected(int id)
-{
+void RootWindow::createTextAnswers(QVector<strAnswers> &answers){
 
+    QLineEdit *edit;
+    if ( ! answers.first().wgt ) {
+        qDebug() << "new Edit";
+        edit = new QLineEdit;
+        answers.first().wgt = edit;
+        edit->setText(answers.first().text);
+    }else{
+        qDebug() << "old Edit";
+        edit = qobject_cast<QLineEdit*>(answers.first().wgt);
+    }
+    _answersLay->addWidget( edit );
 }
-
-
 
 void RootWindow::on_ComboBox_Config_Lessons_currentIndexChanged(int index)
 {
@@ -168,6 +225,13 @@ void RootWindow::on_ComboBox_Config_Lessons_currentIndexChanged(int index)
     connect(_jParser, SIGNAL(takeThemes(IdTitleMap)),
             this, SLOT(setThemesList(IdTitleMap)));
 }
+
+//void RootWindow::userChecked()
+//{
+
+//}
+
+
 
 void RootWindow::on_ComboBox_Config_Theme_currentIndexChanged(int index)
 {

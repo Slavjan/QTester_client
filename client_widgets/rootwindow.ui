@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -324,6 +324,9 @@
                    <property name="alignment">
                     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                    </property>
+                   <property name="wordWrap">
+                    <bool>true</bool>
+                   </property>
                   </widget>
                  </item>
                 </layout>
@@ -333,24 +336,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QGroupBox" name="GroupBox_Tester_Answers">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="title">
-              <string>Answers</string>
-             </property>
-             <layout class="QVBoxLayout" name="VLay_Tester_Answers"/>
-            </widget>
+            <layout class="QVBoxLayout" name="VLay_Tester_Answers"/>
            </item>
           </layout>
          </widget>
@@ -411,7 +397,7 @@
                <x>0</x>
                <y>0</y>
                <width>148</width>
-               <height>298</height>
+               <height>300</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_2"/>

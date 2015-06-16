@@ -18,6 +18,8 @@ struct strAnswers
   qint64 id;
   QString text;
   bool valid;
+
+  QWidget *wgt = nullptr;
 };
 struct strQuestions
 {
