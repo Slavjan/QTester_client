@@ -95,7 +95,7 @@ void RootWindow::setThemesList( IdTitleMap themeList )
 
 void RootWindow::setMaxQuestionsCount(qint64 maxCount)
 {
-    ui->HorizontalSlider_Config_QuestionsCount->setMinimum(/*maxCount>5 ? 5: 0*/ 100);
+   // ui->HorizontalSlider_Config_QuestionsCount->setMinimum(/*maxCount>5 ? 5: 0*/ 100);
 }
 
 void RootWindow::setQuestions(QVector<strQuestions> questions)

@@ -83,31 +83,32 @@ void JsonParser::takeThemesLists(QJsonObject response)
 
 void JsonParser::takeQuestionsList(QJsonObject response)
 {
-  QVector<strQuestions> result;
-  strQuestions strQs;
-  strAnswers strAns;
-  QJsonArray questionsArray = response[reqLists::questions].toArray(),
-             answersArray;
-  foreach( QJsonValue questionVal, questionsArray )
-  {
-    QJsonObject questionObj = questionVal.toObject();
-               answersArray = questionObj[reqLists::answers].toArray();
-    strQs.text = questionObj["text"].toString(),
-    strQs.type = questionObj["type"].toString();
-    strQs.id =  questionObj["id"].toInt();
+    QVector<strQuestions> result;
 
-    foreach (QJsonValue ansVal, answersArray)
+    strAnswers strAns;
+    QJsonArray questionsArray = response[reqLists::questions].toArray(),
+            answersArray;
+    foreach( QJsonValue questionVal, questionsArray )
     {
-      QJsonObject  ansObj = ansVal.toObject();
-      strAns.id = ansObj["id"].toInt();
-      strAns.text = ansObj["text"].toString();
-      strAns.valid = ansObj["valid"].toBool();
-      strQs.answers.push_back(strAns);
+        strQuestions strQs;
+        QJsonObject questionObj = questionVal.toObject();
+        answersArray = questionObj[reqLists::answers].toArray();
+        strQs.text = questionObj["text"].toString(),
+                strQs.type = questionObj["type"].toString();
+        strQs.id =  questionObj["id"].toInt();
+
+        foreach (QJsonValue ansVal, answersArray)
+        {
+            QJsonObject  ansObj = ansVal.toObject();
+            strAns.id = ansObj["id"].toInt();
+            strAns.text = ansObj["text"].toString();
+            strAns.valid = ansObj["valid"].toBool();
+            strQs.answers.push_back(strAns);
+        }
+        result.push_back( strQs );
     }
-    result.push_back( strQs );
-  }
-  //  QJsonObject q = questions;
-  emit takeQuestions(result);
+    //  QJsonObject q = questions;
+    emit takeQuestions(result);
 }
 
 void JsonParser::takeQuestionsCount(QJsonObject response)

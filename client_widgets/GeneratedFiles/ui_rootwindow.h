@@ -153,12 +153,14 @@ public:
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         HorizontalSlider_Config_QuestionsCount = new QSlider(groupBox);
         HorizontalSlider_Config_QuestionsCount->setObjectName(QStringLiteral("HorizontalSlider_Config_QuestionsCount"));
+        HorizontalSlider_Config_QuestionsCount->setMinimum(5);
         HorizontalSlider_Config_QuestionsCount->setOrientation(Qt::Horizontal);
 
         horizontalLayout->addWidget(HorizontalSlider_Config_QuestionsCount);
 
         SBox_Config_needQCount = new QSpinBox(groupBox);
         SBox_Config_needQCount->setObjectName(QStringLiteral("SBox_Config_needQCount"));
+        SBox_Config_needQCount->setMinimum(5);
 
         horizontalLayout->addWidget(SBox_Config_needQCount);
 

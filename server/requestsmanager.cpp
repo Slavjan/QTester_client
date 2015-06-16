@@ -98,7 +98,7 @@ QJsonObject RequestsManager::report( const SQLMgr &db, const QString &request, c
          obj = JsonFormat::themesListToJsonObj( List );          
        }
        else if( listName.startsWith( reqLists::questions, Qt::CaseInsensitive ) ) // if   /... Questions
-       {  // GET /getQuestions?themeId= %id &questionsCount= %qCount &answersCount= %aCount
+       {  // GET /getQuestions?Id= %id &questionsCount= %qCount &answersCount= %aCount
 
            if(query.hasQueryItem(reqLists::maxQCount))
            {
@@ -112,9 +112,12 @@ QJsonObject RequestsManager::report( const SQLMgr &db, const QString &request, c
            else
            {
              Lesson lesson;
+             QStringList themeId( query.queryItemValue( "id" ) );// %id
+             int qcount = query.queryItemValue( "questionsCount" ).toInt();// %qCount
+
              lesson.selectThemesFromDataBase( db,
-                                              QStringList( query.queryItemValue( "themeId" ) ),// %id
-                                              query.queryItemValue( "questionsCount" ).toInt(),// %qCount
+                                              themeId,
+                                              qcount,
                                               5 ); //%aCount
              Theme theme = lesson.getThemes().first();
              obj = JsonFormat::themeToJsonObj( theme );

@@ -82,13 +82,20 @@
             <layout class="QHBoxLayout" name="horizontalLayout">
              <item>
               <widget class="QSlider" name="HorizontalSlider_Config_QuestionsCount">
+               <property name="minimum">
+                <number>5</number>
+               </property>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="SBox_Config_needQCount"/>
+              <widget class="QSpinBox" name="SBox_Config_needQCount">
+               <property name="minimum">
+                <number>5</number>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QLabel" name="label_6">
