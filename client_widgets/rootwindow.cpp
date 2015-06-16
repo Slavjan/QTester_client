@@ -21,8 +21,8 @@ void RootWindow::connectSignals()
              _jParser, SLOT(responseSlot(QString)) );
     //pull requests
     // profList
-    connect( _jParser, SIGNAL(takeProfs(IdTitleMap)),
-             this, SLOT(setProfs(IdTitleMap)));
+    connect( _jParser, SIGNAL( takeProfs( IdTitleMap ) ),
+             this, SLOT( setProfs( IdTitleMap ) ) );
 }
 
 void RootWindow::setProfs(IdTitleMap profList)
@@ -37,9 +37,11 @@ void RootWindow::setProfs(IdTitleMap profList)
 RootWindow::RootWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::RootWindow),
-    _answerGroup(nullptr),
-    _answersLay(nullptr)
+    _answerGroup(nullptr)/*,
+    _answersLay(nullptr)*/
 {
+    _selAnss.clear();
+
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex( PageIndex::RootWindow::Config );
     _jParser = JsonParser::instance(this);
@@ -98,7 +100,7 @@ void RootWindow::setMaxQuestionsCount(qint64 maxCount)
    // ui->HorizontalSlider_Config_QuestionsCount->setMinimum(/*maxCount>5 ? 5: 0*/ 100);
 }
 
-void RootWindow::setQuestions(QVector<strQuestions> questions)
+void RootWindow::setQuestions(QVector<strQuestions> &questions)
 {
     _questions = questions;
     QString profession = ui->ComboBox_Config_Profession->currentText(),
@@ -126,7 +128,7 @@ void RootWindow::setQuestions(QVector<strQuestions> questions)
     ui->Label_Tester_Theme->setText( theme );
     ui->Label_Tester_Question->setText( questionText );
 
-    createAnswers(questionType, _questions.first().answers);
+    createAnswers(0, questionType, _questions.first().answers);
 
 }
 
@@ -135,10 +137,10 @@ void RootWindow::questionSelected(int number)
     strQuestions &strQs = _questions[number];
     ui->Label_Tester_Question->setText(strQs.text);
 
-    createAnswers(strQs.type, strQs.answers);
+    createAnswers(number, strQs.type, strQs.answers);
 }
 
-void RootWindow::createAnswers(const QString &type, QVector<strAnswers> &answers)
+void RootWindow::createAnswers(const int questionNum, const QString &type, QVector<strAnswers> &answers)
 {
     if( _answerGroup ){
         delete _answerGroup;
@@ -149,7 +151,7 @@ void RootWindow::createAnswers(const QString &type, QVector<strAnswers> &answers
     _answerGroup->setLayout( _answersLay );
 
     if( type == QuestionTypes::RADIO ){
-        createRadioAnswers(answers);
+        createRadioAnswers(answers, questionNum);
         return;
     }
     if( type == QuestionTypes::CHECK ){
@@ -162,12 +164,38 @@ void RootWindow::createAnswers(const QString &type, QVector<strAnswers> &answers
     }
 }
 
-void RootWindow::createRadioAnswers(QVector<strAnswers> &answers){
+void RootWindow::answerSelected(int qNum, int ansNum)
+{
+    _selAnss.insert(qNum, ansNum);
+}
+
+void RootWindow::createRadioAnswers(QVector<strAnswers> &answers, int questionNum)
+{
     for (int i = 0; i < answers.count(); ++i)
     {
-        QRadioButton *radio;
-        if( ! answers[i].wgt ){
-            qDebug() << "new Radio";
+        Radio *radio = new Radio;
+        qDebug() << "new Radio";
+        radio->setProperty(selectedNums::qNum, questionNum);
+        radio->setProperty(selectedNums::ansNum, i);
+        radio->setText( answers[i].text );
+
+        int value = _selAnss.value( questionNum );
+
+        bool ok1 = value == i, 
+             ok2 = !(_selAnss.isEmpty()),
+             ok3 = _selAnss.contains( questionNum ),
+             OK = ok1 && ok2 && ok3;
+        radio->setChecked( OK );
+
+        connect(radio, SIGNAL(clicked(bool)),
+                radio, SLOT(ansSelected(bool)));
+
+        connect(radio, SIGNAL(ansSelected(int,int)),
+                this, SLOT(answerSelected(int,int)));
+
+        _answersLay->addWidget( radio );
+/*        if( ! answers[i].wgt ){
+
             radio = new QRadioButton;
             answers[i].wgt = radio;
             radio->setText( answers[i].text );
@@ -176,9 +204,7 @@ void RootWindow::createRadioAnswers(QVector<strAnswers> &answers){
             qDebug() << "old Radio";
 //            radio = qobject_cast<QRadioButton*>(answers[i].wgt);
             _answersLay->addWidget( answers[i].wgt );
-        }
-
-
+        }*/
     }
 }
 
@@ -191,11 +217,11 @@ void RootWindow::createCheckAnswers(QVector<strAnswers> &answers){
             check = new QCheckBox;
             answers[i].wgt = check;
             check->setText(answers[i].text);
-            _answersLay->addWidget( check );
+        //    _answersLay->addWidget( check );
         }else{
             qDebug() << "old Check";
 //            check = qobject_cast<QCheckBox*>(answers[i].wgt);
-            _answersLay->addWidget( answers[i].wgt );
+        //    _answersLay->addWidget( answers[i].wgt );
         }
 
     }
@@ -213,7 +239,7 @@ void RootWindow::createTextAnswers(QVector<strAnswers> &answers){
         qDebug() << "old Edit";
         edit = qobject_cast<QLineEdit*>(answers.first().wgt);
     }
-    _answersLay->addWidget( edit );
+  //  _answersLay->addWidget( edit );
 }
 
 void RootWindow::on_ComboBox_Config_Lessons_currentIndexChanged(int index)
@@ -249,7 +275,7 @@ void RootWindow::on_PButton_Config_Begin_clicked()
     qint64 questionsCount = ui->SBox_Config_needQCount->value(),
             answersCount = 5;
     _netMan->sendPullRequestQuestions(themeId, questionsCount, answersCount);
-    connect(_jParser, SIGNAL(takeQuestions(QVector<strQuestions>)),
-            this, SLOT(setQuestions(QVector<strQuestions>)));
+    connect(_jParser, SIGNAL(takeQuestions(QVector<strQuestions>&)),
+            this, SLOT(setQuestions(QVector<strQuestions>&)));
     ui->stackedWidget->setCurrentIndex(PageIndex::RootWindow::TestProcess);
 }

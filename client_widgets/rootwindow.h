@@ -8,6 +8,8 @@
 #include <QGroupBox>
 #include <QVBoxLayout>
 
+#include "radio.h"
+
 namespace Ui {
 class RootWindow;
 }
@@ -18,6 +20,7 @@ enum PageIndex{Config = 0, TestProcess = 1, Administr };
 }
 
 }
+
 
 
 class RootWindow : public QMainWindow
@@ -33,8 +36,10 @@ private:
     QGroupBox *_answerGroup;
     QVBoxLayout *_answersLay;
 
-    void createAnswers(const QString &type, QVector<strAnswers> &answers);
-    void createRadioAnswers(QVector<strAnswers> &answers);
+    selectedAnswersMap _selAnss;
+
+    void createAnswers(const int questionNum, const QString &type, QVector<strAnswers> &answers);
+    void createRadioAnswers(QVector<strAnswers> &answers, int questionNum);
     void createCheckAnswers(QVector<strAnswers> &answers);
     void createTextAnswers(QVector<strAnswers> &answers);
 public:
@@ -59,7 +64,8 @@ private slots:
     void on_ComboBox_Config_Lessons_currentIndexChanged(int index);
     void on_ComboBox_Config_Theme_currentIndexChanged(int index);
     void on_PButton_Config_Begin_clicked();
-    void setQuestions(QVector<strQuestions> questions);
+    void setQuestions(QVector<strQuestions> &questions);
+    void answerSelected(int qNum, int ansNum);
 };
 
 #endif // ROOTWINDOW_H

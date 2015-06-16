@@ -56,7 +56,7 @@ signals:
   void takeProfs    (IdTitleMap profsList);
   void takeLessons  (IdTitleMap Lessons);
   void takeThemes   (IdTitleMap Themes );
-  void takeQuestions(QVector<strQuestions> Questions);
+  void takeQuestions(QVector<strQuestions> &Questions);
   void takeSignalQuestionsCount(qint64);
 public slots:
   void responseSlot(QString);
