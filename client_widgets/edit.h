@@ -11,7 +11,7 @@ namespace SelectedNums{
     }
 }
 
-class Edit : public QLineEdit
+class Edit : public QLineEdit                    
 {
     Q_OBJECT
 public:
@@ -19,7 +19,7 @@ public:
 
 private slots:
     void ansEntered(const QString &text);
-
+    void textChanged(const QString &text);
 signals:
     void ansSignalEntered(int qNum, QString ansText);
 };
