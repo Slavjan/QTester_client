@@ -2,11 +2,13 @@
 #include "ui_rootwindow.h"
 #include "autorisationdialog.h"
 
+
 #include <QDir>
 #include <QCheckBox>
 #include <QRadioButton>
 #include <QLineEdit>
 #include <QButtonGroup>
+#include <QList>
 
 namespace QuestionTypes {
     const QString RADIO = "RADIO";
@@ -40,12 +42,14 @@ RootWindow::RootWindow(QWidget *parent) :
     _answerGroup(nullptr)/*,
     _answersLay(nullptr)*/
 {
-    _selAnss.clear();
+    _selRadioAnss.clear();
 
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex( PageIndex::RootWindow::Config );
     _jParser = JsonParser::instance(this);
     _netMan = new NetworkQueryManager("127.0.0.1", 3434);
+
+    
 
     this->hide();
 
@@ -53,7 +57,7 @@ RootWindow::RootWindow(QWidget *parent) :
     _netMan->sendPullRequestProfList();
 
     AutorisationDialog _AuthForm(_netMan, _jParser);
-    _AuthForm.exec();
+    _AuthForm.exec();    
 }
 
 RootWindow::~RootWindow()
@@ -155,48 +159,52 @@ void RootWindow::createAnswers(const int questionNum, const QString &type, QVect
         return;
     }
     if( type == QuestionTypes::CHECK ){
-        createCheckAnswers(answers);
+        createCheckAnswers(answers, questionNum);
         return;
     }
     if( type == QuestionTypes::TEXT ){
-        createTextAnswers(answers);
+        createTextAnswers(answers, questionNum);
         return;
     }
 }
 
-void RootWindow::answerSelected(int qNum, int ansNum)
+void RootWindow::answerRadioSelected(int qNum, int ansNum)
 {
-    _selAnss.insert(qNum, ansNum);
+    _selRadioAnss.insert(qNum, ansNum);
+}
+
+void RootWindow::answerCheckSelected(int qNum, int ansNum)
+{
+    _selCheckAnss.insertMulti(qNum, ansNum);
+}
+
+void RootWindow::ansEntered(int qNum, const QString &text)
+{
+    _entAnss.insert(qNum, text);
 }
 
 void RootWindow::createRadioAnswers(QVector<strAnswers> &answers, int questionNum)
 {
     for (int i = 0; i < answers.count(); ++i)
     {
-        Radio *radio = new Radio;
-        qDebug() << "new Radio";
-        radio->setProperty(selectedNums::qNum, questionNum);
-        radio->setProperty(selectedNums::ansNum, i);
-        radio->setText( answers[i].text );
+        Radio *radio;
+        qDebug() << "new Radio >" << questionNum << ">" << i;
+        radio = new Radio(answers[i].text, questionNum, i);
 
-        int value = _selAnss.value( questionNum );
-
-        bool ok1 = value == i, 
-             ok2 = !(_selAnss.isEmpty()),
-             ok3 = _selAnss.contains( questionNum ),
-             OK = ok1 && ok2 && ok3;
-        radio->setChecked( OK );
+        radio->setChecked( _selRadioAnss.value( questionNum ) == i
+                           && !(_selRadioAnss.isEmpty())
+                           && _selRadioAnss.contains( questionNum ));
 
         connect(radio, SIGNAL(clicked(bool)),
                 radio, SLOT(ansSelected(bool)));
 
         connect(radio, SIGNAL(ansSelected(int,int)),
-                this, SLOT(answerSelected(int,int)));
+                this, SLOT(answerRadioSelected(int,int)));
 
         _answersLay->addWidget( radio );
 /*        if( ! answers[i].wgt ){
 
-            radio = new QRadioButton;
+            radio = new QRadioButton;            почему это не работает выясним позже (всётки красивое решение)
             answers[i].wgt = radio;
             radio->setText( answers[i].text );
             _answersLay->addWidget( answers[i].wgt );
@@ -208,13 +216,36 @@ void RootWindow::createRadioAnswers(QVector<strAnswers> &answers, int questionNu
     }
 }
 
-void RootWindow::createCheckAnswers(QVector<strAnswers> &answers){
+void RootWindow::createCheckAnswers(QVector<strAnswers> &answers, int questionNum)
+{
     for (int i = 0; i < answers.count(); ++i)
     {
-        QCheckBox *check;
-        if (! answers[i].wgt ) {
-            qDebug() << "new Check";
-            check = new QCheckBox;
+        Check *check;
+        qDebug() << "new Check >" << questionNum << ">" << i ;
+        check = new Check(answers[i].text, questionNum, i); 
+        bool ok1 = !(_selCheckAnss.isEmpty()),
+             ok2 = _selCheckAnss.contains( questionNum ),       //      ____
+             ok3 = false;                                       //     /   /
+                                                                //    /___/
+        QList<int> vals = _selCheckAnss.values( questionNum );  //    \  /	 
+        foreach( int val, vals )                                //     \/
+        {                                                       //     /
+            if( ok3 = val == i )                                //    /
+                break;                                          //   * 	  
+            else continue;                                                                   
+        }                                                                                    
+
+        check->setChecked( ok1 && ok2 && ok3 );
+
+        connect(check, SIGNAL(clicked(bool)),
+                check, SLOT(ansSelected(bool)));
+
+        connect(check, SIGNAL(ansSelected(int,int)),
+                this, SLOT(answerCheckSelected(int,int)));
+
+        _answersLay->addWidget( check );
+ /*       if (! answers[i].wgt ) {
+
             answers[i].wgt = check;
             check->setText(answers[i].text);
         //    _answersLay->addWidget( check );
@@ -222,24 +253,23 @@ void RootWindow::createCheckAnswers(QVector<strAnswers> &answers){
             qDebug() << "old Check";
 //            check = qobject_cast<QCheckBox*>(answers[i].wgt);
         //    _answersLay->addWidget( answers[i].wgt );
-        }
+        }*/
 
     }
 }
 
-void RootWindow::createTextAnswers(QVector<strAnswers> &answers){
+void RootWindow::createTextAnswers(QVector<strAnswers> &answers, int questionNum){
 
-    QLineEdit *edit;
-    if ( ! answers.first().wgt ) {
-        qDebug() << "new Edit";
-        edit = new QLineEdit;
-        answers.first().wgt = edit;
-        edit->setText(answers.first().text);
-    }else{
-        qDebug() << "old Edit";
-        edit = qobject_cast<QLineEdit*>(answers.first().wgt);
-    }
-  //  _answersLay->addWidget( edit );
+    Edit *edit;
+    qDebug() << "new Edit";
+    edit = new Edit(_entAnss.value(questionNum), questionNum );
+    _answersLay->addWidget( edit );
+
+    connect( edit, SIGNAL(textChanged(QString&) ),
+             edit, SLOT(ansEntered(QString&) ) );
+
+    connect( edit, SIGNAL(ansSignalEntered(int,QString) ),
+             this, SLOT( ansEntered(int,QString) ) );
 }
 
 void RootWindow::on_ComboBox_Config_Lessons_currentIndexChanged(int index)

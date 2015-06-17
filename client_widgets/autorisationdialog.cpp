@@ -53,3 +53,8 @@ void AutorisationDialog::on_PButton_Auth_Begin_clicked()
 {
     close();
 }
+
+void AutorisationDialog::on_AutorisationDialog_rejected()
+{
+    
+}

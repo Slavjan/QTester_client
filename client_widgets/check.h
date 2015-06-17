@@ -1,26 +1,24 @@
-#ifndef RADIO_H
-#define RADIO_H
-#include <QRadioButton>
+#ifndef CHECK_H
+#define CHECK_H
 
+#include <QCheckBox>
 
-typedef QMap<int, int> selectedAnswersRadioMap;
+typedef QMultiMap<int, int> selectedAnswersCheckMap;
 
 namespace SelectedNums{
-    namespace Radio {
+    namespace Check {
         const char qNum[] = "qNum";
         const char ansNum[] = "ansNum";
     }
 }
 
-class Radio : public QRadioButton
+
+class Check : public QCheckBox
 {
     Q_OBJECT
-private:
-
-
 public:
-    Radio(QString text, QWidget *parent = 0);
-    Radio(QString text,
+    Check(QString text, QWidget *parent = 0);
+    Check(QString text,
           int questionId,
           int answerId,
           QWidget *parent = 0);
@@ -31,4 +29,4 @@ signals:
     void ansSelected( int qNum, int ansNum );
 };
 
-#endif // RADIO_H
+#endif // CHECK_H

@@ -9,19 +9,20 @@
 #include <QVBoxLayout>
 
 #include "radio.h"
+#include "check.h"
+#include "edit.h"
 
 namespace Ui {
 class RootWindow;
 }
 
 namespace PageIndex{
-namespace RootWindow {
-enum PageIndex{Config = 0, TestProcess = 1, Administr };
+    namespace RootWindow {
+        enum PageIndex{Config = 0, TestProcess = 1, Administr };
+    }
 }
 
-}
-
-
+typedef QMap<int, QString> enteredAns;
 
 class RootWindow : public QMainWindow
 {
@@ -36,17 +37,17 @@ private:
     QGroupBox *_answerGroup;
     QVBoxLayout *_answersLay;
 
-    selectedAnswersMap _selAnss;
+    selectedAnswersRadioMap _selRadioAnss;
+    selectedAnswersCheckMap _selCheckAnss;
+    enteredAns  _entAnss;
 
     void createAnswers(const int questionNum, const QString &type, QVector<strAnswers> &answers);
     void createRadioAnswers(QVector<strAnswers> &answers, int questionNum);
-    void createCheckAnswers(QVector<strAnswers> &answers);
-    void createTextAnswers(QVector<strAnswers> &answers);
+    void createCheckAnswers(QVector<strAnswers> &answers, int questionNum);
+    void createTextAnswers(QVector<strAnswers> &answers, int questionNum);
 public:
     explicit RootWindow(QWidget *parent = 0);
     ~RootWindow();
-
-
 
     void connectSignals();
 public slots:
@@ -65,7 +66,10 @@ private slots:
     void on_ComboBox_Config_Theme_currentIndexChanged(int index);
     void on_PButton_Config_Begin_clicked();
     void setQuestions(QVector<strQuestions> &questions);
-    void answerSelected(int qNum, int ansNum);
+
+    void answerRadioSelected(int qNum, int ansNum);
+    void answerCheckSelected(int qNum, int ansNum);
+    void ansEntered(int qNum, const QString &text);
 };
 
 #endif // ROOTWINDOW_H

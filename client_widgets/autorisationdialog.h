@@ -38,6 +38,7 @@ private slots:
   void authorisation(const QString &token, const QString &fullName);
 
   void on_PButton_Auth_Begin_clicked();
+  void on_AutorisationDialog_rejected();
 };
 
 #endif // AUTORISATIONDIALOG_H
