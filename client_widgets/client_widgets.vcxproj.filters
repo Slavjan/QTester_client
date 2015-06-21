@@ -120,17 +120,11 @@
     <ClCompile Include="GeneratedFiles\qrc_resource.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="button.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="Debug\moc_button.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="Release\moc_button.cpp">
       <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="radio.cpp">
-      <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="Debug\moc_radio.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -138,23 +132,32 @@
     <ClCompile Include="Release\moc_radio.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="check.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="Debug\moc_check.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="Release\moc_check.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="edit.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="Debug\moc_edit.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="Release\moc_edit.cpp">
       <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="tilelayout.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="radio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="edit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="check.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -179,17 +182,17 @@
     <CustomBuild Include="tcpclient.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="button.h">
-      <Filter>Generated Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="radio.h">
-      <Filter>Generated Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="check.h">
-      <Filter>Generated Files</Filter>
+      <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="edit.h">
-      <Filter>Generated Files</Filter>
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="check.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="button.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -219,6 +222,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_rootwindow.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tilelayout.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

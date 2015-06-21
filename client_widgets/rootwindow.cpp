@@ -1,6 +1,7 @@
 #include "rootwindow.h"
 #include "ui_rootwindow.h"
 #include "autorisationdialog.h"
+#include "tilelayout.h"
 
 
 #include <QDir>
@@ -16,6 +17,7 @@ namespace QuestionTypes
     const QString CHECK = "CHECK";
     const QString TEXT = "TEXT";
 }
+
 
 
 void RootWindow::connectSignals()
@@ -102,7 +104,7 @@ void RootWindow::setMaxQuestionsCount( qint64 maxCount )
 {
     // ui->HorizontalSlider_Config_QuestionsCount->setMinimum(/*maxCount>5 ? 5: 0*/ 100);
 }
-
+#include <math.h>
 void RootWindow::setQuestions( QVector<strQuestions> &questions )
 {
     _questions = questions;
@@ -113,18 +115,34 @@ void RootWindow::setQuestions( QVector<strQuestions> &questions )
         questionType = questions.first().type;
 
     QButtonGroup *butGroup = new QButtonGroup( this );
+    int rowCount = round( float( questions.count() / 5 ) ),
+        colCount = round( float( questions.count() / rowCount ) );
+
+    Qt::Alignment align;
+    align = Qt::AlignLeft;
+  //  QLayoutItem *layItem = new QLayoutItem;
+//    layItem
+    TileLayout *layout = new TileLayout;
+    QRect rect;
+    rect.setWidth(24);
+    rect.setHeight(24);
+    rect.setTop(6);
+    rect.setLeft(6);
+
+    layout->setGeometry( rect );
 
     for( int j = 0; j < questions.count(); ++j )
     {
-        int questionId = questions.at( j ).id;
-        Button *btn = new Button( QString::number( j + 1 ), j );
-        ui->GLay_Tester_Questions->layout()->addWidget( btn );
-        //        btn->show();
+      
+        Button *btn = new Button( QString::number( j+1 ), j );
+      //  ui->GLay_Tester_Questions->addWidget( btn, i + 1, j + 1, Qt::AlignTop );
+//        layout->addItem();
+        layout->addWidget( btn );
         butGroup->addButton( btn, 1 );
         connect( btn, SIGNAL( selected( int ) ),
                  this, SLOT( questionSelected( int ) ) );
     }
-
+    ui->scrolLay->setLayout(layout);
     /// \todo generate answers for firs question
     ui->Label_Tester_Profession->setText( profession );
     ui->Label_Tester_Lesson->setText( lesson );
@@ -228,7 +246,7 @@ void RootWindow::createCheckAnswers( QVector<strAnswers> &answers, int questionN
         bool ok1 = !(_selCheckAnss.isEmpty()),
             ok2 = _selCheckAnss.contains( questionNum ),       //      ____
             ok3 = false;                                       //     /   /
-                                                               //    /___/
+        //    /___/
         QList<int> vals = _selCheckAnss.values( questionNum ); //    \  /
         foreach( int val, vals )                               //     \/
         {                                                      //     /
@@ -261,13 +279,13 @@ void RootWindow::createCheckAnswers( QVector<strAnswers> &answers, int questionN
 }
 
 void RootWindow::createTextAnswers( QVector<strAnswers> &answers, int questionNum )
-{                         
+{
     Edit *edit;
     qDebug() << "new Edit";
     edit = new Edit( _entAnss.value( questionNum ), questionNum );
-    
-    connect( edit, SIGNAL(textEdited(QString)),
-             edit, SLOT(ansEntered(QString)));
+
+    connect( edit, SIGNAL( textEdited( QString ) ),
+             edit, SLOT( ansEntered( QString ) ) );
 
     connect( edit, SIGNAL( ansSignalEntered( int, QString ) ),
              this, SLOT( ansEntered( int, QString ) ) );
@@ -310,4 +328,153 @@ void RootWindow::on_PButton_Config_Begin_clicked()
     connect( _jParser, SIGNAL( takeQuestions( QVector<strQuestions>& ) ),
              this, SLOT( setQuestions( QVector<strQuestions>& ) ) );
     ui->stackedWidget->setCurrentIndex( PageIndex::RootWindow::TestProcess );
+}
+
+// admin`ka
+// web
+
+// Questions base
+void RootWindow::createTabelsTreeModel()
+{
+    QStringList topRowNames({ tr("Professions"), tr("Lessons"), tr("Themes"), tr("Questions"), tr("Answers") }),
+                topRowWhatsThis( QString::number(Codes::ProfsTree)),
+                subRowProfINames({ "Prof1", "Prof2" }),
+                subRowProfWhatThis({ "profId=1", "profId=2" }),
+                subRowLessonINames({"lesson1", "lesson2"}),
+                subSubRowLessonWhatThis({ "lessonId=1", "lessonId=2" });
+
+   // QTreeWidget *twg = ui->TreeWidget_Admin_QuestionsBase;
+
+//    ui->TreeWidget_Admin_QuestionsBase->setHeaderHidden( "topRowNames" );
+    ui->TreeWidget_Admin_QuestionsBase->setSortingEnabled( false );
+
+  //  topItems//addTreeChilds( ui->TreeWidget_Admin_QuestionsBase, topRowNames, topRowWhatsThis );
+    
+    connect(ui->TreeWidget_Admin_QuestionsBase, SIGNAL(itemClicked(QTreeWidgetItem*,int)),
+            this, SLOT(itemWhats(QTreeWidgetItem*,int)));
+}
+
+void RootWindow::itemWhats(QTreeWidgetItem *item, int column)
+{
+    qDebug() << "[RootWindow::itemWhats] >" << item->whatsThis(column);
+}
+
+TreeItems RootWindow::addTreeChilds(QTreeWidget *twg,
+                                     const QStringList &itemsNames,
+                                     const QStringList &whatsThis ,
+                                     const int whatThisCol)
+{
+    QTreeWidgetItem *twgi = 0;
+    TreeItems _items;
+
+    for (int i = 0; i < itemsNames.count(); ++i) {
+        twgi = new QTreeWidgetItem(twg);
+        twgi->setText(0, itemsNames.at(i));
+        twgi->setWhatsThis(whatThisCol, whatsThis.at(0));
+        _items.push_back(twgi);
+    }
+    return _items;
+}
+
+TreeItems RootWindow::addTreeChilds(QTreeWidgetItem *twgi,
+                                     const QStringList &itemsNames,
+                                     const QStringList &whatsThis ,
+                                     const int whatTisCol)
+{
+    QTreeWidgetItem *twgsi = 0;
+    TreeItems _items;
+
+    for (int i = 0; i < itemsNames.count(); ++i) {
+        twgsi = new QTreeWidgetItem(twgi);
+        twgsi->setText(0, itemsNames.at(i));
+        twgsi->setWhatsThis(whatTisCol, whatsThis.at(i));
+        _items.push_back(twgi);
+    }
+    return _items;
+}
+
+TreeItems RootWindow::addProfsTreeChilds(QTreeWidgetItem *parent,
+                                       const QStringList &itemsNames,
+                                       const QStringList &whatsThis  ,
+                                       const int          whatThisCol)
+{
+    return addTreeChilds(parent, itemsNames, whatsThis, Codes::ProfsTree);
+}
+
+TreeItems RootWindow::addProfsTreeChilds(QTreeWidget *viewport,
+                                       const QStringList &itemsNames,
+                                       const QStringList &whatsThis,
+                                       const int          whatThisCol  )
+{
+    return addTreeChilds( viewport, itemsNames, whatsThis, Codes::ProfsTree );
+}
+
+TreeItems RootWindow::addLessonsTreeChilds(QTreeWidgetItem *parent,
+                                         const QStringList &itemsNames,
+                                         const QStringList &whatsThis,
+                                         const int          whatThisCol  )
+{
+    return addTreeChilds( parent, itemsNames, whatsThis, Codes::LessonsTree );
+}
+
+TreeItems RootWindow::addLessonsTreeChilds(QTreeWidget *viewport,
+                                         const QStringList &itemsNames,
+                                         const QStringList &whatsThis,
+                                         const int          whatThisCol  )
+{
+    return addTreeChilds( viewport, itemsNames, whatsThis, Codes::LessonsTree );
+}
+
+TreeItems RootWindow::addThemesTreeChilds(QTreeWidgetItem *parent,
+                                       const QStringList &itemsNames,
+                                       const QStringList &whatsThis,
+                                       const int          whatThisCol  )
+{
+    return addTreeChilds( parent, itemsNames, whatsThis, Codes::ThemesTree );
+}
+
+TreeItems RootWindow::addThemesTreeChilds(QTreeWidget *viewport,
+                                       const QStringList &itemsNames,
+                                       const QStringList &whatsThis,
+                                       const int          whatThisCol  )
+{
+    return addTreeChilds( viewport, itemsNames, whatsThis, Codes::ThemesTree );
+}
+
+void RootWindow::on_pushButton_4_clicked()
+{
+    createTabelsTreeModel();
+    ui->stackedWidget->setCurrentIndex(PageIndex::RootWindow::Administr);
+}
+
+void RootWindow::on_PButton_Config_Back_clicked()
+{
+
+}
+
+//void RootWindow::treeItemClicked(Q);
+
+
+void RootWindow::on_TreeWidget_Admin_QuestionsBase_itemChanged(QTreeWidgetItem *item, int column)
+{
+    QString whats;
+    for (int i = Codes::auth; i < Codes::AnswersTable; ++i) {
+        whats = item->whatsThis(i);
+        _selected = item;
+        if( i == Codes::ProfsTree && !(whats.isEmpty()) )
+        {
+            _netMan->sendPullRequestProfList();
+        }
+        if( i == Codes::LessonsTree && !(whats.isEmpty()))
+        {
+            _netMan->sendPullRequestLessonsList(whats);
+        }
+        if (i == Codes::ThemesTree && !(whats.isEmpty()))
+        {
+            _netMan->sendPullRequestThemesList(whats);
+        }
+    }
+/*
+    connect(_jParser, SIGNAL(takeSignalProfsTree(IdTitleMap)),
+            this, setProfsTree(IdTitleMap);*/
 }

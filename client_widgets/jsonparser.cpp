@@ -5,11 +5,24 @@ namespace reqLists
 {
     const QString auth = "/auth";
     const QString get = "/get";
+    // lists
     const QString profList = "profList";
     const QString lessonsList = "lessonsList";
     const QString themesList = "themesList";
     const QString questions = "questions";
     const QString answers = "answers";
+    // trees
+    const QString profTree = "profTree";
+    const QString lessonsTree = "lessonsTree"; // getlessonsTree?profId = %id
+    const QString themesTree = "themesTree";
+    const QString questionsTree = "questionsTree";
+    const QString answersTree = "answersTree";
+    // tabels
+    const QString profTable      = "profTable";
+    const QString lessonsTable   = "lessonsTable";
+    const QString themesTable    = "themesTable";
+    const QString questionsTable = "questionsTable";
+    const QString answersTable   = "answersTable";
 }
 
 JsonParser* JsonParser::_instance = nullptr;
@@ -39,34 +52,68 @@ void JsonParser::authorisation(const QJsonObject &response)
   emit authSignalPars(fullName);
 }
 
+IdTitleMap JsonParser::takeProfs(QJsonObject response)
+{
+    IdTitleMap result;
+    QJsonArray profArray = response[reqLists::profList].toArray();
+
+    foreach (QJsonValue val, profArray) {
+        QJsonObject obj = val.toObject();
+        qDebug() << obj["id"].toString() << " " << obj["title"].toString();
+        result[QString::number( obj["id"].toInt() )] = obj["title"].toString();
+    }
+
+    return result;
+}
+
 void JsonParser::takeProfessionsList(QJsonObject response)
 {    
-  IdTitleMap result;
-  QJsonArray profArray = response[reqLists::profList].toArray();
-
-  foreach (QJsonValue val, profArray) {
-      QJsonObject obj = val.toObject();
-      qDebug() << obj["id"].toString() << " " << obj["title"].toString();
-      result[QString::number( obj["id"].toInt() )] = obj["title"].toString();
-  }
+  IdTitleMap result = takeProfs(response);
   qDebug() << result;
-  emit takeProfs(result);
+  emit takeProfsList(result);
+}
+
+void JsonParser::takeProfsTree(QJsonObject response)
+{
+    IdTitleMap result = takeProfs(response);
+    qDebug() << result;
+    emit takeSignalProfsTree(result);
+}
+
+
+
+void takeTable(QJsonObject response)
+{
+   // todo какая-то структура для передачи таблицы в модель
+}
+
+IdTitleMap JsonParser::takeLessons(QJsonObject response)
+{
+    IdTitleMap result;
+    QJsonArray lessonsArray = response[reqLists::lessonsList].toArray();
+
+    foreach (QJsonValue val, lessonsArray) {
+        QJsonObject obj = val.toObject();
+        qDebug() << obj["id"].toString() << " " << obj["title"].toString();
+        result[QString::number( obj["id"].toInt() )] = obj["title"].toString();
+    }
+
+    return result;
 }
 
 void JsonParser::takeLessonsList(QJsonObject response)
 {
-  IdTitleMap result;
-  QJsonArray lessonsArray = response[reqLists::lessonsList].toArray();
-
-  foreach (QJsonValue val, lessonsArray) {
-      QJsonObject obj = val.toObject();        
-      qDebug() << obj["id"].toString() << " " << obj["title"].toString();
-      result[QString::number( obj["id"].toInt() )] = obj["title"].toString();
-  }
+  IdTitleMap result = takeLessons(response);
   emit takeLessons(result);
 }
 
-void JsonParser::takeThemesLists(QJsonObject response)
+void JsonParser::takeLessonsTree(QJsonObject response)
+{
+  IdTitleMap result = takeLessons(response);
+  emit takeSignalLessonsTree(result);
+}
+
+IdTitleMap JsonParser::takeThemes(QJsonObject response)
 {
     IdTitleMap result;
     QJsonArray themeArray = response[reqLists::themesList].toArray();
@@ -78,10 +125,22 @@ void JsonParser::takeThemesLists(QJsonObject response)
         result[QString::number( obj["id"].toInt() )] = obj["title"].toString();
     }
 
+    return result;
+}
+
+void JsonParser::takeThemesLists(QJsonObject response)
+{
+  IdTitleMap result = takeThemes(response);
   emit takeThemes(result);
 }
 
-void JsonParser::takeQuestionsList(QJsonObject response)
+void JsonParser::takeThemesTree(QJsonObject response)
+{
+    IdTitleMap result = takeThemes(response);
+    emit takeSignalThemesTree(result);
+}
+
+QVector<strQuestions> JsonParser::takeQuestions(QJsonObject response)
 {
     QVector<strQuestions> result;
 
@@ -107,14 +166,25 @@ void JsonParser::takeQuestionsList(QJsonObject response)
         }
         result.push_back( strQs );
     }
-    //  QJsonObject q = questions;
+
+    return result;
+}
+
+void JsonParser::takeQuestionsList(QJsonObject response)
+{
+    QVector<strQuestions> result = takeQuestions(response);
     emit takeQuestions(result);
+}
+
+void JsonParser::takeQuestionsTree(QJsonObject response)
+{
+//    QVector<strQuestions> result = takeQuestions(response);
+//    emit takeSignalQuestionsTree(result);
 }
 
 void JsonParser::takeQuestionsCount(QJsonObject response)
 {
   qint64 count = response["questionsCount"].toInt();
-
   emit takeSignalQuestionsCount(count);
 }
 
@@ -125,25 +195,26 @@ void JsonParser::responseSlot(QString string)
   int code = obj["code"].toInt();
   QJsonObject response = obj["response"].toObject();
 
-  switch (code) {
-    case Codes::auth:
-      authorisation(response);
-      break;
-    case Codes::Prof:
-      takeProfessionsList(response);
-      break;
-    case Codes::Lessons:
-      takeLessonsList(response);
-      break;
-    case Codes::Themes:
-      takeThemesLists( response );
-      break;
-    case Codes::Questions:
-      takeQuestionsList(response);
-      break;
-    case Codes::QuestionsCount:
-      takeQuestionsCount(response);
-    default:
-      break;
-    }
+  switch (code)
+  {
+  case Codes::auth:
+    authorisation(response);
+    break;
+  case Codes::ProfList:
+    takeProfessionsList(response);
+    break;
+  case Codes::LessonsList:
+    takeLessonsList(response);
+    break;
+  case Codes::ThemesList:
+    takeThemesLists( response );
+    break;
+  case Codes::QuestionsList:
+    takeQuestionsList(response);
+    break;
+  case Codes::QuestionsCount:
+    takeQuestionsCount(response);
+  default:
+    break;
+  }
 }
