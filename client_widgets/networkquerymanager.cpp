@@ -85,6 +85,8 @@ void NetworkQueryManager::sendPullRequestQuestions( const QString &themeId,
     _client->sendToServer( url.toString() );
 }
 
+// sendPullRequest for Trees items
+
 TcpClient* NetworkQueryManager::getClient()
 {
     return _client;

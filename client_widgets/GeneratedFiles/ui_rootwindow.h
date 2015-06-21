@@ -20,6 +20,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
@@ -27,6 +28,9 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStackedWidget>
+#include <QtWidgets/QTabWidget>
+#include <QtWidgets/QTableView>
+#include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -36,7 +40,7 @@ class Ui_RootWindow
 {
 public:
     QWidget *centralwidget;
-    QVBoxLayout *verticalLayout_2;
+    QGridLayout *gridLayout_5;
     QStackedWidget *stackedWidget;
     QWidget *page;
     QVBoxLayout *verticalLayout;
@@ -57,6 +61,7 @@ public:
     QSpinBox *SBox_Config_maxQCount;
     QHBoxLayout *horizontalLayout_2;
     QSpacerItem *horizontalSpacer;
+    QPushButton *pushButton_4;
     QPushButton *PButton_Config_Back;
     QPushButton *PButton_Config_Begin;
     QWidget *page_2;
@@ -81,18 +86,34 @@ public:
     QVBoxLayout *verticalLayout_3;
     QPushButton *pushButton;
     QScrollArea *scrollArea;
-    QWidget *GLay_Tester_Questions;
+    QWidget *scrolLay;
     QGridLayout *gridLayout_2;
+    QWidget *page_3;
+    QGridLayout *gridLayout;
+    QTabWidget *TabWidget_Anmin;
+    QWidget *TabWidget_Anmin_Web;
+    QWidget *TabWidget_Anmin_QuestionsBase;
+    QGridLayout *gridLayout_3;
+    QGridLayout *gridLayout_4;
+    QVBoxLayout *verticalLayout_2;
+    QTableView *tableView;
+    QHBoxLayout *horizontalLayout_7;
+    QPushButton *pushButton_2;
+    QLineEdit *lineEdit;
+    QHBoxLayout *horizontalLayout_6;
+    QPushButton *pushButton_3;
+    QLineEdit *lineEdit_2;
+    QTreeWidget *TreeWidget_Admin_QuestionsBase;
 
     void setupUi(QMainWindow *RootWindow)
     {
         if (RootWindow->objectName().isEmpty())
             RootWindow->setObjectName(QStringLiteral("RootWindow"));
-        RootWindow->resize(630, 367);
+        RootWindow->resize(562, 321);
         centralwidget = new QWidget(RootWindow);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
-        verticalLayout_2 = new QVBoxLayout(centralwidget);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        gridLayout_5 = new QGridLayout(centralwidget);
+        gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
         stackedWidget = new QStackedWidget(centralwidget);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
         page = new QWidget();
@@ -189,6 +210,11 @@ public:
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer);
+
+        pushButton_4 = new QPushButton(page);
+        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+
+        horizontalLayout_2->addWidget(pushButton_4);
 
         PButton_Config_Back = new QPushButton(page);
         PButton_Config_Back->setObjectName(QStringLiteral("PButton_Config_Back"));
@@ -335,12 +361,13 @@ public:
         scrollArea->setMaximumSize(QSize(300, 16777215));
         scrollArea->setWidgetResizable(true);
         scrollArea->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
-        GLay_Tester_Questions = new QWidget();
-        GLay_Tester_Questions->setObjectName(QStringLiteral("GLay_Tester_Questions"));
-        GLay_Tester_Questions->setGeometry(QRect(0, 0, 148, 300));
-        gridLayout_2 = new QGridLayout(GLay_Tester_Questions);
+        scrolLay = new QWidget();
+        scrolLay->setObjectName(QStringLiteral("scrolLay"));
+        scrolLay->setGeometry(QRect(0, 0, 148, 389));
+        gridLayout_2 = new QGridLayout(scrolLay);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        scrollArea->setWidget(GLay_Tester_Questions);
+        gridLayout_2->setContentsMargins(0, 0, 0, 0);
+        scrollArea->setWidget(scrolLay);
 
         verticalLayout_3->addWidget(scrollArea);
 
@@ -348,8 +375,81 @@ public:
         horizontalLayout_3->addLayout(verticalLayout_3);
 
         stackedWidget->addWidget(page_2);
+        page_3 = new QWidget();
+        page_3->setObjectName(QStringLiteral("page_3"));
+        gridLayout = new QGridLayout(page_3);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setContentsMargins(0, 0, 0, 0);
+        TabWidget_Anmin = new QTabWidget(page_3);
+        TabWidget_Anmin->setObjectName(QStringLiteral("TabWidget_Anmin"));
+        TabWidget_Anmin_Web = new QWidget();
+        TabWidget_Anmin_Web->setObjectName(QStringLiteral("TabWidget_Anmin_Web"));
+        TabWidget_Anmin->addTab(TabWidget_Anmin_Web, QString());
+        TabWidget_Anmin_QuestionsBase = new QWidget();
+        TabWidget_Anmin_QuestionsBase->setObjectName(QStringLiteral("TabWidget_Anmin_QuestionsBase"));
+        gridLayout_3 = new QGridLayout(TabWidget_Anmin_QuestionsBase);
+        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
+        gridLayout_4 = new QGridLayout();
+        gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_2->setSizeConstraint(QLayout::SetMaximumSize);
+        tableView = new QTableView(TabWidget_Anmin_QuestionsBase);
+        tableView->setObjectName(QStringLiteral("tableView"));
 
-        verticalLayout_2->addWidget(stackedWidget);
+        verticalLayout_2->addWidget(tableView);
+
+        horizontalLayout_7 = new QHBoxLayout();
+        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
+        pushButton_2 = new QPushButton(TabWidget_Anmin_QuestionsBase);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+
+        horizontalLayout_7->addWidget(pushButton_2);
+
+        lineEdit = new QLineEdit(TabWidget_Anmin_QuestionsBase);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+
+        horizontalLayout_7->addWidget(lineEdit);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_7);
+
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
+        pushButton_3 = new QPushButton(TabWidget_Anmin_QuestionsBase);
+        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+
+        horizontalLayout_6->addWidget(pushButton_3);
+
+        lineEdit_2 = new QLineEdit(TabWidget_Anmin_QuestionsBase);
+        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
+
+        horizontalLayout_6->addWidget(lineEdit_2);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_6);
+
+
+        gridLayout_4->addLayout(verticalLayout_2, 0, 1, 1, 1);
+
+        TreeWidget_Admin_QuestionsBase = new QTreeWidget(TabWidget_Anmin_QuestionsBase);
+        QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
+        __qtreewidgetitem->setText(0, QStringLiteral("1"));
+        TreeWidget_Admin_QuestionsBase->setHeaderItem(__qtreewidgetitem);
+        TreeWidget_Admin_QuestionsBase->setObjectName(QStringLiteral("TreeWidget_Admin_QuestionsBase"));
+
+        gridLayout_4->addWidget(TreeWidget_Admin_QuestionsBase, 0, 0, 1, 1);
+
+
+        gridLayout_3->addLayout(gridLayout_4, 0, 0, 1, 1);
+
+        TabWidget_Anmin->addTab(TabWidget_Anmin_QuestionsBase, QString());
+
+        gridLayout->addWidget(TabWidget_Anmin, 0, 0, 1, 1);
+
+        stackedWidget->addWidget(page_3);
+
+        gridLayout_5->addWidget(stackedWidget, 0, 0, 1, 1);
 
         RootWindow->setCentralWidget(centralwidget);
 
@@ -357,7 +457,8 @@ public:
         QObject::connect(HorizontalSlider_Config_QuestionsCount, SIGNAL(valueChanged(int)), SBox_Config_needQCount, SLOT(setValue(int)));
         QObject::connect(SBox_Config_needQCount, SIGNAL(valueChanged(int)), HorizontalSlider_Config_QuestionsCount, SLOT(setValue(int)));
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(2);
+        TabWidget_Anmin->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(RootWindow);
@@ -373,6 +474,7 @@ public:
         label_5->setText(QApplication::translate("RootWindow", "Theme", 0));
         label_4->setText(QApplication::translate("RootWindow", "Questions count:", 0));
         label_6->setText(QApplication::translate("RootWindow", "/", 0));
+        pushButton_4->setText(QApplication::translate("RootWindow", "Admin`ka", 0));
         PButton_Config_Back->setText(QApplication::translate("RootWindow", "Back", 0));
         PButton_Config_Begin->setText(QApplication::translate("RootWindow", "Begin", 0));
         groupBox_2->setTitle(QString());
@@ -386,6 +488,10 @@ public:
         groupBox_3->setTitle(QApplication::translate("RootWindow", "Question", 0));
         Label_Tester_Question->setText(QApplication::translate("RootWindow", "Question Text", 0));
         pushButton->setText(QApplication::translate("RootWindow", "PushButton", 0));
+        TabWidget_Anmin->setTabText(TabWidget_Anmin->indexOf(TabWidget_Anmin_Web), QApplication::translate("RootWindow", "Tab 1", 0));
+        pushButton_2->setText(QApplication::translate("RootWindow", "PushButton", 0));
+        pushButton_3->setText(QApplication::translate("RootWindow", "PushButton", 0));
+        TabWidget_Anmin->setTabText(TabWidget_Anmin->indexOf(TabWidget_Anmin_QuestionsBase), QApplication::translate("RootWindow", "Tab 2", 0));
     } // retranslateUi
 
 };

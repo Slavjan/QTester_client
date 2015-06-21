@@ -7,6 +7,11 @@
 #include "button.h"
 #include <QGroupBox>
 #include <QVBoxLayout>
+#include <QTreeWidget>
+
+
+#include <QStringListModel>
+#include <QStandardItemModel>
 
 #include "radio.h"
 #include "check.h"
@@ -23,6 +28,7 @@ namespace PageIndex{
 }
 
 typedef QMap<int, QString> enteredAns;
+typedef QVector<QTreeWidgetItem*> TreeItems;
 
 class RootWindow : public QMainWindow
 {
@@ -41,10 +47,44 @@ private:
     selectedAnswersCheckMap _selCheckAnss;
     enteredAns  _entAnss;
 
+    TreeItems topItems;
+    QTreeWidgetItem *_selected;
+
     void createAnswers(const int questionNum, const QString &type, QVector<strAnswers> &answers);
     void createRadioAnswers(QVector<strAnswers> &answers, int questionNum);
     void createCheckAnswers(QVector<strAnswers> &answers, int questionNum);
     void createTextAnswers(QVector<strAnswers> &answers, int questionNum);
+//    QStandardItem createTableModelIndex(const QString &indexName, const int row,
+//                                        const QStandardItem &chiledItem = QModelIndex());
+//    QStandardItem createProfTreeModel();
+
+    void createTabelsTreeModel();
+    TreeItems addTreeChilds(QTreeWidget *twg,
+                            const QStringList &itemsNames,
+                            const QStringList &whatsThis,
+                            const QVector<int> whatThisCol);
+    TreeItems addTreeChilds(QTreeWidgetItem *twgi,
+                            const QStringList &itemsNames ,
+                            const QStringList &whatsThis,
+                            const QVector<int> whatThisCol);
+    TreeItems addProfsTreeChilds(QTreeWidget *viewport,
+                               const QStringList &itemsNames,
+                               const QStringList &whatsThis);
+    TreeItems addProfsTreeChilds(QTreeWidgetItem *parent,
+                               const QStringList &itemsNames,
+                               const QStringList &whatsThis);
+    TreeItems addLessonsTreeChilds(QTreeWidget *viewport,
+                                   const QStringList &itemsNames,
+                                   const QStringList &whatsThis);
+    TreeItems addLessonsTreeChilds(QTreeWidgetItem *parent,
+                                   const QStringList &itemsNames,
+                                   const QStringList &whatsThis);
+    TreeItems addThemesTreeChilds(QTreeWidgetItem *parent,
+                                  const QStringList &itemsNames,
+                                  const QStringList &whatsThis);
+    TreeItems addThemesTreeChilds(QTreeWidget *viewport,
+                                  const QStringList &itemsNames,
+                                  const QStringList &whatsThis);
 public:
     explicit RootWindow(QWidget *parent = 0);
     ~RootWindow();
@@ -59,6 +99,8 @@ private slots:
     void setLessonsList(IdTitleMap lessonsList);
     void setThemesList( IdTitleMap themeList );
     void setMaxQuestionsCount(qint64 maxCount);
+  //  void setProfsTree();
+
     //void setCourses(IdTitleMap coursesList);
     void questionSelected(int number);
     void on_ComboBox_Config_Profession_currentIndexChanged(int index);
@@ -70,6 +112,10 @@ private slots:
     void answerRadioSelected(int qNum, int ansNum);
     void answerCheckSelected(int qNum, int ansNum);
     void ansEntered(int qNum, const QString &text);
+    void on_pushButton_4_clicked();
+    void on_PButton_Config_Back_clicked();
+    void itemWhats(QTreeWidgetItem *item, int column);
+    void on_TreeWidget_Admin_QuestionsBase_itemChanged(QTreeWidgetItem *item, int column);
 };
 
 #endif // ROOTWINDOW_H

@@ -36,4 +36,22 @@ namespace reqLists
     const QString lessonsList = "lessonsList";
     const QString themesList = "themesList";
     const QString questions = "questions";
+
+    const QString ProfsTree = "ProfsTree"                            ;
+    const QString LessonsTree = "LessonsTree"                              ;
+    const QString ThemesTree = "ThemesTree"                             ;
+    const QString QuestionsTree = "QuestionsTree"                                ;
+    const QString AnswersTree = "AnswersTree"                              ;
+
+    const QString ProfTable        = "ProfTable     "                            ;
+    const QString LessonTable      = "LessonTable   "                              ;
+    const QString ThemeTable       = "ThemeTable    "                             ;
+    const QString QuestionTable    = "QuestionTable "                                ;
+    const QString AnswerTable      = "AnswerTable   "                              ;
+
+    const QString ProfsTable       = "ProfsTable    "                             ;
+    const QString LessonsTable     = "LessonsTable  "                               ;
+    const QString ThemesTable      = "ThemesTable   "                              ;
+    const QString QuestionsTable   = "QuestionsTable"                                 ;
+    const QString AnswersTable     = "AnswersTable  "                               ;
 }

@@ -209,8 +209,10 @@
     <ClCompile Include="rootform.cpp" />
     <ClCompile Include="rootwindow.cpp" />
     <ClCompile Include="tcpclient.cpp" />
+    <ClCompile Include="tilelayout.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="tilelayout.h" />
     <CustomBuild Include="radio.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing radio.h...</Message>

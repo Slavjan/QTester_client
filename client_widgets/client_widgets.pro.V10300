@@ -24,7 +24,7 @@ SOURCES += main.cpp\
     radio.cpp \
     check.cpp \
     edit.cpp \
-    tilelayout.cpp\
+    tilelayout.cpp
 
 HEADERS  += jsonreader.h \
     tcpclient.h \
@@ -37,11 +37,11 @@ HEADERS  += jsonreader.h \
     radio.h \
     check.h \
     edit.h \
-    tilelayout.h\
+    tilelayout.h
 
 FORMS    += rootform.ui \
     rootwindow.ui \
-    autorisationdialog.ui\
+    autorisationdialog.ui
 
 RESOURCES += \
-    resource.qrc\
+    resource.qrc
