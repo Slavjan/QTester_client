@@ -62,6 +62,7 @@ private:
     TreeItems addTreeChilds(QTreeWidget *twg,
                             const QStringList &itemsNames,
                             const QStringList &whatsThis,
+<<<<<<< HEAD
                             const QVector<int> whatThisCol);
     TreeItems addTreeChilds(QTreeWidgetItem *twgi,
                             const QStringList &itemsNames ,
@@ -85,6 +86,25 @@ private:
     TreeItems addThemesTreeChilds(QTreeWidget *viewport,
                                   const QStringList &itemsNames,
                                   const QStringList &whatsThis);
+=======
+                            const int whatThisCol = 0);
+    TreeItems addTreeChilds(QTreeWidgetItem *twgi,
+                            const QStringList &itemsNames ,
+                            const QStringList &whatsThis,
+                            const int whatThisCol = 0);
+    TreeItems addProfsTreeChilds(QTreeWidget *viewport,
+                               const QStringList &itemsNames,
+                               const QStringList &whatsThis,
+                               const int whatThisCol = 0);
+    TreeItems addProfsTreeChilds(QTreeWidgetItem *parent,
+                               const QStringList &itemsNames,
+                               const QStringList &whatsThis,
+                                const int whatThisCol = 0);
+    TreeItems addLessonsTreeChilds(QTreeWidget *viewport, const QStringList &itemsNames, const QStringList &whatsThis, const int whatThisCol);
+    TreeItems addLessonsTreeChilds(QTreeWidgetItem *parent, const QStringList &itemsNames, const QStringList &whatsThis, const int whatThisCol);
+    TreeItems addThemesTreeChilds(QTreeWidgetItem *parent, const QStringList &itemsNames, const QStringList &whatsThis, const int whatThisCol);
+    TreeItems addThemesTreeChilds(QTreeWidget *viewport, const QStringList &itemsNames, const QStringList &whatsThis, const int whatThisCol);
+>>>>>>> 7d752a6e2ca132eb4560e44871073a1621247025
 public:
     explicit RootWindow(QWidget *parent = 0);
     ~RootWindow();
@@ -99,7 +119,11 @@ private slots:
     void setLessonsList(IdTitleMap lessonsList);
     void setThemesList( IdTitleMap themeList );
     void setMaxQuestionsCount(qint64 maxCount);
+<<<<<<< HEAD
     void setProfsTree(IdTitleMap profTree, QTreeWidgetItem *selectedItem);
+=======
+  //  void setProfsTree();
+>>>>>>> 7d752a6e2ca132eb4560e44871073a1621247025
 
     //void setCourses(IdTitleMap coursesList);
     void questionSelected(int number);

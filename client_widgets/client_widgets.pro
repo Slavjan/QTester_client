@@ -24,7 +24,11 @@ SOURCES += main.cpp\
     radio.cpp \
     check.cpp \
     edit.cpp \
+<<<<<<< HEAD
     tilelayout.cpp\
+=======
+    tilelayout.cpp
+>>>>>>> 7d752a6e2ca132eb4560e44871073a1621247025
 
 HEADERS  += jsonreader.h \
     tcpclient.h \
@@ -37,7 +41,11 @@ HEADERS  += jsonreader.h \
     radio.h \
     check.h \
     edit.h \
+<<<<<<< HEAD
     tilelayout.h\
+=======
+    tilelayout.h
+>>>>>>> 7d752a6e2ca132eb4560e44871073a1621247025
 
 FORMS    += rootform.ui \
     rootwindow.ui \

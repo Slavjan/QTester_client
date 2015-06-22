@@ -13,7 +13,10 @@
 namespace Codes{
     enum requests{auth = 200, ProfList, LessonsList, ThemesList, QuestionsList, QuestionsCount,
                   ProfsTree, LessonsTree, ThemesTree, QuestionsTree, AnswersTree,
+<<<<<<< HEAD
                   TopRowProf, TopRowLesson, TopRowTheme, TopRowQuestion, TopRowAnswer,
+=======
+>>>>>>> 7d752a6e2ca132eb4560e44871073a1621247025
                   ProfTable, LessonTable, ThemeTable, QuestionTable, AnswerTable,
                   ProfsTable, LessonsTable, ThemesTable, QuestionsTable, AnswersTable};
 }
