@@ -99,7 +99,7 @@ private slots:
     void setLessonsList(IdTitleMap lessonsList);
     void setThemesList( IdTitleMap themeList );
     void setMaxQuestionsCount(qint64 maxCount);
-  //  void setProfsTree();
+    void setProfsTree(IdTitleMap profTree, QTreeWidgetItem *selectedItem);
 
     //void setCourses(IdTitleMap coursesList);
     void questionSelected(int number);

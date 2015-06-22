@@ -76,7 +76,7 @@ void RootWindow::on_ComboBox_Config_Profession_currentIndexChanged( int index )
              this, SLOT( setLessonsList( IdTitleMap ) ) );
 }
 
-void RootWindow::setLessonsList( IdTitleMap lessonsList )
+void RootWindow::setLessonsList( IdTitleMap lessonsList)
 {
     ui->ComboBox_Config_Lessons->clear();
     for( auto it = lessonsList.begin(); it != lessonsList.end(); ++it )
@@ -105,6 +105,13 @@ void RootWindow::setMaxQuestionsCount( qint64 maxCount )
     // ui->HorizontalSlider_Config_QuestionsCount->setMinimum(/*maxCount>5 ? 5: 0*/ 100);
 }
 
+void RootWindow::setProfsTree(IdTitleMap profTree, QTreeWidgetItem *selectedItem)
+{
+    qDebug() << "[RootWindow::setProfsTree]";
+}
+
+
+
 void RootWindow::setQuestions( QVector<strQuestions> &questions )
 {
     _questions = questions;
@@ -120,29 +127,29 @@ void RootWindow::setQuestions( QVector<strQuestions> &questions )
 
     Qt::Alignment align;
     align = Qt::AlignLeft;
-  //  QLayoutItem *layItem = new QLayoutItem;
-//    layItem
+    //  QLayoutItem *layItem = new QLayoutItem;
+    //    layItem
     TileLayout *layout = new TileLayout;
     QRect rect;
-    rect.setWidth(24);
-    rect.setHeight(24);
-    rect.setTop(6);
-    rect.setLeft(6);
+    rect.setWidth( 24 );
+    rect.setHeight( 24 );
+    rect.setTop( 6 );
+    rect.setLeft( 6 );
 
     layout->setGeometry( rect );
 
     for( int j = 0; j < questions.count(); ++j )
     {
-      
-        Button *btn = new Button( QString::number( j+1 ), j );
-      //  ui->GLay_Tester_Questions->addWidget( btn, i + 1, j + 1, Qt::AlignTop );
-//        layout->addItem();
+
+        Button *btn = new Button( QString::number( j + 1 ), j );
+        //  ui->GLay_Tester_Questions->addWidget( btn, i + 1, j + 1, Qt::AlignTop );
+        //        layout->addItem();
         layout->addWidget( btn );
         butGroup->addButton( btn, 1 );
         connect( btn, SIGNAL( selected( int ) ),
                  this, SLOT( questionSelected( int ) ) );
     }
-    ui->scrolLay->setLayout(layout);
+    ui->scrolLay->setLayout( layout );
     /// \todo generate answers for firs question
     ui->Label_Tester_Profession->setText( profession );
     ui->Label_Tester_Lesson->setText( lesson );
@@ -246,7 +253,7 @@ void RootWindow::createCheckAnswers( QVector<strAnswers> &answers, int questionN
         bool ok1 = !(_selCheckAnss.isEmpty()),
             ok2 = _selCheckAnss.contains( questionNum ),       //      ____
             ok3 = false;                                       //     /   /
-                                                               //    /___/
+        //    /___/
         QList<int> vals = _selCheckAnss.values( questionNum ); //    \  /
         foreach( int val, vals )                               //     \/
         {                                                      //     /
@@ -336,140 +343,185 @@ void RootWindow::on_PButton_Config_Begin_clicked()
 // Questions base
 void RootWindow::createTabelsTreeModel()
 {
-    QStringList topRowNames({ tr("Professions"), tr("Lessons"), tr("Themes"), tr("Questions"), tr("Answers") }),
-                topRowWhatsThis({ "*", "*", "*", "*", "*" }),
-                subRowProfINames({ "Prof1", "Prof2" }),
-                subRowProfWhatThis({ "profId=1", "profId=2" }),
-                subRowLessonINames({"lesson1", "lesson2"}),
-                subSubRowLessonWhatThis({ "lessonId=1", "lessonId=2" });
+    QStringList topRowNames( { tr( "Professions" ), tr( "Lessons" ), tr( "Themes" ), tr( "Questions" ), tr( "Answers" ) } ),
+        topRowWhatsThis( { "profession_id", "lesson_id", "theme_id", "question_id", "xz"  } ),
+        subRowProfINames( { "Prof1", "Prof2" } ),
+        subRowProfWhatThis( { "profId=1", "profId=2" } ),
+        subRowLessonINames( { "lesson1", "lesson2" } ),
+        subSubRowLessonWhatThis( { "lessonId=1", "lessonId=2" } );
     QVector<int> treesTypes{ Codes::ProfsTree,
-                             Codes::LessonsTree,
-                             Codes::ThemesTree,
-                             Codes::QuestionsTree,
-                             Codes::AnswersTree };
+        Codes::LessonsTree,
+        Codes::ThemesTree,
+        Codes::QuestionsTree,
+        Codes::AnswersTree };
 
 
-   // QTreeWidget *twg = ui->TreeWidget_Admin_QuestionsBase;
+    // QTreeWidget *twg = ui->TreeWidget_Admin_QuestionsBase;
 
-//    ui->TreeWidget_Admin_QuestionsBase->setHeaderHidden( "topRowNames" );
+    //    ui->TreeWidget_Admin_QuestionsBase->setHeaderHidden( "topRowNames" );
     ui->TreeWidget_Admin_QuestionsBase->setSortingEnabled( false );
 
     topItems = addTreeChilds( ui->TreeWidget_Admin_QuestionsBase, topRowNames, topRowWhatsThis, treesTypes );
-    
-    connect(ui->TreeWidget_Admin_QuestionsBase, SIGNAL(itemPressed(QTreeWidgetItem*,int)),
-            this, SLOT(on_TreeWidget_Admin_QuestionsBase_itemChanged(QTreeWidgetItem*, int)));
+
+    connect( ui->TreeWidget_Admin_QuestionsBase, SIGNAL( itemPressed( QTreeWidgetItem*, int ) ),
+             this, SLOT( itemWhats( QTreeWidgetItem*, int ) ) );
 }
 
-void RootWindow::itemWhats(QTreeWidgetItem *item, int column)
+void RootWindow::itemWhats( QTreeWidgetItem *item, int column )
 {
-//    for
-//    qDebug() << "[RootWindow::itemWhats] >" << item->whatsThis(column);
+    int whatsTypes;
+    QString whatsId;
+
+    whatsTypes = item->whatsThis( 1 ).toInt();
+    whatsId = item->whatsThis( 2 );
+    //_selected = item->;
+    if( whatsTypes == Codes::ProfsTree )
+    {
+        _netMan->sendPullRequestProfList();
+        qDebug() << "[RootWindow::_itemChanged]> ProfsTree types> " << whatsTypes  << " id > " << whatsId;
+    }
+    if( whatsTypes == Codes::LessonsTree )
+    {
+        _netMan->sendPullRequestLessonsList( whatsId  );
+        qDebug() << "[RootWindow::_itemChanged]> LessonsTree type> " << whatsTypes << " id > " << whatsId;
+    }
+    if( whatsTypes == Codes::ThemesTree )
+    {
+        _netMan->sendPullRequestThemesList(  whatsId  );
+        qDebug() << "[RootWindow::_itemChanged]> ThemesTree types> " << whatsTypes << " id > " << whatsId;
+    }
+    if( whatsTypes == Codes::QuestionsTree )
+    {
+        //_netMan->sendPullRequestQuestions();
+        qDebug() << "[RootWindow::_itemChanged]> QuestionsTree types>" << whatsTypes << " id > " << whatsId;
+    }
+    if( whatsTypes == Codes::AnswersTree )
+    {
+        //_netMan->sendPullRequestQuestions();
+        qDebug() << "[RootWindow::_itemChanged]> AnswersTree types> " << whatsTypes << " id > " << whatsId;
+    }
+
+    // signals processing
+    connect(_jParser, SIGNAL(takeSignalProfsTree(IdTitleMap)),
+            this, SLOT(setProfsTree(IdTitleMap, item)));/*
+    connect(_jParser, SIGNAL(takeSignalLessonsTree(IdTitleMap)),
+            this, SLOT(setLessonsTree(IdTitleMap, item)));*/
 }
 
-TreeItems RootWindow::addTreeChilds(QTreeWidget *twg,
+TreeItems RootWindow::addTreeChilds( QTreeWidget *twg,
                                      const QStringList &itemsNames,
-                                     const QStringList &whatsThis ,
-                                     const QVector<int> whatThisCol)
+                                     const QStringList &whatsThis,
+                                     const QVector<int> whatThisCol )
 {
     QTreeWidgetItem *twgi = 0;
     TreeItems _items;
 
-    for (int i = 0; i < itemsNames.count(); ++i) {
-        twgi = new QTreeWidgetItem(twg);
-        twgi->setText(0, itemsNames.at(i));
-        twgi->setWhatsThis(whatThisCol.at(0), whatsThis.at(0));
-        _items.push_back(twgi);
+    for( int i = 0; i < itemsNames.count(); ++i )
+    {
+        twgi = new QTreeWidgetItem( twg );
+        twgi->setText( 0, itemsNames.at( i ) );
+        twgi->setWhatsThis( 1, QString::number( whatThisCol.at( i ) ) );
+        twgi->setWhatsThis( 2, whatsThis.at( i ) );
+        _items.push_back( twgi );
     }
     return _items;
 }
 
-TreeItems RootWindow::addTreeChilds(QTreeWidgetItem *twgi,
+TreeItems RootWindow::addTreeChilds( QTreeWidgetItem *twgi,
                                      const QStringList &itemsNames,
-                                     const QStringList &whatsThis ,
-                                     const QVector<int> whatThisCol)
+                                     const QStringList &whatsThis,
+                                     const QVector<int> whatThisCol )
 {
     QTreeWidgetItem *twgsi = 0;
     TreeItems _items;
 
-    for (int i = 0; i < itemsNames.count(); ++i) {
-        twgsi = new QTreeWidgetItem(twgi);
-        twgsi->setText(0, itemsNames.at(i));
-        twgsi->setWhatsThis(whatThisCol.at(0), whatsThis.at(i));
-        _items.push_back(twgi);
+    for( int i = 0; i < itemsNames.count(); ++i )
+    {
+        twgsi = new QTreeWidgetItem( twgi );
+        twgsi->setText( 0, itemsNames.at( i ) );
+        twgsi->setWhatsThis( 1, QString::number( whatThisCol.at( i ) ) );
+        twgsi->setWhatsThis( 2, whatsThis.at( i ) );
+        _items.push_back( twgsi );
     }
     return _items;
 }
 
-TreeItems RootWindow::addProfsTreeChilds(QTreeWidgetItem *parent,
-                                       const QStringList &itemsNames,
-                                       const QStringList &whatsThis)
+TreeItems RootWindow::addProfsTreeChilds( QTreeWidgetItem *parent,
+                                          const QStringList &itemsNames,
+                                          const QStringList &whatsThis )
 {
     QVector<int> typesThis;
-    for (int i = 0; i < itemsNames.count(); ++i) {
-        typesThis.push_back(Codes::ProfsTree);
+    for( int i = 0; i < itemsNames.count(); ++i )
+    {
+        typesThis.push_back( Codes::ProfsTree );
     }
-    return addTreeChilds(parent, itemsNames, whatsThis, typesThis);
+    return addTreeChilds( parent, itemsNames, whatsThis, typesThis );
 }
 
-TreeItems RootWindow::addProfsTreeChilds(QTreeWidget *viewport,
-                                       const QStringList &itemsNames,
-                                       const QStringList &whatsThis  )
+TreeItems RootWindow::addProfsTreeChilds( QTreeWidget *viewport,
+                                          const QStringList &itemsNames,
+                                          const QStringList &whatsThis )
 {
     QVector<int> typesThis;
-    for (int i = 0; i < itemsNames.count(); ++i) {
-        typesThis.push_back(Codes::ProfsTree);
+    for( int i = 0; i < itemsNames.count(); ++i )
+    {
+        typesThis.push_back( Codes::ProfsTree );
     }
-    return addTreeChilds(viewport, itemsNames, whatsThis, typesThis);
+    return addTreeChilds( viewport, itemsNames, whatsThis, typesThis );
 }
 
-TreeItems RootWindow::addLessonsTreeChilds(QTreeWidgetItem *parent,
-                                         const QStringList &itemsNames,
-                                         const QStringList &whatsThis  )
+TreeItems RootWindow::addLessonsTreeChilds( QTreeWidgetItem *parent,
+                                            const QStringList &itemsNames,
+                                            const QStringList &whatsThis )
 {
     QVector<int> typesThis;
-    for (int i = 0; i < itemsNames.count(); ++i) {
-        typesThis.push_back(Codes::LessonsTree);
+    for( int i = 0; i < itemsNames.count(); ++i )
+    {
+        typesThis.push_back( Codes::LessonsTree );
     }
-    return addTreeChilds(parent, itemsNames, whatsThis, typesThis);
+    return addTreeChilds( parent, itemsNames, whatsThis, typesThis );
 }
 
-TreeItems RootWindow::addLessonsTreeChilds(QTreeWidget *viewport,
-                                         const QStringList &itemsNames,
-                                         const QStringList &whatsThis  )
+TreeItems RootWindow::addLessonsTreeChilds( QTreeWidget *viewport,
+                                            const QStringList &itemsNames,
+                                            const QStringList &whatsThis )
 {
     QVector<int> typesThis;
-    for (int i = 0; i < itemsNames.count(); ++i) {
-        typesThis.push_back(Codes::LessonsTree);
+    for( int i = 0; i < itemsNames.count(); ++i )
+    {
+        typesThis.push_back( Codes::LessonsTree );
     }
-    return addTreeChilds(viewport, itemsNames, whatsThis, typesThis);
+    return addTreeChilds( viewport, itemsNames, whatsThis, typesThis );
 }
 
-TreeItems RootWindow::addThemesTreeChilds(QTreeWidgetItem *parent,
-                                       const QStringList &itemsNames,
-                                       const QStringList &whatsThis  )
+TreeItems RootWindow::addThemesTreeChilds( QTreeWidgetItem *parent,
+                                           const QStringList &itemsNames,
+                                           const QStringList &whatsThis )
 {
     QVector<int> typesThis;
-    for (int i = 0; i < itemsNames.count(); ++i) {
-        typesThis.push_back(Codes::ThemesTree);
+    for( int i = 0; i < itemsNames.count(); ++i )
+    {
+        typesThis.push_back( Codes::ThemesTree );
     }
-    return addTreeChilds(parent, itemsNames, whatsThis, typesThis);
+    return addTreeChilds( parent, itemsNames, whatsThis, typesThis );
 }
 
-TreeItems RootWindow::addThemesTreeChilds(QTreeWidget *viewport,
-                                       const QStringList &itemsNames,
-                                       const QStringList &whatsThis  )
+TreeItems RootWindow::addThemesTreeChilds( QTreeWidget *viewport,
+                                           const QStringList &itemsNames,
+                                           const QStringList &whatsThis )
 {
     QVector<int> typesThis;
-    for (int i = 0; i < itemsNames.count(); ++i) {
-        typesThis.push_back(Codes::ThemesTree);
+    for( int i = 0; i < itemsNames.count(); ++i )
+    {
+        typesThis.push_back( Codes::ThemesTree );
     }
-    return addTreeChilds(viewport, itemsNames, whatsThis, typesThis);
+    return addTreeChilds( viewport, itemsNames, whatsThis, typesThis );
 }
 
 void RootWindow::on_pushButton_4_clicked()
 {
     createTabelsTreeModel();
-    ui->stackedWidget->setCurrentIndex(PageIndex::RootWindow::Administr);
+    ui->stackedWidget->setCurrentIndex( PageIndex::RootWindow::Administr );
 }
 
 void RootWindow::on_PButton_Config_Back_clicked()
@@ -480,38 +532,9 @@ void RootWindow::on_PButton_Config_Back_clicked()
 //void RootWindow::treeItemClicked(Q);
 
 
-void RootWindow::on_TreeWidget_Admin_QuestionsBase_itemChanged(QTreeWidgetItem *item, int column)
+void RootWindow::on_TreeWidget_Admin_QuestionsBase_itemChanged( QTreeWidgetItem *item, int column )
 {
-    QString whats;
-    for (int i = Codes::ProfsTree; i < Codes::AnswersTree; ++i) {
-        whats = item->whatsThis(column);
-        _selected = item;
-        if( column == Codes::ProfsTree && !(whats.isEmpty()) )
-        {
-            _netMan->sendPullRequestProfList();
-            qDebug() << "[RootWindow::_itemChanged]> ProfsTree column> " << column << " whatThis > " << whats;
-        }
-        if( column == Codes::LessonsTree && !(whats.isEmpty()))
-        {
-            _netMan->sendPullRequestLessonsList(whats);
-            qDebug() << "[RootWindow::_itemChanged]> LessonsTree column> " << column << " whatThis > " << whats;
-        }
-        if (column == Codes::ThemesTree && !(whats.isEmpty()))
-        {
-            _netMan->sendPullRequestThemesList(whats);
-            qDebug() << "[RootWindow::_itemChanged]> ThemesTree column> " << column << " whatThis > " << whats;
-        }
-        if( column == Codes::QuestionsTree && !(whats.isEmpty()))
-        {
-            //_netMan->sendPullRequestQuestions();
-            qDebug() << "[RootWindow::_itemChanged]> QuestionsTree column> " << column << " whatThis > " << whats ;
-        }
-        if( column == Codes::AnswersTree && !(whats.isEmpty()))
-        {
-            //_netMan->sendPullRequestQuestions();
-            qDebug() << "[RootWindow::_itemChanged]> AnswersTree column> " << column << " whatThis > " << whats ;
-        }
-    }
-   /* connect(_jParser, SIGNAL(takeSignalProfsTree(IdTitleMap)),
-            this, SLOT(setProfsTree(IdTitleMap)));*/
+
+    /* connect(_jParser, SIGNAL(takeSignalProfsTree(IdTitleMap)),
+             this, SLOT(setProfsTree(IdTitleMap)));*/
 }
