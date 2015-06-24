@@ -29,16 +29,26 @@ private:
   JsonParser *_jParser;
   NetworkQueryManager *_netMan;
 
+  int _groupId;
+
   QString getUserLogin();
 public:
   explicit AutorisationDialog(NetworkQueryManager *netMan, JsonParser *jParser, QWidget *parent = 0);
   ~AutorisationDialog();
 
+  int groupId() const;
+  void setGroupId(int groupId);
+
 private slots:
-  void authorisation(const QString &token, const QString &fullName);
+  void authorisation(const QString &token, const QString &fullName, int userGroup);
 
   void on_PButton_Auth_Begin_clicked();
   void on_AutorisationDialog_rejected();
+  void on_PButton_Auth_Login_clicked();
+  void on_PButton_Auth_Admin_clicked();
+
+//signals:
+    //void authAdmin( int );
 };
 
 #endif // AUTORISATIONDIALOG_H

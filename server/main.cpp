@@ -15,7 +15,7 @@ int main( int argc, char *argv[] )
     SQLMgr *db = new SQLiteMgr( "", "", "", "" );
     setlocale( LC_ALL, "Russian" );
 
-    qDebug() << "//Server/ лчслдвыадвылоадлвыоавылоа  бла-бла-бла! ";
+    qDebug() << "//Server/";
 
    /* DataMap map;
     map["password"] = "111";

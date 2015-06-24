@@ -32,21 +32,23 @@ QJsonObject RequestsManager::autorisation( const SQLMgr &db, const QUrlQuery &ur
         /*db.select( "USERS", { "name", } );*/
 
         User user( login );
-        SqlWhere _where(Table::Users::Fields::LOGIN + " = '" + login + "'");
-                 _where.AND(Table::Users::Fields::PASSWORD + " = '" + password + "'");
-                 QStringList _fields( "firstName ||' '|| secondName AS fullName" );
+        SqlWhere _where( Table::Users::Fields::LOGIN + " = '" + login + "'" );
+        _where.AND( Table::Users::Fields::PASSWORD + " = '" + password + "'" );
+        QStringList _fields( { "firstName ||' '|| secondName AS fullName", Table::Users::Fields::USERGROUP_ID } );
         QString tn = Table::Users::TABLE_NAME;        
         QSqlQuery query = db.select(tn, _fields, _where);
         query.first();
         QString fullUserName = query.value( "fullName" ).toString();
         QString token = userControl.pushUser( user );
+        int userGroup = query.value( Table::Users::Fields::USERGROUP_ID ).toInt();
 
         QJsonObject response{
             { "token", token },
-            { "fullUserName", fullUserName }
+            { "fullUserName", fullUserName },
+            { "userGroup", userGroup}
         };
         QJsonObject obj{
-            { "code", 200 },
+            { "code", Codes::auth },
             { "response", response }
         }; qDebug() << "/auth obj :"<< obj;
         return obj;

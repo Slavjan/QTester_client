@@ -29,8 +29,7 @@
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTabWidget>
-#include <QtWidgets/QTableView>
-#include <QtWidgets/QTreeWidget>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -40,7 +39,7 @@ class Ui_RootWindow
 {
 public:
     QWidget *centralwidget;
-    QGridLayout *gridLayout_5;
+    QVBoxLayout *verticalLayout_9;
     QStackedWidget *stackedWidget;
     QWidget *page;
     QVBoxLayout *verticalLayout;
@@ -90,30 +89,58 @@ public:
     QGridLayout *gridLayout_2;
     QWidget *page_3;
     QGridLayout *gridLayout;
-    QTabWidget *TabWidget_Anmin;
-    QWidget *TabWidget_Anmin_Web;
-    QWidget *TabWidget_Anmin_QuestionsBase;
-    QGridLayout *gridLayout_3;
-    QGridLayout *gridLayout_4;
-    QVBoxLayout *verticalLayout_2;
-    QTableView *tableView;
+    QTabWidget *TabWidget_Admin;
+    QWidget *TabWidget_Admin_tabUsers;
+    QGridLayout *gridLayout_11;
+    QGroupBox *GroupBox_Admin_tabUsers_Users;
+    QGridLayout *gridLayout_5;
+    QHBoxLayout *horizontalLayout_5;
+    QVBoxLayout *verticalLayout_11;
+    QLineEdit *LineEdit_Admin_tabUsers_firstName;
+    QLineEdit *LineEdit_Admin_tabUsers_secondName;
+    QLineEdit *LineEdit_Admin_tabUsers_Login;
+    QLineEdit *LineEdit_Admin_tabUsers_Password;
+    QVBoxLayout *verticalLayout_12;
+    QComboBox *ComboBox_Admin_tabUsers_UserGroup;
+    QPushButton *PushButton_Admin_tabUsers_Add;
+    QPushButton *PushButton_Admin_tabUsers_Edit;
+    QPushButton *PushButton_Admin_tabUsers_Delete;
     QHBoxLayout *horizontalLayout_7;
-    QPushButton *pushButton_2;
-    QLineEdit *lineEdit;
+    QTableWidget *TableWidget_Admin_tabUsers_usersGroups;
+    QTableWidget *TableWidget_Admin_tabUsers_Users;
+    QGroupBox *GroupBox_Admin_tabUsers_Web;
+    QGridLayout *gridLayout_12;
+    QLineEdit *LineEdit_Admin_tabUsers_IP;
+    QPushButton *PushButton_Admin_tabUsers_Connect;
+    QSpinBox *SpinBoxAdmin_tabUsers_Port;
+    QWidget *TabWidget_Admin_tabQuestions;
+    QGridLayout *gridLayout_3;
+    QGroupBox *GroupBox_Admin_tabQuestions_Tables_Workspace;
+    QGridLayout *gridLayout_6;
+    QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout_6;
-    QPushButton *pushButton_3;
-    QLineEdit *lineEdit_2;
-    QTreeWidget *TreeWidget_Admin_QuestionsBase;
+    QGroupBox *groupBox_4;
+    QGridLayout *gridLayout_9;
+    QTableWidget *tableWidget;
+    QGroupBox *groupBox_6;
+    QGridLayout *gridLayout_10;
+    QTableWidget *tableWidget_2;
+    QGroupBox *groupBox_7;
+    QGridLayout *gridLayout_8;
+    QGridLayout *gridLayout_7;
+    QGroupBox *GroupBox_Admin_tabQuestions_QuestParams;
+    QGridLayout *gridLayout_4;
+    QHBoxLayout *HorizontalLayout_Admin_tabQuestions_QuestionsParams;
 
     void setupUi(QMainWindow *RootWindow)
     {
         if (RootWindow->objectName().isEmpty())
             RootWindow->setObjectName(QStringLiteral("RootWindow"));
-        RootWindow->resize(562, 321);
+        RootWindow->resize(682, 431);
         centralwidget = new QWidget(RootWindow);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
-        gridLayout_5 = new QGridLayout(centralwidget);
-        gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
+        verticalLayout_9 = new QVBoxLayout(centralwidget);
+        verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
         stackedWidget = new QStackedWidget(centralwidget);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
         page = new QWidget();
@@ -363,7 +390,7 @@ public:
         scrollArea->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         scrolLay = new QWidget();
         scrolLay->setObjectName(QStringLiteral("scrolLay"));
-        scrolLay->setGeometry(QRect(0, 0, 148, 389));
+        scrolLay->setGeometry(QRect(0, 0, 148, 364));
         gridLayout_2 = new QGridLayout(scrolLay);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         gridLayout_2->setContentsMargins(0, 0, 0, 0);
@@ -380,76 +407,224 @@ public:
         gridLayout = new QGridLayout(page_3);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        TabWidget_Anmin = new QTabWidget(page_3);
-        TabWidget_Anmin->setObjectName(QStringLiteral("TabWidget_Anmin"));
-        TabWidget_Anmin_Web = new QWidget();
-        TabWidget_Anmin_Web->setObjectName(QStringLiteral("TabWidget_Anmin_Web"));
-        TabWidget_Anmin->addTab(TabWidget_Anmin_Web, QString());
-        TabWidget_Anmin_QuestionsBase = new QWidget();
-        TabWidget_Anmin_QuestionsBase->setObjectName(QStringLiteral("TabWidget_Anmin_QuestionsBase"));
-        gridLayout_3 = new QGridLayout(TabWidget_Anmin_QuestionsBase);
-        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
-        gridLayout_4 = new QGridLayout();
-        gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
-        verticalLayout_2 = new QVBoxLayout();
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        verticalLayout_2->setSizeConstraint(QLayout::SetMaximumSize);
-        tableView = new QTableView(TabWidget_Anmin_QuestionsBase);
-        tableView->setObjectName(QStringLiteral("tableView"));
+        TabWidget_Admin = new QTabWidget(page_3);
+        TabWidget_Admin->setObjectName(QStringLiteral("TabWidget_Admin"));
+        TabWidget_Admin_tabUsers = new QWidget();
+        TabWidget_Admin_tabUsers->setObjectName(QStringLiteral("TabWidget_Admin_tabUsers"));
+        QSizePolicy sizePolicy4(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(TabWidget_Admin_tabUsers->sizePolicy().hasHeightForWidth());
+        TabWidget_Admin_tabUsers->setSizePolicy(sizePolicy4);
+        gridLayout_11 = new QGridLayout(TabWidget_Admin_tabUsers);
+        gridLayout_11->setObjectName(QStringLiteral("gridLayout_11"));
+        GroupBox_Admin_tabUsers_Users = new QGroupBox(TabWidget_Admin_tabUsers);
+        GroupBox_Admin_tabUsers_Users->setObjectName(QStringLiteral("GroupBox_Admin_tabUsers_Users"));
+        gridLayout_5 = new QGridLayout(GroupBox_Admin_tabUsers_Users);
+        gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        verticalLayout_11 = new QVBoxLayout();
+        verticalLayout_11->setObjectName(QStringLiteral("verticalLayout_11"));
+        LineEdit_Admin_tabUsers_firstName = new QLineEdit(GroupBox_Admin_tabUsers_Users);
+        LineEdit_Admin_tabUsers_firstName->setObjectName(QStringLiteral("LineEdit_Admin_tabUsers_firstName"));
 
-        verticalLayout_2->addWidget(tableView);
+        verticalLayout_11->addWidget(LineEdit_Admin_tabUsers_firstName);
+
+        LineEdit_Admin_tabUsers_secondName = new QLineEdit(GroupBox_Admin_tabUsers_Users);
+        LineEdit_Admin_tabUsers_secondName->setObjectName(QStringLiteral("LineEdit_Admin_tabUsers_secondName"));
+
+        verticalLayout_11->addWidget(LineEdit_Admin_tabUsers_secondName);
+
+        LineEdit_Admin_tabUsers_Login = new QLineEdit(GroupBox_Admin_tabUsers_Users);
+        LineEdit_Admin_tabUsers_Login->setObjectName(QStringLiteral("LineEdit_Admin_tabUsers_Login"));
+
+        verticalLayout_11->addWidget(LineEdit_Admin_tabUsers_Login);
+
+        LineEdit_Admin_tabUsers_Password = new QLineEdit(GroupBox_Admin_tabUsers_Users);
+        LineEdit_Admin_tabUsers_Password->setObjectName(QStringLiteral("LineEdit_Admin_tabUsers_Password"));
+
+        verticalLayout_11->addWidget(LineEdit_Admin_tabUsers_Password);
+
+
+        horizontalLayout_5->addLayout(verticalLayout_11);
+
+        verticalLayout_12 = new QVBoxLayout();
+        verticalLayout_12->setObjectName(QStringLiteral("verticalLayout_12"));
+        ComboBox_Admin_tabUsers_UserGroup = new QComboBox(GroupBox_Admin_tabUsers_Users);
+        ComboBox_Admin_tabUsers_UserGroup->setObjectName(QStringLiteral("ComboBox_Admin_tabUsers_UserGroup"));
+        QSizePolicy sizePolicy5(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        sizePolicy5.setHorizontalStretch(0);
+        sizePolicy5.setVerticalStretch(0);
+        sizePolicy5.setHeightForWidth(ComboBox_Admin_tabUsers_UserGroup->sizePolicy().hasHeightForWidth());
+        ComboBox_Admin_tabUsers_UserGroup->setSizePolicy(sizePolicy5);
+
+        verticalLayout_12->addWidget(ComboBox_Admin_tabUsers_UserGroup);
+
+        PushButton_Admin_tabUsers_Add = new QPushButton(GroupBox_Admin_tabUsers_Users);
+        PushButton_Admin_tabUsers_Add->setObjectName(QStringLiteral("PushButton_Admin_tabUsers_Add"));
+
+        verticalLayout_12->addWidget(PushButton_Admin_tabUsers_Add);
+
+        PushButton_Admin_tabUsers_Edit = new QPushButton(GroupBox_Admin_tabUsers_Users);
+        PushButton_Admin_tabUsers_Edit->setObjectName(QStringLiteral("PushButton_Admin_tabUsers_Edit"));
+
+        verticalLayout_12->addWidget(PushButton_Admin_tabUsers_Edit);
+
+        PushButton_Admin_tabUsers_Delete = new QPushButton(GroupBox_Admin_tabUsers_Users);
+        PushButton_Admin_tabUsers_Delete->setObjectName(QStringLiteral("PushButton_Admin_tabUsers_Delete"));
+
+        verticalLayout_12->addWidget(PushButton_Admin_tabUsers_Delete);
+
+
+        horizontalLayout_5->addLayout(verticalLayout_12);
+
+
+        gridLayout_5->addLayout(horizontalLayout_5, 0, 0, 1, 1);
 
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
-        pushButton_2 = new QPushButton(TabWidget_Anmin_QuestionsBase);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        TableWidget_Admin_tabUsers_usersGroups = new QTableWidget(GroupBox_Admin_tabUsers_Users);
+        TableWidget_Admin_tabUsers_usersGroups->setObjectName(QStringLiteral("TableWidget_Admin_tabUsers_usersGroups"));
 
-        horizontalLayout_7->addWidget(pushButton_2);
+        horizontalLayout_7->addWidget(TableWidget_Admin_tabUsers_usersGroups);
 
-        lineEdit = new QLineEdit(TabWidget_Anmin_QuestionsBase);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        TableWidget_Admin_tabUsers_Users = new QTableWidget(GroupBox_Admin_tabUsers_Users);
+        TableWidget_Admin_tabUsers_Users->setObjectName(QStringLiteral("TableWidget_Admin_tabUsers_Users"));
 
-        horizontalLayout_7->addWidget(lineEdit);
+        horizontalLayout_7->addWidget(TableWidget_Admin_tabUsers_Users);
 
 
-        verticalLayout_2->addLayout(horizontalLayout_7);
+        gridLayout_5->addLayout(horizontalLayout_7, 1, 0, 1, 1);
 
+
+        gridLayout_11->addWidget(GroupBox_Admin_tabUsers_Users, 0, 0, 1, 1);
+
+        GroupBox_Admin_tabUsers_Web = new QGroupBox(TabWidget_Admin_tabUsers);
+        GroupBox_Admin_tabUsers_Web->setObjectName(QStringLiteral("GroupBox_Admin_tabUsers_Web"));
+        gridLayout_12 = new QGridLayout(GroupBox_Admin_tabUsers_Web);
+        gridLayout_12->setObjectName(QStringLiteral("gridLayout_12"));
+        LineEdit_Admin_tabUsers_IP = new QLineEdit(GroupBox_Admin_tabUsers_Web);
+        LineEdit_Admin_tabUsers_IP->setObjectName(QStringLiteral("LineEdit_Admin_tabUsers_IP"));
+
+        gridLayout_12->addWidget(LineEdit_Admin_tabUsers_IP, 0, 0, 1, 1);
+
+        PushButton_Admin_tabUsers_Connect = new QPushButton(GroupBox_Admin_tabUsers_Web);
+        PushButton_Admin_tabUsers_Connect->setObjectName(QStringLiteral("PushButton_Admin_tabUsers_Connect"));
+
+        gridLayout_12->addWidget(PushButton_Admin_tabUsers_Connect, 0, 2, 1, 1);
+
+        SpinBoxAdmin_tabUsers_Port = new QSpinBox(GroupBox_Admin_tabUsers_Web);
+        SpinBoxAdmin_tabUsers_Port->setObjectName(QStringLiteral("SpinBoxAdmin_tabUsers_Port"));
+        QSizePolicy sizePolicy6(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy6.setHorizontalStretch(0);
+        sizePolicy6.setVerticalStretch(0);
+        sizePolicy6.setHeightForWidth(SpinBoxAdmin_tabUsers_Port->sizePolicy().hasHeightForWidth());
+        SpinBoxAdmin_tabUsers_Port->setSizePolicy(sizePolicy6);
+        SpinBoxAdmin_tabUsers_Port->setMinimumSize(QSize(128, 23));
+        SpinBoxAdmin_tabUsers_Port->setMaximumSize(QSize(128, 23));
+        SpinBoxAdmin_tabUsers_Port->setMinimum(1616);
+        SpinBoxAdmin_tabUsers_Port->setMaximum(6464);
+        SpinBoxAdmin_tabUsers_Port->setValue(3434);
+
+        gridLayout_12->addWidget(SpinBoxAdmin_tabUsers_Port, 0, 1, 1, 1);
+
+        GroupBox_Admin_tabUsers_Users->raise();
+        PushButton_Admin_tabUsers_Connect->raise();
+        LineEdit_Admin_tabUsers_IP->raise();
+        SpinBoxAdmin_tabUsers_Port->raise();
+
+        gridLayout_11->addWidget(GroupBox_Admin_tabUsers_Web, 1, 0, 1, 1);
+
+        TabWidget_Admin->addTab(TabWidget_Admin_tabUsers, QString());
+        TabWidget_Admin_tabQuestions = new QWidget();
+        TabWidget_Admin_tabQuestions->setObjectName(QStringLiteral("TabWidget_Admin_tabQuestions"));
+        gridLayout_3 = new QGridLayout(TabWidget_Admin_tabQuestions);
+        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
+        gridLayout_3->setContentsMargins(6, 0, 6, 6);
+        GroupBox_Admin_tabQuestions_Tables_Workspace = new QGroupBox(TabWidget_Admin_tabQuestions);
+        GroupBox_Admin_tabQuestions_Tables_Workspace->setObjectName(QStringLiteral("GroupBox_Admin_tabQuestions_Tables_Workspace"));
+        QSizePolicy sizePolicy7(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy7.setHorizontalStretch(0);
+        sizePolicy7.setVerticalStretch(0);
+        sizePolicy7.setHeightForWidth(GroupBox_Admin_tabQuestions_Tables_Workspace->sizePolicy().hasHeightForWidth());
+        GroupBox_Admin_tabQuestions_Tables_Workspace->setSizePolicy(sizePolicy7);
+        gridLayout_6 = new QGridLayout(GroupBox_Admin_tabQuestions_Tables_Workspace);
+        gridLayout_6->setObjectName(QStringLiteral("gridLayout_6"));
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         horizontalLayout_6 = new QHBoxLayout();
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
-        pushButton_3 = new QPushButton(TabWidget_Anmin_QuestionsBase);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        horizontalLayout_6->setSizeConstraint(QLayout::SetMaximumSize);
+        groupBox_4 = new QGroupBox(GroupBox_Admin_tabQuestions_Tables_Workspace);
+        groupBox_4->setObjectName(QStringLiteral("groupBox_4"));
+        gridLayout_9 = new QGridLayout(groupBox_4);
+        gridLayout_9->setObjectName(QStringLiteral("gridLayout_9"));
+        tableWidget = new QTableWidget(groupBox_4);
+        tableWidget->setObjectName(QStringLiteral("tableWidget"));
 
-        horizontalLayout_6->addWidget(pushButton_3);
+        gridLayout_9->addWidget(tableWidget, 0, 0, 1, 1);
 
-        lineEdit_2 = new QLineEdit(TabWidget_Anmin_QuestionsBase);
-        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
 
-        horizontalLayout_6->addWidget(lineEdit_2);
+        horizontalLayout_6->addWidget(groupBox_4);
+
+        groupBox_6 = new QGroupBox(GroupBox_Admin_tabQuestions_Tables_Workspace);
+        groupBox_6->setObjectName(QStringLiteral("groupBox_6"));
+        gridLayout_10 = new QGridLayout(groupBox_6);
+        gridLayout_10->setObjectName(QStringLiteral("gridLayout_10"));
+        tableWidget_2 = new QTableWidget(groupBox_6);
+        tableWidget_2->setObjectName(QStringLiteral("tableWidget_2"));
+
+        gridLayout_10->addWidget(tableWidget_2, 0, 0, 1, 1);
+
+
+        horizontalLayout_6->addWidget(groupBox_6);
 
 
         verticalLayout_2->addLayout(horizontalLayout_6);
 
+        groupBox_7 = new QGroupBox(GroupBox_Admin_tabQuestions_Tables_Workspace);
+        groupBox_7->setObjectName(QStringLiteral("groupBox_7"));
+        QSizePolicy sizePolicy8(QSizePolicy::Minimum, QSizePolicy::Maximum);
+        sizePolicy8.setHorizontalStretch(0);
+        sizePolicy8.setVerticalStretch(0);
+        sizePolicy8.setHeightForWidth(groupBox_7->sizePolicy().hasHeightForWidth());
+        groupBox_7->setSizePolicy(sizePolicy8);
+        gridLayout_8 = new QGridLayout(groupBox_7);
+        gridLayout_8->setObjectName(QStringLiteral("gridLayout_8"));
+        gridLayout_7 = new QGridLayout();
+        gridLayout_7->setObjectName(QStringLiteral("gridLayout_7"));
 
-        gridLayout_4->addLayout(verticalLayout_2, 0, 1, 1, 1);
-
-        TreeWidget_Admin_QuestionsBase = new QTreeWidget(TabWidget_Anmin_QuestionsBase);
-        QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
-        __qtreewidgetitem->setText(0, QStringLiteral("1"));
-        TreeWidget_Admin_QuestionsBase->setHeaderItem(__qtreewidgetitem);
-        TreeWidget_Admin_QuestionsBase->setObjectName(QStringLiteral("TreeWidget_Admin_QuestionsBase"));
-
-        gridLayout_4->addWidget(TreeWidget_Admin_QuestionsBase, 0, 0, 1, 1);
+        gridLayout_8->addLayout(gridLayout_7, 0, 0, 1, 1);
 
 
-        gridLayout_3->addLayout(gridLayout_4, 0, 0, 1, 1);
+        verticalLayout_2->addWidget(groupBox_7);
 
-        TabWidget_Anmin->addTab(TabWidget_Anmin_QuestionsBase, QString());
 
-        gridLayout->addWidget(TabWidget_Anmin, 0, 0, 1, 1);
+        gridLayout_6->addLayout(verticalLayout_2, 0, 0, 1, 1);
+
+
+        gridLayout_3->addWidget(GroupBox_Admin_tabQuestions_Tables_Workspace, 2, 0, 1, 1);
+
+        GroupBox_Admin_tabQuestions_QuestParams = new QGroupBox(TabWidget_Admin_tabQuestions);
+        GroupBox_Admin_tabQuestions_QuestParams->setObjectName(QStringLiteral("GroupBox_Admin_tabQuestions_QuestParams"));
+        gridLayout_4 = new QGridLayout(GroupBox_Admin_tabQuestions_QuestParams);
+        gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
+        HorizontalLayout_Admin_tabQuestions_QuestionsParams = new QHBoxLayout();
+        HorizontalLayout_Admin_tabQuestions_QuestionsParams->setObjectName(QStringLiteral("HorizontalLayout_Admin_tabQuestions_QuestionsParams"));
+
+        gridLayout_4->addLayout(HorizontalLayout_Admin_tabQuestions_QuestionsParams, 0, 0, 1, 1);
+
+
+        gridLayout_3->addWidget(GroupBox_Admin_tabQuestions_QuestParams, 0, 0, 1, 1);
+
+        TabWidget_Admin->addTab(TabWidget_Admin_tabQuestions, QString());
+
+        gridLayout->addWidget(TabWidget_Admin, 0, 0, 1, 1);
 
         stackedWidget->addWidget(page_3);
 
-        gridLayout_5->addWidget(stackedWidget, 0, 0, 1, 1);
+        verticalLayout_9->addWidget(stackedWidget);
 
         RootWindow->setCentralWidget(centralwidget);
 
@@ -458,7 +633,7 @@ public:
         QObject::connect(SBox_Config_needQCount, SIGNAL(valueChanged(int)), HorizontalSlider_Config_QuestionsCount, SLOT(setValue(int)));
 
         stackedWidget->setCurrentIndex(2);
-        TabWidget_Anmin->setCurrentIndex(1);
+        TabWidget_Admin->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(RootWindow);
@@ -488,10 +663,23 @@ public:
         groupBox_3->setTitle(QApplication::translate("RootWindow", "Question", 0));
         Label_Tester_Question->setText(QApplication::translate("RootWindow", "Question Text", 0));
         pushButton->setText(QApplication::translate("RootWindow", "PushButton", 0));
-        TabWidget_Anmin->setTabText(TabWidget_Anmin->indexOf(TabWidget_Anmin_Web), QApplication::translate("RootWindow", "Tab 1", 0));
-        pushButton_2->setText(QApplication::translate("RootWindow", "PushButton", 0));
-        pushButton_3->setText(QApplication::translate("RootWindow", "PushButton", 0));
-        TabWidget_Anmin->setTabText(TabWidget_Anmin->indexOf(TabWidget_Anmin_QuestionsBase), QApplication::translate("RootWindow", "Tab 2", 0));
+        GroupBox_Admin_tabUsers_Users->setTitle(QApplication::translate("RootWindow", "Users", 0));
+        LineEdit_Admin_tabUsers_firstName->setPlaceholderText(QApplication::translate("RootWindow", "First name", 0));
+        LineEdit_Admin_tabUsers_secondName->setPlaceholderText(QApplication::translate("RootWindow", "Second name", 0));
+        LineEdit_Admin_tabUsers_Login->setPlaceholderText(QApplication::translate("RootWindow", "Login", 0));
+        LineEdit_Admin_tabUsers_Password->setPlaceholderText(QApplication::translate("RootWindow", "Password", 0));
+        PushButton_Admin_tabUsers_Add->setText(QApplication::translate("RootWindow", "Add", 0));
+        PushButton_Admin_tabUsers_Edit->setText(QApplication::translate("RootWindow", "Edit", 0));
+        PushButton_Admin_tabUsers_Delete->setText(QApplication::translate("RootWindow", "Delete", 0));
+        GroupBox_Admin_tabUsers_Web->setTitle(QApplication::translate("RootWindow", "Web settings", 0));
+        PushButton_Admin_tabUsers_Connect->setText(QApplication::translate("RootWindow", "Connect", 0));
+        TabWidget_Admin->setTabText(TabWidget_Admin->indexOf(TabWidget_Admin_tabUsers), QApplication::translate("RootWindow", "Tab 1", 0));
+        GroupBox_Admin_tabQuestions_Tables_Workspace->setTitle(QApplication::translate("RootWindow", "Working with questions", 0));
+        groupBox_4->setTitle(QApplication::translate("RootWindow", "Questions", 0));
+        groupBox_6->setTitle(QApplication::translate("RootWindow", "Answers", 0));
+        groupBox_7->setTitle(QApplication::translate("RootWindow", "Work space", 0));
+        GroupBox_Admin_tabQuestions_QuestParams->setTitle(QApplication::translate("RootWindow", "Questions parameters", 0));
+        TabWidget_Admin->setTabText(TabWidget_Admin->indexOf(TabWidget_Admin_tabQuestions), QApplication::translate("RootWindow", "Tab 2", 0));
     } // retranslateUi
 
 };

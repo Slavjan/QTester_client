@@ -26,6 +26,7 @@ HEADERS += ./networkmanager.h \
     ./user.h \
     ./usercontrol.h \
     ./tcpserver.h
+
 SOURCES += ./main.cpp \
     ./networkmanager.cpp \
     ./requestsmanager.cpp \

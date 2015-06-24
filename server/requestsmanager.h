@@ -10,6 +10,16 @@
 
 #include <QUrlQuery>
 
+
+namespace userGroups
+{
+    enum UserGroups
+    {
+        Admin = 0, Prepod, Student
+    };
+}
+
+
 class RequestsManager
 {
 private:

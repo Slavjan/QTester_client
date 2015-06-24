@@ -47,8 +47,10 @@ void JsonParser::authorisation(const QJsonObject &response)
 {
   QString token = response["token"].toString(),
           fullName = response["fullUserName"].toString();
-
-  emit authSignalPars(token, fullName);
+  int userGroup = response["userGroup"].toInt();
+qDebug() << "[JsonParser::authorisation] token:" << token
+       << " fullName:" << fullName << "\n user Group:" << userGroup;
+  emit authSignalPars(token, fullName, userGroup);
   emit authSignalPars(fullName);
 }
 
@@ -59,7 +61,7 @@ IdTitleMap JsonParser::takeProfs(QJsonObject response)
 
     foreach (QJsonValue val, profArray) {
         QJsonObject obj = val.toObject();
-        qDebug() << obj["id"].toString() << " " << obj["title"].toString();
+      //  qDebug() << obj["id"].toString() << " " << obj["title"].toString();
         result[QString::number( obj["id"].toInt() )] = obj["title"].toString();
     }
 
@@ -72,14 +74,6 @@ void JsonParser::takeProfessionsList(QJsonObject response)
   qDebug() << result;
   emit takeProfsList(result);
 }
-
-void JsonParser::takeProfsTree(QJsonObject response)
-{
-    IdTitleMap result = takeProfs(response);
-    qDebug() << result;
-    emit takeSignalProfsTree(result);
-}
-
 
 
 void takeTable(QJsonObject response)
@@ -94,7 +88,7 @@ IdTitleMap JsonParser::takeLessons(QJsonObject response)
 
     foreach (QJsonValue val, lessonsArray) {
         QJsonObject obj = val.toObject();
-        qDebug() << obj["id"].toString() << " " << obj["title"].toString();
+//        qDebug() << obj["id"].toString() << " " << obj["title"].toString();
         result[QString::number( obj["id"].toInt() )] = obj["title"].toString();
     }
 
@@ -107,12 +101,6 @@ void JsonParser::takeLessonsList(QJsonObject response)
   emit takeLessons(result);
 }
 
-void JsonParser::takeLessonsTree(QJsonObject response)
-{
-  IdTitleMap result = takeLessons(response);
-  emit takeSignalLessonsTree(result);
-}
-
 IdTitleMap JsonParser::takeThemes(QJsonObject response)
 {
     IdTitleMap result;
@@ -121,7 +109,7 @@ IdTitleMap JsonParser::takeThemes(QJsonObject response)
     foreach( QJsonValue val, themeArray )
     {
         QJsonObject obj = val.toObject();
-        qDebug() << obj["id"].toString() << " " << obj["title"].toString();
+//        qDebug() << obj["id"].toString() << " " << obj["title"].toString();
         result[QString::number( obj["id"].toInt() )] = obj["title"].toString();
     }
 
@@ -134,11 +122,6 @@ void JsonParser::takeThemesLists(QJsonObject response)
   emit takeThemes(result);
 }
 
-void JsonParser::takeThemesTree(QJsonObject response)
-{
-    IdTitleMap result = takeThemes(response);
-    emit takeSignalThemesTree(result);
-}
 
 QVector<strQuestions> JsonParser::takeQuestions(QJsonObject response)
 {
@@ -174,12 +157,6 @@ void JsonParser::takeQuestionsList(QJsonObject response)
 {
     QVector<strQuestions> result = takeQuestions(response);
     emit takeQuestions(result);
-}
-
-void JsonParser::takeQuestionsTree(QJsonObject response)
-{
-//    QVector<strQuestions> result = takeQuestions(response);
-//    emit takeSignalQuestionsTree(result);
 }
 
 void JsonParser::takeQuestionsCount(QJsonObject response)

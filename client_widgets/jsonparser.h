@@ -13,10 +13,6 @@
 namespace Codes{
     enum requests{auth = 200, ProfList, LessonsList, ThemesList, QuestionsList, QuestionsCount,
                   ProfsTree, LessonsTree, ThemesTree, QuestionsTree, AnswersTree,
-<<<<<<< HEAD
-                  TopRowProf, TopRowLesson, TopRowTheme, TopRowQuestion, TopRowAnswer,
-=======
->>>>>>> 7d752a6e2ca132eb4560e44871073a1621247025
                   ProfTable, LessonTable, ThemeTable, QuestionTable, AnswerTable,
                   ProfsTable, LessonsTable, ThemesTable, QuestionsTable, AnswersTable};
 }
@@ -38,6 +34,10 @@ struct strQuestions
 
 typedef QMap<QString, QString> IdTitleMap;
 
+namespace userGroups
+{
+    enum UserGroups { Admin = 0, Prepod, Student};
+}
 
 
 class JsonParser : public QObject
@@ -57,21 +57,6 @@ public:
   void takeQuestionsList(QJsonObject response );
   void takeQuestionsCount(QJsonObject response);
 
-  void takeProfsTree(QJsonObject response);
-  void takeLessonsTree  (QJsonObject response);
-  void takeThemesTree   (QJsonObject response);
-  void takeQuestionsTree(QJsonObject response);
-  void takeAnswersTree  (QJsonObject response);
-  void takeProfsTable     (QJsonObject response);
-  void takeLessonsTable   (QJsonObject response);
-  void takeThemesTable    (QJsonObject response);
-  void takeQuestionsTable (QJsonObject response);
-  void takeAnswersTable   (QJsonObject response);
-  void takeProfTable      (QJsonObject response);
-  void takeLessonTable    (QJsonObject response);
-  void takeThemeTable     (QJsonObject response);
-  void takeQuestionTable  (QJsonObject response);
-  void takeAnswerTable    (QJsonObject response);
 
   QVector<strQuestions> takeQuestions(QJsonObject response);
 private:
@@ -80,6 +65,7 @@ private:
   IdTitleMap takeThemes(QJsonObject response);
 
 signals:
+  void authSignalPars( QString token, QString fullName, int userGroup );
   void authSignalPars(QString token, QString fullName);
   void authSignalPars(QString fullName);
 
@@ -89,22 +75,6 @@ signals:
   void takeQuestions(QVector<strQuestions> &Questions);
   void takeSignalQuestionsCount(qint64);
 
-  void takeSignalProfsTree    (IdTitleMap tree);
-  void takeSignalLessonsTree  (IdTitleMap tree);
-  void takeSignalThemesTree   (IdTitleMap tree);
-  void takeSignalQuestionsTree(IdTitleMap tree);
-  void takeSignalAnswersTree  (IdTitleMap tree);
-  void takeSignalProfsTable();
-  void takeSignalLessonsTable();
-  void takeSignalThemesTable();
-  void takeSignalQuestionsTable();
-  void takeSignalAnswersTable();
-  void takeSignalProfTable();
-  void takeSignalLessonTable();
-  void takeSignalThemeTable();
-  void takeSignalQuestionTable();
-  void takeSignalAnswerTable();
-  void takeTree();
 public slots:
   void responseSlot(QString);
   //void respArraySlot(QJsonArray);

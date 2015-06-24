@@ -58,53 +58,7 @@ private:
 //                                        const QStandardItem &chiledItem = QModelIndex());
 //    QStandardItem createProfTreeModel();
 
-    void createTabelsTreeModel();
-    TreeItems addTreeChilds(QTreeWidget *twg,
-                            const QStringList &itemsNames,
-                            const QStringList &whatsThis,
-<<<<<<< HEAD
-                            const QVector<int> whatThisCol);
-    TreeItems addTreeChilds(QTreeWidgetItem *twgi,
-                            const QStringList &itemsNames ,
-                            const QStringList &whatsThis,
-                            const QVector<int> whatThisCol);
-    TreeItems addProfsTreeChilds(QTreeWidget *viewport,
-                               const QStringList &itemsNames,
-                               const QStringList &whatsThis);
-    TreeItems addProfsTreeChilds(QTreeWidgetItem *parent,
-                               const QStringList &itemsNames,
-                               const QStringList &whatsThis);
-    TreeItems addLessonsTreeChilds(QTreeWidget *viewport,
-                                   const QStringList &itemsNames,
-                                   const QStringList &whatsThis);
-    TreeItems addLessonsTreeChilds(QTreeWidgetItem *parent,
-                                   const QStringList &itemsNames,
-                                   const QStringList &whatsThis);
-    TreeItems addThemesTreeChilds(QTreeWidgetItem *parent,
-                                  const QStringList &itemsNames,
-                                  const QStringList &whatsThis);
-    TreeItems addThemesTreeChilds(QTreeWidget *viewport,
-                                  const QStringList &itemsNames,
-                                  const QStringList &whatsThis);
-=======
-                            const int whatThisCol = 0);
-    TreeItems addTreeChilds(QTreeWidgetItem *twgi,
-                            const QStringList &itemsNames ,
-                            const QStringList &whatsThis,
-                            const int whatThisCol = 0);
-    TreeItems addProfsTreeChilds(QTreeWidget *viewport,
-                               const QStringList &itemsNames,
-                               const QStringList &whatsThis,
-                               const int whatThisCol = 0);
-    TreeItems addProfsTreeChilds(QTreeWidgetItem *parent,
-                               const QStringList &itemsNames,
-                               const QStringList &whatsThis,
-                                const int whatThisCol = 0);
-    TreeItems addLessonsTreeChilds(QTreeWidget *viewport, const QStringList &itemsNames, const QStringList &whatsThis, const int whatThisCol);
-    TreeItems addLessonsTreeChilds(QTreeWidgetItem *parent, const QStringList &itemsNames, const QStringList &whatsThis, const int whatThisCol);
-    TreeItems addThemesTreeChilds(QTreeWidgetItem *parent, const QStringList &itemsNames, const QStringList &whatsThis, const int whatThisCol);
-    TreeItems addThemesTreeChilds(QTreeWidget *viewport, const QStringList &itemsNames, const QStringList &whatsThis, const int whatThisCol);
->>>>>>> 7d752a6e2ca132eb4560e44871073a1621247025
+
 public:
     explicit RootWindow(QWidget *parent = 0);
     ~RootWindow();
@@ -114,16 +68,15 @@ public slots:
 
 private slots:
 
+    void authAdmin(QString str, QString str2, int userGroup );
+
     // void on_PButton_Start_BeginTest_clicked();
     void setProfs(IdTitleMap profList);
     void setLessonsList(IdTitleMap lessonsList);
     void setThemesList( IdTitleMap themeList );
     void setMaxQuestionsCount(qint64 maxCount);
-<<<<<<< HEAD
+
     void setProfsTree(IdTitleMap profTree, QTreeWidgetItem *selectedItem);
-=======
-  //  void setProfsTree();
->>>>>>> 7d752a6e2ca132eb4560e44871073a1621247025
 
     //void setCourses(IdTitleMap coursesList);
     void questionSelected(int number);
@@ -138,8 +91,7 @@ private slots:
     void ansEntered(int qNum, const QString &text);
     void on_pushButton_4_clicked();
     void on_PButton_Config_Back_clicked();
-    void itemWhats(QTreeWidgetItem *item, int column);
-    void on_TreeWidget_Admin_QuestionsBase_itemChanged(QTreeWidgetItem *item, int column);
+    void on_PushButton_Admin_tabUsers_Add_clicked();
 };
 
 #endif // ROOTWINDOW_H

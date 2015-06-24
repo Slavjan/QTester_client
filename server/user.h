@@ -37,7 +37,7 @@ namespace Table
             const QString SECONDNAME = "secondName";
             const QString LOGIN = "login";
             const QString PASSWORD = "password";
-            const QString USERGROPE_ID = "userGrope_id";
+            const QString USERGROUP_ID = "userGroup_id";
         }
     }
 
@@ -47,7 +47,7 @@ namespace Table
 
         namespace Fields
         {
-            const QString USERGROPE_ID = "userGrope_id";
+            const QString USERGROUP_ID = "userGrope_id";
             const QString NAME = "name";
             const QString TITLE = "title";
         }

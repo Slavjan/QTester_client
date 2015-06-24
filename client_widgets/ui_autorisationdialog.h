@@ -33,12 +33,12 @@ public:
     QVBoxLayout *verticalLayout_2;
     QComboBox *ComboBox_Auth_User;
     QPushButton *PButton_Auth_Begin;
-    QPushButton *pushButton_2;
+    QPushButton *PButton_Auth_Admin;
     QWidget *page_2;
     QVBoxLayout *verticalLayout_3;
     QLineEdit *LEdit_Login_Login;
     QLineEdit *LEdit_Login_Password;
-    QPushButton *pushButton;
+    QPushButton *PButton_Auth_Login;
 
     void setupUi(QDialog *AutorisationDialog)
     {
@@ -64,10 +64,10 @@ public:
 
         verticalLayout_2->addWidget(PButton_Auth_Begin);
 
-        pushButton_2 = new QPushButton(page);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        PButton_Auth_Admin = new QPushButton(page);
+        PButton_Auth_Admin->setObjectName(QStringLiteral("PButton_Auth_Admin"));
 
-        verticalLayout_2->addWidget(pushButton_2);
+        verticalLayout_2->addWidget(PButton_Auth_Admin);
 
         stackedWidget->addWidget(page);
         page_2 = new QWidget();
@@ -84,10 +84,10 @@ public:
 
         verticalLayout_3->addWidget(LEdit_Login_Password);
 
-        pushButton = new QPushButton(page_2);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        PButton_Auth_Login = new QPushButton(page_2);
+        PButton_Auth_Login->setObjectName(QStringLiteral("PButton_Auth_Login"));
 
-        verticalLayout_3->addWidget(pushButton);
+        verticalLayout_3->addWidget(PButton_Auth_Login);
 
         stackedWidget->addWidget(page_2);
 
@@ -106,10 +106,10 @@ public:
     {
         AutorisationDialog->setWindowTitle(QApplication::translate("AutorisationDialog", "Dialog", 0));
         PButton_Auth_Begin->setText(QApplication::translate("AutorisationDialog", "Begin new test", 0));
-        pushButton_2->setText(QApplication::translate("AutorisationDialog", "PushButton", 0));
+        PButton_Auth_Admin->setText(QApplication::translate("AutorisationDialog", "PushButton", 0));
         LEdit_Login_Login->setPlaceholderText(QApplication::translate("AutorisationDialog", "Login", 0));
         LEdit_Login_Password->setPlaceholderText(QApplication::translate("AutorisationDialog", "Password", 0));
-        pushButton->setText(QApplication::translate("AutorisationDialog", "PushButton", 0));
+        PButton_Auth_Login->setText(QApplication::translate("AutorisationDialog", "Login", 0));
     } // retranslateUi
 
 };
