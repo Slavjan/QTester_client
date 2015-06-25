@@ -24,6 +24,7 @@ class AutorisationDialog : public QDialog
 {
   Q_OBJECT
 private:
+    bool *_exit;
   Ui::AutorisationDialog *ui;
 
   JsonParser *_jParser;
@@ -31,7 +32,7 @@ private:
 
   QString getUserLogin();
 public:
-  explicit AutorisationDialog(NetworkQueryManager *netMan, JsonParser *jParser, QWidget *parent = 0);
+  explicit AutorisationDialog(bool *exit, NetworkQueryManager *netMan, JsonParser *jParser, QWidget *parent = 0);
   ~AutorisationDialog();
 
 private slots:
@@ -39,6 +40,9 @@ private slots:
 
   void on_PButton_Auth_Begin_clicked();
   void on_AutorisationDialog_rejected();
+
+protected:
+  void closeEvent(QCloseEvent *e);
 };
 
 #endif // AUTORISATIONDIALOG_H

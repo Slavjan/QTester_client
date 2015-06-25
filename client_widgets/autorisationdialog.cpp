@@ -1,9 +1,11 @@
 #include "autorisationdialog.h"
 #include "ui_autorisationdialog.h"
+#include <QCloseEvent>
 #include <QDir>
 
-AutorisationDialog::AutorisationDialog(NetworkQueryManager *netMan, JsonParser *jParser, QWidget *parent) :
+AutorisationDialog::AutorisationDialog(bool *exit, NetworkQueryManager *netMan, JsonParser *jParser, QWidget *parent) :
   QDialog(parent),
+  _exit(exit),
   ui(new Ui::AutorisationDialog)
 {
   ui->setupUi(this);
@@ -57,4 +59,9 @@ void AutorisationDialog::on_PButton_Auth_Begin_clicked()
 void AutorisationDialog::on_AutorisationDialog_rejected()
 {
     
+}
+
+void AutorisationDialog::closeEvent(QCloseEvent *e)
+{
+    *_exit = true;
 }

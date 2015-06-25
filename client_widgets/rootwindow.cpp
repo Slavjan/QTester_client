@@ -46,6 +46,8 @@ _answersLay(nullptr)*/
     _selRadioAnss.clear();
 
     ui->setupUi( this );
+
+//    ui->label_
     ui->stackedWidget->setCurrentIndex( PageIndex::RootWindow::Config );
     _jParser = JsonParser::instance( this );
     _netMan = new NetworkQueryManager( "127.0.0.1", 3434 );
@@ -55,8 +57,13 @@ _answersLay(nullptr)*/
     connectSignals();
     _netMan->sendPullRequestProfList();
 
-    AutorisationDialog _AuthForm( _netMan, _jParser );
+    bool exit = false;
+    AutorisationDialog _AuthForm( &exit, _netMan, _jParser );
     _AuthForm.exec();
+    if( exit ){
+        qDebug() << "Root::exit";
+        qApp->exit();
+    }
 }
 
 RootWindow::~RootWindow()
@@ -148,7 +155,7 @@ void RootWindow::createAnswers( const int questionNum, const QString &type, QVec
     {
         delete _answerGroup;
     }
-    _answerGroup = new QGroupBox( "Answers" );
+    _answerGroup = new QGroupBox( tr("Answers") );
     _answersLay = new QVBoxLayout( _answerGroup );
     ui->VLay_Tester_Answers->addWidget( _answerGroup );
     _answerGroup->setLayout( _answersLay );
@@ -283,13 +290,6 @@ void RootWindow::on_ComboBox_Config_Lessons_currentIndexChanged( int index )
     connect( _jParser, SIGNAL( takeThemes( IdTitleMap ) ),
              this, SLOT( setThemesList( IdTitleMap ) ) );
 }
-
-//void RootWindow::userChecked()
-//{
-
-//}
-
-
 
 void RootWindow::on_ComboBox_Config_Theme_currentIndexChanged( int index )
 {

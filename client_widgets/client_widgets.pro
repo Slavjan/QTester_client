@@ -17,7 +17,6 @@ SOURCES += main.cpp\
     tcpclient.cpp \
     networkquerymanager.cpp \
     jsonparser.cpp \
-    rootform.cpp \
     rootwindow.cpp \
     autorisationdialog.cpp \
     button.cpp \
@@ -29,7 +28,6 @@ HEADERS  += jsonreader.h \
     tcpclient.h \
     networkquerymanager.h \
     jsonparser.h \
-    rootform.h \
     rootwindow.h \
     autorisationdialog.h \
     button.h \
@@ -37,9 +35,11 @@ HEADERS  += jsonreader.h \
     check.h \
     edit.h
 
-FORMS    += rootform.ui \
+FORMS    += \
     rootwindow.ui \
     autorisationdialog.ui
 
 RESOURCES += \
     resource.qrc
+
+TRANSLATIONS += QTester_ru.ts

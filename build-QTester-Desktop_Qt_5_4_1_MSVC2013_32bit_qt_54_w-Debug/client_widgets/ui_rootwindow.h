@@ -40,7 +40,6 @@ public:
     QStackedWidget *stackedWidget;
     QWidget *page;
     QVBoxLayout *verticalLayout;
-    QLabel *label_logo;
     QLabel *label;
     QGroupBox *groupBox;
     QFormLayout *formLayout;
@@ -90,10 +89,6 @@ public:
         if (RootWindow->objectName().isEmpty())
             RootWindow->setObjectName(QStringLiteral("RootWindow"));
         RootWindow->resize(630, 367);
-        QFont font;
-        font.setFamily(QStringLiteral("Georgia"));
-        font.setPointSize(8);
-        RootWindow->setFont(font);
         centralwidget = new QWidget(RootWindow);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         verticalLayout_2 = new QVBoxLayout(centralwidget);
@@ -104,24 +99,13 @@ public:
         page->setObjectName(QStringLiteral("page"));
         verticalLayout = new QVBoxLayout(page);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        label_logo = new QLabel(page);
-        label_logo->setObjectName(QStringLiteral("label_logo"));
+        label = new QLabel(page);
+        label->setObjectName(QStringLiteral("label"));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(label_logo->sizePolicy().hasHeightForWidth());
-        label_logo->setSizePolicy(sizePolicy);
-        label_logo->setPixmap(QPixmap(QString::fromUtf8(":/resources/logo.png")));
-        label_logo->setAlignment(Qt::AlignCenter);
-
-        verticalLayout->addWidget(label_logo);
-
-        label = new QLabel(page);
-        label->setObjectName(QStringLiteral("label"));
-        QFont font1;
-        font1.setPointSize(9);
-        label->setFont(font1);
-        label->setAlignment(Qt::AlignCenter);
+        sizePolicy.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
+        label->setSizePolicy(sizePolicy);
 
         verticalLayout->addWidget(label);
 
@@ -353,7 +337,7 @@ public:
         scrollArea->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         GLay_Tester_Questions = new QWidget();
         GLay_Tester_Questions->setObjectName(QStringLiteral("GLay_Tester_Questions"));
-        GLay_Tester_Questions->setGeometry(QRect(0, 0, 148, 299));
+        GLay_Tester_Questions->setGeometry(QRect(0, 0, 148, 300));
         gridLayout_2 = new QGridLayout(GLay_Tester_Questions);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         scrollArea->setWidget(GLay_Tester_Questions);
@@ -382,14 +366,7 @@ public:
     void retranslateUi(QMainWindow *RootWindow)
     {
         RootWindow->setWindowTitle(QApplication::translate("RootWindow", "MainWindow", 0));
-        label_logo->setText(QString());
-        label->setText(QApplication::translate("RootWindow", "QTester - \321\201\320\262\320\276\320\261\320\276\320\264\320\275\320\276 \321\200\320\260\321\201\320\277\321\200\320\276\321\201\321\202\321\200\320\260\320\275\321\217\320\265\320\274\320\276\320\265 \320\277\321\200\320\270\320\273\320\276\320\266\320\265\320\275\320\270\320\265,\n"
-"\320\275\320\260\320\277\320\270\321\201\320\260\320\275\320\275\320\276\320\265 \320\262\321\213\320\277\321\203\321\201\320\272\320\275\320\270\320\272\320\276\320\274 \320\237\320\232\320\226\320\242 2015 \320\263\320\276\320\264\320\260. QTester -\n"
-"\321\217\320\262\320\273\321\217\320\265\321\202\321\201\321\217 \320\272\321\200\320\276\321\201\321\201\320\277\320\273\320\260\321\202\321\204\320\276\321\200\320\274\320\265\320\275\321\213\320\274 \320\277\321\200\320\270\320\273\320\276\320\266\320\265\320\275\320\270\320\265\320\274 \320\264\320\273\321\217\n"
-"\321\202\320\265\321\201\321\202\320\270\321\200\320\276\320\262\320\260\320\275\320\270\321\217 \321\203\321\207\320\260\321\211\320\270\321\205\321\201\321\217"
-                        " \320\270 \320\274\320\276\320\266\320\265\321\202 \320\270\321\201\320\277\320\276\320\273\321\214\320\267\320\276\320\262\320\260\321\202\321\214\321\201\321\217 \320\262\n"
-"\320\276\320\261\321\200\320\260\320\267\320\276\320\262\320\260\321\202\320\265\320\273\321\214\320\275\321\213\321\205 \321\203\321\207\321\200\320\265\320\266\320\264\320\265\320\275\320\270\321\217\321\205 \320\272\320\260\320\272 \320\264\320\273\321\217 \320\277\320\276\320\264\320\263\320\276\321\202\320\276\320\262\320\272\320\270\n"
-"\321\203\321\207\320\260\321\211\320\270\321\205\321\201\321\217 \321\202\320\260\320\272 \320\270 \320\264\320\273\321\217 \320\270\321\205 \321\215\320\272\320\267\320\260\320\274\320\270\320\275\320\260\321\206\320\270\320\270.", 0));
+        label->setText(QApplication::translate("RootWindow", "TextLabel", 0));
         groupBox->setTitle(QApplication::translate("RootWindow", "Test configuration", 0));
         label_2->setText(QApplication::translate("RootWindow", "Profession:", 0));
         label_3->setText(QApplication::translate("RootWindow", "Lesson:", 0));
@@ -408,7 +385,7 @@ public:
         Label_Tester_Theme->setText(QApplication::translate("RootWindow", "_theme", 0));
         groupBox_3->setTitle(QApplication::translate("RootWindow", "Question", 0));
         Label_Tester_Question->setText(QApplication::translate("RootWindow", "Question Text", 0));
-        pushButton->setText(QApplication::translate("RootWindow", "Finish test", 0));
+        pushButton->setText(QApplication::translate("RootWindow", "PushButton", 0));
     } // retranslateUi
 
 };

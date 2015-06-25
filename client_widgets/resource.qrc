@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>resources/logo.png</file>
+        <file>QTester_ru.qm</file>
     </qresource>
 </RCC>

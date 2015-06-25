@@ -4,6 +4,8 @@
 #include <QLineEdit>
 #include <QString>
 
+typedef QMap<int, QString> enteredAns;
+
 namespace SelectedNums{
     namespace Edit {
         const char qNum[] = "qNum";

@@ -5,24 +5,23 @@
 #include "networkquerymanager.h"
 #include "jsonparser.h"
 #include "button.h"
-#include <QGroupBox>
-#include <QVBoxLayout>
-
+#include "edit.h"
 #include "radio.h"
 #include "check.h"
-#include "edit.h"
+#include <QGroupBox>
+#include <QVBoxLayout>
 
 namespace Ui {
 class RootWindow;
 }
 
 namespace PageIndex{
-    namespace RootWindow {
-        enum PageIndex{Config = 0, TestProcess = 1, Administr };
-    }
+namespace RootWindow {
+enum PageIndex{Config = 0, TestProcess = 1, Administr };
 }
 
-typedef QMap<int, QString> enteredAns;
+}
+
 
 class RootWindow : public QMainWindow
 {
@@ -39,12 +38,15 @@ private:
 
     selectedAnswersRadioMap _selRadioAnss;
     selectedAnswersCheckMap _selCheckAnss;
-    enteredAns  _entAnss;
+    enteredAns _entAnss;
+
+
 
     void createAnswers(const int questionNum, const QString &type, QVector<strAnswers> &answers);
-    void createRadioAnswers(QVector<strAnswers> &answers, int questionNum);
-    void createCheckAnswers(QVector<strAnswers> &answers, int questionNum);
     void createTextAnswers(QVector<strAnswers> &answers, int questionNum);
+    void createCheckAnswers(QVector<strAnswers> &answers, int questionNum);
+    void createRadioAnswers(QVector<strAnswers> &answers, int questionNum);
+
 public:
     explicit RootWindow(QWidget *parent = 0);
     ~RootWindow();
@@ -53,6 +55,9 @@ public:
 public slots:
 
 private slots:
+    void answerRadioSelected(int qNum, int ansNum);
+    void answerCheckSelected(int qNum, int ansNum);
+    void ansEntered(int qNum, const QString &text);
 
     // void on_PButton_Start_BeginTest_clicked();
     void setProfs(IdTitleMap profList);
@@ -67,9 +72,6 @@ private slots:
     void on_PButton_Config_Begin_clicked();
     void setQuestions(QVector<strQuestions> &questions);
 
-    void answerRadioSelected(int qNum, int ansNum);
-    void answerCheckSelected(int qNum, int ansNum);
-    void ansEntered(int qNum, const QString &text);
 };
 
 #endif // ROOTWINDOW_H
