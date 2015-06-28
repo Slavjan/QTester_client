@@ -1,6 +1,7 @@
 #include <QDebug>
-#include "sqlmgr.h"	 
-                 
+#include "sqlmgr.h"
+#include "user.h"
+
 // public
 SQLMgr::SQLMgr( const QString &dbDriver,
                 const QString &dbHost,
@@ -91,7 +92,7 @@ QSqlQuery SQLMgr::select( const QString &tableName, const QStringList &fields, q
 
 #ifdef _DEBUG
     qDebug() << "Debug> [SQLMgr::select] " << sql; // TODO: delete that
-#endif	
+#endif
 #ifdef QT_DEBUG
     qDebug() << "Debug> [SQLMgr::select] " << sql; // TODO: delete that
 #endif
@@ -213,7 +214,7 @@ QSqlQuery SQLMgr::select( const QString     &tableName,
     return query;
 }
 
-//TODO: необходимо уточнить действие и сиснтаксис, следующей конструкции 
+//TODO: необходимо уточнить действие и сиснтаксис, следующей конструкции
 QSqlQuery SQLMgr::insert( const QString     &tableName_to,
                           const QStringList &fields_to,
                           const QString     &tableName_from,
@@ -261,7 +262,7 @@ QSqlQuery SQLMgr::insert( const QString &tableName, const DataMap &data ) const
         if( !query.exec( sql ) )
         {
             qWarning() << "Warning> [SQLMgr::insert] " << query.lastError();
-        }            
+        }
     }
 
     return query;

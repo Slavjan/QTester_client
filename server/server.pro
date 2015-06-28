@@ -24,7 +24,10 @@ HEADERS += \
     user.h \
     usercontrol.h \
     tcpserver.h \
-    ../common/ParametrParser/parametrparser.h
+    ../common/ParametrParser/parametrparser.h \
+    api/api.h \
+    api/apifactory.h \
+    api/api_1_0.h
 
 SOURCES += \
     main.cpp \
@@ -47,4 +50,7 @@ SOURCES += \
     theme.cpp \
     user.cpp \
     usercontrol.cpp \
-    ../common/ParametrParser/parametrparser.cpp
+    ../common/ParametrParser/parametrparser.cpp \
+    api/api.cpp \
+    api/apifactory.cpp \
+    api/api_1_0.cpp

@@ -1,5 +1,9 @@
 #include "requestsmanager.h"
 
+namespace DefaultValues {
+    const QString API_VERSION = "1.0";
+}
+
 QString RequestsManager::request( const SQLMgr &db, const QUrl &url )
 {
     QString request = url.path();
@@ -19,6 +23,28 @@ QString RequestsManager::request( const SQLMgr &db, const QUrl &url )
     return doc.toJson();
 }
 
+QJsonDocument RequestsManager::request(const QUrl &url, const SQLMgr &db)
+{
+    // d3i0
+
+    QString request = url.path();
+    QUrlQuery query( url );
+
+    QString apiVersion = query.queryItemValue( ApiRequests::Params::API_VERSION );
+    if( apiVersion.isEmpty() )
+        apiVersion = DefaultValues::API_VERSION;
+
+    Api *api = ApiFactory::createApi( apiVersion );
+
+    int code = 0;
+
+    QJsonObject response = api->responseRequest( url, db, code );
+
+    delete api;
+
+    return report(code, request, response);
+}
+
 QJsonObject RequestsManager::autorisation( const SQLMgr &db, const QUrlQuery &urlQuery )
 {
     UserControl userControl = UserControl::instance();
@@ -31,21 +57,14 @@ QJsonObject RequestsManager::autorisation( const SQLMgr &db, const QUrlQuery &ur
         qDebug() << "/auth success";
         /*db.select( "USERS", { "name", } );*/
 
-        User user( login );
-        SqlWhere _where( Table::Users::Fields::LOGIN + " = '" + login + "'" );
-        _where.AND( Table::Users::Fields::PASSWORD + " = '" + password + "'" );
-        QStringList _fields( { "firstName ||' '|| secondName AS fullName", Table::Users::Fields::USERGROUP_ID } );
-        QString tn = Table::Users::TABLE_NAME;        
-        QSqlQuery query = db.select(tn, _fields, _where);
-        query.first();
-        QString fullUserName = query.value( "fullName" ).toString();
+        User user( login, password, db );
+
         QString token = userControl.pushUser( user );
-        int userGroup = query.value( Table::Users::Fields::USERGROUP_ID ).toInt();
 
         QJsonObject response{
-            { "token", token },
-            { "fullUserName", fullUserName },
-            { "userGroup", userGroup}
+            { "token",        token },
+            { "fullUserName", user.getFullName() },
+            { "userGroup",    user.getGroup() }
         };
         QJsonObject obj{
             { "code", Codes::auth },
@@ -83,12 +102,12 @@ QJsonObject RequestsManager::report( const SQLMgr &db, const QString &request, c
        listName.remove( 0, 4 );
 
        qDebug() << "[RequestsManager::report]> listName" << listName;
-       if(listName.startsWith( reqLists::lessonsList, Qt::CaseInsensitive ))  // if  /...LessonsList ? id=%lId  
+       if(listName.startsWith( reqLists::lessonsList, Qt::CaseInsensitive ))  // if  /...LessonsList ? id=%lId
        {
 
          List = Lesson::getLessonsList( db, query.queryItemValue( "id" ) );
          obj = JsonFormat::lessonsListToJsonObj( List );
-       }   
+       }
        else if( listName.startsWith( reqLists::profList, Qt::CaseInsensitive ) )  // if  /...ProfList  ? id=%lId
        {
          List = Profession::getProfList( db );
@@ -96,8 +115,8 @@ QJsonObject RequestsManager::report( const SQLMgr &db, const QString &request, c
        }
        else if(listName.startsWith( reqLists::themesList, Qt::CaseInsensitive ))  // if  /...ThemesList ? id=%tId
        {
-         List = Theme::getThemeList( db, query.queryItemValue( "id" ) );  
-         obj = JsonFormat::themesListToJsonObj( List );          
+         List = Theme::getThemeList( db, query.queryItemValue( "id" ) );
+         obj = JsonFormat::themesListToJsonObj( List );
        }
        else if( listName.startsWith( reqLists::questions, Qt::CaseInsensitive ) ) // if   /... Questions
        {  // GET /getQuestions?Id= %id &questionsCount= %qCount &answersCount= %aCount
@@ -130,4 +149,20 @@ QJsonObject RequestsManager::report( const SQLMgr &db, const QString &request, c
     qDebug() << "[RequestsManager::report] > obj >" << obj;
 
     return obj;
+}
+
+QJsonDocument RequestsManager::report(const int code, const QString &request, const QJsonObject &response)
+{
+    // d3i0
+
+    QJsonObject report{
+      {"code", code },
+      {"request", request},
+      {"response", response}
+    };
+
+    QJsonDocument doc;
+    doc.setObject( report );
+
+    return doc;
 }

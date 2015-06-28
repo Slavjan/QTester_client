@@ -61,7 +61,7 @@ int main( int argc, char *argv[] )
 
     NetworkManager netMan( *db, port );
 
-    return  a.exec();
+    return a.exec();
 }
 
 
