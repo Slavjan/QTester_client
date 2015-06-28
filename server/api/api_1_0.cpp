@@ -2,24 +2,28 @@
 
 const QString API_VERSION = "1.0";
 
-QJsonObject Api_1_0::invalidRequest(int &code)
+QJsonObject Api_1_0::invalidRequest(int &code) const
 {
-    code = 400; /// < invalid request, client error
+    code = ReplyCodes::InvalidRequest;
     return QJsonObject();
 }
 
-QJsonObject Api_1_0::authorisation(const QUrlQuery &query, const SQLMgr &db, int &code)
+QJsonObject Api_1_0::authorisation(const QUrlQuery &query, const SQLMgr &db, int &code) const
 {
     /// /auth?login=11po1_1&password=123456&api_version=1.0
     QString login    = query.queryItemValue( ApiRequests::Params::LOGIN );
     QString password = query.queryItemValue( ApiRequests::Params::PASSWORD );
 
+    if ( login.isEmpty() ){
+        code = ReplyCodes::LostRequiredParameter;
+        return QJsonObject();
+    }
     if ( ! db.auth( login, password ) ){
-        code = 401; /// < invalid authentification
+        code = ReplyCodes::AuthentificationFailed;
         return QJsonObject();
     }
 
-    code = 200; /// < all ok
+    code = ReplyCodes::OK;
 
     User user(login, password, db, API_VERSION);
 
@@ -36,35 +40,43 @@ QJsonObject Api_1_0::authorisation(const QUrlQuery &query, const SQLMgr &db, int
     return response;
 }
 
-QJsonObject Api_1_0::getProfessionsList(const QUrlQuery &query, const SQLMgr &db, int &code)
+QJsonObject Api_1_0::getProfessionsList(const QUrlQuery &/*query*/, const SQLMgr &db, int &code) const
 {
-    code = 200; /// < all ok
+    /// /get_professions_list
+    code = ReplyCodes::OK;
 
     IdTitleMap list = Profession::getProfList( db );
     return JsonFormat::profListToJsonObj( list );
 }
 
-QJsonObject Api_1_0::getLessonsList(const QUrlQuery &query, const SQLMgr &db, int &code)
+QJsonObject Api_1_0::getLessonsList(const QUrlQuery &query, const SQLMgr &db, int &code) const
 {
-    code = 200; /// < all ok
+    /// /get_lessons_list?profession_id=0
+    code = ReplyCodes::OK;
     QString profession_id = query.queryItemValue( ApiRequests::Params::PROFESSION_ID );
+    if( profession_id.isEmpty() ){
+        code = ReplyCodes::LostRequiredParameter;
+        return QJsonObject();
+    }
 
     IdTitleMap list = Lesson::getLessonsList( db, profession_id );
     return JsonFormat::lessonsListToJsonObj( list );
 }
 
-QJsonObject Api_1_0::getThemesList(const QUrlQuery &query, const SQLMgr &db, int &code)
+QJsonObject Api_1_0::getThemesList(const QUrlQuery &query, const SQLMgr &db, int &code) const
 {
-    code = 200; /// < all ok
+    /// /get_themes_list?lesson_id=0
+    code = ReplyCodes::OK;
     QString lesson_id = query.queryItemValue( ApiRequests::Params::LESSON_ID );
+
+    if( lesson_id.isEmpty() ){
+        code = ReplyCodes::LostRequiredParameter;
+        return QJsonObject();
+    }
 
     IdTitleMap list = Theme::getThemeList( db, lesson_id );
     return JsonFormat::lessonsListToJsonObj( list );
 }
-
-Api_1_0::Api_1_0()
-    : Api()
-{}
 
 QJsonObject Api_1_0::responseRequest(const QUrl &url, const SQLMgr &db, int &code)
 {

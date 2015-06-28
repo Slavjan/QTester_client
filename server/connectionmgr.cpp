@@ -2,13 +2,13 @@
 #include "connectionmgr.h"
 
 ConnectionMgr::ConnectionMgr(const QString& dbDriver = "",
-                             const QString& dbHost = "",
-								   QString	dbPath = "",
-                             const QString& dbUser = "",
-                             const QString& dbPass = "")
+                             const QString& dbHost   = "",
+                                   QString  dbPath   = "",
+                             const QString& dbUser   = "",
+                             const QString& dbPass   = "")
 {
-    if(dbPath.isEmpty()) 
-		dbPath += QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QDir::separator();
+    if( dbPath.isEmpty() )
+        dbPath += QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QDir::separator();
 
     if( !QSqlDatabase::isDriverAvailable(dbDriver) ){
         qCritical() << "Cannot avalible "<< dbDriver <<" driver";
@@ -26,7 +26,7 @@ ConnectionMgr::ConnectionMgr(const QString& dbDriver = "",
         db.setPassword( dbPass );
     }
 
-	qDebug() << dbPath;
+    qDebug() << dbPath;
 }
 
 QSqlError ConnectionMgr::lastError()

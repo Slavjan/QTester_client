@@ -15,7 +15,7 @@ private:
 public:
     ConnectionMgr(const QString &dbDriver,
                   const QString &dbHost,
-				  QString		 dbPath,
+				  QString dbPath,
 				  const QString &dbUser,
 				  const QString &dbPass);
     QSqlError lastError();

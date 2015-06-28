@@ -35,13 +35,14 @@ namespace ResponseParams{
 
 class Api_1_0 : public Api
 {
-    QJsonObject invalidRequest(int &code);
-    QJsonObject authorisation(const QUrlQuery &query, const SQLMgr &db, int &code);
-    QJsonObject getProfessionsList(const QUrlQuery &query, const SQLMgr &db, int &code);
-    QJsonObject getLessonsList(const QUrlQuery &query, const SQLMgr &db, int &code);
-    QJsonObject getThemesList(const QUrlQuery &query, const SQLMgr &db, int &code);
+    QJsonObject invalidRequest(int &code) const;
+
+    QJsonObject authorisation(const QUrlQuery &query, const SQLMgr &db, int &code) const;
+
+    QJsonObject getProfessionsList(const QUrlQuery &query, const SQLMgr &db, int &code) const;
+    QJsonObject getLessonsList(const QUrlQuery &query, const SQLMgr &db, int &code) const;
+    QJsonObject getThemesList(const QUrlQuery &query, const SQLMgr &db, int &code) const;
 public:
-    Api_1_0();
     QJsonObject responseRequest(const QUrl &url, const SQLMgr &db, int &code) override;
 };
 

@@ -5,29 +5,29 @@
 // public
 SQLMgr::SQLMgr( const QString &dbDriver,
                 const QString &dbHost,
-                QString		  dbPath,
+                const QString dbPath,
                 const QString &dbUser,
                 const QString &dbPass )
 {
-    Connection = new ConnectionMgr( dbDriver, dbHost, dbPath, dbUser, dbPass );
+    _connection = new ConnectionMgr( dbDriver, dbHost, dbPath, dbUser, dbPass );
     connectionOpen();
 }
 
 
 SQLMgr::~SQLMgr()
 {
-    Connection->close();
-    delete Connection;
+    _connection->close();
+    delete _connection;
 }
 
 
 bool SQLMgr::connectionOpen()
 {
-    if( Connection->open() )
-    {
-        qDebug() << "Debug> connecton Open ";
+    if( _connection->open() ){
         return true;
     }
+
+    qCritical() << "[SQLMgr::connectionOpen]\n\tConnection is not open: " << _connection->lastError().text();
     return false;
 }
 
@@ -35,19 +35,31 @@ bool SQLMgr::createTable( const QString &tableName, const DataMap &data ) const
 {
     QString sql = "CREATE TABLE IF NOT EXISTS " + tableName + " ( ";
 
-    for( int i = 0; i < data.size(); ++i )
-    {
-        sql += data.keys().at( i ) + " " + data.values().at( i );
-        if( i + 1 < data.size() )
-            sql += ", ";
+//    for( int i = 0; i < data.size(); ++i )
+//    {
+//        sql += data.keys().at( i ) + " " + data.values().at( i );
+//        if( i + 1 < data.size() )
+//            sql += ", ";
+//    }
+
+
+    // d3i0
+    QStringList list;
+    for(auto it = data.begin(); it != data.end(); ++it ){
+        list.append( it.key() + " " + it.value() );
     }
+    sql += list.join(", ");
 
     sql += " );";
 
-    qDebug() << "Debug> [SQLMgr::createTable] " << sql; /// < \todo delete that
-
     QSqlQuery query( sql );
-    return query.exec();
+
+    if( ! query.exec() ){
+        qCritical() << "Cannot create cable '"+tableName+"'\n\tError: "
+                    << query.lastError().text();
+        return false;
+    }
+    return true;
 }
 
 bool SQLMgr::createTable( const QString     &tableName,
@@ -272,9 +284,9 @@ bool SQLMgr::auth( const QString &login, const QString &password ) const
 {
     using namespace Table::Users;
 
-//    QByteArray hashPass = QCryptographicHash::hash( "123", QCryptographicHash::Md5 );
+    //    QByteArray hashPass = QCryptographicHash::hash( "123", QCryptographicHash::Md5 );
 
-//    qDebug() << "[SQLMgr::auth]password>" << hashPass;
+    //    qDebug() << "[SQLMgr::auth]password>" << hashPass;
 
     SqlWhere _where( Fields::LOGIN + "= '" + login + "'" );
     _where.AND( Fields::PASSWORD + "= '" + password + "'" );

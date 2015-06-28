@@ -1,6 +1,5 @@
 #include <QCoreApplication>
 
-//#include "sqlitemgr.h"
 #include "profession.h"
 #include "testgenerator.h"
 #include "jsonformat.h"
@@ -11,7 +10,6 @@
 #include <QCryptographicHash>
 
 struct CommandLineArgs{
-    QString host;
     QString port;
 };
 CommandLineArgs parseCommandLineArgs( int argc, char* argv[] ){
@@ -19,9 +17,6 @@ CommandLineArgs parseCommandLineArgs( int argc, char* argv[] ){
 
     ParametrParser parser(argc, argv);
 
-    parser.setOption( "h", "host", [&](std::string arg){
-        args.host = QString::fromStdString( arg );
-    } );
     parser.setOption( "p", "port", [&](std::string arg){
         args.port = QString::fromStdString( arg );
     } );
@@ -44,10 +39,15 @@ namespace ReturnCodes {
 
 int main( int argc, char *argv[] )
 {
+    qDebug() << QCryptographicHash::hash( "QTester", QCryptographicHash::Md5 ).toHex();
+
     setlocale( LC_ALL, "Russian" );
     QCoreApplication a( argc, argv );
     CommandLineArgs args = parseCommandLineArgs(argc, argv);
 
+    a.setApplicationName("QTester_server");
+    a.setApplicationVersion("0.1.2 PreAlpha");
+    a.setOrganizationName("Slavjan");
 
     SQLMgr *db = SQLiteMgr::instance();
 

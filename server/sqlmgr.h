@@ -25,7 +25,7 @@ class SQLMgr ///SQL \brief Manadger the base class for work with Data Bases
 {
 protected:
     static SQLMgr *_instance;
-    ConnectionMgr *Connection;
+    ConnectionMgr *_connection;
 
 
     virtual bool sessionConfigurate(const DataMap &data) = 0;

@@ -10,6 +10,15 @@ namespace ApiRequests {
     }
 }
 
+namespace ReplyCodes {
+    enum Codes{
+        OK = 200,
+        InvalidRequest = 400,
+        AuthentificationFailed = 401,
+        LostRequiredParameter = 402
+    };
+}
+
 class Api
 {
 public:

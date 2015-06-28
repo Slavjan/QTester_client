@@ -3,11 +3,11 @@
 
 Answer::Answer(const QString &value, const bool valid)
 {
-	if (!value.isEmpty())
-	{
-		_value = value;
-		_valid = valid;
-	}
+    if (!value.isEmpty())
+    {
+        _value = value;
+        _valid = valid;
+    }
 }
 QString Answer::getId()const
 {
@@ -16,12 +16,12 @@ QString Answer::getId()const
 
 QString Answer::getValue() const
 {
-	return _value;
+    return _value;
 }
 
 bool Answer::isValid() const
 {
-	return _valid;
+    return _valid;
 }
 
 
@@ -32,12 +32,12 @@ void Answer::setId( const QString &id )
 
 void Answer::setValue(const QString &value)
 {
-	_value = value;
+    _value = value;
 }
 
 void Answer::setValid(const bool valid)
 {
-	_valid = valid;
+    _valid = valid;
 }
 
 

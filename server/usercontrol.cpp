@@ -2,7 +2,7 @@
 
 
 UserControl *UserControl::_instance = nullptr;
-int UserControl::tokenCount = 0;
+quint64 UserControl::tokenCount = 0;
 
 UserControl& UserControl::instance()
 {
@@ -30,8 +30,14 @@ TokenUserMap UserControl::getUsers()const
 }
 QString UserControl::pushUser( const User &user )
 {
-//    QString newToken = QCryptographicHash::hash( QString::number( tokenCount ).toUtf8(), QCryptographicHash::Md5 );
-    QString newToken = QString::number(tokenCount);
+    QByteArray salt  = "QTes" + user.getLogin().toUtf8() + "ter";
+    QString newToken = QCryptographicHash::hash(
+                           salt
+                           + QString::number( tokenCount ).toUtf8(),
+                           QCryptographicHash::Md5 )
+                       .toHex();
+    qDebug() << newToken;
+//    QString newToken = QString::number(tokenCount);
     tokenCount++;
     _users[newToken] = user;
 
