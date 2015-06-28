@@ -8,8 +8,6 @@ void TcpServer::connectSignals()
     connect( &_server, SIGNAL( newConnection() ),
              this,    SLOT(slotNewConnection())
             );
-
-    qDebug() << "[TcpServer::connectSignals]";
 }
 
 /*! \~russian

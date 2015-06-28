@@ -18,7 +18,7 @@ public slots:
     void newClient( QTcpSocket* );
     void inputQuery( QString, QTcpSocket* );
 public:
-    NetworkManager( SQLMgr &sqlMgr );
+    NetworkManager(SQLMgr &sqlMgr, const int port );
     ~NetworkManager();
 };
 
