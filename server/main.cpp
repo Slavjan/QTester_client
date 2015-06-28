@@ -6,51 +6,45 @@
 #include "jsonformat.h"
 #include "networkmanager.h"
 
+#include "../common/ParametrParser/parametrparser.h"
+
 #include <QCryptographicHash>
-             
+
+struct CommandLineArgs{
+    QString host;
+    QString port;
+};
+CommandLineArgs parseCommandLineArgs( int argc, char* argv[] ){
+    CommandLineArgs args;
+
+    ParametrParser parser(argc, argv);
+
+    parser.setOption( "h", "host", [&](std::string arg){
+        args.host = QString::fromStdString( arg );
+    } );
+    parser.setOption( "p", "port", [&](std::string arg){
+        args.port = QString::fromStdString( arg );
+    } );
+
+    try {
+        parser.exec();
+    } catch ( ParametrParser::UnknownOption e ) {
+        qWarning() << "Unknown option: " << QString::fromStdString( e.optionName );
+    }
+
+    return args;
+}
+
 int main( int argc, char *argv[] )
 {
-    QCoreApplication a( argc, argv );
-
-    SQLMgr *db = new SQLiteMgr( "", "", "", "" );
     setlocale( LC_ALL, "Russian" );
+    QCoreApplication a( argc, argv );
+    CommandLineArgs args = parseCommandLineArgs(argc, argv);
 
-    qDebug() << "//Server/";
 
-   /* DataMap map;
-    map["password"] = "111";
-    map["firstName"] = "Бла";
-    map["secondName"] = "bla";
-    map["login"] = "Khaidayev";
-    db->insert("Users", map );*/
+    SQLMgr *db = SQLiteMgr::instance( args.host, args.port );
 
     NetworkManager netMan( *db );
-
-//    QByteArray hashPass = QCryptographicHash::hash( QByteArray("123"), QCryptographicHash::Md5 );
-
-//    qDebug() << "[SQLMgr::auth]password>" << hashPass ;
-    /*IdTitleMap lessons = Lesson::getLessonsList( *db ),
-               themes = Theme::getThemeList( *db );*/
-                                                                
-    //idThemeIdsMap lessons_themes_ids;
-
-  /*  lessons_themes_ids[lessons.key( "Сетевые технологии" )] = QStringList( { themes.key( "Топология и конфигурация сетей" ), themes.key( "JavaScript" ) } );
-    lessons_themes_ids[lessons.key( "ОС и ПО ВК" )] = QStringList( { themes.key( "UNIX-системы" ), themes.key( "Norton Comander" ) } );
-*/
- /*   ParamsForCollection params;
-    params.professionId = "1";
-    params.lessIds = lessons_themes_ids.keys().first();
-    params.themsIds = lessons_themes_ids.values().first();
-    params.questionsCount = 5;
-    params.answersCount = 5;
-
-    auto prof = TestGenerator::collectTestVariant( *db, params );
-    QJsonDocument doc;
-    doc.setObject( JsonFormat::professionToJsonObj( prof ) );
-    qDebug() << doc.toJson( QJsonDocument::Indented );
-*/
-//    delete _server;
-
     return  a.exec();
 }
 
