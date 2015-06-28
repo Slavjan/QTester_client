@@ -9,6 +9,7 @@
 #include <QLineEdit>
 #include <QButtonGroup>
 #include <QList>
+#include <QMessageBox>
 
 namespace QuestionTypes
 {
@@ -119,17 +120,34 @@ void RootWindow::setQuestions( QVector<strQuestions> &questions )
         questionText = questions.first().text,
         questionType = questions.first().type;
 
+    ui->VLay_Questions->removeItem( gLay );
     QButtonGroup *butGroup = new QButtonGroup( this );
+    gLay = new QGridLayout;
+    ui->VLay_Questions->addLayout(gLay);
 
+
+
+    int row = 0;
+    int column = 0;
     for( int j = 0; j < questions.count(); ++j )
     {
-        int questionId = questions.at( j ).id;
+        if( column == 4 ){
+            row++;
+            column = 0;
+        }
+
+
+
         Button *btn = new Button( QString::number( j + 1 ), j );
-        ui->GLay_Tester_Questions->layout()->addWidget( btn );
+        _wgts.push_back( btn );
+//        ui->GLay_Tester_Questions->layout()->addWidget( btn );
+        gLay->addWidget( btn, row, column );
         //        btn->show();
         butGroup->addButton( btn, 1 );
         connect( btn, SIGNAL( selected( int ) ),
                  this, SLOT( questionSelected( int ) ) );
+
+        column++;
     }
 
     /// \todo generate answers for firs question
@@ -225,6 +243,21 @@ void RootWindow::createRadioAnswers( QVector<strAnswers> &answers, int questionN
     }
 }
 
+void RootWindow::validateAnswers()
+{
+    int MAX = _selRadioAnss.count() + _selCheckAnss.count() + _entAnss.count();
+    int result = (MAX != 0)
+                    ? rand() % MAX
+                    : 0;
+    qDebug() << "test result" << result;
+
+    QMessageBox::information(this, tr("Test result")
+                             , tr("You counted: ") + QString::number(result) );
+
+    ui->stackedWidget->setCurrentIndex( PageIndex::RootWindow::Config );
+}
+
+
 void RootWindow::createCheckAnswers( QVector<strAnswers> &answers, int questionNum )
 {
     for( int i = 0; i < answers.count(); ++i )
@@ -310,4 +343,19 @@ void RootWindow::on_PButton_Config_Begin_clicked()
     connect( _jParser, SIGNAL( takeQuestions( QVector<strQuestions>& ) ),
              this, SLOT( setQuestions( QVector<strQuestions>& ) ) );
     ui->stackedWidget->setCurrentIndex( PageIndex::RootWindow::TestProcess );
+}
+
+void RootWindow::on_pushButton_clicked()
+{
+    validateAnswers();
+    _selCheckAnss.clear();
+    _selRadioAnss.clear();
+    _entAnss.clear();
+
+    for(int i = 0; i < _wgts.count(); ++i){
+        _wgts[i]->deleteLater();
+    }
+    _wgts.clear();
+
+    gLay->deleteLater();
 }

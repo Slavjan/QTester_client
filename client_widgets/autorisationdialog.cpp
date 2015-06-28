@@ -12,7 +12,7 @@ AutorisationDialog::AutorisationDialog(bool *exit, NetworkQueryManager *netMan, 
   ui->stackedWidget->setCurrentIndex( PageIndex::AuthForm::Login );
   _netMan = netMan;
   _jParser = jParser;
-
+   ui->pushButton_2->setVisible(false);
   _netMan->authorisation(getUserLogin(), "111");
 
   //autorisation

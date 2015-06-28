@@ -29,6 +29,8 @@ class RootWindow : public QMainWindow
 private:
     Ui::RootWindow *ui;
 
+    QGridLayout *gLay;
+
     NetworkQueryManager *_netMan;
     JsonParser *_jParser;
     QVector<strQuestions> _questions;
@@ -39,6 +41,7 @@ private:
     selectedAnswersRadioMap _selRadioAnss;
     selectedAnswersCheckMap _selCheckAnss;
     enteredAns _entAnss;
+    QList<QWidget*> _wgts;
 
 
 
@@ -46,7 +49,7 @@ private:
     void createTextAnswers(QVector<strAnswers> &answers, int questionNum);
     void createCheckAnswers(QVector<strAnswers> &answers, int questionNum);
     void createRadioAnswers(QVector<strAnswers> &answers, int questionNum);
-
+    void validateAnswers();
 public:
     explicit RootWindow(QWidget *parent = 0);
     ~RootWindow();
@@ -72,6 +75,7 @@ private slots:
     void on_PButton_Config_Begin_clicked();
     void setQuestions(QVector<strQuestions> &questions);
 
+    void on_pushButton_clicked();
 };
 
 #endif // ROOTWINDOW_H

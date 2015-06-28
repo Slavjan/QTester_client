@@ -11,6 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = client_widgets
 TEMPLATE = app
 
+RC_ICONS = resources/myIcon.ico
 
 SOURCES += main.cpp\
     jsonreader.cpp \

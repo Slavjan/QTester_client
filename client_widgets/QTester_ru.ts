@@ -15,7 +15,6 @@
     </message>
     <message>
         <location filename="autorisationdialog.ui" line="43"/>
-        <location filename="autorisationdialog.ui" line="68"/>
         <source>PushButton</source>
         <translation>Администрирование</translation>
     </message>
@@ -31,7 +30,12 @@
         <translation>Пароль</translation>
     </message>
     <message>
-        <location filename="autorisationdialog.cpp" line="31"/>
+        <location filename="autorisationdialog.ui" line="68"/>
+        <source>Singin</source>
+        <translation>Войти</translation>
+    </message>
+    <message>
+        <location filename="autorisationdialog.cpp" line="33"/>
         <source>Change user...</source>
         <translation>Сменить учетную запись</translation>
     </message>
@@ -170,9 +174,19 @@
         <translation type="obsolete">Администрирование</translation>
     </message>
     <message>
-        <location filename="rootwindow.cpp" line="153"/>
+        <location filename="rootwindow.cpp" line="176"/>
         <source>Answers</source>
-        <translation>Вопросы</translation>
+        <translation>Ответы</translation>
+    </message>
+    <message>
+        <location filename="rootwindow.cpp" line="254"/>
+        <source>Test result</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="rootwindow.cpp" line="255"/>
+        <source>You counted: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

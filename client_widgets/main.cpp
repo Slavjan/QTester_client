@@ -1,10 +1,13 @@
 #include "rootwindow.h"
 #include <QApplication>
+#include <QTime>
 #include <QTranslator>
 
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
+
+  srand( QDateTime::currentMSecsSinceEpoch() );
 
   QTranslator *translator = new QTranslator;
 
@@ -16,8 +19,6 @@ int main(int argc, char *argv[])
 
   RootWindow w;
   w.show();
-
-
 
   return a.exec();
 }
