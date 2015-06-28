@@ -35,6 +35,13 @@ CommandLineArgs parseCommandLineArgs( int argc, char* argv[] ){
     return args;
 }
 
+namespace ReturnCodes {
+    enum ReturnCodes{
+        success = 0,
+        invalidPort
+    };
+}
+
 int main( int argc, char *argv[] )
 {
     setlocale( LC_ALL, "Russian" );
@@ -42,9 +49,18 @@ int main( int argc, char *argv[] )
     CommandLineArgs args = parseCommandLineArgs(argc, argv);
 
 
-    SQLMgr *db = SQLiteMgr::instance( args.host, args.port );
+    SQLMgr *db = SQLiteMgr::instance();
 
-    NetworkManager netMan( *db );
+
+    bool toIntSuccess = false;
+    int port = args.port.toInt( &toIntSuccess );
+    if( ! toIntSuccess ){
+        qCritical() << "Invalid Port";
+        return ReturnCodes::invalidPort;
+    }
+
+    NetworkManager netMan( *db, port );
+
     return  a.exec();
 }
 
