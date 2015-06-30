@@ -2,6 +2,23 @@
 
 const QString API_VERSION = "1.0";
 
+QJsonObject makeIdTitleObject(const QString &id, const QString &title){
+    return QJsonObject{
+      { ResponseParams::ID   , id    },
+      { ResponseParams::TITLE, title }
+    };
+}
+
+QJsonArray makeArrayFromIdTitleMap(const IdTitleMap &map){
+    QJsonArray jsonList;
+    for (auto it = map.begin(); it != map.end(); ++it) {
+        QJsonObject obj = makeIdTitleObject( it.key(), it.value() );
+        jsonList.append( obj );
+    }
+
+    return jsonList;
+}
+
 QJsonObject Api_1_0::invalidRequest(int &code) const
 {
     code = ReplyCodes::InvalidRequest;
@@ -46,7 +63,12 @@ QJsonObject Api_1_0::getProfessionsList(const QUrlQuery &/*query*/, const SQLMgr
     code = ReplyCodes::OK;
 
     IdTitleMap list = Profession::getProfList( db );
-    return JsonFormat::profListToJsonObj( list );
+
+    QJsonArray jsonList = makeArrayFromIdTitleMap( list );
+
+    return QJsonObject{
+        {ResponseParams::PROFESSIONS_LIST, jsonList}
+    };
 }
 
 QJsonObject Api_1_0::getLessonsList(const QUrlQuery &query, const SQLMgr &db, int &code) const
@@ -60,7 +82,10 @@ QJsonObject Api_1_0::getLessonsList(const QUrlQuery &query, const SQLMgr &db, in
     }
 
     IdTitleMap list = Lesson::getLessonsList( db, profession_id );
-    return JsonFormat::lessonsListToJsonObj( list );
+    QJsonArray jsonArray = makeArrayFromIdTitleMap( list );
+    return QJsonObject{
+        {ResponseParams::LESSONS_LIST, jsonArray}
+    };
 }
 
 QJsonObject Api_1_0::getThemesList(const QUrlQuery &query, const SQLMgr &db, int &code) const
@@ -75,7 +100,10 @@ QJsonObject Api_1_0::getThemesList(const QUrlQuery &query, const SQLMgr &db, int
     }
 
     IdTitleMap list = Theme::getThemeList( db, lesson_id );
-    return JsonFormat::lessonsListToJsonObj( list );
+    QJsonArray jsonArray = makeArrayFromIdTitleMap( list );
+    return QJsonObject{
+        {ResponseParams::THEMES_LIST, jsonArray}
+    };
 }
 
 QJsonObject Api_1_0::responseRequest(const QUrl &url, const SQLMgr &db, int &code)

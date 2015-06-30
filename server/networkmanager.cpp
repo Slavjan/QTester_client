@@ -35,7 +35,9 @@ void NetworkManager::inputQuery(QString request, QTcpSocket* client )
     qDebug() << "[NetworkManager::inputQuery] "
              << "Request: " << request;
 
-    QString outputData = RequestsManager::request( *_sqlMgr, request );
+    QString outputData = RequestsManager::request( request, *_sqlMgr ).toJson();
+
     qDebug() << outputData;
+
     _server->sendToClient( client, outputData );
 }

@@ -39,7 +39,7 @@ namespace ReturnCodes {
 
 int main( int argc, char *argv[] )
 {
-    qDebug() << QCryptographicHash::hash( "QTester", QCryptographicHash::Md5 ).toHex();
+//    qDebug() << QCryptographicHash::hash( "QTester", QCryptographicHash::Md5 ).toHex();
 
     setlocale( LC_ALL, "Russian" );
     QCoreApplication a( argc, argv );

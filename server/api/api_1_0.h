@@ -30,7 +30,12 @@ namespace ResponseParams{
     const QString USER_GROUP     = "user_group";
 
     const QString PROFESSIONS_LIST = "professions_list";
+    const QString LESSONS_LIST     = "lessons_list";
+    const QString THEMES_LIST      = "themes_list";
 
+
+    const QString ID = "id";
+    const QString TITLE = "title";
 }
 
 class Api_1_0 : public Api

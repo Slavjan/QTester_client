@@ -26,6 +26,7 @@ SOURCES += main.cpp\
     check.cpp \
     edit.cpp \
     tilelayout.cpp\
+    apitestwindow.cpp
 
 HEADERS  += jsonreader.h \
     tcpclient.h \
@@ -39,10 +40,12 @@ HEADERS  += jsonreader.h \
     check.h \
     edit.h \
     tilelayout.h\
+    apitestwindow.h
 
 FORMS    += rootform.ui \
     rootwindow.ui \
     autorisationdialog.ui\
+    apitestwindow.ui
 
 RESOURCES += \
     resource.qrc\
