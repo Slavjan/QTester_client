@@ -21,13 +21,14 @@ HEADERS += \
     testgenerator.h \
     teststandard.h \
     theme.h \
-    user.h \
-    usercontrol.h \
     tcpserver.h \
     ../common/ParametrParser/parametrparser.h \
     api/api.h \
     api/apifactory.h \
-    api/api_1_0.h
+    api/api_1_0.h \
+    users/user.h \
+    users/usercontrol.h \
+    users/accesscontrol.h
 
 SOURCES += \
     main.cpp \
@@ -48,9 +49,10 @@ SOURCES += \
     testgenerator.cpp \
     teststandard.cpp \
     theme.cpp \
-    user.cpp \
-    usercontrol.cpp \
     ../common/ParametrParser/parametrparser.cpp \
     api/api.cpp \
     api/apifactory.cpp \
-    api/api_1_0.cpp
+    api/api_1_0.cpp \
+    users/user.cpp \
+    users/usercontrol.cpp \
+    users/accesscontrol.cpp

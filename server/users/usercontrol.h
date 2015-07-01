@@ -5,21 +5,26 @@
 #include <QMap>
 #include "user.h"
 
-typedef QMap<QString, User> TokenUserMap;
+typedef QHash<QString, User> TokenUserHash;
+#define exceptions public
 
 class UserControl
 {
 private:
     static quint64 tokenCount;
-    TokenUserMap _users;
+    TokenUserHash _users;
     static UserControl *_instance;
 
     UserControl(){}
+
+exceptions:
+    class InvalidToken{};
+
 public:
     static UserControl& instance();
 
     User getUser(const QString &token) const;
-    TokenUserMap getUsers()const;
+    TokenUserHash getUsers()const;
     QString pushUser( const User &user );
     bool remove( const QString &token );
 };

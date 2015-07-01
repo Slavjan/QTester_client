@@ -57,7 +57,7 @@ void TcpClient::connectToServer(const QString &host, const int port)
  * \brief Внутренний слот класса.
  * Предназначен для чтения принимаемых с сервера данных
  * \note не понимаю цикла. Сигнал с данными, по идее, будет высылаться
- * на каждую порцию принятых данных, возможно ошибочная реализация.
+ *       на каждую порцию принятых данных, возможно ошибочная реализация.
  *
  * \code
  * QObject::connect(     tcpObj, SIGNAL( dataRecieved(QString&)      ),
@@ -115,6 +115,8 @@ void TcpClient::slotError(QAbstractSocket::SocketError error)
 #ifdef DEBUG_OUTPUT
     qCritical() << errorMessage;
 #endif
+
+    _socket.close();
     emit errorDataRecieved( errorMessage );
 }
 

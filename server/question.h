@@ -53,7 +53,7 @@ public:
     void print()const;
 };
 
-namespace Table
+namespace Tables
 {
 	namespace Question
 	{

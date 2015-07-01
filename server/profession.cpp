@@ -69,7 +69,7 @@ Lesson Profession::selectLesson( const QString &lessonId,
                                   const qint64 questionsCount,
                                   const int answersCount )const
 {
-    using namespace Table::Lesson;
+    using namespace Tables::Lesson;
 
     QStringList _fields( {Fields::NAME, Fields::TITLE, Fields::LANGUAGE, Fields::COURSE } );     
     SqlWhere _where( Fields::LESSON_ID + " = '" + lessonId + "'" );
@@ -93,7 +93,7 @@ Lesson Profession::selectLesson( const QString &lessonId,
 
 IdTitleMap Profession::getProfList( const SQLMgr &sqlManager )
 {
-    using namespace Table::Professtion;
+    using namespace Tables::Professtion;
     QStringList _fields( { Fields::PROFESSION_ID, Fields::TITLE } );
     IdTitleMap profList;
 
