@@ -10,6 +10,7 @@
 #include <QLineEdit>
 #include <QButtonGroup>
 #include <QList>
+#include <QMessageBox>
 
 
 
@@ -82,6 +83,8 @@ _answersLay(nullptr)*/
     _selRadioAnss.clear();
 
     ui->setupUi( this );
+
+//    ui->label_
     ui->stackedWidget->setCurrentIndex( PageIndex::RootWindow::Config );
     _jParser = JsonParser::instance( this );
     _netMan = new NetworkQueryManager( "127.0.0.1", 3434 );
@@ -93,8 +96,8 @@ _answersLay(nullptr)*/
 
     AutorisationDialog _AuthForm( _netMan, _jParser );
 
-    //authAdmin( _AuthForm.groupId() );
     _AuthForm.exec();
+
 }
 
 RootWindow::~RootWindow()
@@ -148,6 +151,10 @@ void RootWindow::setProfsTree(IdTitleMap profTree, QTreeWidgetItem *selectedItem
 
 void RootWindow::setQuestions( QVector<strQuestions> &questions )
 {
+/*
+ * 1. Вакханалия !!!
+ * 2. Надо копать дальше в стороно QML. К чёрту виджеты.
+ * ------------------------------------------------------
     _questions = questions;
     QString profession = ui->ComboBox_Config_Profession->currentText(),
         lesson = ui->ComboBox_Config_Lessons->currentText(),
@@ -155,7 +162,9 @@ void RootWindow::setQuestions( QVector<strQuestions> &questions )
         questionText = questions.first().text,
         questionType = questions.first().type;
 
+    ui->VLay_Questions->removeItem( gLay );
     QButtonGroup *butGroup = new QButtonGroup( this );
+
     int rowCount = round( float( questions.count() / 5 ) ),
         colCount = round( float( questions.count() / rowCount ) );
 
@@ -172,6 +181,12 @@ void RootWindow::setQuestions( QVector<strQuestions> &questions )
 
     layout->setGeometry( rect );
 
+    gLay = new QGridLayout;
+    ui->VLay_Questions->addLayout(gLay);
+
+
+    int row = 0;
+    int column = 0;
     for( int j = 0; j < questions.count(); ++j )
     {
 
@@ -180,9 +195,25 @@ void RootWindow::setQuestions( QVector<strQuestions> &questions )
         //        layout->addItem();
 
         layout->addWidget( btn );
+
+        if( column == 4 ){
+            row++;
+            column = 0;
+        }
+
+
+
+        Button *btn = new Button( QString::number( j + 1 ), j );
+        _wgts.push_back( btn );
+//        ui->GLay_Tester_Questions->layout()->addWidget( btn );
+        gLay->addWidget( btn, row, column );
+        //        btn->show();
+
         butGroup->addButton( btn, 1 );
         connect( btn, SIGNAL( selected( int ) ),
                  this, SLOT( questionSelected( int ) ) );
+
+        column++;
     }
     ui->scrolLay->setLayout( layout );
     /// \todo generate answers for firs question
@@ -192,6 +223,7 @@ void RootWindow::setQuestions( QVector<strQuestions> &questions )
     ui->Label_Tester_Question->setText( questionText );
 
     createAnswers( 0, questionType, _questions.first().answers );
+*/
 }
 
 void RootWindow::questionSelected( int number )
@@ -208,7 +240,7 @@ void RootWindow::createAnswers( const int questionNum, const QString &type, QVec
     {
         delete _answerGroup;
     }
-    _answerGroup = new QGroupBox( "Answers" );
+    _answerGroup = new QGroupBox( tr("Answers") );
     _answersLay = new QVBoxLayout( _answerGroup );
     ui->VLay_Tester_Answers->addWidget( _answerGroup );
     _answerGroup->setLayout( _answersLay );
@@ -278,6 +310,21 @@ void RootWindow::createRadioAnswers( QVector<strAnswers> &answers, int questionN
     }
 }
 
+void RootWindow::validateAnswers()
+{
+    int MAX = _selRadioAnss.count() + _selCheckAnss.count() + _entAnss.count();
+    int result = (MAX != 0)
+                    ? rand() % MAX
+                    : 0;
+    qDebug() << "test result" << result;
+
+    QMessageBox::information(this, tr("Test result")
+                             , tr("You counted: ") + QString::number(result) );
+
+    ui->stackedWidget->setCurrentIndex( PageIndex::RootWindow::Config );
+}
+
+
 void RootWindow::createCheckAnswers( QVector<strAnswers> &answers, int questionNum )
 {
     for( int i = 0; i < answers.count(); ++i )
@@ -344,13 +391,6 @@ void RootWindow::on_ComboBox_Config_Lessons_currentIndexChanged( int index )
              this, SLOT( setThemesList( IdTitleMap ) ) );
 }
 
-//void RootWindow::userChecked()
-//{
-
-//}
-
-
-
 void RootWindow::on_ComboBox_Config_Theme_currentIndexChanged( int index )
 {
     // нужно запросить максимальное количество вопросов в базе данных
@@ -393,4 +433,19 @@ void RootWindow::on_PButton_Config_Back_clicked()
 void RootWindow::on_PushButton_Admin_tabUsers_Add_clicked()
 {
 
+}
+
+void RootWindow::on_pushButton_clicked()
+{
+    validateAnswers();
+    _selCheckAnss.clear();
+    _selRadioAnss.clear();
+    _entAnss.clear();
+
+    for(int i = 0; i < _wgts.count(); ++i){
+        _wgts[i]->deleteLater();
+    }
+    _wgts.clear();
+
+    gLay->deleteLater();
 }

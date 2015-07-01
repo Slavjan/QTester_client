@@ -2,11 +2,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "server", "server\server.vcxproj", "{27C8F143-561E-301C-8531-D238D29508A8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "server", "server\server.vcxproj", "{FF300333-C85A-36AF-A92C-54DDC0F95761}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "client", "client\client.vcxproj", "{C52133E0-B834-33B3-AAAE-F4450F10CF4D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "client", "client\client.vcxproj", "{5FF23D2E-9534-334B-9BF7-82429870ED2A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "client_widgets", "client_widgets\client_widgets.vcxproj", "{D43A8E6D-B211-3C00-9345-731D59742785}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "client_widgets", "client_widgets\client_widgets.vcxproj", "{75E9AC7B-C312-3227-AF85-4C3627B46654}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,18 +14,18 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{27C8F143-561E-301C-8531-D238D29508A8}.Debug|Win32.ActiveCfg = Debug|Win32
-		{27C8F143-561E-301C-8531-D238D29508A8}.Debug|Win32.Build.0 = Debug|Win32
-		{27C8F143-561E-301C-8531-D238D29508A8}.Release|Win32.ActiveCfg = Release|Win32
-		{27C8F143-561E-301C-8531-D238D29508A8}.Release|Win32.Build.0 = Release|Win32
-		{C52133E0-B834-33B3-AAAE-F4450F10CF4D}.Debug|Win32.ActiveCfg = Debug|Win32
-		{C52133E0-B834-33B3-AAAE-F4450F10CF4D}.Debug|Win32.Build.0 = Debug|Win32
-		{C52133E0-B834-33B3-AAAE-F4450F10CF4D}.Release|Win32.ActiveCfg = Release|Win32
-		{C52133E0-B834-33B3-AAAE-F4450F10CF4D}.Release|Win32.Build.0 = Release|Win32
-		{D43A8E6D-B211-3C00-9345-731D59742785}.Debug|Win32.ActiveCfg = Debug|Win32
-		{D43A8E6D-B211-3C00-9345-731D59742785}.Debug|Win32.Build.0 = Debug|Win32
-		{D43A8E6D-B211-3C00-9345-731D59742785}.Release|Win32.ActiveCfg = Release|Win32
-		{D43A8E6D-B211-3C00-9345-731D59742785}.Release|Win32.Build.0 = Release|Win32
+		{FF300333-C85A-36AF-A92C-54DDC0F95761}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FF300333-C85A-36AF-A92C-54DDC0F95761}.Debug|Win32.Build.0 = Debug|Win32
+		{FF300333-C85A-36AF-A92C-54DDC0F95761}.Release|Win32.ActiveCfg = Release|Win32
+		{FF300333-C85A-36AF-A92C-54DDC0F95761}.Release|Win32.Build.0 = Release|Win32
+		{5FF23D2E-9534-334B-9BF7-82429870ED2A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5FF23D2E-9534-334B-9BF7-82429870ED2A}.Debug|Win32.Build.0 = Debug|Win32
+		{5FF23D2E-9534-334B-9BF7-82429870ED2A}.Release|Win32.ActiveCfg = Release|Win32
+		{5FF23D2E-9534-334B-9BF7-82429870ED2A}.Release|Win32.Build.0 = Release|Win32
+		{75E9AC7B-C312-3227-AF85-4C3627B46654}.Debug|Win32.ActiveCfg = Debug|Win32
+		{75E9AC7B-C312-3227-AF85-4C3627B46654}.Debug|Win32.Build.0 = Debug|Win32
+		{75E9AC7B-C312-3227-AF85-4C3627B46654}.Release|Win32.ActiveCfg = Release|Win32
+		{75E9AC7B-C312-3227-AF85-4C3627B46654}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

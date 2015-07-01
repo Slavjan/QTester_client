@@ -10,6 +10,12 @@
     <height>431</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>Georgia</family>
+    <pointsize>8</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -18,12 +24,12 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QLabel" name="label">
+         <widget class="QLabel" name="label_logo">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -31,7 +37,33 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>TextLabel</string>
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap resource="resource.qrc">:/resources/logo.png</pixmap>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>QTester - свободно распространяемое приложение,
+написанное выпускником ПКЖТ 2015 года. QTester -
+является кроссплатформеным приложением для
+тестирования учащихся и может использоваться в
+образовательных учреждениях как для подготовки
+учащихся так и для их экзаминации.</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
           </property>
          </widget>
         </item>
@@ -368,7 +400,7 @@
              </size>
             </property>
             <property name="text">
-             <string>PushButton</string>
+             <string>Finish test</string>
             </property>
            </widget>
           </item>
@@ -596,7 +628,6 @@
                 </widget>
                </item>
               </layout>
-              <zorder>GroupBox_Admin_tabUsers_Users</zorder>
               <zorder>PushButton_Admin_tabUsers_Connect</zorder>
               <zorder>LineEdit_Admin_tabUsers_IP</zorder>
               <zorder>SpinBoxAdmin_tabUsers_Port</zorder>
@@ -712,7 +743,9 @@
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>HorizontalSlider_Config_QuestionsCount</sender>

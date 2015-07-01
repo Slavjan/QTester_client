@@ -13,18 +13,21 @@
 #include <QStringListModel>
 #include <QStandardItemModel>
 
+#include "edit.h"
 #include "radio.h"
 #include "check.h"
-#include "edit.h"
+#include <QGroupBox>
+#include <QVBoxLayout>
 
 namespace Ui {
 class RootWindow;
 }
 
 namespace PageIndex{
-    namespace RootWindow {
-        enum PageIndex{Config = 0, TestProcess = 1, Administr };
-    }
+namespace RootWindow {
+enum PageIndex{Config = 0, TestProcess = 1, Administr };
+}
+
 }
 
 typedef QMap<int, QString> enteredAns;
@@ -36,6 +39,8 @@ class RootWindow : public QMainWindow
 private:
     Ui::RootWindow *ui;
 
+    QGridLayout *gLay;
+
     NetworkQueryManager *_netMan;
     JsonParser *_jParser;
     QVector<strQuestions> _questions;
@@ -45,19 +50,24 @@ private:
 
     selectedAnswersRadioMap _selRadioAnss;
     selectedAnswersCheckMap _selCheckAnss;
-    enteredAns  _entAnss;
+    enteredAns _entAnss;
+    QList<QWidget*> _wgts;
+
+
 
     TreeItems topItems;
     QTreeWidgetItem *_selected;
 
     void createAnswers(const int questionNum, const QString &type, QVector<strAnswers> &answers);
-    void createRadioAnswers(QVector<strAnswers> &answers, int questionNum);
-    void createCheckAnswers(QVector<strAnswers> &answers, int questionNum);
     void createTextAnswers(QVector<strAnswers> &answers, int questionNum);
 //    QStandardItem createTableModelIndex(const QString &indexName, const int row,
 //                                        const QStandardItem &chiledItem = QModelIndex());
 //    QStandardItem createProfTreeModel();
 
+
+    void createCheckAnswers(QVector<strAnswers> &answers, int questionNum);
+    void createRadioAnswers(QVector<strAnswers> &answers, int questionNum);
+    void validateAnswers();
 
 public:
     explicit RootWindow(QWidget *parent = 0);
@@ -67,7 +77,6 @@ public:
 public slots:
 
 private slots:
-
     void authAdmin(QString str, QString str2, int userGroup );
 
     // void on_PButton_Start_BeginTest_clicked();
@@ -92,6 +101,8 @@ private slots:
     void on_pushButton_4_clicked();
     void on_PButton_Config_Back_clicked();
     void on_PushButton_Admin_tabUsers_Add_clicked();
+
+    void on_pushButton_clicked();
 };
 
 #endif // ROOTWINDOW_H

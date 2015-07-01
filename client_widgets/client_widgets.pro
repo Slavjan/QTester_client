@@ -12,13 +12,13 @@ TARGET = client_widgets
 TEMPLATE = app
 CONFIG += c++11
 
+RC_ICONS = resources/myIcon.ico
 
 SOURCES += main.cpp\
     jsonreader.cpp \
     tcpclient.cpp \
     networkquerymanager.cpp \
     jsonparser.cpp \
-    rootform.cpp \
     rootwindow.cpp \
     autorisationdialog.cpp \
     button.cpp \
@@ -32,7 +32,6 @@ HEADERS  += jsonreader.h \
     tcpclient.h \
     networkquerymanager.h \
     jsonparser.h \
-    rootform.h \
     rootwindow.h \
     autorisationdialog.h \
     button.h \
@@ -42,10 +41,12 @@ HEADERS  += jsonreader.h \
     tilelayout.h\
     apitestwindow.h
 
-FORMS    += rootform.ui \
+FORMS    += \
     rootwindow.ui \
     autorisationdialog.ui\
     apitestwindow.ui
 
 RESOURCES += \
-    resource.qrc\
+    resource.qrc
+
+TRANSLATIONS += QTester_ru.ts
