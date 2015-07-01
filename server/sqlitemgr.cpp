@@ -1,33 +1,44 @@
 #include "sqlitemgr.h"
-	 
+
+SQLiteMgr* SQLiteMgr::_instance = nullptr;
+
 SQLiteMgr::SQLiteMgr() : SQLMgr()
-{				 	
+{
 }
 
-SQLiteMgr::SQLiteMgr(const QString& dbHost, QString	dbPath, const QString& dbUser, const QString& dbPass)
-    : SQLMgr("QSQLITE", dbHost, dbPath, dbUser, dbPass)
+SQLiteMgr::SQLiteMgr(const QString& dbHost, const QString &dbPath)
+    : SQLMgr("QSQLITE", dbHost, dbPath, "", "")
 {
+}
+
+SQLiteMgr *SQLiteMgr::instance(const QString &dbHost, const QString &dbPath)
+{
+    if( ! _instance ){
+        _instance = new SQLiteMgr(dbHost, dbPath);
+    }
+
+    return _instance;
 }
 
 qlonglong SQLiteMgr::size(const QString &tableName)
 {
-    QSqlQuery query = select( tableName, {"count(rowid)"} );
+    QSqlQuery query = select( tableName, {"COUNT(rowid) AS rCount"} );
     query.first();
-    return query.value(0).toLongLong();
+    return query.value("rCount").toLongLong();
 }
 
 bool SQLiteMgr::sessionConfigurate(const DataMap &data)
 {
-	QSqlQuery query;
+    QSqlQuery query;
     if( ! data.isEmpty() )
-	{
-		QString query_string;
+    {
+        QString query_string;
         for (auto i = 0; i < data.count(); i++) /// \warning TODO: БЫЛО <= ПРОВЕРИТЬ
         {
             query_string += "PRAGMA" + data.keys().at(i) + " = " + data.values().at(i) + " \n";
-		}
+        }
 
-		return query.exec(query_string);			
-	}
-	return false;
+        return query.exec(query_string);
+    }
+    return false;
 }

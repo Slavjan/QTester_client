@@ -5,7 +5,7 @@
 #include "connectionmgr.h"
 #include "sqlwhere.h"
 #include "sqlorderby.h"
-#include "user.h"
+//#include "user.h"
 
 #include <QMap>
 #include <QString>
@@ -14,24 +14,24 @@
 #include <QCryptographicHash>
 
 #ifdef _DEBUG
-#include <QDebug>
+    #include <QDebug>
 #endif
 
 typedef QMap<QString, QString> DataMap;
 
 
 
-class SQLMgr //SQL \bref Manadger the base class for work with Data Bases
+class SQLMgr ///SQL \brief Manadger the base class for work with Data Bases
 {
-protected: 
-    static SQLMgr *_instance;	
-	ConnectionMgr *Connection;
-    
+protected:
+    static SQLMgr *_instance;
+    ConnectionMgr *_connection;
+
 
     virtual bool sessionConfigurate(const DataMap &data) = 0;
 
-    
-public:			
+
+public:
     /*static SQLMgr& instance();
     static SQLMgr& instance( const QString &dbDriver,
                              const QString &dbHost,
@@ -49,8 +49,8 @@ public:
 
     static bool transaction();
 
-	virtual bool connectionOpen();
-					   
+    virtual bool connectionOpen();
+
     virtual bool createTable(const QString     &tableName,
                              const DataMap     &data) const;
     virtual bool createTable(const QString     &tableName,
@@ -67,21 +67,21 @@ public:
                              const QStringList &fields,
                              const SqlWhere    &where,
                                    qint64       limit = 25) const;
-	virtual QSqlQuery select(const QString     &tableName,
-		                     const QStringList &fields,
-		                     const SqlOrderBy  &order,
-		                           qint64       limit = 25) const;
-	virtual QSqlQuery select(const QString     &tableName,
-		                     const QStringList &fields,
-		                     const SqlWhere    &where,
-							 const SqlOrderBy  &order,
-		                           qint64       limit = 25) const; 
+    virtual QSqlQuery select(const QString     &tableName,
+                             const QStringList &fields,
+                             const SqlOrderBy  &order,
+                                   qint64       limit = 25) const;
+    virtual QSqlQuery select(const QString     &tableName,
+                             const QStringList &fields,
+                             const SqlWhere    &where,
+                             const SqlOrderBy  &order,
+                                   qint64       limit = 25) const;
 
     virtual QSqlQuery insert(const QString     &tableName_to,
                              const QStringList &fields_to,
                              const QString     &tableName_from,
                              const QStringList &fields_from,
-                             const QString     &where) const; 
+                             const QString     &where) const;
     virtual QSqlQuery insert(const QString     &tableName,
                              const DataMap     &data) const;
 

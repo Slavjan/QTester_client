@@ -1,24 +1,29 @@
-#pragma once
 #ifndef USER_H
 #define USER_H
 
+#include "sqlmgr.h"
 #include <QString>
 #include <QCryptographicHash>
 
 class User
 {
 private:
-    QString _name;
+    QString _login;
+    QString _fullName;
+    QString _group;
     QString _apiVersion = "1.0";
+
 
 public:
     User()
     {
     }
-    User( const QString &name, const QString & = "1.0" );
+    User( const QString &login, const QString &password, const SQLMgr &db, const QString & = "1.0" );
 
-    QString getName();
-    QString getApiVersion();
+    QString getLogin() const;
+    QString getApiVersion() const;
+    QString getFullName() const;
+    QString getGroup() const;
 
     void setName( const QString &name );
     void setApiVersion( const QString &version );

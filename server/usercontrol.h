@@ -10,7 +10,7 @@ typedef QMap<QString, User> TokenUserMap;
 class UserControl
 {
 private:
-    static int tokenCount;
+    static quint64 tokenCount;
     TokenUserMap _users;
     static UserControl *_instance;
 
@@ -24,4 +24,4 @@ public:
     bool remove( const QString &token );
 };
 
-#endif       
+#endif

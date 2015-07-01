@@ -1,5 +1,6 @@
 
 
 TEMPLATE = subdirs
-SUBDIRS += server/server.pro \
-           client_widgets\
+SUBDIRS += \
+    server/server.pro \
+    client_widgets
