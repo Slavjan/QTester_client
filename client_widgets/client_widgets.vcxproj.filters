@@ -45,38 +45,19 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Translation Files">
-      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
-      <Extensions>ts;xlf</Extensions>
-      <ParseFiles>false</ParseFiles>
-    </Filter>
-    <Filter Include="Translation Files">
-      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
-      <Extensions>ts;xlf</Extensions>
-      <ParseFiles>false</ParseFiles>
-    </Filter>
     <Filter Include="Generated Files\Debug">
-      <UniqueIdentifier>{2051d951-a437-4289-851b-ab18c565f1da}</UniqueIdentifier>
+      <UniqueIdentifier>{59d5d817-f2b1-4351-822d-64c16fb49e5c}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Release">
-      <UniqueIdentifier>{323b219f-ab24-4619-b138-f0d46d352e5a}</UniqueIdentifier>
+      <UniqueIdentifier>{526a047e-93bc-4a0e-8c1c-280f498898e2}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="autorisationdialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="button.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="check.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="edit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="jsonparser.cpp">
@@ -91,7 +72,7 @@
     <ClCompile Include="networkquerymanager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="radio.cpp">
+    <ClCompile Include="rootform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="rootwindow.cpp">
@@ -106,24 +87,6 @@
     <ClCompile Include="Release\moc_autorisationdialog.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Debug\moc_button.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="Release\moc_button.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Debug\moc_check.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="Release\moc_check.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Debug\moc_edit.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="Release\moc_edit.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="Debug\moc_jsonparser.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -136,10 +99,10 @@
     <ClCompile Include="Release\moc_networkquerymanager.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Debug\moc_radio.cpp">
+    <ClCompile Include="Debug\moc_rootform.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="Release\moc_radio.cpp">
+    <ClCompile Include="Release\moc_rootform.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="Debug\moc_rootwindow.cpp">
@@ -157,18 +120,48 @@
     <ClCompile Include="GeneratedFiles\qrc_resource.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="Debug\moc_button.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_button.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_radio.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_radio.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_check.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_check.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_edit.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_edit.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="tilelayout.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="radio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="edit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="check.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="autorisationdialog.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="button.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="check.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="edit.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="jsonparser.h">
@@ -180,7 +173,7 @@
     <CustomBuild Include="networkquerymanager.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="radio.h">
+    <CustomBuild Include="rootform.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="rootwindow.h">
@@ -189,17 +182,24 @@
     <CustomBuild Include="tcpclient.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="DatabaseAnime_en.ts">
-      <Filter>Translation Files</Filter>
-    </None>
-    <None Include="DatabaseAnime_ru.ts">
-      <Filter>Translation Files</Filter>
-    </None>
+    <CustomBuild Include="radio.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="edit.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="check.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="button.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="autorisationdialog.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="rootform.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="rootwindow.ui">
@@ -218,7 +218,13 @@
     <ClInclude Include="GeneratedFiles\ui_autorisationdialog.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_rootform.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_rootwindow.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tilelayout.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

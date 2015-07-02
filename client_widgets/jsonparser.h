@@ -11,7 +11,10 @@
 #include <QVector>
 
 namespace Codes{
-    enum requests{auth = 200, Prof, Lessons, Themes, Questions, QuestionsCount };
+    enum requests{auth = 200, ProfList, LessonsList, ThemesList, QuestionsList, QuestionsCount,
+                  ProfsTree, LessonsTree, ThemesTree, QuestionsTree, AnswersTree,
+                  ProfTable, LessonTable, ThemeTable, QuestionTable, AnswerTable,
+                  ProfsTable, LessonsTable, ThemesTable, QuestionsTable, AnswersTable};
 }
 struct strAnswers
 {
@@ -31,6 +34,10 @@ struct strQuestions
 
 typedef QMap<QString, QString> IdTitleMap;
 
+namespace userGroups
+{
+    enum UserGroups { Admin = 0, Prepod, Student};
+}
 
 
 class JsonParser : public QObject
@@ -49,18 +56,29 @@ public:
   void takeThemesLists(QJsonObject response);
   void takeQuestionsList(QJsonObject response );
   void takeQuestionsCount(QJsonObject response);
+
+
+  QVector<strQuestions> takeQuestions(QJsonObject response);
+private:
+  IdTitleMap takeProfs(QJsonObject response);
+  IdTitleMap takeLessons(QJsonObject response);
+  IdTitleMap takeThemes(QJsonObject response);
+
 signals:
+  void authSignalPars( QString token, QString fullName, int userGroup );
   void authSignalPars(QString token, QString fullName);
   void authSignalPars(QString fullName);
 
-  void takeProfs    (IdTitleMap profsList);
+  void takeProfsList    (IdTitleMap profsList);
   void takeLessons  (IdTitleMap Lessons);
   void takeThemes   (IdTitleMap Themes );
   void takeQuestions(QVector<strQuestions> &Questions);
   void takeSignalQuestionsCount(qint64);
+
 public slots:
   void responseSlot(QString);
   //void respArraySlot(QJsonArray);
+
 };
 
 

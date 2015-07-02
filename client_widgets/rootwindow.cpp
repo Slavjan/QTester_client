@@ -1,6 +1,7 @@
 #include "rootwindow.h"
 #include "ui_rootwindow.h"
 #include "autorisationdialog.h"
+#include "tilelayout.h"
 
 
 #include <QDir>
@@ -11,6 +12,8 @@
 #include <QList>
 #include <QMessageBox>
 
+
+
 namespace QuestionTypes
 {
     const QString RADIO = "RADIO";
@@ -18,16 +21,49 @@ namespace QuestionTypes
     const QString TEXT = "TEXT";
 }
 
-
 void RootWindow::connectSignals()
 {
     connect( _netMan->getClient(), SIGNAL( dataRecieved( QString ) ),
              _jParser, SLOT( responseSlot( QString ) ) );
     //pull requests
     // profList
-    connect( _jParser, SIGNAL( takeProfs( IdTitleMap ) ),
+    connect( _jParser, SIGNAL( takeProfsList( IdTitleMap ) ),
              this, SLOT( setProfs( IdTitleMap ) ) );
+
+    connect( _jParser, SIGNAL( authSignalPars( QString, QString, int ) ),
+             this, SLOT( authAdmin( QString, QString, int ) ) );
 }
+
+void RootWindow::authAdmin(QString str, QString str2, int userGroup)
+{
+    qDebug() << "[RootWindow::authAdmin]";
+    switch( userGroup )
+    {
+    case userGroups::Admin:
+       // ui->TabWidget_Admin_tabUsers->setVisible(true);
+      //  ui->TabWidget_Admin_tabQuestions->setVisible(true);
+        ui->stackedWidget->setCurrentIndex(PageIndex::RootWindow::Administr);
+        qDebug() << "stacked Admin";
+        break;
+    case userGroups::Prepod:
+        ui->TabWidget_Admin_tabUsers->setVisible(false);
+        ui->TabWidget_Admin_tabQuestions->setVisible(true);
+        ui->stackedWidget->setCurrentIndex(PageIndex::RootWindow::Administr);
+        qDebug() << "stacked Prepod";
+        break;
+    case userGroups::Student:
+        ui->TabWidget_Admin_tabUsers->setVisible(false);
+        ui->TabWidget_Admin_tabQuestions->setVisible(false);
+        ui->stackedWidget->setCurrentIndex(PageIndex::RootWindow::Config);
+        qDebug() << "stacked Student";
+        break;
+    default:
+        //ui->PButton_Auth_Admin->setVisible(false);
+        break;
+    }
+}
+
+
 
 void RootWindow::setProfs( IdTitleMap profList )
 {
@@ -58,13 +94,10 @@ _answersLay(nullptr)*/
     connectSignals();
     _netMan->sendPullRequestProfList();
 
-    bool exit = false;
-    AutorisationDialog _AuthForm( &exit, _netMan, _jParser );
+    AutorisationDialog _AuthForm( _netMan, _jParser );
+
     _AuthForm.exec();
-    if( exit ){
-        qDebug() << "Root::exit";
-        qApp->exit();
-    }
+
 }
 
 RootWindow::~RootWindow()
@@ -82,14 +115,14 @@ void RootWindow::on_ComboBox_Config_Profession_currentIndexChanged( int index )
              this, SLOT( setLessonsList( IdTitleMap ) ) );
 }
 
-void RootWindow::setLessonsList( IdTitleMap lessonsList )
+void RootWindow::setLessonsList( IdTitleMap lessonsList)
 {
     ui->ComboBox_Config_Lessons->clear();
     for( auto it = lessonsList.begin(); it != lessonsList.end(); ++it )
     {
         ui->ComboBox_Config_Lessons->addItem( it.value(), it.key() );
-        qDebug() << "[RootWindow::setLessonsList] it.val: " << it.value() << " it.key:" << it.key()
-            << ui->ComboBox_Config_Lessons->currentData().toString();
+//        qDebug() << "[RootWindow::setLessonsList] it.val: " << it.value() << " it.key:" << it.key()
+//            << ui->ComboBox_Config_Lessons->currentData().toString();
 
     }
 }
@@ -101,7 +134,7 @@ void RootWindow::setThemesList( IdTitleMap themeList )
     for( auto it = themeList.begin(); it != themeList.end(); ++it )
     {
         ui->ComboBox_Config_Theme->addItem( it.value(), it.key() );
-        qDebug() << "[RootWindow::setThemesList] it.val: " << it.value() << " it.key:" << it.key();
+//        qDebug() << "[RootWindow::setThemesList] it.val: " << it.value() << " it.key:" << it.key();
     }
     ui->ComboBox_Config_Theme->blockSignals( false );
 }
@@ -111,8 +144,17 @@ void RootWindow::setMaxQuestionsCount( qint64 maxCount )
     // ui->HorizontalSlider_Config_QuestionsCount->setMinimum(/*maxCount>5 ? 5: 0*/ 100);
 }
 
+void RootWindow::setProfsTree(IdTitleMap profTree, QTreeWidgetItem *selectedItem)
+{
+//    qDebug() << "[RootWindow::setProfsTree]";
+}
+
 void RootWindow::setQuestions( QVector<strQuestions> &questions )
 {
+/*
+ * 1. Вакханалия !!!
+ * 2. Надо копать дальше в стороно QML. К чёрту виджеты.
+ * ------------------------------------------------------
     _questions = questions;
     QString profession = ui->ComboBox_Config_Profession->currentText(),
         lesson = ui->ComboBox_Config_Lessons->currentText(),
@@ -122,15 +164,38 @@ void RootWindow::setQuestions( QVector<strQuestions> &questions )
 
     ui->VLay_Questions->removeItem( gLay );
     QButtonGroup *butGroup = new QButtonGroup( this );
+
+    int rowCount = round( float( questions.count() / 5 ) ),
+        colCount = round( float( questions.count() / rowCount ) );
+
+    Qt::Alignment align;
+    align = Qt::AlignLeft;
+    //  QLayoutItem *layItem = new QLayoutItem;
+    //    layItem
+    TileLayout *layout = new TileLayout;
+    QRect rect;
+    rect.setWidth( 24 );
+    rect.setHeight( 24 );
+    rect.setTop( 6 );
+    rect.setLeft( 6 );
+
+    layout->setGeometry( rect );
+
     gLay = new QGridLayout;
     ui->VLay_Questions->addLayout(gLay);
-
 
 
     int row = 0;
     int column = 0;
     for( int j = 0; j < questions.count(); ++j )
     {
+
+        Button *btn = new Button( QString::number( j + 1 ), j );
+        //  ui->GLay_Tester_Questions->addWidget( btn, i + 1, j + 1, Qt::AlignTop );
+        //        layout->addItem();
+
+        layout->addWidget( btn );
+
         if( column == 4 ){
             row++;
             column = 0;
@@ -143,13 +208,14 @@ void RootWindow::setQuestions( QVector<strQuestions> &questions )
 //        ui->GLay_Tester_Questions->layout()->addWidget( btn );
         gLay->addWidget( btn, row, column );
         //        btn->show();
+
         butGroup->addButton( btn, 1 );
         connect( btn, SIGNAL( selected( int ) ),
                  this, SLOT( questionSelected( int ) ) );
 
         column++;
     }
-
+    ui->scrolLay->setLayout( layout );
     /// \todo generate answers for firs question
     ui->Label_Tester_Profession->setText( profession );
     ui->Label_Tester_Lesson->setText( lesson );
@@ -157,6 +223,7 @@ void RootWindow::setQuestions( QVector<strQuestions> &questions )
     ui->Label_Tester_Question->setText( questionText );
 
     createAnswers( 0, questionType, _questions.first().answers );
+*/
 }
 
 void RootWindow::questionSelected( int number )
@@ -215,7 +282,7 @@ void RootWindow::createRadioAnswers( QVector<strAnswers> &answers, int questionN
     for( int i = 0; i < answers.count(); ++i )
     {
         Radio *radio;
-        qDebug() << "new Radio >" << questionNum << ">" << i;
+//        qDebug() << "new Radio >" << questionNum << ">" << i;
         radio = new Radio( answers[i].text, questionNum, i );
 
         radio->setChecked( _selRadioAnss.value( questionNum ) == i
@@ -263,12 +330,12 @@ void RootWindow::createCheckAnswers( QVector<strAnswers> &answers, int questionN
     for( int i = 0; i < answers.count(); ++i )
     {
         Check *check;
-        qDebug() << "new Check >" << questionNum << ">" << i;
+//        qDebug() << "new Check >" << questionNum << ">" << i;
         check = new Check( answers[i].text, questionNum, i );
         bool ok1 = !(_selCheckAnss.isEmpty()),
             ok2 = _selCheckAnss.contains( questionNum ),       //      ____
             ok3 = false;                                       //     /   /
-                                                               //    /___/
+        //    /___/
         QList<int> vals = _selCheckAnss.values( questionNum ); //    \  /
         foreach( int val, vals )                               //     \/
         {                                                      //     /
@@ -301,13 +368,13 @@ void RootWindow::createCheckAnswers( QVector<strAnswers> &answers, int questionN
 }
 
 void RootWindow::createTextAnswers( QVector<strAnswers> &answers, int questionNum )
-{                         
+{
     Edit *edit;
-    qDebug() << "new Edit";
+//    qDebug() << "new Edit";
     edit = new Edit( _entAnss.value( questionNum ), questionNum );
-    
-    connect( edit, SIGNAL(textEdited(QString)),
-             edit, SLOT(ansEntered(QString)));
+
+    connect( edit, SIGNAL( textEdited( QString ) ),
+             edit, SLOT( ansEntered( QString ) ) );
 
     connect( edit, SIGNAL( ansSignalEntered( int, QString ) ),
              this, SLOT( ansEntered( int, QString ) ) );
@@ -316,7 +383,7 @@ void RootWindow::createTextAnswers( QVector<strAnswers> &answers, int questionNu
 
 void RootWindow::on_ComboBox_Config_Lessons_currentIndexChanged( int index )
 {
-    qDebug() << ui->ComboBox_Config_Lessons->currentData().toInt();
+//    qDebug() << ui->ComboBox_Config_Lessons->currentData().toInt();
     QString lessonsId = ui->ComboBox_Config_Lessons->currentData().toString();
     qDebug() << "lessonsId" << lessonsId;
     _netMan->sendPullRequestThemesList( lessonsId );
@@ -343,6 +410,29 @@ void RootWindow::on_PButton_Config_Begin_clicked()
     connect( _jParser, SIGNAL( takeQuestions( QVector<strQuestions>& ) ),
              this, SLOT( setQuestions( QVector<strQuestions>& ) ) );
     ui->stackedWidget->setCurrentIndex( PageIndex::RootWindow::TestProcess );
+}
+
+// admin`ka
+// web
+
+// Questions base
+
+
+void RootWindow::on_pushButton_4_clicked()
+{
+//    createTabelsTreeModel();
+    ui->stackedWidget->setCurrentIndex( PageIndex::RootWindow::Administr );
+}
+
+void RootWindow::on_PButton_Config_Back_clicked()
+{
+
+}
+
+
+void RootWindow::on_PushButton_Admin_tabUsers_Add_clicked()
+{
+
 }
 
 void RootWindow::on_pushButton_clicked()

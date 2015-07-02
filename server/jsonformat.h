@@ -7,7 +7,7 @@
 #include <QJsonValue>
 #include <QJsonArray>
 
-#include "profession.h"
+#include "tester/profession.h"
 
 namespace Codes{
     enum requests{auth = 200, Prof, Lessons, Themes, Questions, QuestionsCount };
@@ -19,7 +19,7 @@ private:
     static QJsonArray  mapListTojArray( const IdTitleMap &map );
     static QJsonObject mapListItemtojObject( const QVariant &key, const QVariant &value );
 
-    
+
 public:
     static QJsonObject professionToJsonObj( const Profession &prof );
     static QJsonObject lessonToJsonObj( const Lesson &lesson );

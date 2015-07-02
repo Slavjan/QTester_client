@@ -1,23 +1,21 @@
 #include "autorisationdialog.h"
 #include "ui_autorisationdialog.h"
-#include <QCloseEvent>
 #include <QDir>
 
-AutorisationDialog::AutorisationDialog(bool *exit, NetworkQueryManager *netMan, JsonParser *jParser, QWidget *parent) :
+AutorisationDialog::AutorisationDialog(NetworkQueryManager *netMan, JsonParser *jParser, QWidget *parent) :
   QDialog(parent),
-  _exit(exit),
   ui(new Ui::AutorisationDialog)
 {
   ui->setupUi(this);
   ui->stackedWidget->setCurrentIndex( PageIndex::AuthForm::Login );
   _netMan = netMan;
   _jParser = jParser;
-   ui->pushButton_2->setVisible(false);
+
   _netMan->authorisation(getUserLogin(), "111");
 
   //autorisation
-  connect( _jParser, SIGNAL(authSignalPars(QString,QString)),
-           this, SLOT(authorisation(QString,QString)) );
+  connect( _jParser, SIGNAL(authSignalPars(QString,QString, int)),
+           this, SLOT(authorisation(QString,QString, int)) );
 }
 
 AutorisationDialog::~AutorisationDialog()
@@ -25,15 +23,45 @@ AutorisationDialog::~AutorisationDialog()
   delete ui;
 }
 
-void AutorisationDialog::authorisation(const QString &token, const QString &fullName)
+void AutorisationDialog::authorisation( const QString &token, const QString &fullName, int userGroup )
 {
   qDebug() << "Auth";
   ui->ComboBox_Auth_User->clear();
+
+  switch( userGroup )
+  {
+  case userGroups::Admin:
+      ui->PButton_Auth_Admin->setText(tr("Administration"));
+      ui->PButton_Auth_Admin->setVisible(true);
+      break;
+  case userGroups::Prepod:
+      ui->PButton_Auth_Admin->setText(tr("Questions redaction"));
+      ui->PButton_Auth_Admin->setVisible(true);
+      break;
+  case userGroups::Student:
+      ui->PButton_Auth_Admin->setVisible(false);
+      break;
+  default:
+      ui->PButton_Auth_Admin->setVisible(false);
+      break;
+  }
+
+  setGroupId(userGroup);
   ui->ComboBox_Auth_User->addItem(fullName, token);
   ui->ComboBox_Auth_User->addItem( tr("Change user..."), -1 );
   ui->stackedWidget->setCurrentIndex( PageIndex::AuthForm::Auth );
 }
 
+
+int AutorisationDialog::groupId() const
+{
+    return _groupId;
+}
+
+void AutorisationDialog::setGroupId(int groupId)
+{
+    _groupId = groupId;
+}
 QString AutorisationDialog::getUserLogin()
 {
     //* Variant #1 : simple
@@ -61,7 +89,21 @@ void AutorisationDialog::on_AutorisationDialog_rejected()
     
 }
 
-void AutorisationDialog::closeEvent(QCloseEvent *e)
+
+void AutorisationDialog::on_PButton_Auth_Login_clicked()
 {
-    *_exit = true;
+    QString login = ui->LEdit_Login_Login->text(),
+            password = ui->LEdit_Login_Password->text();
+
+    _netMan->authorisation(login, password);
+
+    connect( _jParser, SIGNAL( authSignalPars( QString, QString, int ) ),
+             this, SLOT( authorisation( QString, QString, int ) ) );
+}
+
+void AutorisationDialog::on_PButton_Auth_Admin_clicked()
+{
+  //  emit authAdmin( groupId() );
+   close();
+
 }

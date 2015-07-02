@@ -10,6 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = client_widgets
 TEMPLATE = app
+CONFIG += c++11
 
 RC_ICONS = resources/myIcon.ico
 
@@ -23,7 +24,9 @@ SOURCES += main.cpp\
     button.cpp \
     radio.cpp \
     check.cpp \
-    edit.cpp
+    edit.cpp \
+    tilelayout.cpp\
+    apitestwindow.cpp
 
 HEADERS  += jsonreader.h \
     tcpclient.h \
@@ -34,11 +37,14 @@ HEADERS  += jsonreader.h \
     button.h \
     radio.h \
     check.h \
-    edit.h
+    edit.h \
+    tilelayout.h\
+    apitestwindow.h
 
 FORMS    += \
     rootwindow.ui \
-    autorisationdialog.ui
+    autorisationdialog.ui\
+    apitestwindow.ui
 
 RESOURCES += \
     resource.qrc

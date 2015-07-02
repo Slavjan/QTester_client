@@ -1,24 +1,27 @@
 #include "rootwindow.h"
+#include "apitestwindow.h"
 #include <QApplication>
 #include <QTime>
 #include <QTranslator>
 
 int main(int argc, char *argv[])
 {
-  QApplication a(argc, argv);
+    QApplication a(argc, argv);
 
-  srand( QDateTime::currentMSecsSinceEpoch() );
 
-  QTranslator *translator = new QTranslator;
 
-  if( ! translator->load("://QTester_ru.qm") ){
-      qDebug() << "Error loading language" ;
-  }
+    srand( QDateTime::currentMSecsSinceEpoch() );
 
-  a.installTranslator( translator );
+    QTranslator *translator = new QTranslator;
 
-  RootWindow w;
-  w.show();
+    if( ! translator->load("://QTester_ru.qm") ){
+        qDebug() << "Error loading language" ;
+    }
 
-  return a.exec();
+
+    ApiTestWindow w;
+//    RootWindow w;
+    w.show();
+
+    return a.exec();
 }
