@@ -40,7 +40,7 @@ public:
     void pushName( const QString &name );
 };
 
-namespace Table
+namespace Tables
 {
     namespace TestStandard
     {

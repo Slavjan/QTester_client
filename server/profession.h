@@ -46,7 +46,7 @@ public:
 };
 
 
-namespace Table
+namespace Tables
 {
     namespace Professtion
     {

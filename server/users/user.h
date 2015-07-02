@@ -29,7 +29,7 @@ public:
     void setApiVersion( const QString &version );
 };
 
-namespace Table
+namespace Tables
 {
     namespace Users
     {
@@ -46,7 +46,7 @@ namespace Table
         }
     }
 
-    namespace UserGropes
+    namespace UserGroups
     {
         const QString TABLE_NAME = "UserGropes";
 

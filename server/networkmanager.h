@@ -2,7 +2,7 @@
 #include "qobject.h"
 #include "tcpserver.h"
 #include "sqlmgr.h"
-#include "usercontrol.h"
+#include "users/usercontrol.h"
 #include "requestsmanager.h"
 
 class NetworkManager :

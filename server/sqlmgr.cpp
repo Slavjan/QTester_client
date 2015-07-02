@@ -1,6 +1,6 @@
 #include <QDebug>
 #include "sqlmgr.h"
-#include "user.h"
+#include "users/user.h"
 
 // public
 SQLMgr::SQLMgr( const QString &dbDriver,
@@ -258,7 +258,7 @@ QSqlQuery SQLMgr::insert( const QString &tableName, const DataMap &data ) const
 {
     QSqlQuery query;
     DataMap _data;
-    if( !data.isEmpty() )
+    if( ! data.isEmpty() )
     {
         for( int i = 0; i < data.count(); ++i )
         {
@@ -269,10 +269,9 @@ QSqlQuery SQLMgr::insert( const QString &tableName, const DataMap &data ) const
         QString sql( "INSERT INTO " + tableName + " (" + keys + ") VALUES (" + values + ");" );
         QSqlQuery query;
 
-        qDebug() << "Debug>  [SQLMgr::insert] " << sql; /// \todo TODO: debug outpud
-
-        if( !query.exec( sql ) )
+        if( ! query.exec( sql ) )
         {
+            qDebug() << "Debug>  [SQLMgr::insert] " << sql; /// \todo TODO: debug outpud
             qWarning() << "Warning> [SQLMgr::insert] " << query.lastError();
         }
     }
@@ -282,29 +281,25 @@ QSqlQuery SQLMgr::insert( const QString &tableName, const DataMap &data ) const
 
 bool SQLMgr::auth( const QString &login, const QString &password ) const
 {
-    using namespace Table::Users;
-
-    //    QByteArray hashPass = QCryptographicHash::hash( "123", QCryptographicHash::Md5 );
-
-    //    qDebug() << "[SQLMgr::auth]password>" << hashPass;
+    /// \todo возвращать id-шник пользователя
+    using namespace Tables::Users;
 
     SqlWhere _where( Fields::LOGIN + "= '" + login + "'" );
     _where.AND( Fields::PASSWORD + "= '" + password + "'" );
 
     QSqlQuery query = select( TABLE_NAME, QStringList( "COUNT(*) AS rCount" ), _where );
 
-    if( !query.exec() )
-    {
-        //  dbug
+    if( ! query.exec() ) {
+        qWarning() << "[SQLMgr::auth]\n"
+                   << "LastQuery: " << query.lastQuery()
+                   << "SqlError: " << query.lastError().text();
         return false;
     }
 
     bool ok = false;
-    qDebug() << query.value("rCount");
     query.first();
-    qDebug() << query.value("rCount");
-    if( ( query.value("rCount").toInt(&ok) >= 1 ) && ok )
-    {
+
+    if( ( query.value("rCount").toInt(&ok) >= 1 ) && ok ) {
         return true;
     }
 

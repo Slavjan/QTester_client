@@ -5,15 +5,18 @@ User::User(const QString &login, const QString &password, const SQLMgr &db, cons
     _login = login;
     _apiVersion = apiVersion;
 
-    SqlWhere _where( Table::Users::Fields::LOGIN + " = '" + login + "'" );
-             _where.AND( Table::Users::Fields::PASSWORD + " = '" + password + "'" );
-    QStringList _fields( { "firstName ||' '|| secondName AS fullName", Table::Users::Fields::USERGROUP_ID } );
+    /// \todo Вынести всю эту кашу работающую с БД в отдельный метод для работы с БД,
+    ///       возможно, даже в отдельный класс-надстройку над SQLMgr
 
-    QSqlQuery query = db.select(Table::Users::TABLE_NAME, _fields, _where);
+    SqlWhere _where( Tables::Users::Fields::LOGIN + " = '" + login + "'" );
+             _where.AND( Tables::Users::Fields::PASSWORD + " = '" + password + "'" );
+    QStringList _fields( { "firstName ||' '|| secondName AS fullName", Tables::Users::Fields::USERGROUP_ID } );
+
+    QSqlQuery query = db.select(Tables::Users::TABLE_NAME, _fields, _where);
     query.first();
 
     QString fullUserName = query.value( "fullName" ).toString();
-    int userGroup = query.value( Table::Users::Fields::USERGROUP_ID ).toInt();
+    int userGroup = query.value( Tables::Users::Fields::USERGROUP_ID ).toInt();
 
     _fullName = fullUserName;
     _group = QString::number( userGroup );

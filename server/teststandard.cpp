@@ -55,7 +55,7 @@ void TestStandard::pushName( const QString &name )
 
 void TestStandard::selectStandardFromBase( const SQLMgr &sqlManager )
 { //TODO: ДОПИСАТЬ КЛАСС
-    using namespace Table::TestStandard;
+    using namespace Tables::TestStandard;
     QStringList _fields( { Fields::TITLE, 
                            Fields::QUESTIONS_COUNT} );
     SqlWhere _where( Fields::STANDARD_ID + " = '" + _id + "'" );    
