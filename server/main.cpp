@@ -1,9 +1,9 @@
 #include <QCoreApplication>
 
-#include "profession.h"
-#include "testgenerator.h"
+#include "tester/profession.h"
 #include "jsonformat.h"
-#include "networkmanager.h"
+#include "network/networkmanager.h"
+#include "db/sqlitemgr.h"
 
 #include "../common/ParametrParser/parametrparser.h"
 

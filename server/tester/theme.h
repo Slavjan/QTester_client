@@ -5,7 +5,7 @@
 #include <QString>
 #include <QVector>
 #include "question.h"
-#include "sqlitemgr.h"
+#include "db/sqlmgr.h"
 
 typedef QMap<QString/*id*/, QString/*title*/> IdTitleMap;
 

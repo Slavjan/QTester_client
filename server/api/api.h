@@ -2,7 +2,7 @@
 #define API_H
 
 #include <QUrl>
-#include "sqlmgr.h"
+#include "db/sqlmgr.h"
 
 namespace ApiRequests {
     namespace Params {
@@ -22,6 +22,7 @@ namespace ReplyCodes {
 class Api
 {
 public:
+    virtual ~Api(){}
     virtual QJsonObject responseRequest(const QUrl &url, const SQLMgr &db, int &code) = 0;
 };
 

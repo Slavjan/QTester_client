@@ -1,7 +1,7 @@
 #ifndef USER_H
 #define USER_H
 
-#include "sqlmgr.h"
+#include "db/sqlmgr.h"
 #include <QString>
 #include <QCryptographicHash>
 

@@ -20,9 +20,11 @@ NetworkManager::NetworkManager(SQLMgr &sqlMgr, const int port)
     connectSlots();
 }
 
-void NetworkManager::newClient( QTcpSocket* )
+void NetworkManager::newClient( QTcpSocket* client )
 {
-    qDebug() << "[NetworkManager::newClient]";
+    emit newClientConnected(client);
+    qDebug() << "[NetworkManager::newClient]\n  "
+             << client->localAddress().toString() << " " << client->localPort();
 }
 
 NetworkManager::~NetworkManager()
@@ -32,7 +34,7 @@ NetworkManager::~NetworkManager()
 
 void NetworkManager::inputQuery(QString request, QTcpSocket* client )
 {
-    qDebug() << "[NetworkManager::inputQuery] "
+    qDebug() << "[NetworkManager::inputQuery]\n  "
              << "Request: " << request;
 
     QString outputData = RequestsManager::request( request, *_sqlMgr ).toJson();

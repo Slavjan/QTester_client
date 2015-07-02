@@ -5,7 +5,7 @@
 #include <QString>
 #include <QVector>
 #include "lesson.h"
-#include "sqlitemgr.h"
+#include "db/sqlmgr.h"
 
 typedef QMap<QString, QStringList> idThemeIdsMap;
 

@@ -4,7 +4,7 @@
 #include "api.h"
 
 #include "users/usercontrol.h"
-#include "profession.h"
+#include "tester/profession.h"
 #include "jsonformat.h"
 
 namespace ApiRequests {
@@ -47,6 +47,7 @@ class Api_1_0 : public Api
     QJsonObject getProfessionsList(const QUrlQuery &query, const SQLMgr &db, int &code) const;
     QJsonObject getLessonsList(const QUrlQuery &query, const SQLMgr &db, int &code) const;
     QJsonObject getThemesList(const QUrlQuery &query, const SQLMgr &db, int &code) const;
+    ~Api_1_0(){}
 public:
     QJsonObject responseRequest(const QUrl &url, const SQLMgr &db, int &code) override;
 };

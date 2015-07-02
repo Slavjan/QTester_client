@@ -2,57 +2,51 @@ TEMPLATE = app
 TARGET = server
 
 QT += core sql network
-CONFIG += c++11 console
+CONFIG += c++14 console
 
 HEADERS += \
-    networkmanager.h \
-    answer.h \
-    connectionmgr.h \
     jsonformat.h \
-    lesson.h \
-    profession.h \
-    question.h \
     requestsmanager.h \
-    sqlitemgr.h \
-    sqlmgr.h \
-    sqlorderby.h \
-    sqlwhere.h \
-    tester.h \
-    testgenerator.h \
-    teststandard.h \
-    theme.h \
-    tcpserver.h \
     ../common/ParametrParser/parametrparser.h \
     api/api.h \
     api/apifactory.h \
     api/api_1_0.h \
     users/user.h \
     users/usercontrol.h \
-    users/accesscontrol.h
+    users/accesscontrol.h \
+    db/sqlitemgr.h \
+    db/sqlmgr.h \
+    db/sqlorderby.h \
+    db/sqlwhere.h \
+    db/connectionmgr.h \
+    tester/theme.h \
+    tester/question.h \
+    tester/lesson.h \
+    tester/profession.h \
+    tester/answer.h \
+    network/networkmanager.h \
+    network/tcpserver.h
 
 SOURCES += \
     main.cpp \
-    networkmanager.cpp \
     requestsmanager.cpp \
-    answer.cpp \
-    connectionmgr.cpp \
     jsonformat.cpp \
-    lesson.cpp \
-    profession.cpp \
-    question.cpp \
-    sqlitemgr.cpp \
-    sqlmgr.cpp \
-    sqlorderby.cpp \
-    sqlwhere.cpp \
-    tcpserver.cpp \
-    tester.cpp \
-    testgenerator.cpp \
-    teststandard.cpp \
-    theme.cpp \
     ../common/ParametrParser/parametrparser.cpp \
     api/api.cpp \
     api/apifactory.cpp \
     api/api_1_0.cpp \
     users/user.cpp \
     users/usercontrol.cpp \
-    users/accesscontrol.cpp
+    users/accesscontrol.cpp \
+    db/sqlitemgr.cpp \
+    db/sqlmgr.cpp \
+    db/sqlwhere.cpp \
+    db/sqlorderby.cpp \
+    db/connectionmgr.cpp \
+    tester/lesson.cpp \
+    tester/profession.cpp \
+    tester/question.cpp \
+    tester/answer.cpp \
+    tester/theme.cpp \
+    network/networkmanager.cpp \
+    network/tcpserver.cpp
